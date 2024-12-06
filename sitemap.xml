@@ -39,4 +39,11 @@
   
 
   
+  <url>
+    <loc>http://example.com/categories/%EF%BF%BD%EF%BF%BD%EF%BF%BD%C2%B7%EF%BF%BD%EF%BF%BD%EF%BF%BD/</loc>
+    <lastmod>2024-12-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
 </urlset>
