@@ -1,2 +1,4 @@
+http://example.com/2024/12/06/TestPost/
+http://example.com/2024/12/06/testpostByCommand/
 http://example.com/2024/12/06/hello-world/
 http://example.com/
