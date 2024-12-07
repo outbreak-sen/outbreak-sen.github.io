@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>This is a �����</title>
+  <title>This is a 部落格</title>
   
   <subtitle>outbreak-sen</subtitle>
-  <link href="http://example.com/atom.xml" rel="self"/>
+  <link href="http://outbreak-sen.github.io/atom.xml" rel="self"/>
   
-  <link href="http://example.com/"/>
-  <updated>2024-12-06T13:52:00.828Z</updated>
-  <id>http://example.com/</id>
+  <link href="http://outbreak-sen.github.io/"/>
+  <updated>2024-12-06T14:50:07.208Z</updated>
+  <id>http://outbreak-sen.github.io/</id>
   
   <author>
     <name>outbreak_sen</name>
@@ -18,34 +18,106 @@
   
   <entry>
     <title>Test Post</title>
-    <link href="http://example.com/2024/12/06/TestPost/"/>
-    <id>http://example.com/2024/12/06/TestPost/</id>
+    <link href="http://outbreak-sen.github.io/2024/12/06/TestPost%20copy%202/"/>
+    <id>http://outbreak-sen.github.io/2024/12/06/TestPost%20copy%202/</id>
     <published>2024-12-06T13:44:10.000Z</published>
-    <updated>2024-12-06T13:52:00.828Z</updated>
+    <updated>2024-12-06T14:50:07.208Z</updated>
     
-    <content type="html"><![CDATA[<!-- Not be created by command line. --><p>����ֱ��md��������Ҫ���ڣ������������д�����</p>]]></content>
+    <content type="html"><![CDATA[<!-- Not be created by command line. --><p>发现直接md，但是需要日期，所以用命令行创建。</p>]]></content>
     
     
       
       
     <summary type="html">&lt;!-- Not be created by command line. --&gt;
-&lt;p&gt;����ֱ��md��������Ҫ���ڣ������������д�����&lt;/p&gt;
+&lt;p&gt;发现直接md，但是需要日期，所以用命令行创建。&lt;/p&gt;
 </summary>
       
     
     
     
-    <category term="���·���" scheme="http://example.com/categories/%EF%BF%BD%EF%BF%BD%EF%BF%BD%C2%B7%EF%BF%BD%EF%BF%BD%EF%BF%BD/"/>
+    <category term="1" scheme="http://outbreak-sen.github.io/categories/1/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Test Post</title>
+    <link href="http://outbreak-sen.github.io/2024/12/06/TestPost%20copy%203/"/>
+    <id>http://outbreak-sen.github.io/2024/12/06/TestPost%20copy%203/</id>
+    <published>2024-12-06T13:44:10.000Z</published>
+    <updated>2024-12-06T14:50:03.913Z</updated>
+    
+    <content type="html"><![CDATA[<!-- Not be created by command line. --><p>发现直接md，但是需要日期，所以用命令行创建。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;!-- Not be created by command line. --&gt;
+&lt;p&gt;发现直接md，但是需要日期，所以用命令行创建。&lt;/p&gt;
+</summary>
+      
+    
+    
+    
+    <category term="1" scheme="http://outbreak-sen.github.io/categories/1/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Test Post</title>
+    <link href="http://outbreak-sen.github.io/2024/12/06/TestPost%20copy/"/>
+    <id>http://outbreak-sen.github.io/2024/12/06/TestPost%20copy/</id>
+    <published>2024-12-06T13:44:10.000Z</published>
+    <updated>2024-12-06T14:50:36.899Z</updated>
+    
+    <content type="html"><![CDATA[<!-- Not be created by command line. --><p>发现直接md，但是需要日期，所以用命令行创建。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;!-- Not be created by command line. --&gt;
+&lt;p&gt;发现直接md，但是需要日期，所以用命令行创建。&lt;/p&gt;
+</summary>
+      
+    
+    
+    
+    <category term="2" scheme="http://outbreak-sen.github.io/categories/2/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Test Post</title>
+    <link href="http://outbreak-sen.github.io/2024/12/06/TestPost/"/>
+    <id>http://outbreak-sen.github.io/2024/12/06/TestPost/</id>
+    <published>2024-12-06T13:44:10.000Z</published>
+    <updated>2024-12-06T14:00:04.882Z</updated>
+    
+    <content type="html"><![CDATA[<!-- Not be created by command line. --><p>发现直接md，但是需要日期，所以用命令行创建。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;!-- Not be created by command line. --&gt;
+&lt;p&gt;发现直接md，但是需要日期，所以用命令行创建。&lt;/p&gt;
+</summary>
+      
+    
+    
+    
+    <category term="文章分类" scheme="http://outbreak-sen.github.io/categories/%E6%96%87%E7%AB%A0%E5%88%86%E7%B1%BB/"/>
     
     
   </entry>
   
   <entry>
     <title>testpostByCommand</title>
-    <link href="http://example.com/2024/12/06/testpostByCommand/"/>
-    <id>http://example.com/2024/12/06/testpostByCommand/</id>
+    <link href="http://outbreak-sen.github.io/2024/12/06/testpostByCommand/"/>
+    <id>http://outbreak-sen.github.io/2024/12/06/testpostByCommand/</id>
     <published>2024-12-06T13:44:10.000Z</published>
-    <updated>2024-12-06T13:44:10.287Z</updated>
+    <updated>2024-12-06T14:00:22.805Z</updated>
     
     
     
@@ -55,12 +127,12 @@
   
   <entry>
     <title>Hello World</title>
-    <link href="http://example.com/2024/12/06/hello-world/"/>
-    <id>http://example.com/2024/12/06/hello-world/</id>
+    <link href="http://outbreak-sen.github.io/2024/12/06/hello-world/"/>
+    <id>http://outbreak-sen.github.io/2024/12/06/hello-world/</id>
     <published>2024-12-06T07:29:50.340Z</published>
-    <updated>2024-12-06T07:29:50.340Z</updated>
+    <updated>2024-12-06T14:45:23.319Z</updated>
     
-    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
+    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nihaksdpoajsda</span><br></pre></td></tr></table></figure>]]></content>
     
     
       
