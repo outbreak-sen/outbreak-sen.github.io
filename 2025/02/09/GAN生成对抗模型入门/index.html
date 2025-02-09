@@ -1,0 +1,418 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>GAN生成对抗模型入门 | This is a 部落格 of outbreak_sen</title><meta name="author" content="outbreak_sen"><meta name="copyright" content="outbreak_sen"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="GAN笔记 简介 GAN的思想来自零和博弈理论，由两个部分组成，一个是生成器Generator，随机接收一个随机噪声来生成图像。一个是鉴别器Discriminator，判断一张图像是不是“真实的”，输入是一张图像，输出是该图像为真实图像的概率，介于0-1之间，概率值越小认为生成图像不真实的可能性越大。生成器的目标是通过生成接近真实的图像来欺骗判别器，而判别器的目标是尽量辨别出生成器生成的假图像和真">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GAN生成对抗模型入门">
+<meta property="og:url" content="http://outbreak-sen.github.io/2025/02/09/GAN%E7%94%9F%E6%88%90%E5%AF%B9%E6%8A%97%E6%A8%A1%E5%9E%8B%E5%85%A5%E9%97%A8/index.html">
+<meta property="og:site_name" content="This is a 部落格 of outbreak_sen">
+<meta property="og:description" content="GAN笔记 简介 GAN的思想来自零和博弈理论，由两个部分组成，一个是生成器Generator，随机接收一个随机噪声来生成图像。一个是鉴别器Discriminator，判断一张图像是不是“真实的”，输入是一张图像，输出是该图像为真实图像的概率，介于0-1之间，概率值越小认为生成图像不真实的可能性越大。生成器的目标是通过生成接近真实的图像来欺骗判别器，而判别器的目标是尽量辨别出生成器生成的假图像和真">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://outbreak-sen.github.io/img/head.png">
+<meta property="article:published_time" content="2025-02-09T08:10:15.000Z">
+<meta property="article:modified_time" content="2025-02-09T08:11:29.732Z">
+<meta property="article:author" content="outbreak_sen">
+<meta property="article:tag" content="GAN生成对抗模型">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://outbreak-sen.github.io/img/head.png"><link rel="shortcut icon" href="/img/h_beautygirl.png"><link rel="canonical" href="http://outbreak-sen.github.io/2025/02/09/GAN%E7%94%9F%E6%88%90%E5%AF%B9%E6%8A%97%E6%A8%A1%E5%9E%8B%E5%85%A5%E9%97%A8/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'GAN生成对抗模型入门',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  isShuoshuo: false
+}</script><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="This is a 部落格 of outbreak_sen" type="application/atom+xml">
+<link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head><body><div id="web_bg" style="background-image: url(/img/v_beautygirl0.jpeg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/./img/head.png" onerror="onerror=null;src='./img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">12</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">10</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw fa fa-camera-retro"></i><span> 树洞</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 作品与鉴赏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/h_beautygirl.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/h_beautygirl.png" alt="Logo"><span class="site-name">This is a 部落格 of outbreak_sen</span></a><a class="nav-page-title" href="/"><span class="site-name">GAN生成对抗模型入门</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw fa fa-camera-retro"></i><span> 树洞</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 作品与鉴赏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">GAN生成对抗模型入门</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-02-09T08:10:15.000Z" title="发表于 2025-02-09 16:10:15">2025-02-09</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-02-09T08:11:29.732Z" title="更新于 2025-02-09 16:11:29">2025-02-09</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1>GAN笔记</h1>
+<h2 id="简介">简介</h2>
+<p>GAN的思想来自零和博弈理论，由两个部分组成，一个是生成器Generator，随机接收一个随机噪声来生成图像。一个是鉴别器Discriminator，判断一张图像是不是“真实的”，输入是一张图像，输出是该图像为真实图像的概率，介于0-1之间，概率值越小认为生成图像不真实的可能性越大。生成器的目标是通过生成接近真实的图像来欺骗判别器，而判别器的目标是尽量辨别出生成器生成的假图像和真实图像的区别。</p>
+<p>自编码器（Auto-Encoder)以及变分自编码器（Variational  Auto-Encoder)都是典型的生成器。输入通过Encoder编码成code，然后code通过Decoder重建原图，其中自编码器中的Decoder就是生成器，code可随机取值，产生不同的输出。 <strong>自编码器</strong>是一种能够通过无监督学习，对输入数据进行特征提取，学习到数据的抽象表示，称为编码过程，编码结果往往维度远小于输入数据，自编码器可以用于降维和特征提取，</p>
+<p><strong>变分自编码器</strong>（Variational auto-encoder，VAE）是一类重要的生成模型（generative model），它于2013年由Diederik P.Kingma和Max Welling提出，是自动编码器的升级版，</p>
+<p>生成器和判别器都可以自我训练，但生成器自我训练产生的图像是模糊的，无法产生逼近真实图像的假图像</p>
+<p>而判别器也可以自我训练，给定一个输入图像，输出一个概率置信度，介于0-1之间</p>
+<h2 id="发展">发展</h2>
+<p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1645877">参考</a></p>
+<ul>
+<li>
+<p>GAN（Generative Adversarial Network）生成对抗网络，由Ian Goodfellow在2014年提出。</p>
+<ul>
+<li>《Conditional Generative Adversarial Nets》2014</li>
+<li>为MNIST手写数码数据集、CIFAR-10小件图片数据集、多伦多人像数据集生成新案例。</li>
+</ul>
+</li>
+<li>
+<p>CGAN(Conditional Generative Adversarial Nets，可用条件约束的对抗神经网络)</p>
+<ul>
+<li>《Conditional Generative Adversarial Nets》</li>
+<li>一个假设的数据分布，但是这样自由散漫的方式对于较大的图像就不太可控了，CGAN方法<strong>提出了一种带有条件约束的GAN，将额外信息y输送给判别模型和生成模型,作为输入层的一部分,从而实现条件GAN，是在Mnist数据集上以类别标签为条件变量，生成指定类别的图像，把纯无监督的GAN变成有监督的模型。</strong></li>
+<li>Conditional GANs 是最先进的GAN的核心主题。这篇论文展示了如何整合数据的标签，从而实现更稳定的GAN训练，对于关注图像到图像或文本到图像的论文尤其重要。</li>
+</ul>
+</li>
+<li>
+<p>DCGAN(深度卷积GAN)</p>
+<ul>
+<li>《unsupervised Representation Learning with Deep Convolutional Generative Adversarial Networks》</li>
+<li>通过卷积的方式将100维的随机噪声输入映射成一张图像，使用卷积层代替了全连接层，采用带步长的卷积代替上采样，更好的提取图像特征，判别器和生成器对称存在，极大的提升了GAN训练的稳定性和生成结果的质量。判别器中采用leakyRELU而不是RELU来防止梯度稀疏，而生成器仍然采用RELU，但输出层采用tanh。并没有从根本上解决GAN训练不稳定的问题，往往是训练一个多次，训练另一个一次。</li>
+<li><strong>展示了卷积层与 GAN 是怎样组合的</strong>，还提供了其他一系列其他的参考架构。论文还讨论了诸如<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E5%8F%AF%E8%A7%86%E5%8C%96&amp;spm=1001.2101.3001.7020">可视化</a>GAN特征，潜在空间插值，用鉴别器特征训练分类器，结果评价等方面。DCGAN 论文是必读的 GAN 论文，因为它的结构非常清晰，代码容易使用，可以马上用在您的 GAN 开发中。</li>
+</ul>
+</li>
+<li>
+<p>Pix2Pix</p>
+<ul>
+<li>《Image-to-Image Translation with Conditional Adversarial Networks》</li>
+<li><strong>Pix2Pix是另一种图像到图像转换的GAN模型</strong>。该框架使用配对的训练样本，并在GAN模型中使用许多不同的配置。PatchGAN观察图像的70 x 70区域，以确定它们是真实的还是虚假的，而不是查看整个图像。该模型还提出了一个有趣的U-Net风格生成器结构，以及在生成器模型中使用ResNet样式的跳跃连接。有许多很酷的应用，例如边缘图到照片般真实的图像。</li>
+<li>生成高质量的图像，并且可以通过人为控制生成的图像。</li>
+</ul>
+</li>
+<li>
+<p>CycleGAN</p>
+<ul>
+<li>《Unpaired Image-to-Image Translation using Cycle-Consistent Adversarial Networks》朱俊彦等人于2017年发表题为《使用一致循环生成网络进行非配对图像转换》的论文</li>
+<li><strong>讨论了图像到图像的迁移问题</strong>而不是随机向量的图像合成问题。CycleGAN可以更具体地处理没有配对的图像转换的训练样本。因为循环一致性损失公式的优雅以及如何稳定GAN训练的方式。有许多有趣的程序使用CycleGAN，例如超分辨率，风格迁移，让马变为斑马。</li>
+<li><strong>pix2pix对训练样本要求较高，需要成对的数据集，而这种样本的获取往往需要耗费很大精力。CycleGAN恰巧解决了该问题，实现两个domain之间的转换，即只需要准备两种风格的数据集，让GAN去学习</strong>将domain X中的图片转换成domain Y的风格(不改变domain X原图中物体，仅仅实现风格转换)。</li>
+</ul>
+</li>
+<li>
+<p>StyleGAN</p>
+<ul>
+<li>
+<p>A Style-Based Generator Architecture for Generative Adversarial Networks</p>
+</li>
+<li>
+<p>对于discriminator，它的输入是一张图片，它需要去鉴别出这张图片是真实图片还是generator产生的图片，同时它还需要分辨出这张输入的图片来自于哪个domain(哪种风格)。对于generator，它有两个输入，分别是目标domain和输入图片，它的输出是一张符合目标domain风格的图片。</p>
+</li>
+<li>
+<p>CycleGAN的优点是它可以实现跨域图像翻译，不需要大量的并行数据，并且可以处理不同分辨率的图像。CycleGAN的缺点是它的生成器网络结构相对简单，生成的图像质量可能不如StyleGAN高。</p>
+<p>StyleGAN的优点是它可以生成高质量的图像，并且具有更好的控制性。StyleGAN的缺点是它需要大量的高质量数据进行训练，并且不能实现跨域图像翻译。</p>
+</li>
+</ul>
+</li>
+<li>
+<p>StackGAN</p>
+<ul>
+<li>《Text to Photo-realistic Image Synthesis with Stacked Generative Adversarial Networks》</li>
+<li>堆叠生成对抗网络（StackGan）非常独特，因为它是<strong>从自然语言文本到图像的转换</strong>。它非常类似于Conditional GANs和Progressively Growing GANs。StackGAN模型的工作方式类似于Progressively Growing GANs，因为它可以在多尺度上工作。StackGAN首先输出64 * 64的图像，然后将其作为先验信息生成256 * 256的图像。</li>
+<li>第一阶段的GAN根据文字描述草绘出一张简单形状和基本颜色符合的低分辨率图片，第二阶段的GAN把第一阶段的结果和文字条件作为输入，生成具有照片真实感的高分辨率的图片。</li>
+</ul>
+</li>
+<li>
+<p>StarGAN</p>
+<ul>
+<li>《StarGAN: Unified Generative Adversarial Networks for Multi-Domain Image-to-Image Translation》</li>
+<li>有的时候我们可能希望图片能在n个domain当中互转，那依据CycleGAN的设计思路，理论上我们需要训练<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://i-blog.csdnimg.cn/blog_migrate/0fada3075772b779cf7c96d2ecbbef5a.png" alt="img">个generato 。很明显这需要训练的generator太多了。那为了用更少的generator实现多个风格之间的互转，StarGAN被提出了。</li>
+<li>鉴别器D 学习去辨别真实图像和生成图像，以及对图像进行所属域的分类（<em><strong>两个输出</strong></em>）。生成器接受图像和目标域标签（<em><strong>两个输入</strong></em>）</li>
+</ul>
+</li>
+<li>
+<p>BigGAN</p>
+<ul>
+<li>《Large Scale GAN Training for High Fidelity Natural Image Synthesis》</li>
+<li>是ImageNet的当前最新技术。这种模型很难在本地机器上实现，并且模型中有许多组件，如自注意力，频谱归一化和带有投影鉴别器的cGAN，这些都在他们的论文中得到了很好的解释。而且论文对当前最新技术的基础论文进行了全面的概述。</li>
+<li>《Large Scale GAN Training for High Fidelity Natural Image Synthesis》展现了用BigGAN技术生成合成照片的案例</li>
+</ul>
+</li>
+<li>
+<p>Omni-GAN</p>
+<ul>
+<li>《On the Secrets of cGANs and Beyond》</li>
+<li>条件生成对抗网络 (cGAN) 是生成高质量图像的强大工具，但现有方法大多性能不令人满意或存在模式坍塌的风险。OmniGAN，是 cGAN 的一种变体，针对训练合适判别器的问题。关键是要确保判别器接受强监督并适度正则化以避免坍塌。</li>
+</ul>
+</li>
+<li>
+<p>infinite conditional GANs 或 MIC-GANs</p>
+<ul>
+<li>《Unsupervised Image Generation with Infifinite Generative Adversarial Networks》</li>
+<li>旨在用简约的先验知识生成图像。</li>
+</ul>
+</li>
+<li>
+<p>WGAN(Wasserstein GAN)</p>
+<ul>
+<li>《Wasserstein GAN》</li>
+<li>将原来的二分类任务变为回归任务，用最小二乘损失函数来优化。从<strong>损失函数</strong>的角度对GAN进行了改进，理论上给出了GAN训练不稳定的原因，提出的<strong>Wassertein距离</strong>来衡量数据分布和真实数据分布之间的距离，理论上解决了训练不稳定的问题。也解决了<strong>模式崩溃问题（collapse mode）</strong>（生成器倾向于生成一些有把握但相似的图片，而不敢轻易地尝试去生成没把握的新图片，从而缺乏多样性的情况），使得生成器生成结果更加多样。</li>
+</ul>
+</li>
+<li>
+<p>WGAN-GP(WGAN的改进版本)</p>
+<ul>
+<li>《Improved Training of Wasserstein GANs》</li>
+<li>WGAN有时候也会伴随样本质量低、难以收敛等问题，WGAN-GP是WGAN的改进版</li>
+</ul>
+</li>
+<li>
+<p>LSGAN(<strong>最小二乘GAN</strong>)</p>
+<ul>
+<li>《Least Squares Generative Adversarial Networks》</li>
+<li>以交叉熵作为损失，会使得生成器不会再优化那些被判别器识别为真实图片的生成图片，因为生成器已经完成我们为它设定的目标——尽可能地混淆判别器，交叉熵损失已经很小了，而最小二乘就不一样了，要想最小二乘损失比较小，在混淆判别器的前提下还得让生成器把距离决策边界比较远的生成图片拉向决策边界。</li>
+</ul>
+</li>
+<li>
+<p>BEGAN（Boundary Equilibrium GAN）</p>
+<ul>
+<li>《BEGAN: Boundary Equilibrium Generative Adversarial Networks》</li>
+<li>边界均衡GAN，基于<strong>均衡思想</strong>的改进，其不需要训练的技巧，使用标准的训练步骤就可以快速稳定的收敛，BEGAN使用了<strong>自动编码器（auto-encoder）作为判别器</strong>，判别器的输入是图片，输出是经过编码解码后的图片，使用重构误差来衡量样本是生成的还是真实的</li>
+</ul>
+</li>
+</ul>
+<h1>应用</h1>
+<p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/2011384">参考</a></p>
+<ul>
+<li>《Detail Me More: Improving GAN’s photo-realism of complex scenes》</li>
+<li>如果在场景的特定区域检测到或需要一盏灯，代理会为该图像块分配一个细粒度的灯判别器。这可以促使生成器学习灯的形状和阴影模型。在生成对抗网络（GAN）中添加一个“代理”模块来解决这个问题。代理任务是在图像区域中调解多个判别器的使用。</li>
+</ul>
+<h3 id="图像编辑-基于stylegan"><strong>图像编辑-基于StyleGAN</strong></h3>
+<ul>
+<li>StyleCLIP
+<ul>
+<li>《Text-Driven Manipulation of StyleGAN Imagery》</li>
+<li>利用最近引入的对比语言图像预训练 (CLIP) 模型，以便为 StyleGAN <a target="_blank" rel="noopener" href="https://cloud.tencent.com/product/tiia?from_column=20065&amp;from=20065">图像处理</a>开发一个基于文本的界面。提出一种将文本映射到 StyleGAN 风格空间中的方法，实现交互式文本驱动的图像操作。</li>
+</ul>
+</li>
+</ul>
+<h3 id="图像转换">图像转换</h3>
+<ul>
+<li>SPatchGAN
+<ul>
+<li>《SPatchGAN: A Statistical Feature Based Discriminator for Unsupervised Image-to-Image Translation》</li>
+<li>对于无监督的图像到图像转换，提出一种判别器架构专注于统计特征而不是单个patch感受野。与现有方法对生成器施加越来越多的约束不同，方法通过简化框架促进了形状变形并增强细节。</li>
+</ul>
+</li>
+</ul>
+<h3 id="文字生成图像">文字生成图像</h3>
+<ul>
+<li><strong>DAE-GAN</strong>
+<ul>
+<li>《DAE-GAN: Dynamic Aspect-aware GAN for Text-to-Image Synthesis》</li>
+<li>文本转换生成图像是指，从给定的文本描述中生成图像，保持照片真实性和语义一致性。此前方法通常使用句子特征嵌入去生成初始图像，然后用细粒度的词特征嵌入对初始效果进行细化。</li>
+<li>本文提出一种动态 Aspect-awarE GAN (DAE-GAN)，从多个粒度（包括句子级、词级和aspect级）全面地表示文本信息。</li>
+</ul>
+</li>
+</ul>
+<h3 id="风格迁移">风格迁移</h3>
+<ul>
+<li>DRB-GAN
+<ul>
+<li>《 DRB-GAN: A Dynamic ResBlock Generative Adversarial Network for Artistic Style Transfer》</li>
+<li>提出一种用于艺术风格迁移的动态 ResBlock 生成对抗网络（DRB-GAN）。风格码被建模为连接风格编码网络和迁移网络的动态 ResBlocks 的共享参数。</li>
+<li>在编码网络中，融入了风格的类感知注意机制；在迁移网络中，多个 Dynamic ResBlocks 来整合风格码和提取的 CNN 语义特征，然后输入到空间实例归一化（SWLIN）解码器，实现艺术风格迁移。</li>
+</ul>
+</li>
+</ul>
+<h3 id="动漫风格化">动漫风格化</h3>
+<ul>
+<li>AnimeGAN
+<ul>
+<li>AnimeGAN仍然存在一些明显的问题，例如模型生成的图像中存在高频伪影。nime GAN由于使用了实例归一化，很容易产生高频伪影，这与styleGAN产生高频伪影的原因是一样的。AnimeGANv2使用与AnimeGAN相同的判别器，不同之处在于判别器使用层归一化而不是实例归一化。AnimeGANv2通过简单的改变网络中特征的归一化来防止高频伪影的产生。</li>
+</ul>
+</li>
+<li>makeGirlsMoe
+<ul>
+<li>《Towards the Automatic Anime Characters Creation with Generative Adversarial Networks》</li>
+<li>还带一个网站https://make.girls.moe/#/</li>
+</ul>
+</li>
+</ul>
+<h3 id="图像编辑-人脸">图像编辑-人脸</h3>
+<ul>
+<li>latent-transformer
+<ul>
+<li>《A Latent Transformer for Disentangled Face Editing in Images and Videos》</li>
+<li>过 StyleGAN 生成器的潜在空间来编辑人脸属性，训练专用的潜在转换网络，并在损失函数中加入显式解耦和ID保留损失项。并将方法推广到视频。</li>
+</ul>
+</li>
+</ul>
+<h3 id="生成正面人像图片">生成正面人像图片</h3>
+<ul>
+<li>《人脸转正：使用全球及地方GAN感知合成拟真正面人像图片》</li>
+</ul>
+<h3 id="消除雨">消除雨</h3>
+<ul>
+<li>《使用条件性GAN消除图片中的雨》</li>
+</ul>
+<h3 id="生成人体新体态">生成人体新体态</h3>
+<ul>
+<li>《Pose Guided Person Image Generation》</li>
+</ul>
+<h3 id="面部老化">面部老化</h3>
+<ul>
+<li>《Face aging with conditional generative adversarial networks》
+<ul>
+<li>Grigory Antipov等人于2017年发表了题为《使用条件性GAN进行面部老化处理》的论文。文中介绍了使用GAN生成不同年龄段人脸图片的方法。</li>
+</ul>
+</li>
+</ul>
+<h3 id="图片混合">图片混合</h3>
+<ul>
+<li>GP-GAN
+<ul>
+<li>《GP-GAN: Towards Realistic High-Resolution Image Blending》</li>
+<li>Huikai Wu等人于2017年发表了题为《GP-GAN：关于现实高保真照片的混合》文中展示了GAN在混合照片，尤其是混合田野、大山及其大型物体照片中的应用。</li>
+</ul>
+</li>
+</ul>
+<h3 id="图像恢复-超分">图像恢复-超分</h3>
+<ul>
+<li>Fourier Space Losses for Efficient Perceptual Image Super-Resolution
+<ul>
+<li>许多超分辨率 (SR) 模型仅针对精度效果进行优化，模型庞大、缺乏效率。利用傅立叶空间监督损失来改进从丢失的高频 (HF) 内容，并设计直接在傅立叶域的判别器架构以更好地匹配目标 HF 分布。与最先进的感知 SR 方法 RankSRGAN 和 SRFlow 相比，分别快 2.4 倍和 48 倍。</li>
+</ul>
+</li>
+</ul>
+<h3 id="图像恢复-修复">图像恢复-修复</h3>
+<ul>
+<li>
+<p>Context Encoders</p>
+<ul>
+<li>《Context Encoders: Feature Learning by Inpainting》</li>
+<li>介绍了如何使用GAN的文本编码器进行图片修复或填充空缺，即填补图片中某块缺失的部分。</li>
+</ul>
+</li>
+<li>
+<p>WaveFill</p>
+<ul>
+<li>《WaveFill: A Wavelet-based Generation Network for Image Inpainting》</li>
+<li>引进WaveFill，基于小波修复，将图像分解为多个频段，并分别明确地填充每个频段中的缺失区域。WaveFill 使用离散小波变换 (DWT)  分解图像，自然地保留空间信息。它将L1重建损失应用于分解的低频段，将对抗性损失应用于高频段，从而在完成空间域图像的同时有效地减轻频间冲突。</li>
+</ul>
+</li>
+<li>
+<p>CTSDG</p>
+<ul>
+<li>《Image Inpainting via Conditional Texture and Structure Dual Generation》</li>
+<li>提出一种用于图像修复的新型双流网络，以耦合方式进行结构约束的纹理合成，以及纹理引导的结构重建，可以更好地相互利用以获得更合理的生成。</li>
+</ul>
+</li>
+</ul>
+<h3 id="图像外插值-图像延展">图像外插值-图像延展</h3>
+<ul>
+<li>SemIE
+<ul>
+<li>《SemIE: Semantically-aware Image Extrapolation》</li>
+<li>对于给定的图像，首先使用语义分割方法获得对象分割图；分割图被输入网络以计算外推语义分割和相应的全景分割图。输入图像和获得的分割图进一步用于生成最终的图像。</li>
+</ul>
+</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://outbreak-sen.github.io">outbreak_sen</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://outbreak-sen.github.io/2025/02/09/GAN%E7%94%9F%E6%88%90%E5%AF%B9%E6%8A%97%E6%A8%A1%E5%9E%8B%E5%85%A5%E9%97%A8/">http://outbreak-sen.github.io/2025/02/09/GAN%E7%94%9F%E6%88%90%E5%AF%B9%E6%8A%97%E6%A8%A1%E5%9E%8B%E5%85%A5%E9%97%A8/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://outbreak-sen.github.io" target="_blank">This is a 部落格 of outbreak_sen</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/GAN%E7%94%9F%E6%88%90%E5%AF%B9%E6%8A%97%E6%A8%A1%E5%9E%8B/">GAN生成对抗模型</a></div><div class="post-share"><div class="social-share" data-image="/./img/head.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/02/09/colmap%E4%BB%8B%E7%BB%8D%E5%92%8C%E4%BD%BF%E7%94%A8/" title="colmap介绍和使用"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">colmap介绍和使用</div></div><div class="info-2"><div class="info-item-1">colmap官方教程的笔记 需要CUDA才能稠密重建，否则只能稀疏重建 Colmap论文——《Structure-from-Motion Revisited》论文阅读笔记 Tutorial 传统上，基于图像的3D重建首先使用“运动结构Structure-from-Motion”来恢复场景的稀疏表示和输入图像的相机姿态。然后，此输出用作“多视图立体Multi-View Stereo”的输入，以恢复场景的密集表示。 12345678/path/to/project/...+── images│   +── image1.jpg│   +── image2.jpg│   +── ...│   +── imageN.jpg+── database.db+── project.ini 重建的过程   Structure-from-Motion  是将3D结构从投影重建为一系列图像的过程。输入是从不同视点拍摄的同一对象的一组重叠图像。输出是物体的三维重建，以及所有图像的重建的内在和外在相机参数。 通常，“运动结构”系统将此过程分为三个阶段： 特征检测与提取 特征匹配和几何验证...</div></div></div></a><a class="pagination-related" href="/2025/02/09/%E6%88%91%E7%9A%84ubuntu%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95/" title="我的ubuntu环境配置方法"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">我的ubuntu环境配置方法</div></div><div class="info-2"><div class="info-item-1">Environment Installition 20241101 [TOC] Python3.8 123456789101112131415161718192021sudo apt-get updatesudo apt-get install software-properties-commonsudo add-apt-repository ppa:deadsnakes/ppasudo apt-get updatesudo apt-get install python3.8 ls /usr/bin/python* #查看已安装版本sudo rm /usr/bin/python3   # 删除原来的软连接~~sudo ln -s /usr/bin/python3.8 /usr/bin/python3~~ #不要添加python3的软连接，终端打不开，需要进tty终端修复sudo ln -s /usr/bin/python3.8 /usr/bin/python #添加python新的软连接python3 --version #查看版本sudo apt-get install...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/./img/head.png" onerror="this.onerror=null;this.src='/./img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">outbreak_sen</div><div class="author-info-description">an interesting man</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">12</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">10</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/outbreak-sen" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://blog.csdn.net/outbreakrmb" target="_blank" title="CSDN"><i class="fa fa-book-open"></i></a><a class="social-icon" href="/1023786231" target="_blank" title="QQ"><i class="fab fa-qq"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">GAN笔记</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%91%E5%B1%95"><span class="toc-text">发展</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">应用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BE%E5%83%8F%E7%BC%96%E8%BE%91-%E5%9F%BA%E4%BA%8Estylegan"><span class="toc-text">图像编辑-基于StyleGAN</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BE%E5%83%8F%E8%BD%AC%E6%8D%A2"><span class="toc-text">图像转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E5%AD%97%E7%94%9F%E6%88%90%E5%9B%BE%E5%83%8F"><span class="toc-text">文字生成图像</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A3%8E%E6%A0%BC%E8%BF%81%E7%A7%BB"><span class="toc-text">风格迁移</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%A8%E6%BC%AB%E9%A3%8E%E6%A0%BC%E5%8C%96"><span class="toc-text">动漫风格化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BE%E5%83%8F%E7%BC%96%E8%BE%91-%E4%BA%BA%E8%84%B8"><span class="toc-text">图像编辑-人脸</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%9F%E6%88%90%E6%AD%A3%E9%9D%A2%E4%BA%BA%E5%83%8F%E5%9B%BE%E7%89%87"><span class="toc-text">生成正面人像图片</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B6%88%E9%99%A4%E9%9B%A8"><span class="toc-text">消除雨</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%9F%E6%88%90%E4%BA%BA%E4%BD%93%E6%96%B0%E4%BD%93%E6%80%81"><span class="toc-text">生成人体新体态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%A2%E9%83%A8%E8%80%81%E5%8C%96"><span class="toc-text">面部老化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BE%E7%89%87%E6%B7%B7%E5%90%88"><span class="toc-text">图片混合</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BE%E5%83%8F%E6%81%A2%E5%A4%8D-%E8%B6%85%E5%88%86"><span class="toc-text">图像恢复-超分</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BE%E5%83%8F%E6%81%A2%E5%A4%8D-%E4%BF%AE%E5%A4%8D"><span class="toc-text">图像恢复-修复</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BE%E5%83%8F%E5%A4%96%E6%8F%92%E5%80%BC-%E5%9B%BE%E5%83%8F%E5%BB%B6%E5%B1%95"><span class="toc-text">图像外插值-图像延展</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/02/09/colmap%E4%BB%8B%E7%BB%8D%E5%92%8C%E4%BD%BF%E7%94%A8/" title="colmap介绍和使用">colmap介绍和使用</a><time datetime="2025-02-09T08:12:29.000Z" title="发表于 2025-02-09 16:12:29">2025-02-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/02/09/GAN%E7%94%9F%E6%88%90%E5%AF%B9%E6%8A%97%E6%A8%A1%E5%9E%8B%E5%85%A5%E9%97%A8/" title="GAN生成对抗模型入门">GAN生成对抗模型入门</a><time datetime="2025-02-09T08:10:15.000Z" title="发表于 2025-02-09 16:10:15">2025-02-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/02/09/%E6%88%91%E7%9A%84ubuntu%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95/" title="我的ubuntu环境配置方法">我的ubuntu环境配置方法</a><time datetime="2025-02-09T07:46:28.000Z" title="发表于 2025-02-09 15:46:28">2025-02-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/02/09/pyQT%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/" title="pyQT的安装和使用">pyQT的安装和使用</a><time datetime="2025-02-09T07:21:26.000Z" title="发表于 2025-02-09 15:21:26">2025-02-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/02/09/%E6%88%91%E7%9A%84%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E8%BF%87%E7%A8%8B%E5%92%8C%E4%BD%BF%E7%94%A8/" title="我的博客搭建过程和使用">我的博客搭建过程和使用</a><time datetime="2025-02-09T07:21:26.000Z" title="发表于 2025-02-09 15:21:26">2025-02-09</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By outbreak_sen</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><div class="js-pjax"></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

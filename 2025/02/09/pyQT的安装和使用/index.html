@@ -1,0 +1,372 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>pyQT的安装和使用 | This is a 部落格 of outbreak_sen</title><meta name="author" content="outbreak_sen"><meta name="copyright" content="outbreak_sen"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="PyQT的安装和使用 pyQT的安装不需要在官网下载QT安装包，只需要创建conda环境然后pip安装，安装pyQT5-tools之后会安装QT designer，然后就可以可视化设计一个UI，然后通过Pyuic工具就可以转化为一个py文件，这个py文件就是整个工程，py文件中有一个class包含了整个UI设计，然后只需要编辑py文件中这个class的功能即可，编辑子函数。 VScode+pyQT">
+<meta property="og:type" content="article">
+<meta property="og:title" content="pyQT的安装和使用">
+<meta property="og:url" content="http://outbreak-sen.github.io/2025/02/09/pyQT%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/index.html">
+<meta property="og:site_name" content="This is a 部落格 of outbreak_sen">
+<meta property="og:description" content="PyQT的安装和使用 pyQT的安装不需要在官网下载QT安装包，只需要创建conda环境然后pip安装，安装pyQT5-tools之后会安装QT designer，然后就可以可视化设计一个UI，然后通过Pyuic工具就可以转化为一个py文件，这个py文件就是整个工程，py文件中有一个class包含了整个UI设计，然后只需要编辑py文件中这个class的功能即可，编辑子函数。 VScode+pyQT">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://outbreak-sen.github.io/img/head.png">
+<meta property="article:published_time" content="2025-02-09T07:21:26.000Z">
+<meta property="article:modified_time" content="2025-02-09T07:44:46.078Z">
+<meta property="article:author" content="outbreak_sen">
+<meta property="article:tag" content="QT">
+<meta property="article:tag" content="python">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://outbreak-sen.github.io/img/head.png"><link rel="shortcut icon" href="/img/h_beautygirl.png"><link rel="canonical" href="http://outbreak-sen.github.io/2025/02/09/pyQT%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'pyQT的安装和使用',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  isShuoshuo: false
+}</script><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="This is a 部落格 of outbreak_sen" type="application/atom+xml">
+<link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head><body><div id="web_bg" style="background-image: url(/img/v_beautygirl0.jpeg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/./img/head.png" onerror="onerror=null;src='./img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">12</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">10</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw fa fa-camera-retro"></i><span> 树洞</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 作品与鉴赏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/h_beautygirl.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/h_beautygirl.png" alt="Logo"><span class="site-name">This is a 部落格 of outbreak_sen</span></a><a class="nav-page-title" href="/"><span class="site-name">pyQT的安装和使用</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw fa fa-camera-retro"></i><span> 树洞</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 作品与鉴赏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">pyQT的安装和使用</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-02-09T07:21:26.000Z" title="发表于 2025-02-09 15:21:26">2025-02-09</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-02-09T07:44:46.078Z" title="更新于 2025-02-09 15:44:46">2025-02-09</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83/">配置环境</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1>PyQT的安装和使用</h1>
+<p>pyQT的安装不需要在官网下载QT安装包，只需要创建conda环境然后pip安装，安装pyQT5-tools之后会安装QT designer，然后就可以可视化设计一个UI，然后通过Pyuic工具就可以转化为一个py文件，这个py文件就是整个工程，py文件中有一个class包含了整个UI设计，然后只需要编辑py文件中这个class的功能即可，编辑子函数。</p>
+<h2 id="vscode-pyqt-installation">VScode+pyQT installation</h2>
+<ol>
+<li>
+<p>安装PyQt</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip install PyQt5</span><br><span class="line">pip install PyQt5-tools</span><br></pre></td></tr></table></figure>
+<p>vscode安装PYQT Integration便于使用pyqt</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Pyqt-integration &gt; Qtdesigner: Path</span></span><br><span class="line">\venv_QT\Lib\site-packages\qt5_applications\Qt\bin\designer</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Pyqt-integration &gt; Pyuic: Cmd 用于转化ui格式为py</span></span><br><span class="line">\venv_QT\Scripts\pyuic5</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Pyqt-integration &gt; Pyuic &gt; Compile: Filepath</span></span><br><span class="line">默认是将ui转化好的py文件存在当前目录的ui文件夹下</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>使用Pyuic工具，将 .ui文件转换为 .py文件。</p>
+<ul>
+<li>
+<p>在文件夹栏空白处点击右键点击「PYQT: New Form」启动Qt Designer软件</p>
+</li>
+<li>
+<p>「文件 &gt; 另存为」，把所设计的 .ui文件保存到项目目录下</p>
+</li>
+<li>
+<p>右击 xxx.ui文件「PYQT: Compile Form」调用Pyuic工将 xxx.ui文件转换为 xxx_Ui.py文件，是可以相互转化的。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">-x 开关向生成的 Python 脚本（来自 XML）添加了少量附加代码，使其成为可自执行的独立应用程序。</span></span><br><span class="line">pyuic5 -x input.py -o output.ui</span><br><span class="line">python -m PyQt6.uic.pyuic -x register.ui -o register.py</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>
+<p>对GUI界面进行修改和调整。在文件夹栏的 .ui文件右击，点击「PYQT: Edit in Designer」，即可启动Qt Designer对GUI界面进行编辑。</p>
+</li>
+<li>
+<p>编辑完成后保存并退出Qt Designer，对.ui文件右击，点击「PYQT: Compile Form」，重新更新一次 xxx_Ui.py文件即可。</p>
+</li>
+</ul>
+<ol start="3">
+<li>
+<p>使用python编程，调用GUI界面的 .py文件，编写GUI界面各组件的绑定事件函数，如点击某按钮时触发某函数，实现某功能。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PyQt5.QtWidgets <span class="keyword">import</span> QApplication, QMainWindow</span><br><span class="line"><span class="keyword">import</span> matchingNetworkDesigner_Ui <span class="comment"># import GUI的.py文件 </span></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line"> app = QApplication(sys.argv) </span><br><span class="line">MainWindow = QMainWindow() </span><br><span class="line">ui = matchingNetworkDesigner_Ui.Ui_MainWindow()<span class="comment"># ui=GUI的py文件名.类名</span></span><br><span class="line"> ui.setupUi(MainWindow)</span><br><span class="line"> ui.L_PB_cal.clicked.connect(L_cal) <span class="comment"># 把函数绑定GUI的按钮的点击事件。</span></span><br><span class="line"> ui.L_PB_reset.clicked.connect(L_reset)<span class="comment"># 按钮名字「L_PB_cal」和「L_PB_reset」在Qt Designer中定义。</span></span><br><span class="line"> MainWindow.show()</span><br><span class="line"> sys.exit(app.exec_())</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="pyqt-include">PyQT include</h2>
+<table>
+<thead>
+<tr>
+<th>PyQT的模块组成</th>
+<th>其余就是和web，sql，opengl等一些相关的，用不着</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>QtCore</td>
+<td>其他模块使用的核心非 GUI 类</td>
+</tr>
+<tr>
+<td>QtGui</td>
+<td>图形用户界面组件</td>
+</tr>
+<tr>
+<td>QtXml</td>
+<td>处理 XML 的类</td>
+</tr>
+<tr>
+<td>QtWidgets</td>
+<td>用于创建经典桌面样式 UI 的类。</td>
+</tr>
+<tr>
+<td>QtDesigner</td>
+<td>用于扩展 Qt Designer 的类</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>PyQt5-tools的组成</th>
+<th>其余不用看的</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>assistantQt Assistant</td>
+<td>文档工具</td>
+</tr>
+<tr>
+<td>pyqt5designerQt Designer GUI</td>
+<td>布局工具</td>
+</tr>
+<tr>
+<td>linguist Qt Linguist</td>
+<td>翻译工具</td>
+</tr>
+<tr>
+<td>qmake Qt</td>
+<td>软件构建工具</td>
+</tr>
+<tr>
+<td>pyuic5</td>
+<td>用于从 ui 文件生成代码的 Qt 用户界面编译器</td>
+</tr>
+</tbody>
+</table>
+<h2 id="pyqt-basic-class">PyQT Basic Class</h2>
+<ul>
+<li>QObject 是所有 Qt 对象的基类</li>
+<li>QPaintDevice类是所有可绘制对象的基类。</li>
+<li>QWidget类，派生自 QObject 和 QPaintDevice 类，是所有用户界面对象的基类。一般QWidget就是初始的大页面</li>
+<li>QApplication类管理 GUI 应用程序的主要设置和控制流程包含主事件循环，其实就控制每个页面的关闭开启</li>
+<li>QMainWindow基于 GUI 的应用程序的顶级窗口是由 <strong>QMainWindow</strong> 小部件对象创建的</li>
+</ul>
+<h2 id="qt信号与插槽">QT信号与插槽</h2>
+<p>每个派生自 QObject 类的 PyQt 小部件都可以发出 <strong>“信号”</strong> 以响应一个或多个事件。信号是一个小部件的成员函数，比如点击click（）。信号&quot;连接connect&quot;到一个&quot;插槽function&quot;。 插槽可以是任何可调用的 Python 函数。</p>
+<ul>
+<li>
+<p>可以使用qt designer的Signal/Slot 编辑器（或按 F4）直接添加</p>
+</li>
+<li>
+<pre><code class="language-python">widget.signal.connect(slot_function)
+button.clicked.connect(slot_function)
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## 布局管理</span><br><span class="line"></span><br><span class="line">### 绝对布局</span><br><span class="line"></span><br><span class="line">* 设置一个大画面setGeometry(10,10,300,200)，然后里面的button位于move(50,2)</span><br><span class="line"></span><br><span class="line">```python</span><br><span class="line">def window():</span><br><span class="line">   app = QtGui.QApplication(sys.argv)</span><br><span class="line"></span><br><span class="line">   w = QtGui.QWidget())    </span><br><span class="line">   w.setGeometry(10,10,300,200)</span><br><span class="line">   w.setWindowTitl</span><br><span class="line"></span><br><span class="line">   b = QtGui.QPushButton(w)</span><br><span class="line">   b.setText(&quot;Hello World!&quot;)</span><br><span class="line">   b.move(50,20e(“PyQt”)</span><br><span class="line"></span><br><span class="line">   w.show()</span><br><span class="line">   sys.exit(app.exec_())</span><br><span class="line"></span><br><span class="line">if __name__ == &#x27;__main__&#x27;:</span><br><span class="line">   window()</span><br></pre></td></tr></table></figure>
+
+</code></pre>
+</li>
+</ul>
+<h3 id="相对布局">相对布局</h3>
+<ul>
+<li>
+<p>QBoxLayout垂直或水平排列</p>
+<ul>
+<li>
+<p>addWidget()将小部件添加到</p>
+</li>
+<li>
+<p>addStretch()创建空的可拉伸框</p>
+</li>
+<li>
+<p>addLayout()添加另一个嵌套布局</p>
+</li>
+<li>
+<p>vbox = QVBoxLayout()，最后要win.setLayout(vbox)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>QGridLayout以行和列排列</p>
+</li>
+<li>
+<p>QFormLayout创建两列表单</p>
+</li>
+</ul>
+<h2 id="qt组件">qt组件</h2>
+<ul>
+<li>
+<p><a target="_blank" rel="noopener" href="https://www.w3ccoo.com/pyqt5/pyqt5_qlabel_widget.html">QLabel</a></p>
+</li>
+<li>
+<p><a target="_blank" rel="noopener" href="https://www.w3ccoo.com/pyqt5/pyqt5_qlineedit_widget.html">QLineEdit</a></p>
+</li>
+<li>
+<p><a target="_blank" rel="noopener" href="https://www.w3ccoo.com/pyqt5/pyqt5_qpushbutton_widget.html">QPushButton</a></p>
+</li>
+</ul>
+<h2 id="多页面">多页面</h2>
+<p>不止一个界面，如何弹出界面并多页面操作</p>
+<h3 id="简单的提示界面">简单的提示界面</h3>
+<ul>
+<li>
+<p>QDialog</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">window</span>():</span><br><span class="line">   app = QApplication(sys.argv)</span><br><span class="line">   w = QWidget()</span><br><span class="line">   btn = QPushButton(w)</span><br><span class="line">   btn.clicked.connect(showdialog)</span><br><span class="line">   w.setWindowTitle(<span class="string">&quot;PyQt Dialog demo&quot;</span>)</span><br><span class="line">   w.show()</span><br><span class="line">   sys.exit(app.exec_())</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">showdialog</span>():</span><br><span class="line">   dlg = QDialog()</span><br><span class="line">   b1 = QPushButton(<span class="string">&quot;ok&quot;</span>,dlg)</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>QMessageBox</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">window</span>():</span><br><span class="line">   app = QApplication(sys.argv)</span><br><span class="line">   w = QWidget()</span><br><span class="line">   b = QPushButton(w)</span><br><span class="line">   b.clicked.connect(showdialog)</span><br><span class="line">   w.setWindowTitle(<span class="string">&quot;PyQt MessageBox demo&quot;</span>)</span><br><span class="line">   w.show()</span><br><span class="line">   sys.exit(app.exec_())</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">showdialog</span>():</span><br><span class="line">   msg = QMessageBox()</span><br><span class="line">   msg.setIcon(QMessageBox.Information)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="真正的多页面">真正的多页面</h3>
+<ul>
+<li>
+<p>SDI 单文档接口：显示多个独立的窗口。 这需要更多的内存资源。</p>
+</li>
+<li>
+<p>MDI 多文档接口 ：子窗口相对于彼此放置在主容器内。 容器小部件称为 QMdiArea。</p>
+</li>
+</ul>
+<p>QMdiArea 小部件一般占据 QMainWondow 对象的中心小部件。 该区域中的子窗口是 <strong>QMdiSubWindow</strong> 类的实例。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MainWindow</span>(<span class="title class_ inherited__">QMainWindow</span>):</span><br><span class="line">   count = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">   <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, parent = <span class="literal">None</span></span>):</span><br><span class="line">      <span class="built_in">super</span>(MainWindow, <span class="variable language_">self</span>).__init__(parent)</span><br><span class="line">      <span class="variable language_">self</span>.mdi = QMdiArea()</span><br><span class="line">      <span class="variable language_">self</span>.setWindowTitle(<span class="string">&quot;MDI demo&quot;</span>)</span><br><span class="line">      <span class="variable language_">self</span>.setCentralWidget(<span class="variable language_">self</span>.mdi)</span><br><span class="line">      bar = <span class="variable language_">self</span>.menuBar()</span><br><span class="line"></span><br><span class="line">      file = bar.addMenu(<span class="string">&quot;File&quot;</span>)</span><br><span class="line">      file.addAction(<span class="string">&quot;New&quot;</span>)</span><br><span class="line">      file.triggered[QAction].connect(<span class="variable language_">self</span>.windowaction)</span><br><span class="line">   <span class="keyword">def</span> <span class="title function_">windowaction</span>(<span class="params">self, q</span>): <span class="comment"># 多个menu摁键传入参数</span></span><br><span class="line">      <span class="built_in">print</span> (<span class="string">&quot;triggered&quot;</span>)</span><br><span class="line">      <span class="keyword">if</span> q.text() == <span class="string">&quot;New&quot;</span>:</span><br><span class="line">         MainWindow.count = MainWindow.count+<span class="number">1</span></span><br><span class="line">         sub = QMdiSubWindow()</span><br><span class="line">         sub.setWidget(QTextEdit())</span><br><span class="line">         sub.setWindowTitle(<span class="string">&quot;subwindow&quot;</span>+<span class="built_in">str</span>(MainWindow.count))</span><br><span class="line">         <span class="variable language_">self</span>.mdi.addSubWindow(sub)</span><br><span class="line">         sub.show()</span><br></pre></td></tr></table></figure>
+<h2 id="面向对象地制作gui">面向对象地制作GUI</h2>
+<h1>QSS</h1>
+<p><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/stylesheet-reference.html">Qt Style Sheets Reference</a></p>
+<p><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/stylesheet-examples.html">Qt Style Sheets ExamplesQt 官方例子</a></p>
+<p>Qt样式表（以下统称QSS）的术语和语法规则几乎和CSS相同。</p>
+<ul>
+<li>
+<p>类似CSS，QSS每一条都是由一个选择器和一组声明构成：</p>
+<ul>
+<li>
+<p>选择器选出要对哪种控件进行样式修改，</p>
+</li>
+<li>
+<p>每个声明都是键值对，键为属性，值为属性值</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="设置方法">设置方法</h2>
+<ol>
+<li>
+<p>局部设置，用setStyleSheet(QSS)</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">label1 = QLabel(<span class="string">&#x27;标签1&#x27;</span>, <span class="variable language_">self</span>)</span><br><span class="line">label1.setStyleSheet(<span class="string">&#x27;background-color:green;&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">btn2 = QPushButton(<span class="string">&#x27;按钮2&#x27;</span>, <span class="variable language_">self</span>)</span><br><span class="line">btn2.move(<span class="number">200</span>, <span class="number">100</span>)</span><br><span class="line">btn2.resize(<span class="number">70</span>, <span class="number">30</span>)</span><br><span class="line"><span class="comment">#局部设置</span></span><br><span class="line">btn1.setStyleSheet(<span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">    QPushButton&#123;</span></span><br><span class="line"><span class="string">        color:red;</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string">    QPushButton:hover&#123;</span></span><br><span class="line"><span class="string">        background-color: green;</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>全局设置，把所有的buttun之类的都设置好QSS，然后直接对Mainwindow进行加载</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span> :</span><br><span class="line">    app = QApplication(sys.argv)</span><br><span class="line">    window = Window()</span><br><span class="line">    QssStyle = <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">            QPushButton:hover&#123;</span></span><br><span class="line"><span class="string">                    background-color: green;</span></span><br><span class="line"><span class="string">                &#125;</span></span><br><span class="line"><span class="string">            QPushButton[name=&quot;btn&quot;]:hover&#123;</span></span><br><span class="line"><span class="string">                    background-color: red;</span></span><br><span class="line"><span class="string">                &#125;</span></span><br><span class="line"><span class="string">            QPushButton#btn:hover&#123;</span></span><br><span class="line"><span class="string">                    background-color: green;</span></span><br><span class="line"><span class="string">                    color:red;</span></span><br><span class="line"><span class="string">                &#125;</span></span><br><span class="line"><span class="string">            &#x27;&#x27;&#x27;</span></span><br><span class="line">    <span class="comment"># # 全局设置</span></span><br><span class="line">    window.setStyleSheet(QssStyle)  <span class="comment"># 当前窗口全局有效</span></span><br><span class="line">    window.show()</span><br><span class="line">    sys.exit(app.exec_())</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>为降低耦合，往往把QSS写在一个单独的style.qss文件中，然后在main.py的QApplication或QMainWindow中加载样式</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">QPushButton &#123;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#555555</span>;</span><br><span class="line">    <span class="attribute">border</span>: none;</span><br><span class="line">    <span class="attribute">color</span>: white;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">14px</span>;</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">3px</span>;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">5px</span> <span class="number">10px</span>;&#125;QPushButton<span class="selector-pseudo">:hover</span> &#123;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#666666</span>;&#125;QProgressBar &#123;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#444444</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">8px</span>;</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">4px</span>;&#125;QProgressBar::chunk &#123;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#777777</span>;&#125;QSlider &#123;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#444444</span>;&#125;QSlider::handle:horizontal &#123;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#666666</span>;</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">100%</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">12px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">12px</span>;</span><br><span class="line">    <span class="attribute">margin</span>: -<span class="number">3px</span> <span class="number">0</span>;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 加载QSS样式的方法</span></span><br><span class="line">app = QApplication(sys.argv)</span><br><span class="line">window = MainWindow()</span><br><span class="line"></span><br><span class="line">style_file = <span class="string">&#x27;./style.qss&#x27;</span></span><br><span class="line">style_sheet = QSSLoader.read_qss_file(style_file)</span><br><span class="line">window.setStyleSheet(style_sheet)</span><br><span class="line"></span><br><span class="line">window.show()</span><br><span class="line">sys.exit(app.exec_())</span><br></pre></td></tr></table></figure>
+<h2 id="qt-material">Qt-material</h2>
+<p>一个github开源，可以快速设置所有的qss。还有很多其他的快速设置qss的库GTRONICK-QSS，飞扬青云-QSS，QDarkStyleSheet</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install qt-material</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用例子</span></span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">from</span> PyQt5 <span class="keyword">import</span> QtWidgets</span><br><span class="line"><span class="keyword">from</span> qt_material <span class="keyword">import</span> apply_stylesheet</span><br><span class="line"></span><br><span class="line">app = QtWidgets.QApplication(sys.argv)</span><br><span class="line">window = QtWidgets.QMainWindow()</span><br><span class="line"></span><br><span class="line">apply_stylesheet(app, theme=<span class="string">&#x27;dark_teal.xml&#x27;</span>)</span><br><span class="line"></span><br><span class="line">window.show()</span><br><span class="line">app.exec_()</span><br></pre></td></tr></table></figure></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://outbreak-sen.github.io">outbreak_sen</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://outbreak-sen.github.io/2025/02/09/pyQT%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/">http://outbreak-sen.github.io/2025/02/09/pyQT%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://outbreak-sen.github.io" target="_blank">This is a 部落格 of outbreak_sen</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/QT/">QT</a><a class="post-meta__tags" href="/tags/python/">python</a></div><div class="post-share"><div class="social-share" data-image="/./img/head.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/02/09/%E6%88%91%E7%9A%84ubuntu%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95/" title="我的ubuntu环境配置方法"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">我的ubuntu环境配置方法</div></div><div class="info-2"><div class="info-item-1">Environment Installition 20241101 [TOC] Python3.8 123456789101112131415161718192021sudo apt-get updatesudo apt-get install software-properties-commonsudo add-apt-repository ppa:deadsnakes/ppasudo apt-get updatesudo apt-get install python3.8 ls /usr/bin/python* #查看已安装版本sudo rm /usr/bin/python3   # 删除原来的软连接~~sudo ln -s /usr/bin/python3.8 /usr/bin/python3~~ #不要添加python3的软连接，终端打不开，需要进tty终端修复sudo ln -s /usr/bin/python3.8 /usr/bin/python #添加python新的软连接python3 --version #查看版本sudo apt-get install...</div></div></div></a><a class="pagination-related" href="/2025/02/09/%E6%88%91%E7%9A%84%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E8%BF%87%E7%A8%8B%E5%92%8C%E4%BD%BF%E7%94%A8/" title="我的博客搭建过程和使用"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">我的博客搭建过程和使用</div></div><div class="info-2"><div class="info-item-1">我的博客搭建过程和使用 搭建过程 基础Hexo搭建方法   安装 Node.js与git Node.js 是一个开源的、跨平台的 JavaScript 运行环境   安装 Hexo和butterfly 12345678910npm config set registry https://registry.npmmirror.comnpm install hexo-cli -gcd 你要创建站点的目录hexo init blogcd blognpm installgit clone -b master https://github.com/jerryc127/hexo-theme-butterfly.git themes/butterfly #主题要在theme里，可以魔改npm install hexo-renderer-pug hexo-renderer-stylus --save # pug以及stylus的渲染器npm i hexo-theme-butterfly...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2025/02/09/QT%E7%9A%84%E4%B8%8D%E5%90%8C%E5%BC%80%E5%8F%91%E6%96%B9%E5%BC%8F/" title="QT的不同开发方式"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-02-09</div><div class="info-item-2">QT的不同开发方式</div></div><div class="info-2"><div class="info-item-1">QT usage C++QT 遇到了qml等文件还是得用qt他原版 </div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/./img/head.png" onerror="this.onerror=null;this.src='/./img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">outbreak_sen</div><div class="author-info-description">an interesting man</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">12</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">10</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/outbreak-sen" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://blog.csdn.net/outbreakrmb" target="_blank" title="CSDN"><i class="fa fa-book-open"></i></a><a class="social-icon" href="/1023786231" target="_blank" title="QQ"><i class="fab fa-qq"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">PyQT的安装和使用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#vscode-pyqt-installation"><span class="toc-text">VScode+pyQT installation</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pyqt-include"><span class="toc-text">PyQT include</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pyqt-basic-class"><span class="toc-text">PyQT Basic Class</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#qt%E4%BF%A1%E5%8F%B7%E4%B8%8E%E6%8F%92%E6%A7%BD"><span class="toc-text">QT信号与插槽</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%B8%E5%AF%B9%E5%B8%83%E5%B1%80"><span class="toc-text">相对布局</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#qt%E7%BB%84%E4%BB%B6"><span class="toc-text">qt组件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E9%A1%B5%E9%9D%A2"><span class="toc-text">多页面</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%80%E5%8D%95%E7%9A%84%E6%8F%90%E7%A4%BA%E7%95%8C%E9%9D%A2"><span class="toc-text">简单的提示界面</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9C%9F%E6%AD%A3%E7%9A%84%E5%A4%9A%E9%A1%B5%E9%9D%A2"><span class="toc-text">真正的多页面</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%9C%B0%E5%88%B6%E4%BD%9Cgui"><span class="toc-text">面向对象地制作GUI</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">QSS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E6%96%B9%E6%B3%95"><span class="toc-text">设置方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#qt-material"><span class="toc-text">Qt-material</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/02/09/colmap%E4%BB%8B%E7%BB%8D%E5%92%8C%E4%BD%BF%E7%94%A8/" title="colmap介绍和使用">colmap介绍和使用</a><time datetime="2025-02-09T08:12:29.000Z" title="发表于 2025-02-09 16:12:29">2025-02-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/02/09/GAN%E7%94%9F%E6%88%90%E5%AF%B9%E6%8A%97%E6%A8%A1%E5%9E%8B%E5%85%A5%E9%97%A8/" title="GAN生成对抗模型入门">GAN生成对抗模型入门</a><time datetime="2025-02-09T08:10:15.000Z" title="发表于 2025-02-09 16:10:15">2025-02-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/02/09/%E6%88%91%E7%9A%84ubuntu%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95/" title="我的ubuntu环境配置方法">我的ubuntu环境配置方法</a><time datetime="2025-02-09T07:46:28.000Z" title="发表于 2025-02-09 15:46:28">2025-02-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/02/09/pyQT%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/" title="pyQT的安装和使用">pyQT的安装和使用</a><time datetime="2025-02-09T07:21:26.000Z" title="发表于 2025-02-09 15:21:26">2025-02-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/02/09/%E6%88%91%E7%9A%84%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E8%BF%87%E7%A8%8B%E5%92%8C%E4%BD%BF%E7%94%A8/" title="我的博客搭建过程和使用">我的博客搭建过程和使用</a><time datetime="2025-02-09T07:21:26.000Z" title="发表于 2025-02-09 15:21:26">2025-02-09</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By outbreak_sen</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><div class="js-pjax"></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
