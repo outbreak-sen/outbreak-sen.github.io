@@ -6,7 +6,7 @@
   <link href="http://outbreak-sen.github.io/atom.xml" rel="self"/>
   
   <link href="http://outbreak-sen.github.io/"/>
-  <updated>2025-02-09T08:12:59.310Z</updated>
+  <updated>2025-02-09T08:21:48.232Z</updated>
   <id>http://outbreak-sen.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>EffiMVS全文翻译</title>
+    <link href="http://outbreak-sen.github.io/2025/02/09/EffiMVS%E5%85%A8%E6%96%87%E7%BF%BB%E8%AF%91/"/>
+    <id>http://outbreak-sen.github.io/2025/02/09/EffiMVS%E5%85%A8%E6%96%87%E7%BF%BB%E8%AF%91/</id>
+    <published>2025-02-09T08:21:01.000Z</published>
+    <updated>2025-02-09T08:21:48.232Z</updated>
+    
+    <content type="html"><![CDATA[<h1>Effi MVS翻译</h1><h2 id="摘要">摘要</h2><p>在本文中，我们提出了一种用于多视图立体的新颖的迭代动态成本量。 与其他作品相比，我们的成本量要轻得多，因此可以使用基于 2D 卷积的 GRU 进行处理。 值得注意的是，每一步GRU 的输出可进一步用于生成新的成本量。 这样，就构建了一个基于GRU的迭代优化器。 此外，我们提出了一种级联和分层细化架构来利用多尺度信息并加速收敛。 具体来说，利用轻量级 3D CNN 生成最粗糙的初始深度图，这对于启动 GRU 并保证快速收敛至关重要。 然后，深度图由作用于金字塔特征图的多级 GRU 进行细化。 对 DTU 和 Tanks &amp; Temples 基准测试的大量实验表明，我们的方法可以在准确性、速度和内存使用方面实现最先进的结果。</p><h2 id="介绍">介绍</h2><p>多视图立体 (MVS) 旨在基于一系列姿势图像和相应的相机参数重建密集的 3D 模型。 预测深度图，然后将深度图融合到点云模型中是 MVS 最常见的流程。 作为一个基本问题，MVS 在计算机视觉领域已经研究了几十年。</p><p>最近，我们见证了基于深度学习的 MVS 方法的快速发展。 一般来说，MVS任务最常见的基本结构是利用图像序列的特征来构造3D成本（相关）体积，然后用3D CNN对其进行正则化，最后对深度进行回归。 随之而来的还有大量作品管道，并且在 MVS 基准的重建精度方面优于大多数传统方法。然而，由于正则化步骤对 GPU 内存和处理时间的要求较高，现有方法CIDER, MVSNet只能处理低分辨率的图像。</p><p>显然，除了提高重建质量之外，减少运行时间和GPU内存消耗也非常重要，这使得基于学习的MVS工作能够适应内存和计算受限的设备。 最近，有人提出了一些工作来提高 MVS 的效率。 然而，同时提高精度和降低消耗仍然非常具有挑战性。 在这项工作中，我们的目标是提高高分辨率 MVS 的计算速度并减少内存消耗，并确保良好的重建质量。</p><p>我们方法的核心思想是构建一个可以迭代方式处理的轻量级动态成本量。 这一策略可以带来很多好处。 首先，由于使用了轻量级成本卷，大大降低了推理阶段的内存使用峰值。 其次，迭代和动态处理可以保证大的搜索空间，这对准确性很重要。 最后，我们的动态成本量能够在几个迭代步骤中收敛，因此我们的方法非常有效。</p><p>老实说，我们的方法部分受到[5,10,25,26]作品的启发。 在[5,10,25]的工作中，提出了级联自适应成本量。 相比之下，我们进一步缩小了成本量的大小，并将这种多阶段策略扩展到迭代方式。 我们的迭代想法也受到最近的光学估计工作的启发[26]。 与[26]相比，我们放弃了全尺寸静态相关卷，因为它对内存不友好。 更重要的是，与光流估计不同，我们利用轻量级 3D CNN 来估计粗略深度图作为 GRU 的初始化，我们发现这对于 GRU 在 MVS 上的快速收敛非常重要。 另外，由于3D CNN非常轻，对效率影响较小。 总之，我们的贡献可以总结为：</p><ol><li>我们提出了一种新颖的动态成本卷，它非常轻量级，可以通过基于 2D 卷积的 GRU 迭代处理。 这样我们就避免了大尺寸静态成本卷的内存和耗时问题。</li><li>我们提出了一种级联和分层细化架构来利用多尺度信息并加速收敛。 具体来说，通过轻量级 3DCNN，我们为 GRU 提供可靠的初始化，这对于快速收敛和最终性能至关重要。</li><li>我们的方法在准确性、推理速度和 GPU 内存消耗方面实现了最先进的性能（参见图 1）。 至于准确性，我们的方法在 DTU [1] 和 Tanks &amp; Temples 数据集 [13] 的高级序列上取得了最好的结果。 更重要的是，由于内存消耗较少，我们的方法比亚军快 2 倍。</li></ol><h2 id="2-相关工作">2.相关工作</h2><h3 id="2-1-传统-mvs-方法">2.1. 传统 MVS 方法</h3><p>传统的MVS方法大致可分为四类：基于体素的方法[24, 27]、基于表面的方法[7, 14]、基于块的方法[8, 16]和基于深度图的方法[9, 21, 30]。 在这些方法中，基于深度图的方法具有更好的灵活性和可扩展性。 Gipuma [9]提出了一种更适合并行计算的基于棋盘格的传播方案，并将PatchMatch [2]立体方法扩展到多视图立体。 COLMAP [21]通过联合估计像素级视图选择、深度图和表面法线来增强算法的鲁棒性。 ACMM [30]提出了一种具有自适应棋盘传播和多假设联合视图选择的多尺度 MVS 框架。 虽然这些方法可以获得鲁棒的3D重建结果，但它们存在计算要求高和重建质量差的问题。</p><p>2.2. 基于学习的 MVS 方法<br>最近，已经提出了大量基于深度学习的多视图立体工作[5,10,12,28,34-36]。 SurfaceNet[12]是早期的代表作品之一，它构建体素体来聚合多视图信息，并使用3D CNN对其进行正则化。 基于可微单应性 [6]，Yao 等人。 [35]提出了一种广泛使用的基于深度学习的MVS管道。 具体来说，MVSNet [35] 首先提取每个视图图像的特征图，然后构建一个成本卷，该成本卷基于一组深度假设聚合几何信息。 此外，通过 3D CNN 对成本量进行正则化，并通过回归策略预测最终深度。 然而，由于构建和正则化成本卷的内存使用量和计算要求较高，<br>MVSNet 只能处理低分辨率的图像。 为了减少内存消耗，R-MVSNet [36] 通过沿深度维度处理成本量，利用循环神经网络代替 3D CNN 正则化，这减少了内存需求，但增加了运行时间。 D2 HC-RMVSNet [33]提出了一种具有动态一致性检查的高效且有效的密集混合循环多视图立体网络。 AttMVS [18]提出了一种新颖的注意力增强匹配置信度和注意力引导正则化模块来提高匹配的鲁棒性。 Vis-MVSNet [38]通过匹配不确定性估计明确推断并集成了 MVS 网络中的像素级遮挡信息。 AA-RMVSnet [29]提出了一种自适应聚合模块，并利用具有循环结构的混合网络进行成本量正则化。</p><p>近年来，MVS的效率越来越受到人们的关注。 Fast-MVSNet [37]提出了一种新颖的从稀疏到密集从粗到细的框架，以实现快速准确的深度<br>MVS 中的估计。 通常，许多工作利用从粗到细的策略来减少内存消耗并提高准确性和速度[5,10,34]。 CVP-MVSNet [34]和CasMVSNet [10]基于金字塔特征图构建了级联成本卷。 UCS-Net [5]提出了一种利用不确定性估计来优化深度假设的策略。 值得注意的是，最近，Patchmatch-Net [28]将传统的 PatchMatch 算法引入深度学习框架，从而大大减少了运行时间和内存消耗。 与 PatchmatchNet 相比，我们的方法可以以更少的运行时间和内存消耗实现更好的重建质量。</p><h2 id="方法">方法</h2><p>如图 2 所示，我们的方法由多尺度特征提取器和基于 GRU 的优化器组成。 更具体地说，基于 GRU 的优化器包括动态成本量构造器和 GRU 模块。 与许多以前的工作不同，我们的动态成本量不仅可以聚合几何信息，还可以聚合上下文和深度信息。 更重要的是，它可以由 GRU 以迭代方式进行处理。 具体来说，在每个更新步骤中，我们首先构建一个建议的动态成本量，然后通过 GRU 更新深度图。 此外，我们提出了一种级联和分层细化架构来利用多尺度信息并加速收敛。 具体来说，利用轻量级 3D CNN 生成最粗糙的深度图，该深度图可用作下一个 GRU 的可靠初始化。 然后，深度图由作用于金字塔特征图的多级 GRU 进行细化。 值得注意的是，在每个阶段 k，给定初始深度图 Dk0，所提出的基于 GRU 的优化器可以迭代更新多次并输出最终深度图。 接下来，我们给出我们方法的更多细节。</p><h3 id="3-2-动态成本量">3.2. 动态成本量</h3><p>成本量在 MVS 问题中起着至关重要的作用。 如图3所示，与许多以前的工作中的静态成本量不同，我们聚合了几何特征、深度特征和上下文特征来构建我们的动态成本量。 分别从局部成本量、深度特征和参考图像中提取几何特征、深度特征和上下文特征。 更重要的是，受益于迭代策略，我们可以在狭窄的逆深度范围内更新深度假设，以在每次迭代中构造局部成本量，这使得我们的动态成本量与静态成本量相比要轻得多。</p><h4 id="3-2-1局部成本量">3.2.1局部成本量</h4><p>与之前的 MVS 工作[19,28,29,31]类似，给定参考视图的 D 深度假设 {dj |j = 1, …, D}，我们构造一个局部成本量来表示相关性 参考和源特征之间。 具体来说，对于参考视图中的每个像素 p，我们利用可微单应性通过将源特征 Fi 扭曲为第 j 个深度假设 dj 来计算相应的像素 p i,j ：</p><p>这里Ki表示视图i的内在矩阵。 R0,i 和 t0,i 表示参考视图和源视图 i 之间的相对旋转和平移参数。 给定 p i,j 和源特征图 Fi ，我们通过可微双线性插值重建扭曲的源特征图 Fi 。 遵循 MVSNet [35]，成本图是 −1 N − 1 扭曲源特征图 {Fi }N i=1 的方差<br>然而，考虑到基于 GRU 的优化器可以迭代更新深度图，我们在每次迭代中仅在狭窄的逆深度范围内采样一些深度假设。 具体来说，对于阶段 k 和迭代 t 的每个像素 p，我们在逆深度范围 Rk 中均匀采样 Dk 深度假设：</p><p>这里Im表示最小深度假设平面间隔，在4.2节中有详细介绍。 Dkt−1 是迭代 t − 1 中更新的深度图。为了用 2D CNN 处理局部成本量并将其与上下文和深度信息融合，我们取消深度维度并沿通道维度连接成本图。 因此，与 MVSNet [35] 不同，我们的局部成本量的形状是 CL ∈ RW ×H×(C×D) ，其中 C 和 D 分别表示通道和深度维度。</p><h4 id="3-2-2-特征聚合">3.2.2 特征聚合</h4><p>如图 3 所示，在每次迭代 t 中，我们使用两个轻量级提取器（由两个 2D 卷积层组成）从局部成本量和深度图 Dkt−1 中提取几何特征和深度特征。 上下文特征来自多尺度上下文特征提取器，每个阶段只需要提取一次。</p><p>为了构造最终的动态成本量 CD ，我们首先利用 2D 卷积层来处理几何特征和深度特征的串联。 然后，输出与上下文特征连接以形成动态成本量。 所有的级联操作都是在通道维度中执行的。</p><h3 id="3-3-多级-gru">3.3. 多级 GRU</h3><p>我们的动态成本量由 GRU 以迭代方式处理。 此外，为了利用多尺度信息并加速收敛，我们构建了多级 GRU 架构。 这样，动态成本量就构建在金字塔特征图上，并分别由多尺度 GRU 进行处理。 更具体地，在每个阶段k，优化模块将深度图更新T k 次，并输出一组更新量Δdkt ，其中t从1到T k 。 在每次迭代 t 中，输入深度图 Dkt−1 将更新为Dkt = Dkt−1 + Δdkt ，然后作为下一次迭代 t + 1 的输入。更重要的是，每个阶段最后一次迭代的深度图 DkT k 都会被上采样为 DkT k +1 。<br>然后，DkT k+1 将作为下一阶段的初始深度图Dk+1 0 。</p><p>如图4所示，深度图的质量可以是每次迭代后都有显着改善。 特别是，从图 4 中我们可以看到，基于 GRU 的优化模块可以填充无纹理区域中的孔洞并锐化边界。</p><h4 id="3-3-1初始深度预测">3.3.1初始深度预测</h4><p>基于GRU的优化模块根据局部空间信息更新深度值，这使得它对初始深度值敏感。 由于常见的<br>针对MVS中弱纹理区域和相似区域的问题，不可靠的初始深度图将使基于GRU的优化更容易输出错误的深度值。 因此，我们提出了一种初始深度值预测模块来在最粗阶段预测可靠的初始深度值。 受其他基于学习的 MVS 方法 [19,28,29,31] 的启发，我们通过三个模块预测概率体积 Pd 和相应的深度图：成本体积构建、3D CNN 正则化和回归。 初始深度预测模块的架构如图 5 所示。按照 MVSNet [35] 的工作，我们构建了一个微小的成本卷，它由稀疏深度假设组成，但包括足够大的逆深度范围。 然后，我们利用轻量级 3D CNN 对成本量进行正则化，得到与每个深度假设 d 对应的概率量 Pd。 最后，我们用 sof targmin 回归初始深度图 Dinit：</p><h4 id="3-3-2-gru">3.3.2 GRU</h4><p>受[11,26]的启发，我们设计了一个GRU模块来更新深度图。 我们的GRU模块的详细信息如下：<br>这里 σ 是 sigmoid 激活函数，W 表示对应的卷积网络的参数，conv 表示一个小的 2D 卷积模块，由 1 × 5 卷积和 5 × 1 卷积组成。<br>我们 GRU 的输入是动态成本量 t−1 。 动态 Ct−1 D 以及潜在隐藏状态 h t−1 成本量 CD 可以由先前的深度图 Dkt−1 刷新。 此外，在每个阶段，初始隐藏状态 h0 由上下文特征网络初始化。<br>基于隐藏状态 ht ，我们利用深度头模块来预测残差深度 Δdt 。 深度头模块包含两个卷积层，并使用 tanh 激活函数来约束输出值的范围。<br>在每个阶段 k 的最后一次迭代 T k 之后，我们使用掩模上采样模块 [26] 对当前深度 HW× 23−k 进行上采样。 更具体地说，基于最后一个 hidmap( 23−k k T den state h ，我们利用两个卷积层来预测 HW× 23−k× (2 × 2 × 9) 掩码，它表示邻居的 a 23−k 权重 然后可以根据预测的掩模通过加权组合将深度 HW×22−k 图上采样到 22−k 的分辨率。</p><h3 id="3-4-损失函数">3.4. 损失函数</h3><p>在训练阶段，我们的方法可以在不同的迭代步骤中从初始深度预测模块和基于 GRU 的多阶段优化模块输出几个深度图。 我们使用相应分辨率的地面真实深度图计算所有输出深度图上的 L1 损失。 因此，最终的损失是所有损失的加权和：</p><p>其中Linit是初始深度预测模块获得的初始深度图的损失。 Tk 是阶段 k 的优化迭代次数。 {Lki |i = 1…Tk + 1} 是 Tk 输出深度图和阶段 k 的上采样深度图的损失，λki 是相应的权重</p><h2 id="4-实验">4.实验</h2><p>我们在 DTU [1] 和 Tanks &amp; Temples 数据集 [13] 上评估了我们的方法。 进行了大量的实验来验证我们方法的准确性和效率。</p><h3 id="4-1-数据集">4.1. 数据集</h3><p>DTU数据集DTU数据集[1]是一个大规模的室内MVS数据集，包含不同光照条件下的128个不同的扫描和49个视图。 所有扫描都是在实验室环境下以相同的相机轨迹收集的。 DTU 提供 79 次训练扫描的地面真实深度图和 22 次评估扫描的 3D 点云。 遵循大多数 MVS 工作 [19,28,29,31] 中的配置，我们应用 DTU 数据集来训练和评估我们的网络。</p><p>Tanks &amp; Temples 数据集 Tanks &amp; Temples 数据集[13]是一个大规模的户外 MVS 数据集，它为不同的扫描提供了一组真实环境中的视频序列。 分为中级和高级两套，共14个场景。 我们还使用在 DTU 数据集 [1] 上训练的模型在中级和高级集上评估我们的方法，无需进行微调。</p><h3 id="4-2-实施细节">4.2. 实施细节</h3><p>训练在DTU数据集[1]上进行训练时，我们将输入图像的分辨率设置为640×512，输入图像的数量设置为N = 5。对于初始深度预测模块，我们将深度假设的数量设置为48。 对于局部成本量，我们将所有阶段的深度假设 Dk 的数量设置为 4。 我们定义逆深度的最小假设平面间隔 Im：<br>我们将Z设置为384，并将阶段0、1、2的深度假设间隔设置为4Im、2Im、Im（阶段0是粗略阶段，分辨率为W×H=80×64）。 对于每个阶段的优化模块，我们在阶段 0、1、2 到 3、3、3 设置迭代次数 T k。我们在 OneCycleLR 调度器下使用 AdamW 训练模型 48 个周期，学习率为 0.001。 我们将批量大小设置为 4，并在 1 个 NVIDIA GeForce RTX 3090 GPU 上训练我们的模型。</p><p>评估</p><p>我们在 DTU 评估集 [1] 以及 Tanks &amp; Temples 数据集 [13] 的中级和高级数据集上评估我们提出的方法。 对于 DTU 的评估，我们将输入图像的数量 N 设置为 5，输入图像的大小为 1600 × 1184。对于 Tanks &amp; Temples 数据集的评估，我们使用在 DTU 上训练的模型，无需任何微调。 我们将视图数量 N 设置为 7，输入图像大小为 1920 × 1056，初始深度预测模块中的深度假设数量为 96。Tanks &amp; Temples 数据集的相机位置、稀疏点云和深度范围 由开源 SfM 软件 OpenMVG 恢复[20]。</p><p>过滤与融合<br>与其他基于学习的 MVS 方法类似，我们根据光度和几何一致性。 我们对过滤算法进行了一些改进[22]，具体细节在补充材料中给出。 同时，我们对从初始深度预测模块获得的概率体积Pd进行上采样，作为每个像素的置信度测量，并丢弃估计深度概率低于0.3的像素。</p><h3 id="4-3-基准性能benchmark-performance">4.3. 基准性能Benchmark Performance</h3><p>我们将我们的方法与最近发布的基于学习的 MVS 方法在重建质量、运行时间和 GPU 内存消耗方面进行了比较。 如表所示。 如图 1、3 所示，我们的方法在 DTU 数据集 [1] 和 Tanks &amp; Temples 数据集 [13] 的高级序列上实现了最佳性能。 至于 Tanks &amp; Temples 数据集的中间序列，我们也取得了非常有竞争力的结果。 我们进一步比较我们的<br>方法与最近发表的基于学习的 MVS 方法[5,10,28,34,37,38]一起致力于提高表中的效率。 2 在时间和内存消耗方面。 我们使用原始尺寸图像为所有方法设置相同的配置，并在 DTU 和 Tanks &amp; Temples 数据集上分别将输入视图数设置为 5 和 7。 如表所示。 2、我们的方法在运行时间和内存消耗方面更加高效。 值得注意的是，我们的快速版本（Iters：1 11）几乎比 PatchmatchNet [28] 最接近的亚军快 2 倍。 更令人惊讶的是，我们的快速版本（Iters：1 1 1）仍然可以实现非常高的重建精度，如表所示。 1.这些实验结果明显表明我们的方法不仅可以提高计算速度并减少内存消耗，而且可以保证高质量的重建。</p><p>在图 6 中，我们在 DTU 数据集上对我们的方法和一些最先进的方法进行了更多质量比较。 从图 6 中我们可以看到，与 CVP-MVSNet [34] 和 PatchmatchNet [28] 相比，我们的方法提供了更准确的边界，并且在 3D 点云的结构细节上表现得更好。 此外，Tank &amp; Temples数据集上的一些3D点云重建结果如图7所示。从图7中我们可以看到，即使对于具有挑战性的高级序列，该方法的重建结果也是高质量的。 最后，表中列出了更全面的数量结果。 3、我们的方法在大多数评价指标上都取得了非常有竞争力的结果。</p><h3 id="4-4-消融研究">4.4. 消融研究</h3><p>在本节中，我们提供了广泛的消融实验来分析迭代次数、初始深度预测、动态成本量的组成部分和阶段数的影响。</p><h4 id="4-4-1-迭代次数">4.4.1 迭代次数</h4><p>按照 4.2 节中介绍的相同实验配置，我们进行不同迭代次数的消融实验。 这样我们就想验证一下迭代次数的效果。<br>结果列于表中。 4. 从表中。 从图4可以看出，迭代次数对于点云的完整性尤为重要。 这并不奇怪，因为我们的动态成本量可以聚合独特的上下文信息，GRU 可以进一步利用这些信息来填补漏洞。 类似的结论也可以在图4中得到证明，其中随着迭代次数的增加，孔被填充。 在这里，我们还想说我们的方法相当灵活，即我们可以根据实际任务需求调整测试阶段的迭代次数以平衡重建质量、速度和内存消耗。</p><h4 id="4-4-2-初始深度预测">4.4.2 初始深度预测</h4><p>在这个实验中，我们设计了一个额外的基于 GRU 的优化模块，进行 4 次迭代，以取代最粗阶段的初始深度预测 (IDP) 模块。 对于这个优化模块，我们将深度假设的数量设置为8，深度假设的间隔为16Im，逆深度范围的中值(dmin + dmax)/2用作初始输入深度图。</p><p>如表所示。 如图5所示，我们使用初始深度预测模块的方法在重建质量方面显然表现更好。 我们基于3DCNN的初始深度预测模块可以获得相当可靠的深度图，可以有效避免基于GRU的优化单元的局部优化问题。 特别是，我们的方法在完整性方面表现得更好，这进一步证明了所提出的初始深度预测模块的重要性。</p><h4 id="4-4-3-动态成本量的组成部分">4.4.3 动态成本量的组成部分</h4><p>在本实验中，我们在DTU的评估集上评估了深度特征（DF）和上下文特征（CF）在动态成本量构建过程中的有益效果[1]。 如表所示。 6、深度特征和上下文特征对重建结果的完整性影响很大，可以将完整性误差从0.368降低到0.313。 没有深度特征和上下文特征，动态成本量只能提供从局部成本中提取的几何特征信息</p><p>实验结果还证明，通过聚合附加深度特征信息和上下文特征信息构建动态成本量是我们的方法在 DTU 评估集上实现最先进性能的关键。</p><h4 id="4-4-4级数number-of-stages">4.4.4级数Number of Stages</h4><p>我们进一步在总阶段数为 2 和 4 的情况下评估我们的方法，相应的最精细阶段的分辨率分别为 H4 × W 4 和 H×W 。 我们从重建质量、运行时间和 GPU 内存消耗方面评估了 DTU [1] 和 Tanks &amp; Temples [13] 上的所有模型。 值得注意的是，我们设置了不同的上采样模块比率，以使所有模型输出全分辨率深度图。 如表所示。 7、随着阶段数量的增加，在DTU和Tanks &amp; Temples基准上性能有了显着提升，但同时运行时间和GPU显存消耗也显着增加。</p><h2 id="5-结论">5. 结论</h2><p>在这项工作中，我们提出了一种新颖的迭代动态成本量，可以由我们提出的多级 GRU 进行处理。 我们的方法非常有效，可以处理非常高分辨率的图像。 和…相比<br>与其他基于学习的 MVS 方法相比，我们的方法在准确性、速度和内存使用方面达到了最先进的结果。 此外，我们的方法非常灵活，可以通过调整测试阶段的迭代次数在准确性和效率之间取得更好的平衡。 未来，我们希望利用更强大的特征提取器来进一步提高性能。</p><h2 id="致谢">致谢</h2><p>该工作得到了国家自然科学基金项目（62001394、61871325）和国家重点研发计划项目（2018AAA0102803）的部分支持。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1&gt;Effi MVS翻译&lt;/h1&gt;
+&lt;h2 id=&quot;摘要&quot;&gt;摘要&lt;/h2&gt;
+&lt;p&gt;在本文中，我们提出了一种用于多视图立体的新颖的迭代动态成本量。 与其他作品相比，我们的成本量要轻得多，因此可以使用基于 2D 卷积的 GRU 进行处理。 值得注意的是，每一步GRU 的输出可进一</summary>
+      
+    
+    
+    
+    <category term="基于深度学习的多视角立体匹配技术" scheme="http://outbreak-sen.github.io/categories/%E5%9F%BA%E4%BA%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%A4%9A%E8%A7%86%E8%A7%92%E7%AB%8B%E4%BD%93%E5%8C%B9%E9%85%8D%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="MVS" scheme="http://outbreak-sen.github.io/tags/MVS/"/>
+    
+    <category term="深度学习" scheme="http://outbreak-sen.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
   
   <entry>
     <title>colmap介绍和使用</title>
@@ -162,17 +190,22 @@
     <link href="http://outbreak-sen.github.io/2025/02/09/QT%E7%9A%84%E4%B8%8D%E5%90%8C%E5%BC%80%E5%8F%91%E6%96%B9%E5%BC%8F/"/>
     <id>http://outbreak-sen.github.io/2025/02/09/QT%E7%9A%84%E4%B8%8D%E5%90%8C%E5%BC%80%E5%8F%91%E6%96%B9%E5%BC%8F/</id>
     <published>2025-02-09T07:17:22.000Z</published>
-    <updated>2025-02-09T07:21:35.089Z</updated>
+    <updated>2025-02-09T08:44:22.655Z</updated>
     
-    <content type="html"><![CDATA[<h1>QT usage</h1><h1>C++QT</h1><p>遇到了qml等文件还是得用qt他原版</p>]]></content>
+    <content type="html"><![CDATA[<h1>QT 的不同开发方式</h1><p>[TOC]</p><h1>QT的简要介绍</h1><ul><li><p>用类套壳的UI库，同时还提供了一些IDE，UI编辑工具等。</p></li><li><p>同时QT的库中还有3D，图像处理，SQL数据库，音频处理，多线程等多个库，可以替代opencv，opengl做一些开发。</p></li><li><p>可以开发多个平台的软件，同时可以实现在一个平台开发后可以用于其他平台，平台包括安卓，嵌入式，桌面开发</p></li></ul><h1>QT Creator-QT提供的IDE</h1><p>Qt Creator 是 Qt 官方提供的集成开发环境（IDE），支持多种开发方式。</p><ul><li><strong>多语言支持</strong>：支持 C++、QML、Python 等语言。</li><li><strong>集成工具</strong>：包含代码编辑器、调试器、UI 设计器、版本控制等功能。</li><li><strong>跨平台</strong>：支持 Windows、Linux、macOS。</li></ul><h1>QT Designer-QT提供的UI编辑器</h1><p>Qt Designer 是一个可视化工具，用于设计 Qt 应用程序的用户界面。它生成 <code>.ui</code> 文件，可以与 C++、Python 等语言结合使用。</p><ul><li><strong>拖拽式设计</strong>：通过拖拽控件快速构建 UI。</li><li><strong>生成 <code>.ui</code> 文件</strong>：<code>.ui</code> 文件是 XML 格式的界面描述文件，可以在代码中动态加载。</li><li><strong>与代码结合</strong>：通过 <code>uic</code> 工具将 <code>.ui</code> 文件转换为 C++ 或 Python 代码。</li></ul><h1>C++开发方式</h1><p>Qt 最传统和强大的开发方式，使用 C++ 语言直接调用 Qt 的 API。</p><p>开发工具可以使用如下：</p><ul><li><strong>Qt Creator</strong>（最好的方法）：Qt 官方提供的集成开发环境（IDE），支持代码编辑、调试、UI 设计等功能。</li><li><strong>Qt Designer</strong>：用于设计 GUI 界面，生成 <code>.ui</code> 文件，可以与 C++ 代码结合使用，用Designer生成ui文件之后使用其他C++的IDE调用ui中的每个模块编写功能实现，最后合到一起。</li></ul><h1>Python开发方式</h1><h2 id="pyqt">Pyqt</h2><p>提供了完整的 Qt 模块支持。</p><p>pyQT的安装不需要在官网下载QT安装包，只需要创建conda环境然后pip安装，安装pyQT5-tools之后会安装QT designer，然后就可以可视化设计一个UI，然后通过Pyuic工具就可以转化为一个py文件，这个py文件就是整个工程，py文件中有一个class包含了整个UI设计，然后只需要编辑py文件中这个class的功能即可，编辑子函数。</p><p>开发工具可以使用如下：</p><ul><li><strong>Qt Designer</strong>：用于设计 UI，生成 <code>.ui</code> 文件，可以通过 PyQt 或 PySide 加载。</li><li><strong>Qt Creator</strong>：支持 Python 项目的开发。</li><li><strong>第三方 IDE</strong>：如 PyCharm、VS Code 等。</li></ul><h2 id="pyside">PySide</h2><p>与 PyQt 类似，但 API 更接近原生 Qt。</p><h1>QML（Qt Meta-Object Language）</h1><p>QML 是一种声明式语言，用于设计用户界面，与 JavaScript 结合使用，适合开发现代化的、动态的 UI。为了适应手机移动应用开发， Qt5 将 QML 脚本编程提到与传统 C++ 部件编程相同的高度，力推 QML 界面编程，当然 QML 主要用于手机移动应用程序。 QML 包含大量使用手机移动设备的功能模块，比如基本部件（QtQuick 模块）、GPS 定位、渲染特效、蓝牙、NFC、WebkKit 等等。<br>QML 类似于网页设计的 HTML，是一种标记语言，我们可以借助 CSS 对它进行美化，也可以借助 <a href="http://c.biancheng.net/js/">JavaScript</a> 进行交互。有 Web 开发经验的读者学习 QML 将非常轻松。</p><p>以下两个特点很重要</p><ul><li><p>与 C++ 结合：QML 可以与 C++ 后端逻辑结合，实现复杂的业务逻辑。</p></li><li><p>动画和特效：QML 内置了对动画和特效的支持，适合开发动态界面。可以实现富动画和特效的应用程序。</p></li><li><p>适用移动应用程序（如 Android、iOS）</p></li></ul><p>开发工具可以使用如下：</p><ul><li><strong>Qt Creator</strong>（最好的方法）：Qt 官方提供的集成开发环境（IDE），支持代码编辑、调试、UI 设计等功能。</li><li><strong>Qt Quick Designer</strong>：用于设计 QML 界面。</li></ul>]]></content>
     
     
       
       
-    <summary type="html">&lt;h1&gt;QT usage&lt;/h1&gt;
-&lt;h1&gt;C++QT&lt;/h1&gt;
-&lt;p&gt;遇到了qml等文件还是得用qt他原版&lt;/p&gt;
-</summary>
+    <summary type="html">&lt;h1&gt;QT 的不同开发方式&lt;/h1&gt;
+&lt;p&gt;[TOC]&lt;/p&gt;
+&lt;h1&gt;QT的简要介绍&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;用类套壳的UI库，同时还提供了一些IDE，UI编辑工具等。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;同时QT的库中还有3D，图像处理，SQL数据库，音频处理，</summary>
       
     
     
@@ -187,50 +220,11 @@
   </entry>
   
   <entry>
-    <title>nihao</title>
-    <link href="http://outbreak-sen.github.io/2025/02/09/nihao/"/>
-    <id>http://outbreak-sen.github.io/2025/02/09/nihao/</id>
-    <published>2025-02-09T02:50:07.000Z</published>
-    <updated>2025-02-09T02:50:07.840Z</updated>
-    
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
     <title>Test Post</title>
-    <link href="http://outbreak-sen.github.io/2024/12/06/TestPost%20copy%202/"/>
-    <id>http://outbreak-sen.github.io/2024/12/06/TestPost%20copy%202/</id>
+    <link href="http://outbreak-sen.github.io/2024/12/06/TestPost/"/>
+    <id>http://outbreak-sen.github.io/2024/12/06/TestPost/</id>
     <published>2024-12-06T13:44:10.000Z</published>
-    <updated>2025-02-09T05:43:32.861Z</updated>
-    
-    <content type="html"><![CDATA[<!-- Not be created by command line. --><p>发现直接md，但是需要日期，所以用命令行创建。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;!-- Not be created by command line. --&gt;
-&lt;p&gt;发现直接md，但是需要日期，所以用命令行创建。&lt;/p&gt;
-</summary>
-      
-    
-    
-    
-    <category term="这个一个测试" scheme="http://outbreak-sen.github.io/categories/%E8%BF%99%E4%B8%AA%E4%B8%80%E4%B8%AA%E6%B5%8B%E8%AF%95/"/>
-    
-    
-    <category term="这也是一个测试" scheme="http://outbreak-sen.github.io/tags/%E8%BF%99%E4%B9%9F%E6%98%AF%E4%B8%80%E4%B8%AA%E6%B5%8B%E8%AF%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Test Post</title>
-    <link href="http://outbreak-sen.github.io/2024/12/06/TestPost%20copy/"/>
-    <id>http://outbreak-sen.github.io/2024/12/06/TestPost%20copy/</id>
-    <published>2024-12-06T13:44:10.000Z</published>
-    <updated>2025-02-09T05:43:25.237Z</updated>
+    <updated>2025-02-09T08:23:45.392Z</updated>
     
     <content type="html"><![CDATA[<!-- Not be created by command line. --><p>发现直接md，但是需要日期，所以用命令行创建。</p>]]></content>
     
@@ -248,69 +242,6 @@
     
     
     <category term="这也是一个测试" scheme="http://outbreak-sen.github.io/tags/%E8%BF%99%E4%B9%9F%E6%98%AF%E4%B8%80%E4%B8%AA%E6%B5%8B%E8%AF%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Test Post</title>
-    <link href="http://outbreak-sen.github.io/2024/12/06/TestPost%20copy%203/"/>
-    <id>http://outbreak-sen.github.io/2024/12/06/TestPost%20copy%203/</id>
-    <published>2024-12-06T13:44:10.000Z</published>
-    <updated>2025-02-09T05:43:27.764Z</updated>
-    
-    <content type="html"><![CDATA[<!-- Not be created by command line. --><p>发现直接md，但是需要日期，所以用命令行创建。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;!-- Not be created by command line. --&gt;
-&lt;p&gt;发现直接md，但是需要日期，所以用命令行创建。&lt;/p&gt;
-</summary>
-      
-    
-    
-    
-    <category term="这个一个测试" scheme="http://outbreak-sen.github.io/categories/%E8%BF%99%E4%B8%AA%E4%B8%80%E4%B8%AA%E6%B5%8B%E8%AF%95/"/>
-    
-    
-    <category term="这也是一个测试" scheme="http://outbreak-sen.github.io/tags/%E8%BF%99%E4%B9%9F%E6%98%AF%E4%B8%80%E4%B8%AA%E6%B5%8B%E8%AF%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>testpostByCommand</title>
-    <link href="http://outbreak-sen.github.io/2024/12/06/testpostByCommand/"/>
-    <id>http://outbreak-sen.github.io/2024/12/06/testpostByCommand/</id>
-    <published>2024-12-06T13:44:10.000Z</published>
-    <updated>2024-12-06T14:00:22.805Z</updated>
-    
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Test Post</title>
-    <link href="http://outbreak-sen.github.io/2024/12/06/TestPost/"/>
-    <id>http://outbreak-sen.github.io/2024/12/06/TestPost/</id>
-    <published>2024-12-06T13:44:10.000Z</published>
-    <updated>2024-12-14T08:50:23.023Z</updated>
-    
-    <content type="html"><![CDATA[<!-- Not be created by command line. --><p>发现直接md，但是需要日期，所以用命令行创建。</p><p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>a</mi><mi>b</mi><mi>c</mi></msubsup><mo>=</mo><mi>o</mi><mo>∗</mo><mi>a</mi><mi>a</mi></mrow><annotation encoding="application/x-tex">a_b^c = o*aa</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9613919999999999em;vertical-align:-0.247em;"></span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.7143919999999999em;"><span style="top:-2.4530000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">b</span></span></span><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">c</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.46528em;vertical-align:0em;"></span><span class="mord mathdefault">o</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">a</span><span class="mord mathdefault">a</span></span></span></span></span></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;!-- Not be created by command line. --&gt;
-&lt;p&gt;发现直接md，但是需要日期，所以用命令行创建。&lt;/p&gt;
-&lt;p class=&#39;katex-block&#39;&gt;&lt;span class=&quot;katex-display&quot;&gt;&lt;span class=&quot;kate</summary>
-      
-    
-    
-    
-    <category term="文章分类" scheme="http://outbreak-sen.github.io/categories/%E6%96%87%E7%AB%A0%E5%88%86%E7%B1%BB/"/>
-    
     
   </entry>
   
