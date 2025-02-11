@@ -1,0 +1,377 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Mindspore实习-AKG SIG算子addlayernorm编辑和合并 | This is a 部落格 of outbreak_sen</title><meta name="author" content="outbreak_sen"><meta name="copyright" content="outbreak_sen"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Mindspore实习-AKG SIG算子addlayernorm编辑和合并 什么是算子 计算图和算子在计算本质上是一致的。算子是打包后的计算图，计算图是拆包后的算子 比如sigmod复合算子可以看作一个计算图，由基础算子Exp，Add，Reciprocal等基础算子组成，用小规模的“基本算子”集合就可以表达任意现有计算图。 计算图可以完全由基础算子组成，但是还是得定义复合算子，比如sigmod这">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mindspore实习-AKG SIG算子addlayernorm编辑和合并">
+<meta property="og:url" content="http://outbreak-sen.github.io/2025/02/10/Mindspore%E5%AE%9E%E4%B9%A0-AKG%20SIG%E7%AE%97%E5%AD%90addlayernorm%E7%BC%96%E8%BE%91%E5%92%8C%E5%90%88%E5%B9%B6/index.html">
+<meta property="og:site_name" content="This is a 部落格 of outbreak_sen">
+<meta property="og:description" content="Mindspore实习-AKG SIG算子addlayernorm编辑和合并 什么是算子 计算图和算子在计算本质上是一致的。算子是打包后的计算图，计算图是拆包后的算子 比如sigmod复合算子可以看作一个计算图，由基础算子Exp，Add，Reciprocal等基础算子组成，用小规模的“基本算子”集合就可以表达任意现有计算图。 计算图可以完全由基础算子组成，但是还是得定义复合算子，比如sigmod这">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://outbreak-sen.github.io/img/head.png">
+<meta property="article:published_time" content="2025-02-10T04:53:11.000Z">
+<meta property="article:modified_time" content="2025-02-10T13:40:32.732Z">
+<meta property="article:author" content="outbreak_sen">
+<meta property="article:tag" content="GAN生成对抗模型">
+<meta property="article:tag" content="Mindspore">
+<meta property="article:tag" content="实习">
+<meta property="article:tag" content="算子">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://outbreak-sen.github.io/img/head.png"><link rel="shortcut icon" href="/img/h_beautygirl.png"><link rel="canonical" href="http://outbreak-sen.github.io/2025/02/10/Mindspore%E5%AE%9E%E4%B9%A0-AKG%20SIG%E7%AE%97%E5%AD%90addlayernorm%E7%BC%96%E8%BE%91%E5%92%8C%E5%90%88%E5%B9%B6/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Mindspore实习-AKG SIG算子addlayernorm编辑和合并',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  isShuoshuo: false
+}</script><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="This is a 部落格 of outbreak_sen" type="application/atom+xml">
+<link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head><body><div id="web_bg" style="background-image: url(/img/v_beautygirl0.jpeg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/./img/head.png" onerror="onerror=null;src='./img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">11</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw fa fa-camera-retro"></i><span> 树洞</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 作品与鉴赏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/h_beautygirl.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/h_beautygirl.png" alt="Logo"><span class="site-name">This is a 部落格 of outbreak_sen</span></a><a class="nav-page-title" href="/"><span class="site-name">Mindspore实习-AKG SIG算子addlayernorm编辑和合并</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw fa fa-camera-retro"></i><span> 树洞</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 作品与鉴赏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">Mindspore实习-AKG SIG算子addlayernorm编辑和合并</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-02-10T04:53:11.000Z" title="发表于 2025-02-10 12:53:11">2025-02-10</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-02-10T13:40:32.732Z" title="更新于 2025-02-10 21:40:32">2025-02-10</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1>Mindspore实习-AKG SIG算子addlayernorm编辑和合并</h1>
+<h2 id="什么是算子">什么是算子</h2>
+<p>计算图和算子在计算本质上是一致的。<strong>算子是打包后的计算图，计算图是拆包后的算子</strong></p>
+<p>比如sigmod复合算子可以看作一个计算图，由基础算子Exp，Add，Reciprocal等基础算子组成，用小规模的“基本算子”集合就可以表达任意现有计算图。</p>
+<p>计算图可以完全由基础算子组成，但是还是得定义复合算子，比如sigmod这种，因为对于基本算子计算图来说，相邻算子之间只能通过全局内存（或显存）进行数据传递。而对于复合算子来说，相邻的基本计算之间则可以通过局部内存或者寄存器进行数据传递。除了性能之外，在一些场景下，通过算子融合也能有效减少对全局内存的的实际占用。</p>
+<h1>mindspore的算子融合方案是什么</h1>
+<p>在TVM、XLA等自动算子编译技术出现之前，AI框架主流采用手工融合的方式解决如上问题。主要思路是：</p>
+<ul>
+<li>
+<p>手工融合: 1）识别常见的热点算子组合子图，比如： Add(Mul(x, y))。然后针对该算子子图手工实现对应融合算子； 2）将融合算子注册到AI框架，并在AI框架中增加对应的优化pass，将匹配的算子子图替换为融合算子节点。 这种方式的缺点是显而易见的。因为它只能针对若干热点场景进行融合，所以是无法做到通用和泛化的。</p>
+</li>
+<li>
+<p>XLA：XLA最早基于TensorFlow开发。不过它采用了与TensorFlow不同的计算图IR表示。所以在TensorFlow中，需要将TensorFlow的计算图IR首先转换为XLA的计算图IR（HLO）。然后XLA基于HLO进行融合优化等，最后通过LLVM等后端编译生成相应融合算子。由于采用独立的IR，XLA具有较好的可移植性，目前在PyTorch、JAX等非TensorFlow框架中也有不错的表现。</p>
+</li>
+<li>
+<p>TVM：TVM主要用于推理场景。在架构上，主要包括relay和tir两层。其通过relay导入推理模型，然后进行融合优化，最后通过tir生成融合算子。TVM在算子编译方面采用compute和schedule分离的技术，并且不同算子compute所需要的schedule通常是不同的。为了更好支持不同融合算子场景，TVM支持对算子进行自动tuning，来生成较优的切分参数甚至schedule。由于tuning空间较大，目前tuning时间相对还是比较长的。</p>
+</li>
+</ul>
+<p>基于以上问题背景，并结合MindSpore自身需求，我们提出图算融合解决方案。其主要思路是：</p>
+<ul>
+<li>图算融合解决方案: 1）3.9以通用的pattern识别计算图中的融合场景，并生成融合算子子图；2）将生成的融合算子子图通过自动算子编译技术（AKG）生成对应的融合算子。</li>
+</ul>
+<h2 id="什么是图算融合编译技术">什么是图算融合编译技术</h2>
+<p>我们如果需要把模型部署到CPU甚至手机上去，此时需要其他硬件及其架构的支持。开发者们往往会根据实际情况选择各种各样的深度学习顶层框架训练模型，例如昇思MindSpore等，再把训练好的模型部署到各种各样的设备后端包括GPU、CPU、FPGA、昇腾AI处理器及其它新型的AI加速器上。</p>
+<p>考虑到不同硬件设备的特性千差万别、现有算子库中算子包含范围不同、新型加速器算子库支持不足、非常规的神经网络中存在不常见的layer等等情况，开发者要完成手写算子并保证性能，学习成本和时间成本都变得很高，所以图算融合编译技术的出现变得非常有必要。</p>
+<p><a target="_blank" rel="noopener" href="https://www.mindspore.cn/docs/programming_guide/zh-CN/r1.6/graph_kernel_fusion.html">这里有一个介绍</a></p>
+<h2 id="什么是自动算子编译技术akg">什么是自动算子编译技术AKG</h2>
+<p>AKG是Auto Kernel Generator的简称，&quot;SIG&quot;是一个常见的缩写，全称为 “Special Interest Group”，中文直译为“特殊兴趣小组”或者”特殊利益集团“。</p>
+<p>AKG(Auto Kernel Generator)对深度神经网络中的算子进行优化，并提供特定模式下的算子自动融合功能。AKG与MindSpore的图算融合功能协同工作，可提升在不同硬件后端上运行网络的性能。AKG基于polyhedral技术，多面体。</p>
+<h1>任务-addlayernorm</h1>
+<p>【任务背景】<br>
+AKG-MLIR 已经在 MindSpore Dialect 内提供了基础算子的定义和对应的Lower流程。但是，当前MindSpore  Dialect算子集是基于传统的Bert/Transformer类网络的需求梳理和统计的。随着网络的变化，我们有更多算子的需求希望添加在  MindSpore Dialect 之中。</p>
+<p>【需求描述】</p>
+<ol>
+<li>在MindSporeOps.td中添加对应算子的实现</li>
+<li>打通算子的Lower流程(直接lower到Linalg或者lower到TOSA)，相关Dialect的代码（如MindSporeToTosa.cpp或者MindSporeToLinalg.cpp）</li>
+<li>提供对应的测试用例（算子的info文件和对应的op_dsl）</li>
+</ol>
+<p>【参考资料】</p>
+<ol>
+<li>样例代码仓:<a target="_blank" rel="noopener" href="https://gitee.com/mindspore/akg/pulls/989">https://gitee.com/mindspore/akg/pulls/989</a></li>
+<li>代码添加教程wiki:<a target="_blank" rel="noopener" href="https://gitee.com/monkeykingd/akg/wikis/AKG-MLIR%E7%AE%97%E5%AD%90%E6%B7%BB%E5%8A%A0%E7%94%A8%E4%BE%8B">https://gitee.com/monkeykingd/akg/wikis/AKG-MLIR算子添加用例</a></li>
+<li>测试用例教程wiki:<a target="_blank" rel="noopener" href="https://gitee.com/monkeykingd/akg/wikis/AKG-MLIR%E5%8D%95%E7%AE%97%E5%AD%90%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B%E6%9E%84%E5%BB%BA">https://gitee.com/monkeykingd/akg/wikis/AKG-MLIR单算子测试用例构建</a></li>
+</ol>
+<p>【验收标准】<br>
+根据参考资料中的参考测试文件(<a target="_blank" rel="noopener" href="http://demo.info">demo.info</a>)构建测试用例，使用python  ${path_to_py_benchmark}/py_benchmark.py -e cpu -f <a target="_blank" rel="noopener" href="http://mul.info">mul.info</a> --dump_ir  1运行命令，和numpy模拟的算子结果一致</p>
+<p>【任务技术要求】<br>
+Python, MindSpore &gt; 2.3</p>
+<p>我要做什么？<br>
+把mindspore的AKG安装起来然后根据参考资料里的，利用基础算子写addlayernorm这个算子的实现然后添加lower流程然后再写一个测试示例，把整个代码push上去，让导师通过。</p>
+<h1>AKG安装</h1>
+<p>官方文档里写了从MindSpore侧构建运行AKG代码但是详细细节写了个寂寞，然后全是独立构建方法</p>
+<p><a target="_blank" rel="noopener" href="https://gitee.com/mindspore/akg#%E7%8B%AC%E7%AB%8B%E6%9E%84%E5%BB%BA">AKG安装过程</a></p>
+<h2 id="从mindspore的whl安装-失败-但是后面还是这么做了">从mindspore的whl安装，失败，但是后面还是这么做了</h2>
+<p>独立构建方法网上有，我偏不用，看看这个从MindSpore侧怎么安装，理论上AKG是mindspore的子仓库应该是自动安装了。</p>
+<ul>
+<li><s>首先我创建一个一个python3.9 conda环境然后安装Mindspore2.3安装方法是下载whl包</s>，这个没有出现问题日</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install mindspore-2.3.1-cp39-cp39-linux_x86_64.whl</span><br></pre></td></tr></table></figure>
+<p>不过如果是实习的话，需要推自己的改动，那我岂不是最好git下载然后source安装mindspore，算了。<strong>后来发现确实是这样，因为这样找不到tests文件夹，就无法运行官方文档里面的设置环境变量和运行测试用例，想了一下还是进行源码安装，因为又可以看源码又可以安装环境</strong>但是后来</p>
+<h2 id="从mindspore的源码安装">从mindspore的源码安装</h2>
+<p>我选择安装的是CPU的ubuntu x86架构的源码，参考mindspore的仓库主页<a target="_blank" rel="noopener" href="https://gitee.com/mindspore/docs/blob/master/install/mindspore_cpu_install_source.md">CPU安装源码</a></p>
+<p>首先安装以下依赖软件，我的麻</p>
+<table>
+<thead>
+<tr>
+<th>软件名称</th>
+<th>版本</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ubuntu</td>
+<td>18.04</td>
+<td>编译和运行MindSpore的操作系统</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://gitee.com/mindspore/docs/blob/master/install/mindspore_cpu_install_source.md#%E5%AE%89%E8%A3%85python">Python</a></td>
+<td>3.9-3.11</td>
+<td>MindSpore的使用依赖Python环境</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://gitee.com/mindspore/docs/blob/master/install/mindspore_cpu_install_source.md#%E5%AE%89%E8%A3%85wheel-setuptools-pyyaml%E5%92%8Cnumpy">wheel</a></td>
+<td>0.32.0及以上</td>
+<td>MindSpore使用的Python打包工具</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://gitee.com/mindspore/docs/blob/master/install/mindspore_cpu_install_source.md#%E5%AE%89%E8%A3%85wheel-setuptools-pyyaml%E5%92%8Cnumpy">setuptools</a></td>
+<td>44.0及以上</td>
+<td>MindSpore使用的Python包管理工具</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://gitee.com/mindspore/docs/blob/master/install/mindspore_cpu_install_source.md#%E5%AE%89%E8%A3%85wheel-setuptools-pyyaml%E5%92%8Cnumpy">PyYAML</a></td>
+<td>6.0-6.0.2</td>
+<td>MindSpore里的算子编译功能依赖PyYAML模块</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://gitee.com/mindspore/docs/blob/master/install/mindspore_cpu_install_source.md#%E5%AE%89%E8%A3%85wheel-setuptools-pyyaml%E5%92%8Cnumpy">Numpy</a></td>
+<td>1.19.3-1.26.4</td>
+<td>MindSpore里的Numpy相关功能依赖Numpy模块</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://gitee.com/mindspore/docs/blob/master/install/mindspore_cpu_install_source.md#%E5%AE%89%E8%A3%85gcc-git-tclsh-patch%E5%92%8Cnuma">GCC</a></td>
+<td>7.3.0到9.4.0之间</td>
+<td>用于编译MindSpore的C++编译器</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://gitee.com/mindspore/docs/blob/master/install/mindspore_cpu_install_source.md#%E5%AE%89%E8%A3%85gcc-git-tclsh-patch%E5%92%8Cnuma">git</a></td>
+<td>-</td>
+<td>MindSpore使用的源代码管理工具</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://gitee.com/mindspore/docs/blob/master/install/mindspore_cpu_install_source.md#%E5%AE%89%E8%A3%85cmake">CMake</a></td>
+<td>3.22.2及以上</td>
+<td>编译构建MindSpore的工具</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://gitee.com/mindspore/docs/blob/master/install/mindspore_cpu_install_source.md#%E5%AE%89%E8%A3%85gcc-git-tclsh-patch%E5%92%8Cnuma">tclsh</a></td>
+<td>-</td>
+<td>MindSpore sqlite编译依赖</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://gitee.com/mindspore/docs/blob/master/install/mindspore_cpu_install_source.md#%E5%AE%89%E8%A3%85gcc-git-tclsh-patch%E5%92%8Cnuma">patch</a></td>
+<td>2.5及以上</td>
+<td>MindSpore使用的源代码补丁工具</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://gitee.com/mindspore/docs/blob/master/install/mindspore_cpu_install_source.md#%E5%AE%89%E8%A3%85gcc-git-tclsh-patch%E5%92%8Cnuma">NUMA</a></td>
+<td>2.0.11及以上</td>
+<td>MindSpore使用的非一致性内存访问库</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://gitee.com/mindspore/docs/blob/master/install/mindspore_cpu_install_source.md#%E5%AE%89%E8%A3%85llvm-%E5%8F%AF%E9%80%89">LLVM</a></td>
+<td>12.0.1</td>
+<td>MindSpore使用的编译器框架（可选，图算融合以及稀疏计算需要）</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 以上依赖的安装过程</span></span><br><span class="line">conda create -n mindspore39AKGSource python=3.9</span><br><span class="line">pip install wheel</span><br><span class="line">pip install -U setuptools</span><br><span class="line">pip install pyyaml</span><br><span class="line">pip install <span class="string">&quot;numpy&gt;=1.19.3,&lt;=1.26.4&quot;</span></span><br><span class="line"><span class="built_in">sudo</span> apt-get install gcc-7 git tcl patch libnuma-dev -y <span class="comment"># 发现都安装了</span></span><br><span class="line"><span class="comment"># cmake已经安装了，但是发现了一个apt安装cmake的方法如下</span></span><br><span class="line">wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2&gt;/dev/null | <span class="built_in">sudo</span> apt-key add -</span><br><span class="line"><span class="built_in">sudo</span> apt-add-repository <span class="string">&quot;deb https://apt.kitware.com/ubuntu/ <span class="subst">$(lsb_release -cs)</span> main&quot;</span></span><br><span class="line"><span class="built_in">sudo</span> apt-get install cmake -y</span><br><span class="line"><span class="comment"># # 以上依赖中的LLVM的安装过程，安装LLVM是可选的，但是我不知道哪里可选</span></span><br><span class="line">wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | <span class="built_in">sudo</span> apt-key add -</span><br><span class="line"><span class="built_in">sudo</span> add-apt-repository <span class="string">&quot;deb http://apt.llvm.org/bionic/ llvm-toolchain-bionic-12 main&quot;</span></span><br><span class="line"><span class="built_in">sudo</span> apt-get update</span><br><span class="line"><span class="built_in">sudo</span> apt-get install llvm-12-dev -y</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 编译安装mindspore 2.3.1 </span></span><br><span class="line">git <span class="built_in">clone</span> https://gitee.com/mindspore/mindspore.git</span><br><span class="line">git checkout  v2.3.1 <span class="comment">#要更换版本，但是后来想了一下好像也没必要</span></span><br><span class="line">bash build.sh -e cpu -j4 -S on <span class="comment"># 默认从github下载依赖源码，当-S选项设置为on时，从对应的gitee镜像下载。这一步只是编译成whl，要安装还得install</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#报错了configure: WARNING: *** Could not find Flex on your system</span></span><br><span class="line"><span class="built_in">sudo</span> apt-get install flex </span><br><span class="line"><span class="built_in">sudo</span> apt-get install bison </span><br><span class="line"><span class="comment">#又报错了PYTHON_INCLUDE_DIRS = /usr/include/python3.10 PYTHON_LIBRARIES = /usr/lib/x86_64-linux-gnu/libpython3.10.so MS LIBS CACHE PATH:  /home/outbreak/mindspore/AKG/mindspore/build/mindspore/.mslib</span></span><br><span class="line"><span class="comment">#CMake Error at cmake/gencode.cmake:13 (message):Generate operator python/c++ definitions FAILED.</span></span><br><span class="line"><span class="comment"># 然后这个报错我解决不了，艘不到也看不懂</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 但是我突然想到，这一步不就是生成whl的吗，所以我干脆只下载源码但是用网上编译好的whl算了，然后结合同一个版本的mindspore仓库进行编辑测试。后经过了测试，发现这样并不行，因为运行akg/test文件的时候并没有找到test_add.py，报错ERROR test_abs.py - RuntimeError: Cannot find the files.</span></span><br><span class="line"><span class="comment">#我觉得是我的whl安装过程并没有链接这个源码中的AKG的文件夹，我的猜测是这样的。所以最终怎么安装请看下面的最终解决方案</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果bash build.sh -e cpu -j4 -S on成功的话请继续</span></span><br><span class="line">pip install output/mindspore-*.whl -i https://pypi.tuna.tsinghua.edu.cn/simple</span><br><span class="line"><span class="comment"># 这一步在联网状态下，安装whl包时会自动下载mindspore安装包的依赖项（依赖项详情参见setup.py中的required_package），其余情况需自行安装。运行模型时，需要根据ModelZoo中不同模型指定的requirements.txt安装额外依赖，常见依赖可以参考requirements.txt。</span></span><br><span class="line"><span class="comment"># 验证安装是否成功</span></span><br><span class="line">python -c <span class="string">&quot;import mindspore;mindspore.set_device(device_target=&#x27;CPU&#x27;);mindspore.run_check()&quot;</span></span><br><span class="line"><span class="comment"># 这一步应该会输出MindSpore version: 版本号</span></span><br><span class="line">The result of multiplication calculation is correct, MindSpore has been installed on platform [CPU] successfully!</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="最终的解决方案mindspore的whl安装-akg源码安装">最终的解决方案mindspore的whl安装+AKG源码安装</h2>
+<p>ok fine ,最后终于成功了，整理一下思路，就是说从官网只下载AKG的源码，当然mindspore的仓库里有AKG这个子仓库，然后我用官方编译好的whl进行安装，安装版本为2.3.1，这个安装没有出现问题</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">conda create -n mindspore39NLP python=3.9</span><br><span class="line">pip install mindspore-2.3.1-cp39-cp39-linux_x86_64.whl <span class="comment">#这就安装完成了</span></span><br><span class="line"><span class="comment"># 以下为AKG的独立构建方式，针对CPU</span></span><br><span class="line">git <span class="built_in">clone</span> https://gitee.com/mindspore/akg.git </span><br><span class="line"><span class="built_in">cd</span> akg</span><br><span class="line">bash build.sh -e cpu -j8</span><br><span class="line"></span><br><span class="line"><span class="comment"># 中途报错ModuleNotFoundError: No module named &#x27;decorator&#x27;</span></span><br><span class="line">pip install decorator</span><br><span class="line"></span><br><span class="line"><span class="comment"># 中途报错OSError: /home/outbreak/anaconda3/envs/mindspore39NLP/bin/../lib/libstdc++.so.6: version `GLIBCXX_3.4.30&#x27; not found (required by /home/outbreak/mindspore/AKG/akg/build/libakg.so)</span></span><br><span class="line">strings /home/outbreak/anaconda3/envs/mindspore39NLP/lib/libstdc++.so.6  | grep GLIBC <span class="comment">#这个是查询当前的conda环境里有哪些stdc++，其中发现只有GLIBCXX_3.4.29，并没有GLIBCXX_3.4.30</span></span><br><span class="line">strings /usr/lib/x86_64-linux-gnu/libstdc++.so.6 | grep GLIBCXX <span class="comment">#这个是查询本地环境中有哪些stdc++，conda环境里某些包需要某个版本的c++，一般会从本地环境中复制进conda环境中，如果没有则报错，解决方法是链接进conda环境里</span></span><br><span class="line"><span class="built_in">ln</span> -sf /usr/lib/x86_64-linux-gnu/libstdc++.so.6 /home/outbreak/anaconda3/envs/mindspore39NLP/bin/../lib/libstdc++.so.6</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> tests</span><br><span class="line"><span class="comment"># 设置环境变量，这里有很大的作用，source的位置一定要对，要不然找不到测试文件，卡bug</span></span><br><span class="line"><span class="built_in">source</span> ./test_env.sh cpu</span><br><span class="line"><span class="comment"># AKG测试</span></span><br><span class="line"><span class="built_in">cd</span> tests/st</span><br><span class="line">python run.py -e cpu -o add -l level0  <span class="comment"># 执行CPU Add算子的level0用例，包含了下面的test_abs</span></span><br><span class="line"><span class="built_in">cd</span> tests/st/ops/</span><br><span class="line">pytest -s test_abs.py -m <span class="string">&quot;level0 and platform_x86_cpu&quot;</span> <span class="comment"># 运行CPU level0测试用例</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h1>AddLayerNorm算子的定义</h1>
+<p>首先addlayernorm的公式是怎样的，看一下pytorch没找到，但是找到了<a target="_blank" rel="noopener" href="https://www.hiascend.com/document/detail/zh/canncommercial/80RC1/apiref/appdevgapi/context/aclnnAddLayerNorm.md">升腾的一个方案</a>。文献没有找到，但是在 Transformer 架构中，残差连接（Add）与层归一化（LayerNorm）常被结合使用，是将输入的X1和X2进行逐元素相加，然后对结果进行layernorm。LayerNorm 最初由 Jimmy Lei Ba 等人在 2016 年的论文 <strong>《Layer Normalization》</strong></p>
+<p>![image-20250210193652012](/home/outbreak/BlogOutbreak/source/_posts/Mindspore实习-AKG SIG算子addlayernorm编辑和合并/2.png)</p>
+<h1>任务1在MindSporeOps.td中添加对应算子的实现</h1>
+<p>开头已经了解了mindspore AKG是什么了，里面提供了基本算子的定义和Lower流程，但现在需要添加新的复合算子AddLayerNorm到MindSpore Dialect中。</p>
+<p>这里需要会LLVM编译器的相关操作，所谓td文件就是其中的编辑文件</p>
+<ul>
+<li><strong>TableGen</strong>是LLVM生态中用于生成代码的声明式语言，通过<code>.td</code>文件定义数据模型（如操作、指令、寄存器）。</li>
+<li><strong>在MLIR中</strong>：td文件用于定义Dialect中的算子（Op）、类型（Type）、属性（Attribute）等，生成C++代码框架。</li>
+</ul>
+<p>如果要写一个addLaynorm，可能如下</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">//有三个输入，一个输出，所以在这里定义了四个MindSpore_Tensor类型的tensor，对应五个输入X1、X2、gamma、beta和一个输出y。但是升腾的方案写的很复杂，还包括了是否要输出中间的相加结果</span><br><span class="line">// arguments：输入张量和属性（如epsilon）。</span><br><span class="line">// results：输出张量。</span><br><span class="line">// assemblyFormat：定义文本格式的语法，用于调试和序列化。</span><br><span class="line">// MindSporeOps.td中</span><br><span class="line">//===----------------------------------------------------------------------===//</span><br><span class="line">// MindSpore Operator: addlayernorm</span><br><span class="line">//===----------------------------------------------------------------------===//</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">MindSpore_AddLayerNormOp</span> : MindSpore_Op&lt;<span class="string">&quot;addlayernorm&quot;</span>, [Pure]&gt; &#123;</span><br><span class="line">  let summary = <span class="string">&quot;Add followed by Layer Normalization&quot;</span>;</span><br><span class="line">  let arguments = (ins</span><br><span class="line">    MindSpore_Tensor:$input_a,</span><br><span class="line">    MindSpore_Tensor:$input_b,</span><br><span class="line">    MindSpore_Tensor:$input_gamma,</span><br><span class="line">    MindSpore_Tensor:$input_beta               </span><br><span class="line">  );</span><br><span class="line">  let results = (outs </span><br><span class="line">    MindSpore_Tensor:$output</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>ins后接输入参数，out后接输出参数。在编译后会自动生成get方法来获取输入输出，并将蛇形名称转换为驼峰式命名法。在<code>akg-mlir/build/include/akg/Dialect/MindSpore/IR/MindSporeOps.cpp.inc</code>可以找到编译后的get方法</p>
+<p>比如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">::mlir::TypedValue&lt;::mlir::TensorType&gt; AccMulOp::getInputA() &#123;</span><br><span class="line">  return *getODSOperands(0).begin();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">::mlir::TypedValue&lt;::mlir::TensorType&gt; AccMulOp::getInputB() &#123;</span><br><span class="line">  return *getODSOperands(1).begin();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">::mlir::TypedValue&lt;::mlir::TensorType&gt; AccMulOp::getInputGamma() &#123;</span><br><span class="line">  return *getODSOperands(2).begin();</span><br><span class="line">&#125;</span><br><span class="line">::mlir::TypedValue&lt;::mlir::TensorType&gt; AccMulOp::getInputBeta() &#123;</span><br><span class="line">  return *getODSOperands(2).begin();</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h1>任务2打通算子的Lower流程</h1>
+<h2 id="lower流程讲解">Lower流程讲解</h2>
+<p>直接lower到Linalg或者lower到TOSA，相关Dialect的代码（如MindSporeToTosa.cpp或者MindSporeToLinalg.cpp）</p>
+<p>在MLIR（Multi-Level Intermediate Representation）生态中，<strong>Dialect</strong>、<strong>Linalg</strong> 和 <strong>TOSA</strong> 是不同层次的中间表示（IR），用于描述和优化计算任务。</p>
+<ul>
+<li>
+<p>Dialect：是 MLIR 中的用于定义特定领域或抽象层次的中间表示。每个 Dialect 包含一组操作（Op）、类型（Type）和属性（Attribute），用于描述特定领域的计算任务。</p>
+<p>例如：</p>
+<ul>
+<li><strong>MindSpore Dialect</strong>：描述 MindSpore 框架中的算子（如 <code>Add</code>、<code>LayerNorm</code>）。</li>
+<li><strong>TOSA Dialect</strong>：描述面向硬件后端的张量运算操作。</li>
+<li><strong>Linalg Dialect</strong>：描述线性代数操作（如矩阵乘法、卷积）。</li>
+</ul>
+</li>
+<li>
+<p>Linalg：是 MLIR 中的一个 Dialect，专注于<strong>线性代数操作</strong>（如矩阵乘法、卷积、点积等）。适合循环优化和高层次中间表示。</p>
+</li>
+<li>
+<p>TOSA：全称<code>Tensor Operator Set Architecture</code>。里面都是张量运算，也就是比Linalg高了一个等级，它定义了一组硬件友好的操作，适合在 AI 加速器（如 NPU、GPU）上执行。适合面向硬件后端的标准化操作。在<code>Tosa</code>中已经定义有矩阵逐元素乘的实现，如下</p>
+<ul>
+<li><a href="https://gitee.com/link?target=https%3A%2F%2Fmlir.llvm.org%2Fdocs%2FDialects%2FTOSA%2F%23tosamul-mlirtosamulop"><code>tosa.mul</code> (mlir::tosa::MulOp)</a></li>
+<li><a href="https://gitee.com/link?target=https%3A%2F%2Fmlir.llvm.org%2Fdocs%2FDialects%2FTOSA%2F%23tosaadd-mlirtosaaddop"><code>tosa.add</code> (mlir::tosa::AddOp)</a></li>
+<li><a href="https://gitee.com/link?target=https%3A%2F%2Fmlir.llvm.org%2Fdocs%2FDialects%2FTOSA%2F%23tosapow-mlirtosapowop"><code>tosa.pow</code> (mlir::tosa::PowOp)</a></li>
+</ul>
+</li>
+<li>
+<p>Lower流程（Lowering）：是将高层抽象的 Dialect 逐步转换为低层抽象的 Dialect 的过程。（如从MindSpore Dialect到Linalg/TOSA）。</p>
+<ul>
+<li><strong>MindSpore Dialect 到 Linalg</strong>：将 MindSpore 的算子（如 <code>AddLayerNorm</code>）转换为 Linalg 的线性代数操作。将 <code>AddLayerNorm</code> 分解为 <code>linalg.add</code>、<code>linalg.mul</code> 等操作。</li>
+<li><strong>MindSpore Dialect 到 TOSA</strong>：将 MindSpore 的算子转换为 TOSA 的标准化操作。将 <code>AddLayerNorm</code> 分解为 <code>tosa.add</code>、<code>tosa.mul</code> 等操作。</li>
+</ul>
+<p><strong>MindSpore的Lower过程这里有两条路，可以从MindSpore转到Tosa再转到Linalg，也可以直接从MindSpore转到Linalg</strong></p>
+</li>
+</ul>
+<h2 id="编写addlayernorm的lower过程">编写AddLayerNorm的Lower过程</h2>
+<p>参考的算子编写示例中讲解，测试的时候给算子输入的是JSON格式的文件，然后呢需要首先将JSON的格式转化为MindSpore Dialect 。</p>
+<p>然后有两个路，一个是MindSpore Dialect 转化为Tosa  Dialect 再转化为Linalg Dialect ，另一个是MindSpore Dialect 直接转化为Linalg  Dialect。</p>
+<h3 id="jsontomindspore">JSONtoMindSpore</h3>
+<p>在<code>akg-mlir/compiler/lib/Target/MindsporeDialect/TranslateToMindsporeDialect.cpp</code>下的<code>void MindBuilder::initMindOpFactory()</code>中，case by case的注册刚写好的AddLayerNormOp</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">this-&gt;mindOpFactory[&quot;addlayernorm&quot;] = &amp;MindBuilder::convertTernaryOp&lt;mindspore::AddLayerNormOp&gt;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="mindsporetotosa">MindSporeToTosa</h3>
+<p>首先这个是一个AccMulOp的范例</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//在MindSporeToTosa.cpp中</span></span><br><span class="line"><span class="comment">//这里写一个函数用来计算中间过程的输出尺度</span></span><br><span class="line"><span class="comment">//broadcast type</span></span><br><span class="line"><span class="function">SmallVector&lt;<span class="type">int64_t</span>&gt; <span class="title">broadcast</span><span class="params">(OpBuilder &amp;rewriter, Value M1, Value M2, Location loc)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  SmallVector&lt;<span class="type">int64_t</span>&gt; R1dim1;</span><br><span class="line">  <span class="comment">//shape</span></span><br><span class="line">  <span class="keyword">auto</span> M1Type = M<span class="number">1.</span><span class="built_in">getType</span>().<span class="built_in">dyn_cast</span>&lt;ShapedType&gt;();</span><br><span class="line">  <span class="keyword">auto</span> M2Type = M<span class="number">2.</span><span class="built_in">getType</span>().<span class="built_in">dyn_cast</span>&lt;ShapedType&gt;();</span><br><span class="line">  <span class="keyword">auto</span> shape1 = M1Type.<span class="built_in">getShape</span>();</span><br><span class="line">  <span class="keyword">auto</span> shape2 = M2Type.<span class="built_in">getShape</span>();</span><br><span class="line">  <span class="type">int64_t</span> R1dimi;</span><br><span class="line"><span class="comment">//broadcast</span></span><br><span class="line">  <span class="keyword">if</span> (shape<span class="number">1.</span><span class="built_in">size</span>() == shape<span class="number">2.</span><span class="built_in">size</span>())</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">unsigned</span> <span class="type">int</span> i = <span class="number">0</span>; i &lt; shape<span class="number">1.</span><span class="built_in">size</span>(); i++)</span><br><span class="line">    &#123;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (shape1[i] == shape2[i])</span><br><span class="line">      &#123;</span><br><span class="line">        R1dimi = shape1[i];</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">else</span> <span class="keyword">if</span> (shape1[i] != <span class="number">1</span> &amp;&amp; shape2[i] != <span class="number">1</span>)</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="built_in">assert</span>(<span class="string">&quot;error&quot;</span>);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">else</span> <span class="keyword">if</span> (shape1[i] == <span class="number">1</span>)</span><br><span class="line">      &#123;</span><br><span class="line">        R1dimi = shape2[i];</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">else</span> <span class="keyword">if</span> (shape2[i] == <span class="number">1</span>)</span><br><span class="line">      &#123;</span><br><span class="line">        R1dimi = shape1[i];</span><br><span class="line">      &#125;</span><br><span class="line">      R1dim<span class="number">1.</span><span class="built_in">push_back</span>(R1dimi);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> R1dim1;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//AccMulOp——Result = Mul(Mul(Q, K), V)</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">AccMulOpConverter</span> : <span class="keyword">public</span> OpConversionPattern&lt;mindspore::AccMulOp&gt;</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="keyword">using</span> OpConversionPattern&lt;mindspore::AccMulOp&gt;::OpConversionPattern;</span><br><span class="line">  <span class="function">LogicalResult <span class="title">matchAndRewrite</span><span class="params">(mindspore::AccMulOp mindsporeOp, AccMulOp::Adaptor adaptor, ConversionPatternRewriter &amp;rewriter)</span> <span class="type">const</span> <span class="keyword">override</span></span></span><br><span class="line"><span class="function">  </span>&#123;</span><br><span class="line">    <span class="comment">//Location</span></span><br><span class="line">    Location loc = mindsporeOp.<span class="built_in">getLoc</span>();</span><br><span class="line">    <span class="comment">//resultTypes </span></span><br><span class="line">    Type resultTypes = mindsporeOp.<span class="built_in">getResult</span>().<span class="built_in">getType</span>();</span><br><span class="line"> </span><br><span class="line">    <span class="comment">//Q = args[0], K = args[1], V = args[2]</span></span><br><span class="line">    ValueRange args = adaptor.<span class="built_in">getOperands</span>();</span><br><span class="line"></span><br><span class="line">    Type elemType = mindsporeOp.<span class="built_in">getResult</span>().<span class="built_in">getType</span>().<span class="built_in">cast</span>&lt;ShapedType&gt;().<span class="built_in">getElementType</span>();</span><br><span class="line"></span><br><span class="line">    SmallVector&lt;<span class="type">int64_t</span>&gt; result1 = <span class="built_in">broadcast</span>(rewriter, args[<span class="number">0</span>], args[<span class="number">1</span>], loc);</span><br><span class="line">    <span class="function">ArrayRef&lt;<span class="type">int64_t</span>&gt; <span class="title">newArrayRef</span><span class="params">(result1)</span></span>;</span><br><span class="line">    <span class="keyword">auto</span> Type1 = RankedTensorType::<span class="built_in">get</span>(newArrayRef, elemType);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//Q = args[0], K = args[1], V = args[2]</span></span><br><span class="line">    <span class="comment">//mulOp11 = Mul(Q，K)</span></span><br><span class="line">    Value mulOp11 = rewriter.<span class="built_in">create</span>&lt;mlir::tosa::MulOp&gt;(loc, Type1, args[<span class="number">0</span>], args[<span class="number">1</span>], <span class="number">0</span>)-&gt;<span class="built_in">getResult</span>(<span class="number">0</span>);</span><br><span class="line">    <span class="comment">//Mul(mulOp11，V)</span></span><br><span class="line">    <span class="keyword">auto</span> mulOp2 = rewriter.<span class="built_in">create</span>&lt;mlir::tosa::MulOp&gt;(loc, resultTypes, mulOp11, args[<span class="number">2</span>], <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">    rewriter.<span class="built_in">replaceOp</span>(mindsporeOp, mulOp<span class="number">2.</span><span class="built_in">getResult</span>());</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">success</span>();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>再在<code>struct ConvertMindSporeToTosaPass : public ConvertMindSporeToTosaBase&lt;ConvertMindSporeToTosaPass&gt;</code>中添加patterns-AccMulOpConverter</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">ConvertMindSporeToTosaPass</span> : <span class="keyword">public</span> ConvertMindSporeToTosaBase&lt;ConvertMindSporeToTosaPass&gt;</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">     <span class="built_in">ConvertMindSporeToTosaPass</span>() = <span class="keyword">default</span>;</span><br><span class="line">...</span><br><span class="line">     <span class="function"><span class="type">void</span> <span class="title">runOnOperation</span><span class="params">()</span> <span class="keyword">override</span></span></span><br><span class="line"><span class="function">     </span>&#123;</span><br><span class="line"></span><br><span class="line">         <span class="comment">// clang-format off</span></span><br><span class="line">         (<span class="type">void</span>)patterns.add&lt;</span><br><span class="line">        ...</span><br><span class="line">       <span class="comment">//AccMulOp</span></span><br><span class="line">        AccMulOpConverter,</span><br><span class="line">        ConvertMindSporePadOp&lt;mindspore::PadOp&gt;</span><br><span class="line">        &gt;(patterns.<span class="built_in">getContext</span>());</span><br><span class="line">        mlir::<span class="built_in">populateMindSporeLowerPattern</span>(patterns);</span><br><span class="line">    </span><br><span class="line">...</span><br><span class="line">      &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>同时，在<code>/akg-mlir/compiler/lib/Conversion/MindSporeToLinalg/MindSporeToLinalg.cpp</code>和<code>/akg-mlir/compiler/lib/Conversion/MindSporeFinalizingLower/MindSporeFinalizingLower.cpp</code>中对此算子添加了legal,通过手动添加legal，可以保证AccMul算子不在这里被lower，在此类转换中被保留</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">void runOnOperation() override</span><br><span class="line">&#123;</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">//AccmulOp</span><br><span class="line">   target.addLegalOp&lt;mindspore::AccMulOp&gt;();</span><br><span class="line">...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后是一个deepseek写的addlayernorm的方案</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// MindSporeToTosa.cpp</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">ConvertAddLayerNormToTosa</span> : <span class="keyword">public</span> OpConversionPattern&lt;MindSpore::AddLayerNormOp&gt; &#123;</span><br><span class="line">  <span class="keyword">using</span> OpConversionPattern::OpConversionPattern;</span><br><span class="line">  </span><br><span class="line">  <span class="function">LogicalResult <span class="title">matchAndRewrite</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">      MindSpore::AddLayerNormOp op,</span></span></span><br><span class="line"><span class="params"><span class="function">      OpAdaptor adaptor,</span></span></span><br><span class="line"><span class="params"><span class="function">      ConversionPatternRewriter &amp;rewriter</span></span></span><br><span class="line"><span class="params"><span class="function">  )</span> <span class="type">const</span> <span class="keyword">override</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 获取输入和属性</span></span><br><span class="line">    Value input = adaptor.<span class="built_in">getInput</span>();</span><br><span class="line">    Value gamma = adaptor.<span class="built_in">getGamma</span>();</span><br><span class="line">    Value beta = adaptor.<span class="built_in">getBeta</span>();</span><br><span class="line">    <span class="type">float</span> epsilon = op.<span class="built_in">getEpsilon</span>().<span class="built_in">convertToFloat</span>();</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 将AddLayerNorm分解为TOSA操作：</span></span><br><span class="line">    <span class="comment">// 1. 计算输入均值（mean）</span></span><br><span class="line">    <span class="comment">// 2. 计算方差（variance）</span></span><br><span class="line">    <span class="comment">// 3. 执行归一化：(input - mean) / sqrt(variance + epsilon)</span></span><br><span class="line">    <span class="comment">// 4. 应用gamma和beta</span></span><br><span class="line">    <span class="comment">// 具体实现需调用TOSA的现有操作（如tosa.add, tosa.mul等）</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 伪代码示例：</span></span><br><span class="line">    <span class="keyword">auto</span> mean = rewriter.<span class="built_in">create</span>&lt;tosa::ReduceMeanOp&gt;(...);</span><br><span class="line">    <span class="keyword">auto</span> variance = rewriter.<span class="built_in">create</span>&lt;tosa::SubOp&gt;(...);</span><br><span class="line">    <span class="keyword">auto</span> normalized = rewriter.<span class="built_in">create</span>&lt;tosa::DivOp&gt;(...);</span><br><span class="line">    <span class="keyword">auto</span> scaled = rewriter.<span class="built_in">create</span>&lt;tosa::MulOp&gt;(normalized, gamma);</span><br><span class="line">    <span class="keyword">auto</span> output = rewriter.<span class="built_in">create</span>&lt;tosa::AddOp&gt;(scaled, beta);</span><br><span class="line">    </span><br><span class="line">    rewriter.<span class="built_in">replaceOp</span>(op, output);</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">success</span>();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>然后要注册这个写好的pattern</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">populateMindSporeToTosaPatterns</span><span class="params">(MLIRContext *context, RewritePatternSet &amp;patterns)</span> </span>&#123;</span><br><span class="line">  patterns.<span class="built_in">add</span>&lt;ConvertAddLayerNormToTosa&gt;(context);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>更新Lower流程入口确保在Lower流程中调用上述Pattern：</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">LowerMindSporeToTosa</span><span class="params">(ModuleOp <span class="keyword">module</span>)</span> </span>&#123;</span><br><span class="line">  <span class="function">ConversionTarget <span class="title">target</span><span class="params">(*<span class="keyword">module</span>.getContext())</span></span>;</span><br><span class="line">  target.<span class="built_in">addLegalDialect</span>&lt;Tosa::TosaDialect&gt;();</span><br><span class="line">  target.<span class="built_in">addIllegalDialect</span>&lt;MindSpore::MindSporeDialect&gt;();</span><br><span class="line">  </span><br><span class="line">  <span class="function">RewritePatternSet <span class="title">patterns</span><span class="params">(&amp;getContext())</span></span>;</span><br><span class="line">  <span class="built_in">populateMindSporeToTosaPatterns</span>(patterns);</span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">failed</span>(<span class="built_in">applyPartialConversion</span>(<span class="keyword">module</span>, target, std::<span class="built_in">move</span>(patterns)))) &#123;</span><br><span class="line">    <span class="built_in">signalPassFailure</span>();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="mindsporetolinalg">MindsporetoLinalg</h3>
+<p>利用Linalg <strong>在这一层并没有直接的矩阵乘加指令</strong>。但在<br>
+<code>akg/akg-mlir/compiler/lib/Conversion/MindSporeToLinalg/MindSporeToLinalg.cpp</code><br>
+中有已经提供了写elementwise计算的方法，所以直接在<br>
+<code>static Value createLinalgBodyCalculationForElementwiseOp(Operation *op, ValueRange args, ArrayRef&lt;Type&gt; resultTypes, PatternRewriter &amp;rewriter)</code>中添加对应逻辑，其中<a href="https://gitee.com/link?target=https%3A%2F%2Fmlir.llvm.org%2Fdocs%2FDialects%2FArithOps%2F">arith</a>旨在容纳基本的整数和浮点数学运算</p>
+<p>同上的流程</p>
+<ol>
+<li>编写MindsporetoLinalg</li>
+<li>然后编写一个pattern</li>
+<li>还要在<code>akg-mlir/compiler/lib/Conversion/MindSporeToTosa/MindSporeToTosa.cpp</code>对此算子手动添加egal，保证AccMul算子不在这里被lower</li>
+</ol>
+<h1>任务3编写对应的测试用例（算子的info文件和对应的op_dsl）</h1>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://outbreak-sen.github.io">outbreak_sen</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://outbreak-sen.github.io/2025/02/10/Mindspore%E5%AE%9E%E4%B9%A0-AKG%20SIG%E7%AE%97%E5%AD%90addlayernorm%E7%BC%96%E8%BE%91%E5%92%8C%E5%90%88%E5%B9%B6/">http://outbreak-sen.github.io/2025/02/10/Mindspore%E5%AE%9E%E4%B9%A0-AKG%20SIG%E7%AE%97%E5%AD%90addlayernorm%E7%BC%96%E8%BE%91%E5%92%8C%E5%90%88%E5%B9%B6/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://outbreak-sen.github.io" target="_blank">This is a 部落格 of outbreak_sen</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/GAN%E7%94%9F%E6%88%90%E5%AF%B9%E6%8A%97%E6%A8%A1%E5%9E%8B/">GAN生成对抗模型</a><a class="post-meta__tags" href="/tags/Mindspore/">Mindspore</a><a class="post-meta__tags" href="/tags/%E5%AE%9E%E4%B9%A0/">实习</a><a class="post-meta__tags" href="/tags/%E7%AE%97%E5%AD%90/">算子</a></div><div class="post-share"><div class="social-share" data-image="/./img/head.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/02/11/%E5%A4%A7%E6%81%92%E7%9B%B8%E6%9C%BA%E7%A1%AC%E8%A7%A6%E5%8F%91/" title="大恒相机硬触发"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">大恒相机硬触发</div></div><div class="info-2"><div class="info-item-1">...</div></div></div></a><a class="pagination-related" href="/2025/02/09/EffiMVS%E5%85%A8%E6%96%87%E7%BF%BB%E8%AF%91/" title="EffiMVS全文翻译"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">EffiMVS全文翻译</div></div><div class="info-2"><div class="info-item-1">Effi MVS翻译 摘要 在本文中，我们提出了一种用于多视图立体的新颖的迭代动态成本量。 与其他作品相比，我们的成本量要轻得多，因此可以使用基于 2D 卷积的 GRU 进行处理。 值得注意的是，每一步GRU 的输出可进一步用于生成新的成本量。 这样，就构建了一个基于GRU的迭代优化器。 此外，我们提出了一种级联和分层细化架构来利用多尺度信息并加速收敛。 具体来说，利用轻量级 3D CNN 生成最粗糙的初始深度图，这对于启动 GRU 并保证快速收敛至关重要。 然后，深度图由作用于金字塔特征图的多级 GRU 进行细化。 对 DTU 和 Tanks &amp; Temples 基准测试的大量实验表明，我们的方法可以在准确性、速度和内存使用方面实现最先进的结果。 介绍 多视图立体 (MVS) 旨在基于一系列姿势图像和相应的相机参数重建密集的 3D 模型。 预测深度图，然后将深度图融合到点云模型中是 MVS 最常见的流程。 作为一个基本问题，MVS 在计算机视觉领域已经研究了几十年。 最近，我们见证了基于深度学习的 MVS 方法的快速发展。...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2025/02/09/GAN%E7%94%9F%E6%88%90%E5%AF%B9%E6%8A%97%E6%A8%A1%E5%9E%8B%E5%85%A5%E9%97%A8/" title="GAN生成对抗模型入门"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-02-09</div><div class="info-item-2">GAN生成对抗模型入门</div></div><div class="info-2"><div class="info-item-1">GAN笔记 简介 GAN的思想来自零和博弈理论，由两个部分组成，一个是生成器Generator，随机接收一个随机噪声来生成图像。一个是鉴别器Discriminator，判断一张图像是不是“真实的”，输入是一张图像，输出是该图像为真实图像的概率，介于0-1之间，概率值越小认为生成图像不真实的可能性越大。生成器的目标是通过生成接近真实的图像来欺骗判别器，而判别器的目标是尽量辨别出生成器生成的假图像和真实图像的区别。 自编码器（Auto-Encoder)以及变分自编码器（Variational  Auto-Encoder)都是典型的生成器。输入通过Encoder编码成code，然后code通过Decoder重建原图，其中自编码器中的Decoder就是生成器，code可随机取值，产生不同的输出。 自编码器是一种能够通过无监督学习，对输入数据进行特征提取，学习到数据的抽象表示，称为编码过程，编码结果往往维度远小于输入数据，自编码器可以用于降维和特征提取， 变分自编码器（Variational auto-encoder，VAE）是一类重要的生成模型（generative...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/./img/head.png" onerror="this.onerror=null;this.src='/./img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">outbreak_sen</div><div class="author-info-description">an interesting man</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">11</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/outbreak-sen" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://blog.csdn.net/outbreakrmb" target="_blank" title="CSDN"><i class="fa fa-book-open"></i></a><a class="social-icon" href="/1023786231" target="_blank" title="QQ"><i class="fab fa-qq"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">Mindspore实习-AKG SIG算子addlayernorm编辑和合并</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E7%AE%97%E5%AD%90"><span class="toc-text">什么是算子</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">mindspore的算子融合方案是什么</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%9B%BE%E7%AE%97%E8%9E%8D%E5%90%88%E7%BC%96%E8%AF%91%E6%8A%80%E6%9C%AF"><span class="toc-text">什么是图算融合编译技术</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E8%87%AA%E5%8A%A8%E7%AE%97%E5%AD%90%E7%BC%96%E8%AF%91%E6%8A%80%E6%9C%AFakg"><span class="toc-text">什么是自动算子编译技术AKG</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">任务-addlayernorm</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">AKG安装</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8Emindspore%E7%9A%84whl%E5%AE%89%E8%A3%85-%E5%A4%B1%E8%B4%A5-%E4%BD%86%E6%98%AF%E5%90%8E%E9%9D%A2%E8%BF%98%E6%98%AF%E8%BF%99%E4%B9%88%E5%81%9A%E4%BA%86"><span class="toc-text">从mindspore的whl安装，失败，但是后面还是这么做了</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8Emindspore%E7%9A%84%E6%BA%90%E7%A0%81%E5%AE%89%E8%A3%85"><span class="toc-text">从mindspore的源码安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E7%BB%88%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88mindspore%E7%9A%84whl%E5%AE%89%E8%A3%85-akg%E6%BA%90%E7%A0%81%E5%AE%89%E8%A3%85"><span class="toc-text">最终的解决方案mindspore的whl安装+AKG源码安装</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">AddLayerNorm算子的定义</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">任务1在MindSporeOps.td中添加对应算子的实现</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">任务2打通算子的Lower流程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#lower%E6%B5%81%E7%A8%8B%E8%AE%B2%E8%A7%A3"><span class="toc-text">Lower流程讲解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E5%86%99addlayernorm%E7%9A%84lower%E8%BF%87%E7%A8%8B"><span class="toc-text">编写AddLayerNorm的Lower过程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#jsontomindspore"><span class="toc-text">JSONtoMindSpore</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mindsporetotosa"><span class="toc-text">MindSporeToTosa</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mindsporetolinalg"><span class="toc-text">MindsporetoLinalg</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">任务3编写对应的测试用例（算子的info文件和对应的op_dsl）</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/02/11/LLVM-tablegen/" title="LLVM tablegen">LLVM tablegen</a><time datetime="2025-02-11T02:19:57.000Z" title="发表于 2025-02-11 10:19:57">2025-02-11</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/02/11/%E5%A4%A7%E6%81%92%E7%9B%B8%E6%9C%BA%E7%A1%AC%E8%A7%A6%E5%8F%91/" title="大恒相机硬触发">大恒相机硬触发</a><time datetime="2025-02-11T01:51:43.000Z" title="发表于 2025-02-11 09:51:43">2025-02-11</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/02/10/Mindspore%E5%AE%9E%E4%B9%A0-AKG%20SIG%E7%AE%97%E5%AD%90addlayernorm%E7%BC%96%E8%BE%91%E5%92%8C%E5%90%88%E5%B9%B6/" title="Mindspore实习-AKG SIG算子addlayernorm编辑和合并">Mindspore实习-AKG SIG算子addlayernorm编辑和合并</a><time datetime="2025-02-10T04:53:11.000Z" title="发表于 2025-02-10 12:53:11">2025-02-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/02/09/EffiMVS%E5%85%A8%E6%96%87%E7%BF%BB%E8%AF%91/" title="EffiMVS全文翻译">EffiMVS全文翻译</a><time datetime="2025-02-09T08:21:01.000Z" title="发表于 2025-02-09 16:21:01">2025-02-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/02/09/colmap%E4%BB%8B%E7%BB%8D%E5%92%8C%E4%BD%BF%E7%94%A8/" title="colmap介绍和使用">colmap介绍和使用</a><time datetime="2025-02-09T08:12:29.000Z" title="发表于 2025-02-09 16:12:29">2025-02-09</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By outbreak_sen</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><div class="js-pjax"></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
