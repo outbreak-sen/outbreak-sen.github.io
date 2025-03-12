@@ -1,0 +1,327 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>This is a 部落格 of outbreak_sen | This is a 部落格 of outbreak_sen</title><meta name="author" content="outbreak_sen"><meta name="copyright" content="outbreak_sen"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="NLP任务微调 NLP数据集没有像CV一样大量标号的数据集，所以NLP一般是自监督的，有两种自监督的模型：   LM：语言模型，预测下一个词   MLM：带掩码的语言模型，完形填空   每种预训练模型基于不同的技术也分为两种：   Word embddings：  LSTM之类的传统的    Transformer based pretrained model：  Bert：基于encoder，针">
+<meta property="og:type" content="article">
+<meta property="og:title" content="This is a 部落格 of outbreak_sen">
+<meta property="og:url" content="http://outbreak-sen.github.io/2025/03/03/NLP%E4%BB%BB%E5%8A%A1%E5%BE%AE%E8%B0%83%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="This is a 部落格 of outbreak_sen">
+<meta property="og:description" content="NLP任务微调 NLP数据集没有像CV一样大量标号的数据集，所以NLP一般是自监督的，有两种自监督的模型：   LM：语言模型，预测下一个词   MLM：带掩码的语言模型，完形填空   每种预训练模型基于不同的技术也分为两种：   Word embddings：  LSTM之类的传统的    Transformer based pretrained model：  Bert：基于encoder，针">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://outbreak-sen.github.io/img/head.png">
+<meta property="article:published_time" content="2025-03-03T03:25:31.958Z">
+<meta property="article:modified_time" content="2025-03-03T13:52:21.338Z">
+<meta property="article:author" content="outbreak_sen">
+<meta property="article:tag" content="static scale model, deep learning, vlog, radio control model, music">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://outbreak-sen.github.io/img/head.png"><link rel="shortcut icon" href="/img/h_beautygirl.png"><link rel="canonical" href="http://outbreak-sen.github.io/2025/03/03/NLP%E4%BB%BB%E5%8A%A1%E5%BE%AE%E8%B0%83%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'This is a 部落格 of outbreak_sen',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  isShuoshuo: false
+}</script><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="This is a 部落格 of outbreak_sen" type="application/atom+xml">
+<link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head><body><div id="web_bg" style="background-image: url(/img/v_beautygirl0.jpeg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/./img/head.png" onerror="onerror=null;src='./img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">21</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw fa fa-camera-retro"></i><span> 树洞</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 作品与鉴赏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/h_beautygirl.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/h_beautygirl.png" alt="Logo"><span class="site-name">This is a 部落格 of outbreak_sen</span></a><a class="nav-page-title" href="/"><span class="site-name">This is a 部落格 of outbreak_sen</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw fa fa-camera-retro"></i><span> 树洞</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 作品与鉴赏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">无标题</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-03-03T03:25:31.958Z" title="发表于 2025-03-03 11:25:31">2025-03-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-03-03T13:52:21.338Z" title="更新于 2025-03-03 21:52:21">2025-03-03</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1>NLP任务微调</h1>
+<p>NLP数据集没有像CV一样大量标号的数据集，所以NLP一般是自监督的，有两种自监督的模型：</p>
+<ul>
+<li>
+<p>LM：语言模型，预测下一个词</p>
+</li>
+<li>
+<p>MLM：带掩码的语言模型，完形填空</p>
+</li>
+</ul>
+<p>每种预训练模型基于不同的技术也分为两种：</p>
+<ul>
+<li>
+<p>Word embddings：</p>
+<ul>
+<li>LSTM之类的传统的</li>
+</ul>
+</li>
+<li>
+<p>Transformer based pretrained model：</p>
+<ul>
+<li>Bert：基于encoder，针对Bert的微调，把最后一层重新设计随机初始化，做分类只需要拿出一个然后训练，做QA只需要输出答案的位置</li>
+<li>GPT：基于decoder</li>
+<li>T5：基于encoder和decode</li>
+</ul>
+</li>
+</ul>
+<h2 id="如何做分词">如何做分词</h2>
+<p><strong>数据集一般是用Unicode进行编码，是对世界所有语言的一种编码，但是我们需要将这些文字变成数字编码的向量，就需要分词</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;我是一个用于测试输出unicode编码的文字&quot;.encode(&#x27;utf-8&#x27;)#可以看到每个字对应的unicode编码 </span><br></pre></td></tr></table></figure>
+<p>分词Tokenizer：就是把文字变成数字，数字就是token，每个词变成一个编号</p>
+<h3 id="tokenizer分类">Tokenizer分类</h3>
+<p>Tokenizer有多种，其中subword-based是现在最常用的</p>
+<ol>
+<li>Word-based Toeknizers：把每个词一一对应分开，然后将例如“don‘t”引入特殊规则划分为“do”和“not”，这就导致虽然符合人的自然语言知觉，但是规则太多，此表很大，所以一般限制到一万个词，其余的词标记为未知</li>
+<li>Character-baesd ：把一个单词变成一个个字母，love变成l,o,v,e，这样token序列长，单个token信息量低模型性能差，中文的词表更长。</li>
+<li>subword-based Tokenizer：这个合理，dog就是dog，但是dogs为dog+s。tokenization变成token和ization</li>
+</ol>
+<h3 id="常用的subword-tokenizer">常用的subword tokenizer</h3>
+<p>然后subword tokenizer也分为很多类</p>
+<ol>
+<li>Byte-pair encoding（GPT使用的p50k）：BPE方法，首先进行词频统计，然后构建基本此表，根据词表切分词，统计相邻token同时出现的频率，取出新的频率高的组合token替换原先的小token，这样就可以构成新的词表，最后就会获得一个充满高频词单元的词表。看<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Fc411C7sz/?spm_id_from=333.337.search-card.all.click&amp;vd_source=fab8d1d67ff3f15a964074b193e057da">视频21分</a>了解。有个gihub仓库miniBPE不错。同时还有一些出现也很高但是组合到一起没有意义的，那可以用加个正则表达删除这种组合</li>
+<li>Btye-level BPE（GPT2使用的）：BPE的词表太大，改进的方法将字节byte看作基本token</li>
+<li>wordpiece：和BPE类似，每个单词除了第一个字母都会加一个#作为前缀，然后利用联合概率进行token合并，反正就更科学了</li>
+<li>sentencePiece（google）：</li>
+<li>unigram（Bigbird，T5，XLNet）：初始化一个很大的词表，尝试删减然后计算unigram loss，然后使unigramloss下降的不大就山调，逐步删减</li>
+</ol>
+<p><strong>每个模型都有对应的分词器，每个模型的tokenizer不一样，不能随便换</strong>，可查看https://huggingface.co/spaces/Xenova/the-tokenizer-playground看tokenizer的分词效果</p>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="./NLP任务微调学习笔记/image-20250303114108026.png" alt="image-20250303114108026" style="zoom:50%;" />
+<h2 id="构建词表">构建词表</h2>
+<p><strong>词表（Vocabulary）是通过使用 Tokenizer 对训练语料进行处理后获得的词（或子词、字符等）与 token 的对应关系。词表中已经定义了 token 与 ID 的映射关系。</strong></p>
+<p><strong>如果你的模型微调任务中已经有一个预训练的 对应Tokenizer，那么这个 Tokenizer 其实包含了对应的词表，那么不需要重新构建词表！</strong></p>
+<p>预训练的 Tokenizer 通常是在大规模语料上训练的，已经包含了足够大的词表（例如 30,000 到 100,000 个 token）。</p>
+<p><strong>如果你想训练一个新模型，但是没有tokenizer，那么就可以使用词表</strong>下面介绍怎么使用词表：</p>
+<ul>
+<li>使用预训练Embedding的词表，如Glove，word2Vec
+<ul>
+<li>GloVe 的词表主要用于训练词向量（word embeddings），而不是直接用于模型的输入。</li>
+</ul>
+</li>
+<li>使用数据集统计词表：使用from_dataset函数从数据集构建一个Vocab词表</li>
+<li>使用Subword训练得到的词表，直接就获得了，不需要训练获得词表</li>
+</ul>
+<p>如何使用别人训练的词表word2Vec生成input</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> gensim.models <span class="keyword">import</span> KeyedVectors</span><br><span class="line"><span class="comment"># 加载预训练的 Word2Vec 模型</span></span><br><span class="line">word2vec_model = KeyedVectors.load_word2vec_format(<span class="string">&quot;path/to/word2vec.bin&quot;</span>, binary=<span class="literal">True</span>)</span><br><span class="line"><span class="comment"># 获取词表</span></span><br><span class="line">vocab = word2vec_model.key_to_index  <span class="comment"># 单词到索引的映射</span></span><br><span class="line">word_vectors = word2vec_model.vectors  <span class="comment"># 词向量矩阵</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">tokenize</span>(<span class="params">text</span>):</span><br><span class="line">    <span class="comment"># 简单的空格分词，转换为小写</span></span><br><span class="line">    <span class="keyword">return</span> text.lower().split()python</span><br><span class="line"></span><br><span class="line"><span class="comment"># 示例数据集</span></span><br><span class="line">data = [</span><br><span class="line">    <span class="string">&quot;I love NLP.&quot;</span>,</span><br><span class="line">    <span class="string">&quot;This is a test sentence.&quot;</span>,</span><br><span class="line">    <span class="string">&quot;How are you?&quot;</span></span><br><span class="line">]</span><br><span class="line"><span class="comment"># 对数据集中的每个句子进行分词</span></span><br><span class="line">tokenized_data = [tokenize(text) <span class="keyword">for</span> text <span class="keyword">in</span> data]</span><br><span class="line"><span class="built_in">print</span>(tokenized_data)</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="comment"># 获取词向量的维度</span></span><br><span class="line">embedding_dim = word_vectors.shape[<span class="number">1</span>]</span><br><span class="line"><span class="comment"># 将单词映射到词向量</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">map_tokens_to_vectors</span>(<span class="params">tokens, vocab, word_vectors, embedding_dim</span>):</span><br><span class="line">    vectors = []</span><br><span class="line">    <span class="keyword">for</span> token <span class="keyword">in</span> tokens:</span><br><span class="line">        <span class="keyword">if</span> token <span class="keyword">in</span> vocab:</span><br><span class="line">            <span class="comment"># 如果单词在词表中，获取对应的词向量</span></span><br><span class="line">            vectors.append(word_vectors[vocab[token]])</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="comment"># 如果单词不在词表中，使用全零向量</span></span><br><span class="line">            vectors.append(np.zeros(embedding_dim))</span><br><span class="line">    <span class="keyword">return</span> np.array(vectors)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 对分词后的数据进行映射</span></span><br><span class="line">vectorized_data = [map_tokens_to_vectors(tokens, vocab, word_vectors, embedding_dim) <span class="keyword">for</span> tokens <span class="keyword">in</span> tokenized_data]</span><br></pre></td></tr></table></figure>
+<h2 id="如何embedding">如何embedding</h2>
+<p>embedding：做完分词后获得是一堆数字，<strong>embedding现在都成为transformer算法，不用自己来写这部分数据预处理的一部分，所以不用写了</strong></p>
+<p>Embedding layer的作用是将离散的 token ID 映射为连续的向量表示。这些向量通常是可训练的，模型会在训练过程中学习如何将每个 token ID 映射到一个有意义的向量空间中。比如说一个句子里的一个词的向量 是 这个词的token + 词的位置编码</p>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="./NLP任务微调学习笔记/image-20250303113929963.png" alt="image-20250303113929963" style="zoom:50%;" />
+<h1>将数据变为数据集（太重点的）</h1>
+<p>AI需要的是问答对数据集，也就是一个数据集里要有问题和答案</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">‘instruction’:这里要有问题</span><br><span class="line">‘input’:这里要有一个数据,</span><br><span class="line">‘output’:这里需要获得输出是什么</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>有各种各样的数据集，然后需要用在不同的任务中，其中任务可以包括以下几种，基础模型都是bigbirdpegasus，但是是用于不同任务的</strong></p>
+<table>
+<thead>
+<tr>
+<th>任务类型</th>
+<th>数据需要包含的集列</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>BigBirdPegasusForConditionalGeneration</strong></td>
+<td><code>input_text</code>, <code>target_text</code></td>
+</tr>
+<tr>
+<td><strong>BigBirdPegasusForSequenceClassification</strong></td>
+<td><code>input_text</code>, <code>label</code></td>
+</tr>
+<tr>
+<td><strong>BigBirdPegasusForQuestionAnswering</strong></td>
+<td><code>context</code>, <code>question</code>, <code>answer</code></td>
+</tr>
+<tr>
+<td><strong>BigBirdPegasusDecoderWrapper</strong></td>
+<td><code>input_text</code>, <code>target_text</code></td>
+</tr>
+<tr>
+<td><strong>BigBirdPegasusForCausalLM因果语言模型（CLM）</strong></td>
+<td><code>input_text</code>, <code>target_text</code>，下一个词是target_text</td>
+</tr>
+<tr>
+<td><strong>Masked Language Modeling掩码语言模型（MLM，比如bert）</strong></td>
+<td><code>input_text</code>, <code>target_text</code>，缺少的词是target_text</td>
+</tr>
+</tbody>
+</table>
+<p>然后<strong>每一种任务的模型需要不同类型的数据集进行训练，需要数据集有对应不同的columes，比如说BigBirdPegasusForConditionalGeneration这个条件生成任务的模型需要数据集包括输入文本(input text)和目标文本(target text)，具体格式如下。</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">data = [</span><br><span class="line">    &#123;&quot;input_text&quot;: &quot;The quick brown fox jumps over the lazy dog.&quot;, &quot;target_text&quot;: &quot;The fox is quick.&quot;&#125;,</span><br><span class="line">    &#123;&quot;input_text&quot;: &quot;In a galaxy far, far away...&quot;, &quot;target_text&quot;: &quot;A long time ago...&quot;&#125;,</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p><strong>有一些数据集是已经针对这些任务特化好的，比如说SQuAD (Stanford Question Answering Dataset)是针对ConditionalGeneration任务的，不过需要将这个数据集变成我们需要的格式。SQuAD 数据集中的一个例子如下</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;data&quot;: [</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;title&quot;: &quot;Super_Bowl_50&quot;,</span><br><span class="line">            &quot;paragraphs&quot;: [</span><br><span class="line">                &#123;</span><br><span class="line">                    &quot;context&quot;: &quot;Super Bowl 50 was an American football game...&quot;,</span><br><span class="line">                    &quot;qas&quot;: [</span><br><span class="line">                        &#123;</span><br><span class="line">                            &quot;question&quot;: &quot;Where did Super Bowl 50 take place?&quot;,</span><br><span class="line">                            &quot;id&quot;: &quot;56be4db0acb8001400a502ec&quot;,</span><br><span class="line">                            &quot;answers&quot;: [</span><br><span class="line">                                &#123;</span><br><span class="line">                                    &quot;text&quot;: &quot;Santa Clara, California&quot;,</span><br><span class="line">                                    &quot;answer_start&quot;: 269</span><br><span class="line">                                &#125;</span><br><span class="line">                            ]</span><br><span class="line">                        &#125;</span><br><span class="line">                    ]</span><br><span class="line">                &#125;</span><br><span class="line">            ]</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>databricks-dolly-15k数据集是针微调任务的</strong>，牛逼吧，专门用于微调各种任务的，可以用于问答、分类、摘要各种任务，只需要你自己构造好。数据格式如下:</p>
+<p>按照你的需要变成不同的格式</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">DatasetDict(&#123;</span><br><span class="line">    train: Dataset(&#123;</span><br><span class="line">        features: [<span class="string">&#x27;instruction&#x27;</span>, <span class="string">&#x27;context&#x27;</span>, <span class="string">&#x27;response&#x27;</span>, <span class="string">&#x27;category&#x27;</span>],</span><br><span class="line">        num_rows: <span class="number">15011</span></span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment"># instruction	用户的指令或任务描述（例如：“写一篇关于气候变化的短文。”）。</span></span><br><span class="line"><span class="comment"># context	可选的上下文信息，为模型提供额外的背景知识（例如：“气候变化是全球变暖的主要原因。”）。</span></span><br><span class="line"><span class="comment"># response	模型应生成的理想响应（例如：“气候变化是当今世界面临的最大挑战之一...”）。。</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;instruction&quot;</span>: <span class="string">&quot;写一篇关于气候变化的短文。&quot;</span>,</span><br><span class="line">    <span class="string">&quot;context&quot;</span>: <span class="string">&quot;气候变化是全球变暖的主要原因。&quot;</span>,</span><br><span class="line">    <span class="string">&quot;response&quot;</span>: <span class="string">&quot;气候变化是当今世界面临的最大挑战之一。全球变暖导致极端天气事件频发，海平面上升，生态系统受到严重威胁。为了应对气候变化，各国需要采取紧急措施，减少温室气体排放，推动可持续发展。&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>但是还有一些数据集是非特化的</strong>，需要自己构建成需要的数据集格式，比如wikitext只是wiki上的文字一段一段的，这种就根需要自己对数据集进行特化处理</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#x27;text&#x27;: &quot; The ship was assigned to the Austro @-@ Hungarian Fleet &#x27;s 1st Battle Squadron after her 1911 commissioning . In 1912 , Zrínyi and her two sister ships conducted two training cruises into the eastern Mediterranean Sea . On the second cruise into the Aegean Sea , conducted from November to December , Zrínyi and her sister ships were accompanied by the cruiser SMS Admiral Spaun and a pair of destroyers . After returning to Pola , the entire fleet mobilized for possible hostilities , as tensions flared in the Balkans . \n&quot;&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="数据集特化处理工具">数据集特化处理工具</h2>
+<p>我们完全可以自己把一个非特化的数据集转化为特化的数据集，比如把wikitext的每一句话拿出来，然后一句话的最后一个词就是要获得的结果，作为target_ids。但是有更好的工具可以直接把数据集转化为想要的特化的数据集比如dataset中的**<code>DataCollatorForLanguageModeling</code>**</p>
+<p><code>DataCollatorForLanguageModeling</code>** 是 Hugging Face 提供的一个工具，专门用于处理语言模型训练数据。它可以自动将数据集（如 Wikitext-103-v1）划分为 <code>input_ids</code>、<code>attention_mask</code> 和 <code>labels</code>，并且支持因果语言模型（Causal Language Model, CLM）和掩码语言模型（Masked Language Model, MLM）的训练。</p>
+<h3 id="datacollatorforlanguagemodeling-的作用"><strong><code>DataCollatorForLanguageModeling</code> 的作用</strong></h3>
+<ol>
+<li><strong>动态填充</strong>：将批次中的序列填充到相同长度。</li>
+<li><strong>生成 <code>labels</code></strong>：对于因果语言模型，<code>labels</code> 是 <code>input_ids</code> 的偏移版本（即下一个 token 的预测目标）。</li>
+<li><strong>支持 MLM</strong>：如果你使用的是掩码语言模型（如 BERT），它还可以随机掩码 token。</li>
+<li>除了生成input_ids和target_ids之外，还会生成<code>attention_mask</code> ，指示哪些 token 是实际数据，哪些是填充 token。</li>
+</ol>
+<p>DataCollatorForLanguageModeling的工作原理：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 首先已经有两句连续的话了</span></span><br><span class="line"><span class="comment">#  	&quot;The quick brown fox&quot;</span></span><br><span class="line"><span class="comment">#     &quot;Jumps over the lazy dog&quot;</span></span><br><span class="line"><span class="comment"># CLM模型的作用是根据之前的文字生成下一个文字</span></span><br><span class="line"><span class="comment"># 首先经过tokenizer</span></span><br><span class="line">input_ids_1 = [<span class="number">1996</span>, <span class="number">4248</span>, <span class="number">2829</span>, <span class="number">4419</span>]  <span class="comment"># &quot;The quick brown fox&quot;</span></span><br><span class="line">input_ids_2 = [<span class="number">12987</span>, <span class="number">345</span>, <span class="number">1996</span>, <span class="number">1234</span>, <span class="number">2345</span>]  <span class="comment"># &quot;Jumps over the lazy dog&quot;</span></span><br><span class="line"><span class="comment"># 然后经过datacollatrorForlanguageodeling之后，-100是用来填充的，可以看到，这样label，也就是target_ids的变化是预测的下一句话</span></span><br><span class="line">input_ids = [</span><br><span class="line">    [<span class="number">1996</span>, <span class="number">4248</span>, <span class="number">2829</span>, <span class="number">4419</span>, -<span class="number">100</span>],  <span class="comment"># &quot;The quick brown fox&quot;</span></span><br><span class="line">    [<span class="number">12987</span>, <span class="number">345</span>, <span class="number">1996</span>, <span class="number">1234</span>, <span class="number">2345</span>]   <span class="comment"># &quot;Jumps over the lazy dog&quot;</span></span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">labels = [</span><br><span class="line">    [<span class="number">4248</span>, <span class="number">2829</span>, <span class="number">4419</span>, -<span class="number">100</span>, -<span class="number">100</span>],  <span class="comment"># 预测下一个 token</span></span><br><span class="line">    [<span class="number">345</span>, <span class="number">1996</span>, <span class="number">1234</span>, <span class="number">2345</span>, -<span class="number">100</span>]    <span class="comment"># 预测下一个 token</span></span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>下面讲解DataCollatorForLanguageModeling` 怎么调用</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> datasets <span class="keyword">import</span> load_dataset</span><br><span class="line"><span class="comment"># 加载 Wikitext 数据集</span></span><br><span class="line">dataset = load_dataset(<span class="string">&quot;wikitext&quot;</span>, <span class="string">&quot;wikitext-103-v1&quot;</span>)</span><br><span class="line"><span class="comment"># 过滤空行</span></span><br><span class="line">dataset = dataset.<span class="built_in">filter</span>(<span class="keyword">lambda</span> x: x[<span class="string">&quot;text&quot;</span>].strip() != <span class="string">&quot;&quot;</span>)</span><br><span class="line"><span class="keyword">from</span> transformers <span class="keyword">import</span> DataCollatorForLanguageModeling</span><br><span class="line">tokenizer = AutoTokenizer.from_pretrained(<span class="string">&quot;gpt2&quot;</span>)</span><br><span class="line"><span class="comment"># 对数据集进行 Tokenization</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">tokenize_function</span>(<span class="params">examples</span>):</span><br><span class="line">    <span class="keyword">return</span> tokenizer(examples[<span class="string">&quot;text&quot;</span>], truncation=<span class="literal">True</span>, max_length=<span class="number">512</span>)</span><br><span class="line">tokenized_dataset = dataset.<span class="built_in">map</span>(tokenize_function, batched=<span class="literal">True</span>, remove_columns=[<span class="string">&quot;text&quot;</span>])</span><br><span class="line"><span class="comment"># 初始化 DataCollator</span></span><br><span class="line">data_collator = DataCollatorForLanguageModeling(</span><br><span class="line">    tokenizer=tokenizer,</span><br><span class="line">    mlm=<span class="literal">False</span>,  <span class="comment"># 使用因果语言模型</span></span><br><span class="line">    return_tensors=<span class="string">&quot;pt&quot;</span>  <span class="comment"># 返回 PyTorch 张量</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 然后按理说可以用于训练，但是这里讲三个方式</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 1. 创建 DataLoader，这个DataLoader的作用是为了传入模型使用的，dataloader需要将数据划分为不同的batch，并且打乱顺序等</span></span><br><span class="line"><span class="keyword">from</span> torch.utils.data <span class="keyword">import</span> DataLoader</span><br><span class="line">train_loader = DataLoader(</span><br><span class="line">    tokenized_dataset[<span class="string">&quot;train&quot;</span>],</span><br><span class="line">    batch_size=<span class="number">8</span>,</span><br><span class="line">    collate_fn=data_collator,</span><br><span class="line">    shuffle=<span class="literal">True</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 可以不使用 DataLoader，直接将 Tokenizer 处理后的数据使用 DataCollatorForLanguageModeling 转换为模型训练所需的格式，然后进行训练。不过，这种方式通常适用于小规模数据集或自定义训练循环的场景。</span></span><br><span class="line">batch_size = <span class="number">8</span></span><br><span class="line">batches = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">len</span>(tokenized_dataset[<span class="string">&quot;train&quot;</span>]), batch_size):</span><br><span class="line">    batch = tokenized_dataset[<span class="string">&quot;train&quot;</span>][i:i + batch_size]</span><br><span class="line">    batches.append(data_collator(batch[<span class="string">&quot;input_ids&quot;</span>]))</span><br><span class="line">optimizer = AdamW(model.parameters(), lr=<span class="number">5e-5</span>)</span><br><span class="line"><span class="keyword">for</span> epoch <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>):  <span class="comment"># 训练 3 个 epoch</span></span><br><span class="line">    <span class="keyword">for</span> batch <span class="keyword">in</span> batches:</span><br><span class="line">        outputs = model(input_ids=batch[<span class="string">&quot;input_ids&quot;</span>], labels=batch[<span class="string">&quot;labels&quot;</span>])</span><br><span class="line">        loss = outputs.loss</span><br><span class="line">        optimizer.zero_grad()</span><br><span class="line">        loss.backward()</span><br><span class="line">        optimizer.step()</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;Loss: <span class="subst">&#123;loss.item()&#125;</span>&quot;</span>)   </span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. 如果你需要微调，也可以不使用dataloader，直接将DataCollatorForLanguageModeling处理过的数据传入trainer即可</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>除了 <strong><code>DataCollatorForLanguageModeling</code></strong>，huggingface的transformer还有许多其他 <strong>DataCollator</strong> 工具，可以根据任务需求将数据集转换为模型训练所需的格式。以下是一些常用的 DataCollator 及其适用场景：详细可看这个<a target="_blank" rel="noopener" href="https://percent4.github.io/NLP%EF%BC%88%E4%B9%9D%E5%8D%81%E5%9B%9B%EF%BC%89transformers%E6%A8%A1%E5%9D%97%E4%B8%AD%E7%9A%84DataCollator/">各种datacollator</a></p>
+<table>
+<thead>
+<tr>
+<th>DataCollator 类型</th>
+<th>适用任务</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>DataCollatorWithPadding</code></td>
+<td>变长序列任务（如文本分类）。</td>
+</tr>
+<tr>
+<td><code>DataCollatorForTokenClassification</code></td>
+<td>序列标注任务（如命名实体识别）。</td>
+</tr>
+<tr>
+<td><code>DataCollatorForSeq2Seq</code></td>
+<td>序列到序列任务（如机器翻译）。</td>
+</tr>
+<tr>
+<td><code>DataCollatorForSOP</code></td>
+<td>句子顺序预测任务（如 ALBERT）。</td>
+</tr>
+<tr>
+<td><code>DataCollatorForWholeWordMask</code></td>
+<td>全词掩码任务（如 BERT）。</td>
+</tr>
+<tr>
+<td><code>DataCollatorForPermutationLanguageModeling</code></td>
+<td>排列语言模型任务（如 XLNet）。</td>
+</tr>
+<tr>
+<td><code>DataCollatorForNextSentencePrediction</code></td>
+<td>下一句预测任务（如 BERT）。</td>
+</tr>
+<tr>
+<td><code>DataCollatorForImageCaptioning</code></td>
+<td>图像描述生成任务。</td>
+</tr>
+</tbody>
+</table>
+<p>也可以自己定义，继承DataCollator</p>
+<p>Mindspore也有datacontrol的工具不过叫做mindspore.dataset.GeneratorDataset，并且需要自己定义，但是也没有transformers里面的工具智能</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">def data_generator():</span><br><span class="line">    for i in range(100):</span><br><span class="line">        yield (np.random.randn(32, 32, 3), np.random.randint(0, 10)</span><br><span class="line"></span><br><span class="line">dataset = ds.GeneratorDataset(source=data_generator, column_names=[&quot;image&quot;, &quot;label&quot;])</span><br></pre></td></tr></table></figure>
+<p>除此之外mindspore和mindNLP只支持一些基本操作比如map，padding之类的</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://outbreak-sen.github.io">outbreak_sen</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://outbreak-sen.github.io/2025/03/03/NLP%E4%BB%BB%E5%8A%A1%E5%BE%AE%E8%B0%83%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">http://outbreak-sen.github.io/2025/03/03/NLP%E4%BB%BB%E5%8A%A1%E5%BE%AE%E8%B0%83%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://outbreak-sen.github.io" target="_blank">This is a 部落格 of outbreak_sen</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/./img/head.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/03/04/BlenderBot_small%E5%BE%AE%E8%B0%83/" title=""><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2"></div></div><div class="info-2"><div class="info-item-1">BlendBot_small微调 发现有人进行了讲解并且用mindNLP进行测试了 </div></div></div></a><a class="pagination-related" href="/2025/02/28/HuggingFace%E7%9A%84%E4%BD%BF%E7%94%A8/" title=""><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2"></div></div><div class="info-2"><div class="info-item-1">HuggingFace的模型和数据集dataset 微调数据集：wikitext-103-v1 模型：BigBirdPegasusForCausalLM 如何下载模型和数据集并调用 这里的模型和数据集是需要在huggingface上找到专门的名称的，然后有多种下载方法，默认会下载到.cache/huggingface/hub/,但是后面.cache可能会被清空。加载的时候，直接传入地址即可   通过 huggingface model hub 网页的下载按钮进行下载。模型项目页的 Files 栏中可以获取文件的下载链接。无需登录直接点击下载   通过 huggingface 的 huggingface_hub 工具进行下载 123456789pip install huggingface_hubhuggingface-cli download internlm/internlm2-chat-7b# 但是直接这么下载还是网络超时，所以使用镜像python -m pip install huggingface_hubexport...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/./img/head.png" onerror="this.onerror=null;this.src='/./img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">outbreak_sen</div><div class="author-info-description">an interesting man</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">21</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/outbreak-sen" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://blog.csdn.net/outbreakrmb" target="_blank" title="CSDN"><i class="fa fa-book-open"></i></a><a class="social-icon" href="/1023786231" target="_blank" title="QQ"><i class="fab fa-qq"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">NLP任务微调</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%81%9A%E5%88%86%E8%AF%8D"><span class="toc-text">如何做分词</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#tokenizer%E5%88%86%E7%B1%BB"><span class="toc-text">Tokenizer分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E7%9A%84subword-tokenizer"><span class="toc-text">常用的subword tokenizer</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%84%E5%BB%BA%E8%AF%8D%E8%A1%A8"><span class="toc-text">构建词表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95embedding"><span class="toc-text">如何embedding</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">将数据变为数据集（太重点的）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E9%9B%86%E7%89%B9%E5%8C%96%E5%A4%84%E7%90%86%E5%B7%A5%E5%85%B7"><span class="toc-text">数据集特化处理工具</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#datacollatorforlanguagemodeling-%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-text">DataCollatorForLanguageModeling 的作用</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/03/04/BlendBot_small%E5%BE%AE%E8%B0%83/" title="无标题">无标题</a><time datetime="2025-03-04T11:33:15.284Z" title="发表于 2025-03-04 19:33:15">2025-03-04</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/03/04/BlenderBot_small%E5%BE%AE%E8%B0%83/" title="无标题">无标题</a><time datetime="2025-03-04T11:20:48.023Z" title="发表于 2025-03-04 19:20:48">2025-03-04</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/03/03/NLP%E4%BB%BB%E5%8A%A1%E5%BE%AE%E8%B0%83%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="无标题">无标题</a><time datetime="2025-03-03T03:25:31.958Z" title="发表于 2025-03-03 11:25:31">2025-03-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/02/28/HuggingFace%E7%9A%84%E4%BD%BF%E7%94%A8/" title="无标题">无标题</a><time datetime="2025-02-28T05:57:47.709Z" title="发表于 2025-02-28 13:57:47">2025-02-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/02/26/mindNLP%E6%A8%A1%E5%9E%8B%E5%BE%AE%E8%B0%83%E5%AE%9E%E6%88%98/" title="mindNLP模型微调实战总结">mindNLP模型微调实战总结</a><time datetime="2025-02-26T07:01:44.000Z" title="发表于 2025-02-26 15:01:44">2025-02-26</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By outbreak_sen</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><div class="js-pjax"></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

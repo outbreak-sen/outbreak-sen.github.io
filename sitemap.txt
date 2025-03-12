@@ -1,6 +1,11 @@
+http://outbreak-sen.github.io/2025/02/28/HuggingFace%E7%9A%84%E4%BD%BF%E7%94%A8/
+http://outbreak-sen.github.io/2025/03/04/BlendBot_small%E5%BE%AE%E8%B0%83/
+http://outbreak-sen.github.io/2025/03/04/BlenderBot_small%E5%BE%AE%E8%B0%83/
+http://outbreak-sen.github.io/2025/03/03/NLP%E4%BB%BB%E5%8A%A1%E5%BE%AE%E8%B0%83%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/
+http://outbreak-sen.github.io/2025/02/26/mindNLP%E6%A8%A1%E5%9E%8B%E5%BE%AE%E8%B0%83%E5%AE%9E%E6%88%98/
+http://outbreak-sen.github.io/2025/02/17/%E5%A4%A7%E6%81%92%E7%9B%B8%E6%9C%BA%E7%9A%84%E5%A4%9A%E7%9B%B8%E6%9C%BA%E7%A1%AC%E8%A7%A6%E5%8F%91%E6%96%B9%E6%A1%88/
 http://outbreak-sen.github.io/2025/02/26/mindNLP%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/
 http://outbreak-sen.github.io/2025/02/24/%E9%A2%84%E8%AE%AD%E7%BB%83%E7%9A%84%E4%B8%80%E7%82%B9%E7%AC%94%E8%AE%B0/
-http://outbreak-sen.github.io/2025/02/17/%E5%A4%A7%E6%81%92%E7%9B%B8%E6%9C%BA%E7%9A%84%E5%A4%9A%E7%9B%B8%E6%9C%BA%E7%A1%AC%E8%A7%A6%E5%8F%91%E6%96%B9%E6%A1%88/
 http://outbreak-sen.github.io/2025/02/16/zed%E7%9B%B8%E6%9C%BA%E4%BD%BF%E7%94%A8/
 http://outbreak-sen.github.io/2025/02/13/FPV-ESC%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/
 http://outbreak-sen.github.io/2025/02/11/LLVM-tablegen/
