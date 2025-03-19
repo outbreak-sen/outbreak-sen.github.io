@@ -2,7 +2,43 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://outbreak-sen.github.io/2025/03/19/swift%E7%AC%94%E8%AE%B0/</loc>
+    
+    <lastmod>2025-03-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://outbreak-sen.github.io/2025/03/19/swiftUI%E7%9A%84%E7%AC%94%E8%AE%B0/</loc>
+    
+    <lastmod>2025-03-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://outbreak-sen.github.io/2025/03/19/macbook%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/</loc>
+    
+    <lastmod>2025-03-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://outbreak-sen.github.io/2025/02/16/zed%E7%9B%B8%E6%9C%BA%E4%BD%BF%E7%94%A8/</loc>
+    
+    <lastmod>2025-03-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://outbreak-sen.github.io/2025/02/24/%E9%A2%84%E8%AE%AD%E7%BB%83%E7%9A%84%E4%B8%80%E7%82%B9%E7%AC%94%E8%AE%B0/</loc>
     
     <lastmod>2025-03-19</lastmod>
     
@@ -312,6 +348,13 @@
   </url>
   
   <url>
+    <loc>http://outbreak-sen.github.io/tags/siwft/</loc>
+    <lastmod>2025-03-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>http://outbreak-sen.github.io/tags/%E5%A4%A7%E6%81%92/</loc>
     <lastmod>2025-03-19</lastmod>
     <changefreq>weekly</changefreq>
@@ -354,7 +397,7 @@
   </url>
   
   <url>
-    <loc>http://outbreak-sen.github.io/tags/MVS/</loc>
+    <loc>http://outbreak-sen.github.io/tags/mindspore%E5%AE%9E%E4%B9%A0/</loc>
     <lastmod>2025-03-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -362,6 +405,13 @@
   
   <url>
     <loc>http://outbreak-sen.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</loc>
+    <lastmod>2025-03-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://outbreak-sen.github.io/tags/MVS/</loc>
     <lastmod>2025-03-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -376,13 +426,6 @@
   
   <url>
     <loc>http://outbreak-sen.github.io/tags/LLVM/</loc>
-    <lastmod>2025-03-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://outbreak-sen.github.io/tags/mindspore%E5%AE%9E%E4%B9%A0/</loc>
     <lastmod>2025-03-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -462,6 +505,13 @@
   
   <url>
     <loc>http://outbreak-sen.github.io/categories/%E4%BC%A0%E7%BB%9F%E5%9B%BE%E5%BD%A2%E5%AD%A6/</loc>
+    <lastmod>2025-03-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://outbreak-sen.github.io/categories/swift/</loc>
     <lastmod>2025-03-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
