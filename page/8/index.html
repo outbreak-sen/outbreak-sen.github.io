@@ -1,0 +1,257 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>This is a 部落格 of outbreak_sen - [object Object]</title><meta name="author" content="outbreak_sen"><meta name="copyright" content="outbreak_sen"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="an interesting man">
+<meta property="og:type" content="website">
+<meta property="og:title" content="This is a 部落格 of outbreak_sen">
+<meta property="og:url" content="http://outbreak-sen.github.io/page/8/index.html">
+<meta property="og:site_name" content="This is a 部落格 of outbreak_sen">
+<meta property="og:description" content="an interesting man">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://outbreak-sen.github.io/img/head.png">
+<meta property="article:author" content="outbreak_sen">
+<meta property="article:tag" content="static scale model, deep learning, vlog, radio control model, music">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://outbreak-sen.github.io/img/head.png"><link rel="shortcut icon" href="/img/h_beautygirl.png"><link rel="canonical" href="http://outbreak-sen.github.io/page/8/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'This is a 部落格 of outbreak_sen',
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  isShuoshuo: false
+}</script><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="This is a 部落格 of outbreak_sen" type="application/atom+xml">
+<link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head><body><div id="web_bg" style="background-image: url(/img/v_beautygirl0.jpeg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/./img/head.png" onerror="onerror=null;src='./img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">76</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">25</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw fa fa-camera-retro"></i><span> 树洞</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 作品与鉴赏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url(/img/h_beautygirl.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/h_beautygirl.png" alt="Logo"><span class="site-name">This is a 部落格 of outbreak_sen</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw fa fa-camera-retro"></i><span> 树洞</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 作品与鉴赏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="site-info"><h1 id="site-title">This is a 部落格 of outbreak_sen</h1><div id="site-subtitle"><span id="subtitle"></span></div><div id="site_social_icons"><a class="social-icon" href="https://github.com/outbreak-sen" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://blog.csdn.net/outbreakrmb" target="_blank" title="CSDN"><i class="fa fa-book-open"></i></a><a class="social-icon" href="/1023786231" target="_blank" title="QQ"><i class="fab fa-qq"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts nc" id="recent-posts"><div class="recent-post-items"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2025/02/09/%E6%88%91%E7%9A%84ubuntu%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95/" title="我的ubuntu环境配置方法">我的ubuntu环境配置方法</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2025-02-09T07:46:28.000Z" title="发表于 2025-02-09 15:46:28">2025-02-09</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83/">配置环境</a></span></div><div class="content">Environment Installition 20241101 [TOC] Python3.8 123456789101112131415161718192021sudo apt-get updatesudo apt-get install software-properties-commonsudo add-apt-repository ppa:deadsnakes/ppasudo apt-get updatesudo apt-get install python3.8 ls /usr/bin/python* #查看已安装版本sudo rm /usr/bin/python3   # 删除原来的软连接~~sudo ln -s /usr/bin/python3.8 /usr/bin/python3~~ #不要添加python3的软连接，终端打不开，需要进tty终端修复sudo ln -s /usr/bin/python3.8 /usr/bin/python #添加python新的软连接python3 --version #查看版本sudo apt-get install...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2025/02/09/pyQT%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/" title="pyQT的安装和使用">pyQT的安装和使用</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2025-02-09T07:21:26.000Z" title="发表于 2025-02-09 15:21:26">2025-02-09</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83/">配置环境</a></span></div><div class="content">PyQT的安装和使用 pyQT的安装不需要在官网下载QT安装包，只需要创建conda环境然后pip安装，安装pyQT5-tools之后会安装QT designer，然后就可以可视化设计一个UI，然后通过Pyuic工具就可以转化为一个py文件，这个py文件就是整个工程，py文件中有一个class包含了整个UI设计，然后只需要编辑py文件中这个class的功能即可，编辑子函数。 (这个文档非常好)[https://www.w3ccoo.com/pyqt5/index.html] VScode+pyQT installation   安装PyQt 12pip install PyQt5pip install PyQt5-tools vscode安装PYQT Integration便于使用pyqt 12345678# Pyqt-integration &gt; Qtdesigner: Path\venv_QT\Lib\site-packages\qt5_applications\Qt\bin\designer# Pyqt-integration &gt; Pyuic: Cmd...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2025/02/09/%E6%88%91%E7%9A%84%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E8%BF%87%E7%A8%8B%E5%92%8C%E4%BD%BF%E7%94%A8/" title="我的博客搭建过程和使用">我的博客搭建过程和使用</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2025-02-09T07:21:26.000Z" title="发表于 2025-02-09 15:21:26">2025-02-09</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83/">配置环境</a></span></div><div class="content">我的博客搭建过程和使用 搭建过程 基础Hexo搭建方法   安装 Node.js与git Node.js 是一个开源的、跨平台的 JavaScript 运行环境   安装 Hexo和butterfly 12345678910npm config set registry https://registry.npmmirror.comnpm install hexo-cli -gcd 你要创建站点的目录hexo init blogcd blognpm installgit clone -b master https://github.com/jerryc127/hexo-theme-butterfly.git themes/butterfly #主题要在theme里，可以魔改npm install hexo-renderer-pug hexo-renderer-stylus --save # pug以及stylus的渲染器npm i hexo-theme-butterfly...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2025/02/09/QT%E7%9A%84%E4%B8%8D%E5%90%8C%E5%BC%80%E5%8F%91%E6%96%B9%E5%BC%8F/" title="QT的不同开发方式">QT的不同开发方式</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2025-02-09T07:17:22.000Z" title="发表于 2025-02-09 15:17:22">2025-02-09</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83/">配置环境</a></span></div><div class="content">QT 的不同开发方式 [TOC] QT的简要介绍   用类套壳的UI库，同时还提供了一些IDE，UI编辑工具等。   同时QT的库中还有3D，图像处理，SQL数据库，音频处理，多线程等多个库，可以替代opencv，opengl做一些开发。   可以开发多个平台的软件，同时可以实现在一个平台开发后可以用于其他平台，平台包括安卓，嵌入式，桌面开发   QT Creator-QT提供的IDE Qt Creator 是 Qt 官方提供的集成开发环境（IDE），支持多种开发方式。  多语言支持：支持 C++、QML、Python 等语言。 集成工具：包含代码编辑器、调试器、UI 设计器、版本控制等功能。 跨平台：支持 Windows、Linux、macOS。  QT Designer-QT提供的UI编辑器 Qt Designer 是一个可视化工具，用于设计 Qt 应用程序的用户界面。它生成 .ui 文件，可以与 C++、Python 等语言结合使用。  拖拽式设计：通过拖拽控件快速构建 UI。 生成 .ui 文件：.ui 文件是 XML...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/12/06/TestPost/" title="Test Post">Test Post</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-12-06T13:44:10.000Z" title="发表于 2024-12-06 21:44:10">2024-12-06</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%BF%99%E4%B8%AA%E4%B8%80%E4%B8%AA%E6%B5%8B%E8%AF%951/">这个一个测试1</a></span></div><div class="content"> 发现直接md，但是需要日期，所以用命令行创建。 </div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/11/01/1.9.5VScode%E6%9B%B4%E6%96%B0%EF%BC%8C%E5%85%B3%E4%BA%8Ecopilot/" title="无标题">无标题</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-11-01T08:10:01.766Z" title="发表于 2024-11-01 16:10:01">2024-11-01</time></span></div><div class="content">1.9.5VScode更新，关于copilot 文档：https://code.visualstudio.com/docs/copilot/copilot-edits 我的copilot设置界面：https://github.com/github-copilot/signup/success?utm_campaign=2024q3-em-MSFT-signup&amp;utm_medium=first&amp;utm_source=vscode-completions-readme 如何打开 首先Setting: setting(github.copilot.chat.edits.enabled) 打开： Open Copilot Edits from the Chat menu, or press Ctrl+Shift+Alt+I. 将相关文件添加到工作集中，以向Copilot指示要处理的文件。 输入提示，告诉Copilot您要进行的编辑！例如，为所有页面添加一个简单的导航栏，或者使用vitest而不是jest。 如果您之前安装了GitHub...</div></div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/7/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/#content-inner">7</a><span class="page-number current">8</span></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/./img/head.png" onerror="this.onerror=null;this.src='/./img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">outbreak_sen</div><div class="author-info-description">an interesting man</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">76</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">25</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/outbreak-sen" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://blog.csdn.net/outbreakrmb" target="_blank" title="CSDN"><i class="fa fa-book-open"></i></a><a class="social-icon" href="/1023786231" target="_blank" title="QQ"><i class="fab fa-qq"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/03/#%20%E4%B8%89%E7%BB%B4%E8%A7%86%E8%A7%89%E5%87%A0%E4%BD%95%E5%A4%A7%E6%95%B4%E7%90%86/" title="无标题">无标题</a><time datetime="2025-12-03T05:46:01.418Z" title="发表于 2025-12-03 13:46:01">2025-12-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/03/Label%E8%BD%AF%E4%BB%B6%E8%B0%83%E7%A0%94%E5%92%8C%E4%BD%BF%E7%94%A8/" title="无标题">无标题</a><time datetime="2025-12-03T05:46:01.417Z" title="发表于 2025-12-03 13:46:01">2025-12-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/03/MVS%E6%A1%86%E6%9E%B6%E5%BC%80%E6%BA%90%E6%95%B4%E7%90%86/" title="无标题">无标题</a><time datetime="2025-12-03T05:46:01.417Z" title="发表于 2025-12-03 13:46:01">2025-12-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/03/GAN%E7%AC%94%E8%AE%B0/" title="无标题">无标题</a><time datetime="2025-12-03T05:46:01.416Z" title="发表于 2025-12-03 13:46:01">2025-12-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/03/%E6%97%A0%E5%9B%BE%E5%BD%A2%E5%AE%89%E8%A3%85matalb%E7%AC%94%E8%AE%B0/" title="无标题">无标题</a><time datetime="2025-12-03T05:46:01.416Z" title="发表于 2025-12-03 13:46:01">2025-12-03</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            <a class="card-more-btn" href="/categories/" title="查看更多">
+      <i class="fas fa-angle-right"></i></a>
+          </div>
+          <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/swift/"><span class="card-category-list-name">swift</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E4%BC%A0%E7%BB%9F%E5%9B%BE%E5%BD%A2%E5%AD%A6/"><span class="card-category-list-name">传统图形学</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%9F%BA%E4%BA%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%A4%9A%E8%A7%86%E8%A7%92%E7%AB%8B%E4%BD%93%E5%8C%B9%E9%85%8D%E6%8A%80%E6%9C%AF/"><span class="card-category-list-name">基于深度学习的多视角立体匹配技术</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F/"><span class="card-category-list-name">嵌入式</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"><span class="card-category-list-name">深度学习</span><span class="card-category-list-count">7</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E7%9B%B8%E6%9C%BA%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91/"><span class="card-category-list-name">相机驱动开发</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E7%BC%96%E8%AF%91/"><span class="card-category-list-name">编译</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E8%BF%99%E4%B8%AA%E4%B8%80%E4%B8%AA%E6%B5%8B%E8%AF%951/"><span class="card-category-list-name">这个一个测试1</span><span class="card-category-list-count">1</span></a></li>
+          </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/GAN%E7%94%9F%E6%88%90%E5%AF%B9%E6%8A%97%E6%A8%A1%E5%9E%8B/" style="font-size: 1.1em; color: #999">GAN生成对抗模型</a> <a href="/tags/mindspore%E5%AE%9E%E4%B9%A0/" style="font-size: 1.5em; color: #99a9bf">mindspore实习</a> <a href="/tags/MVS/" style="font-size: 1.1em; color: #999">MVS</a> <a href="/tags/Hexo-butterfly/" style="font-size: 1.1em; color: #999">Hexo-butterfly</a> <a href="/tags/LLVM/" style="font-size: 1.1em; color: #999">LLVM</a> <a href="/tags/QT/" style="font-size: 1.23em; color: #999ea6">QT</a> <a href="/tags/%E5%A4%A7%E6%81%92/" style="font-size: 1.1em; color: #999">大恒</a> <a href="/tags/python/" style="font-size: 1.1em; color: #999">python</a> <a href="/tags/%E7%9B%B8%E6%9C%BA%E9%A9%B1%E5%8A%A8/" style="font-size: 1.1em; color: #999">相机驱动</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 1.37em; color: #99a4b2">深度学习</a> <a href="/tags/%E5%AE%9E%E4%B9%A0/" style="font-size: 1.1em; color: #999">实习</a> <a href="/tags/%E8%AF%81%E5%88%B8%E6%8A%95%E8%B5%84/" style="font-size: 1.1em; color: #999">证券投资</a> <a href="/tags/%E8%BF%99%E4%B9%9F%E6%98%AF%E4%B8%80%E4%B8%AA%E6%B5%8B%E8%AF%95/" style="font-size: 1.1em; color: #999">这也是一个测试</a> <a href="/tags/%E7%A1%AC%E8%A7%A6%E5%8F%91/" style="font-size: 1.1em; color: #999">硬触发</a> <a href="/tags/shell/" style="font-size: 1.1em; color: #999">shell</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E7%9B%B8%E6%9C%BA/" style="font-size: 1.1em; color: #999">深度相机</a> <a href="/tags/SFM/" style="font-size: 1.1em; color: #999">SFM</a> <a href="/tags/Hexo/" style="font-size: 1.1em; color: #999">Hexo</a> <a href="/tags/%E7%AE%97%E5%AD%90/" style="font-size: 1.1em; color: #999">算子</a> <a href="/tags/colmap/" style="font-size: 1.1em; color: #999">colmap</a> <a href="/tags/nodejs/" style="font-size: 1.1em; color: #999">nodejs</a> <a href="/tags/Mindspore/" style="font-size: 1.1em; color: #999">Mindspore</a> <a href="/tags/siwft/" style="font-size: 1.1em; color: #999">siwft</a> <a href="/tags/huggingface/" style="font-size: 1.23em; color: #999ea6">huggingface</a> <a href="/tags/mindNLP/" style="font-size: 1.37em; color: #99a4b2">mindNLP</a></div></div><div class="card-widget card-archives">
+    <div class="item-headline">
+      <i class="fas fa-archive"></i>
+      <span>归档</span>
+      
+    </div>
+    <ul class="card-archive-list">
+  
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2025/12/">
+          <span class="card-archive-list-date">十二月 2025</span>
+          <span class="card-archive-list-count">31</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2025/08/">
+          <span class="card-archive-list-date">八月 2025</span>
+          <span class="card-archive-list-count">3</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2025/07/">
+          <span class="card-archive-list-date">七月 2025</span>
+          <span class="card-archive-list-count">3</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2025/06/">
+          <span class="card-archive-list-date">六月 2025</span>
+          <span class="card-archive-list-count">13</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2025/03/">
+          <span class="card-archive-list-date">三月 2025</span>
+          <span class="card-archive-list-count">5</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2025/02/">
+          <span class="card-archive-list-date">二月 2025</span>
+          <span class="card-archive-list-count">19</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2024/12/">
+          <span class="card-archive-list-date">十二月 2024</span>
+          <span class="card-archive-list-count">1</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2024/11/">
+          <span class="card-archive-list-date">十一月 2024</span>
+          <span class="card-archive-list-count">1</span>
+        </a>
+      </li>
+    </ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站信息</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">76</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总浏览量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2025-12-03T05:46:09.903Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By outbreak_sen</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><div class="js-pjax"><script>window.typedJSFn = {
+  init: str => {
+    window.typed = new Typed('#subtitle', Object.assign({
+      strings: str,
+      startDelay: 300,
+      typeSpeed: 150,
+      loop: true,
+      backSpeed: 50,
+    }, null))
+  },
+  run: subtitleType => {
+    if (true) {
+      if (typeof Typed === 'function') {
+        subtitleType()
+      } else {
+        btf.getScript('https://cdn.jsdelivr.net/npm/typed.js/dist/typed.umd.min.js').then(subtitleType)
+      }
+    } else {
+      subtitleType()
+    }
+  }
+}
+btf.addGlobalFn('pjaxSendOnce', () => { typed.destroy() }, 'typedDestroy')
+</script><script>function subtitleType () {
+  fetch('https://v1.hitokoto.cn')
+    .then(response => response.json())
+    .then(data => {
+      if (true) {
+        const from = '出自 ' + data.from
+        const sub = ["你在抱怨什么呢","为明天到来的事，说人生像是没有意义","没有选择会是唯一的路","这不是你自己的问题，人终归要好好去生活"]
+        sub.unshift(data.hitokoto, from)
+        typedJSFn.init(sub)
+      } else {
+        document.getElementById('subtitle').textContent = data.hitokoto
+      }
+    })
+}
+typedJSFn.run(subtitleType)
+</script></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

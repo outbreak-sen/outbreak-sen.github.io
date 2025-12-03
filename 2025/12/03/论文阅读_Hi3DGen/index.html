@@ -1,0 +1,341 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>This is a 部落格 of outbreak_sen | This is a 部落格 of outbreak_sen</title><meta name="author" content="outbreak_sen"><meta name="copyright" content="outbreak_sen"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Hi3DGen 基本信息    项目 内容     论文标题 High-fidelity 3D Geometry Generation from Images via Normal Bridging   作者 Chongjie Ye, Yushuang Wu, Ziteng Lu, Jiahao Chang, Xiaoyang Guo, Jiaqing Zhou, Hao Zhao, Xiaogu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="This is a 部落格 of outbreak_sen">
+<meta property="og:url" content="http://outbreak-sen.github.io/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_Hi3DGen/index.html">
+<meta property="og:site_name" content="This is a 部落格 of outbreak_sen">
+<meta property="og:description" content="Hi3DGen 基本信息    项目 内容     论文标题 High-fidelity 3D Geometry Generation from Images via Normal Bridging   作者 Chongjie Ye, Yushuang Wu, Ziteng Lu, Jiahao Chang, Xiaoyang Guo, Jiaqing Zhou, Hao Zhao, Xiaogu">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://outbreak-sen.github.io/img/head.png">
+<meta property="article:published_time" content="2025-12-03T05:46:01.329Z">
+<meta property="article:modified_time" content="2025-12-02T13:04:57.941Z">
+<meta property="article:author" content="outbreak_sen">
+<meta property="article:tag" content="static scale model, deep learning, vlog, radio control model, music">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://outbreak-sen.github.io/img/head.png"><link rel="shortcut icon" href="/img/h_beautygirl.png"><link rel="canonical" href="http://outbreak-sen.github.io/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_Hi3DGen/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'This is a 部落格 of outbreak_sen',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  isShuoshuo: false
+}</script><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="This is a 部落格 of outbreak_sen" type="application/atom+xml">
+<link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head><body><div id="web_bg" style="background-image: url(/img/v_beautygirl0.jpeg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/./img/head.png" onerror="onerror=null;src='./img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">76</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">25</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw fa fa-camera-retro"></i><span> 树洞</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 作品与鉴赏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/h_beautygirl.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/h_beautygirl.png" alt="Logo"><span class="site-name">This is a 部落格 of outbreak_sen</span></a><a class="nav-page-title" href="/"><span class="site-name">This is a 部落格 of outbreak_sen</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw fa fa-camera-retro"></i><span> 树洞</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 作品与鉴赏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">无标题</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-12-03T05:46:01.329Z" title="发表于 2025-12-03 13:46:01">2025-12-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-12-02T13:04:57.941Z" title="更新于 2025-12-02 21:04:57">2025-12-02</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1>Hi3DGen</h1>
+<h2 id="基本信息">基本信息</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">项目</th>
+<th style="text-align:left">内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>论文标题</strong></td>
+<td style="text-align:left">High-fidelity 3D Geometry Generation from Images via Normal Bridging</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>作者</strong></td>
+<td style="text-align:left">Chongjie Ye, Yushuang Wu, Ziteng Lu, Jiahao Chang, Xiaoyang Guo, Jiaqing Zhou, Hao Zhao, Xiaoguang Han</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>作者单位</strong></td>
+<td style="text-align:left">The Chinese University of Hong Kong, Shenzhen（香港中文大学深圳校区）</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>时间</strong></td>
+<td style="text-align:left">2025</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>发表会议/期刊</strong></td>
+<td style="text-align:left"></td>
+</tr>
+</tbody>
+</table>
+<h2 id="方法概览">方法概览</h2>
+<table>
+<thead>
+<tr>
+<th>特点</th>
+<th>文章性质</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>输入</strong></td>
+<td>标定之后的多视角图像</td>
+</tr>
+<tr>
+<td><strong>输出</strong></td>
+<td>Mesh</td>
+</tr>
+<tr>
+<td><strong>所属领域</strong></td>
+<td>MeshMVS</td>
+</tr>
+</tbody>
+</table>
+<h2 id="1-摘要精简">1. 摘要精简</h2>
+<p>Hi3DGen是一个从单张2D图像生成高保真3D几何的新框架，核心思想是引入<strong>法线图</strong>作为中间表示来桥接图像与3D几何之间的映射。框架包含三个关键组件：</p>
+<ol>
+<li><strong>图像到法线估计器（NiRNE）</strong>：通过噪声注入和双流训练，实现鲁棒、稳定且锐利的法线估计。</li>
+<li><strong>法线到几何学习方法（NoRLD）</strong>：基于法线正则化的潜在扩散学习，提升3D几何生成的保真度。</li>
+<li>DetailVerse 数据集，通过文本→图像→3D 的合成流水线，构建 700k 高细节 3D 资产，为训练提供高质量数据支撑。实验表明，该框架在法线估计精度和 3D 几何生成保真度上超越现有 SOTA 方法，且在真实场景图像上具有强泛化性。<br>
+实验表明，Hi3DGen在生成丰富几何细节方面优于现有方法。</li>
+</ol>
+<h2 id="2-引言动机与出发点">2. 引言动机与出发点</h2>
+<p>现有从2D图像生成3D模型的方法面临三大挑战：</p>
+<ol>
+<li><strong>高质量3D训练数据稀缺</strong>，难以学习细节几何特征。且人工创建的资产多结构简单、细节匮乏；</li>
+<li><strong>训练图像（通常来自合成3D网格渲染）与真实图像之间存在领域差距</strong>，导致泛化性能下降。</li>
+<li>图像受光照、阴影、纹理干扰，几何信息存在固有歧义，难以提取细粒度细节。为解决这些问题，本文提出以法线图（2.5D  表示）作为中间桥梁：一方面，法线图能提供更明确的几何线索，缓解 RGB 图像的歧义性；另一方面，通过 2D 先验处理 RGB  到法线的映射，可缩小域间隙；最终实现从 2D 图像到 3D 几何的高效、高精度映射。</li>
+</ol>
+<h2 id="3-创新点-单独章节">3. 创新点（单独章节）</h2>
+<h3 id="3-1-核心创新">3.1 核心创新</h3>
+<ol>
+<li><strong>首次引入法线图作为桥接表示</strong>：提出Hi3DGen框架，通过法线图桥接2D图像到3D几何的生成，解决现有方法在细节生成上的局限。</li>
+<li><strong>噪声注入回归法线估计器（NiRNE）</strong>：结合噪声注入与双流训练，在回归框架中实现类似扩散方法的锐利估计，同时保持稳定性。</li>
+<li><strong>法线正则化潜在扩散（NoRLD）</strong>：在潜在扩散训练中引入在线法线渲染损失，显式约束几何细节，提升生成保真度。</li>
+<li><strong>高质量合成数据集DetailVerse</strong>：通过文本→图像→3D的流水线构建包含70万高细节3D资产的数据集，弥补人工创建数据的不足。</li>
+</ol>
+<h3 id="3-2-其他创新">3.2 其他创新</h3>
+<ul>
+<li><strong>双流架构设计</strong>：解耦低频（整体结构）和高频（细节）特征学习，提升泛化能力和锐利度。</li>
+<li><strong>领域特定训练策略</strong>：分阶段使用真实数据（低频学习）和合成数据（高频学习），优化双流表示。</li>
+<li><strong>在线法线正则化</strong>：在扩散训练过程中实时计算法线渲染损失，而非后处理，确保几何一致性。</li>
+</ul>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20251202210457632.png" alt="image-20251202210457632"></p>
+<h2 id="4-网络架构与输入输出">4. 网络架构与输入输出</h2>
+<p><strong>整体框架</strong>：Hi3DGen分为三个阶段：</p>
+<ol>
+<li><strong>图像到法线估计（NiRNE）</strong>：
+<ul>
+<li>输入：RGB图像（经预处理，如背景移除、裁剪、缩放至768×768）。</li>
+<li>输出：法线图（表面方向图）。</li>
+</ul>
+</li>
+<li><strong>法线到几何生成（NoRLD）</strong>：
+<ul>
+<li>输入：法线图（背景设为白色）。</li>
+<li>输出：3D几何（网格表示）。</li>
+</ul>
+</li>
+<li><strong>数据合成管道（DetailVerse）</strong>：用于训练支持，不参与推理。</li>
+</ol>
+<p>网络为两阶段端到端框架，核心由三大组件构成：</p>
+<ol>
+<li>NiRNE（图像到法线估计器）：基于 Stable Diffusion V2.1 修改，含双流编码器（清洁流 + 噪声流）和共享解码器，输入 RGB 图像，输出对应的法线图。</li>
+<li>NoRLD（法线到几何生成器）：基于 Trellis 扩展，含 VAE（编码 3D 几何到潜空间）、潜扩散网络（带法线正则化），输入 NiRNE 预测的法线图，输出 3D 几何潜码，经解码器生成网格。</li>
+<li>DetailVerse 数据集流水线：文本 prompt 筛选→Flux.1-Dev 生成图像→Trellis 生成 3D 资产→质量评估与清洗，构建高质量训练数据。</li>
+</ol>
+<h2 id="5-特征提取方法">5. 特征提取方法</h2>
+<h3 id="1-nirne-的特征提取">1. NiRNE 的特征提取</h3>
+<ul>
+<li>清洁流：输入 RGB 图像经 VAE 编码后，无噪声注入，通过编码器提取低频特征（全局结构、整体轮廓），保证泛化性。</li>
+<li>噪声流：对 VAE 编码后的特征注入 EDM 风格噪声，编码器专注提取高频特征（边缘、纹理细节、表面凹陷），增强细节锐利度。</li>
+<li>特征融合：双流特征经多层拼接后输入解码器，通过 ControlNet 式结构保留高低频特征的独立性与互补性。</li>
+</ul>
+<h3 id="2-norld-的特征提取">2. NoRLD 的特征提取</h3>
+<ul>
+<li>3D 几何特征：VAE 将 3D 网格编码为结构化潜码，捕捉几何的全局结构与局部细节。</li>
+<li>法线监督特征：将解码后的 3D 几何从 22 个固定视角渲染为法线图，提取渲染法线的特征，与 ground truth 法线特征对比，提供几何监督。</li>
+<li>潜扩散特征：扩散网络对含噪潜码进行去噪，同时融合法线特征的监督信号，引导潜码向高保真几何方向更新。</li>
+</ul>
+<h2 id="6-三维场景生成步骤">6. 三维场景生成步骤</h2>
+<h3 id="1-图像到法线映射-nirne-阶段">1. 图像到法线映射（NiRNE 阶段）</h3>
+<ol>
+<li>输入 RGB 图像经背景移除、裁剪为正方形后，resize 至 768×768 分辨率。</li>
+<li>图像经 VAE 编码为潜特征，分别输入双流编码器：清洁流提取低频结构，噪声流提取高频细节。</li>
+<li>双流特征拼接后经解码器输出法线图，推理时不注入噪声以保证稳定性。</li>
+</ol>
+<h3 id="2-法线到-3d-几何生成-norld-阶段">2. 法线到 3D 几何生成（NoRLD 阶段）</h3>
+<ol>
+<li>预测的法线图与图像条件一同输入潜扩散网络，VAE 将 3D 几何编码为潜码。</li>
+<li>扩散过程中，对去噪后的潜码解码为 3D 几何，渲染为法线图，与输入法线图计算正则化损失，引导模型学习几何细节。</li>
+<li>扩散迭代 50 步后，最终潜码经 VAE 解码器输出 3D 网格。</li>
+</ol>
+<h3 id="3-数据支撑-detailverse-阶段">3. 数据支撑（DetailVerse 阶段）</h3>
+<p>通过文本 prompt 生成多样化图像，再经 Trellis 转换为 3D 资产，经质量评估后形成 DetailVerse 数据集，为前两阶段提供高质量训练样本。</p>
+<h2 id="7-损失函数设计">7. 损失函数设计</h2>
+<p>总损失结合潜在扩散损失和法线正则化损失：</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi mathvariant="script">L</mi><mtext>Norld</mtext></msub><mo>=</mo><msub><mi mathvariant="script">L</mi><mtext>LDM</mtext></msub><mo>+</mo><mi>λ</mi><mo>⋅</mo><msub><mi mathvariant="script">R</mi><mtext>Normal</mtext></msub><mo stretchy="false">(</mo><msub><mover accent="true"><mi>x</mi><mo>^</mo></mover><mn>0</mn></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mathcal{L}_{\text{Norld}} = \mathcal{L}_{\text{LDM}} + \lambda \cdot \mathcal{R}_{\text{Normal}}(\hat{x}_0)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord"><span class="mord mathcal">L</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">Norld</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord"><span class="mord mathcal">L</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">LDM</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">λ</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord"><span class="mord mathcal">R</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">Normal</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.69444em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault">x</span></span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.22222em;"><span class="mord">^</span></span></span></span></span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></span></p>
+<p>其中：</p>
+<ul>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi mathvariant="script">L</mi><mtext>LDM</mtext></msub></mrow><annotation encoding="application/x-tex">\mathcal{L}_{\text{LDM}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord"><span class="mord mathcal">L</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">LDM</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 是潜在扩散损失（流匹配形式）：<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi mathvariant="script">L</mi><mtext>LDM</mtext></msub><mo>=</mo><msub><mi mathvariant="double-struck">E</mi><mrow><mi>t</mi><mo separator="true">,</mo><msub><mi>x</mi><mn>0</mn></msub><mo separator="true">,</mo><msub><mi>x</mi><mi>t</mi></msub></mrow></msub><mrow><mo fence="true">[</mo><mi mathvariant="normal">∥</mi><msub><mi mathvariant="bold">v</mi><mi>θ</mi></msub><mo stretchy="false">(</mo><msub><mi>x</mi><mi>t</mi></msub><mo separator="true">,</mo><mi>t</mi><mo stretchy="false">)</mo><mo>−</mo><mi mathvariant="bold">u</mi><mo stretchy="false">(</mo><msub><mi>x</mi><mi>t</mi></msub><mo separator="true">,</mo><mi>t</mi><mo stretchy="false">)</mo><msup><mi mathvariant="normal">∥</mi><mn>2</mn></msup><mo fence="true">]</mo></mrow></mrow><annotation encoding="application/x-tex">\mathcal{L}_{\text{LDM}} = \mathbb{E}_{t,x_0,x_t} \left[ \| \mathbf{v}_{\theta}(x_t, t) - \mathbf{u}(x_t, t) \|^2 \right]
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord"><span class="mord mathcal">L</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">LDM</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.2141179999999998em;vertical-align:-0.35001em;"></span><span class="mord"><span class="mord"><span class="mord mathbb">E</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.28055599999999997em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">t</span><span class="mpunct mtight">,</span><span class="mord mtight"><span class="mord mathdefault mtight">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31731428571428577em;"><span style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span><span class="mpunct mtight">,</span><span class="mord mtight"><span class="mord mathdefault mtight">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.29634285714285713em;"><span style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathdefault mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size1">[</span></span><span class="mord">∥</span><span class="mord"><span class="mord"><span class="mord mathbf" style="margin-right:0.01597em;">v</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.02778em;">θ</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">t</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathbf">u</span></span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">t</span><span class="mclose">)</span><span class="mord"><span class="mord">∥</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size1">]</span></span></span></span></span></span></span></p>
+</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi mathvariant="script">R</mi><mtext>Normal</mtext></msub></mrow><annotation encoding="application/x-tex">\mathcal{R}_{\text{Normal}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord"><span class="mord mathcal">R</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">Normal</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 是法线正则化损失：<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi mathvariant="script">R</mi><mtext>Normal</mtext></msub><mo stretchy="false">(</mo><msub><mover accent="true"><mi>x</mi><mo>^</mo></mover><mn>0</mn></msub><mo stretchy="false">)</mo><mo>=</mo><msub><mi mathvariant="double-struck">E</mi><mi>v</mi></msub><mrow><mo fence="true">[</mo><mi mathvariant="normal">∥</mi><msub><mi>R</mi><mi>v</mi></msub><mo stretchy="false">(</mo><mi>D</mi><mo stretchy="false">(</mo><msub><mover accent="true"><mi>x</mi><mo>^</mo></mover><mn>0</mn></msub><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>−</mo><msub><mi>N</mi><mi>v</mi></msub><msup><mi mathvariant="normal">∥</mi><mn>2</mn></msup><mo fence="true">]</mo></mrow></mrow><annotation encoding="application/x-tex">\mathcal{R}_{\text{Normal}}(\hat{x}_0) = \mathbb{E}_{v} \left[ \| R_v(D(\hat{x}_0)) - N_v \|^2 \right]
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord"><span class="mord mathcal">R</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">Normal</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.69444em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault">x</span></span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.22222em;"><span class="mord">^</span></span></span></span></span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.2141179999999998em;vertical-align:-0.35001em;"></span><span class="mord"><span class="mord"><span class="mord mathbb">E</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03588em;">v</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size1">[</span></span><span class="mord">∥</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.00773em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03588em;">v</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.02778em;">D</span><span class="mopen">(</span><span class="mord"><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.69444em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault">x</span></span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.22222em;"><span class="mord">^</span></span></span></span></span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.10903em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03588em;">v</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord">∥</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size1">]</span></span></span></span></span></span></span></p>
+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>R</mi><mi>v</mi></msub></mrow><annotation encoding="application/x-tex">R_v</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.00773em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03588em;">v</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 为从视角 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>v</mi></mrow><annotation encoding="application/x-tex">v</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span></span></span></span> 渲染法线图，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>N</mi><mi>v</mi></msub></mrow><annotation encoding="application/x-tex">N_v</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.10903em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03588em;">v</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 为真实法线图，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>λ</mi></mrow><annotation encoding="application/x-tex">\lambda</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">λ</span></span></span></span> 为权重系数。</li>
+</ul>
+<h2 id="8-测试数据集">8. 测试数据集</h2>
+<ul>
+<li><strong>法线估计测试</strong>：LUCES-MV 数据集（多视图真实场景数据集），评估法线角度误差（NE）和锐利边缘法线误差（SNE）。。</li>
+<li><strong>3D生成测试</strong>：从公开项目页面收集的图像（Hyper3D、Hunyuan3D-2.0、Dora等），用于视觉对比和用户研究。</li>
+<li><strong>用户研究</strong>：邀请50名业余用户和10名专业艺术家对生成结果进行评分。</li>
+</ul>
+<h2 id="9-训练数据集与推理部署">9. 训练数据集与推理部署</h2>
+<ul>
+<li><strong>训练数据集</strong>：
+<ul>
+<li>图像到法线：Depth-pro真实数据集 + 合成数据（从DetailVerse渲染的2000万RGB-法线对）。</li>
+<li>法线到几何：Objaverse（17万清洗后资产） + DetailVerse（70万合成资产），每资产渲染40张图像。</li>
+</ul>
+</li>
+<li><strong>推理部署变化</strong>：
+<ul>
+<li>输入图像需预处理：背景移除 → 裁剪填充为正方形 → 缩放至768×768。</li>
+<li>NiRNE推理时不注入噪声，以保持稳定性。</li>
+<li>NoRLD采用两阶段生成：先生成稀疏体素结构，再生成细节潜在表示，最后解码为网格。</li>
+</ul>
+</li>
+</ul>
+<h2 id="10-消融实验组件">10. 消融实验组件</h2>
+<ol>
+<li><strong>法线桥接有效性</strong>：对比直接图像到几何生成与法线桥接生成，验证法线作为中间表示的必要性。</li>
+<li><strong>DetailVerse数据影响</strong>：对比使用/不使用DetailVerse数据训练NiRNE和NoRLD，验证其对提升细节的作用。</li>
+<li><strong>NiRNE组件消融</strong>：
+<ul>
+<li>噪声注入技术（NI）</li>
+<li>双流架构（DS）</li>
+<li>领域特定训练策略（DST）</li>
+<li>同时去除所有组件（w/o all）</li>
+</ul>
+</li>
+<li><strong>NoRLD组件消融</strong>：验证在线法线正则化的效果，对比有无正则化时的生成细节。</li>
+</ol>
+<h2 id="11-其他说明">11. 其他说明</h2>
+<ul>
+<li><strong>公式处理</strong>：文章中的公式已转换为Markdown格式，大型公式用 <code>$$ $$</code> 包裹，小型公式用 <code>$ $</code> 包裹。</li>
+<li><strong>数据公开</strong>：DetailVerse数据集将公开，以促进相关研究。</li>
+<li><strong>局限性</strong>：生成结果可能存在细节不一致或未对齐的情况，这是潜在扩散生成固有的问题，未来工作旨在追求重建级3D生成。</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://outbreak-sen.github.io">outbreak_sen</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://outbreak-sen.github.io/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_Hi3DGen/">http://outbreak-sen.github.io/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_Hi3DGen/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://outbreak-sen.github.io" target="_blank">This is a 部落格 of outbreak_sen</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/./img/head.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_IterMVSNet/" title=""><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2"></div></div><div class="info-2"><div class="info-item-1">IterMVS 基本信息    项目 内容     论文标题 IterMVS: Iterative Probability Estimation for Efficient Multi-View Stereo   作者 Fangjinhua Wang(又是你), Silvano Galliani, Christoph Vogel, Marc Pollefeys   作者单位 ETH Zurich   时间 2021   发表会议/期刊 CVPR    方法概览    特点 文章性质     输入 标定之后的多视角图像   输出 场景的点云图，每个视角的法线和深度图   所属领域 MVS    摘要精简 本文提出 IterMVS，一种高效的高分辨率多视图立体（MVS）数据驱动方法。核心是基于 GRU  的概率估计器，其隐藏态编码像素级深度概率分布，通过多轮迭代注入多尺度匹配信息，逐步优化分布并推断深度与置信度。该方法创新结合分类与回归策略，兼顾多模态分布鲁棒性与亚像素精度。在 DTU、Tanks&amp;Temples 和 ETH3D 数据集上验证表明，IterMVS...</div></div></div></a><a class="pagination-related" href="/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_Hunyuan3D/" title=""><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2"></div></div><div class="info-2"><div class="info-item-1">Hunyuan3D 2.0 基本信息    项目 内容     论文标题 Hunyuan3D   作者 Hunyuan3D Team (腾讯团队)   作者单位 腾讯 (Tencent)   时间 2025   发表会议/期刊     方法概览    特点 文章性质     输入 标定之后的多视角图像   输出 Mesh   所属领域 MeshMVS    摘要精简 Hunyuan3D 2.0 是一个用于生成高分辨率带纹理3D资产的大规模3D合成系统。系统包含两个基础组件：用于形状生成的大规模模型 Hunyuan3D-DiT，以及用于纹理合成的大规模模型 Hunyuan3D-Paint。形状生成模型基于可扩展的、基于流的扩散Transformer，旨在生成与给定条件图像对齐的几何形状；纹理合成模型则利用强几何和扩散先验，为生成或手工制作的网格生成高分辨率和生动的纹理贴图。此外，团队还构建了多功能、用户友好的生产平台 Hunyuan3D-Studio。实验表明，Hunyuan3D 2.0...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/./img/head.png" onerror="this.onerror=null;this.src='/./img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">outbreak_sen</div><div class="author-info-description">an interesting man</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">76</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">25</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/outbreak-sen" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://blog.csdn.net/outbreakrmb" target="_blank" title="CSDN"><i class="fa fa-book-open"></i></a><a class="social-icon" href="/1023786231" target="_blank" title="QQ"><i class="fab fa-qq"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">Hi3DGen</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="toc-text">基本信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E6%A6%82%E8%A7%88"><span class="toc-text">方法概览</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%91%98%E8%A6%81%E7%B2%BE%E7%AE%80"><span class="toc-text">1. 摘要精简</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%BC%95%E8%A8%80%E5%8A%A8%E6%9C%BA%E4%B8%8E%E5%87%BA%E5%8F%91%E7%82%B9"><span class="toc-text">2. 引言动机与出发点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%88%9B%E6%96%B0%E7%82%B9-%E5%8D%95%E7%8B%AC%E7%AB%A0%E8%8A%82"><span class="toc-text">3. 创新点（单独章节）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E6%A0%B8%E5%BF%83%E5%88%9B%E6%96%B0"><span class="toc-text">3.1 核心创新</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E5%85%B6%E4%BB%96%E5%88%9B%E6%96%B0"><span class="toc-text">3.2 其他创新</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84%E4%B8%8E%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA"><span class="toc-text">4. 网络架构与输入输出</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E7%89%B9%E5%BE%81%E6%8F%90%E5%8F%96%E6%96%B9%E6%B3%95"><span class="toc-text">5. 特征提取方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-nirne-%E7%9A%84%E7%89%B9%E5%BE%81%E6%8F%90%E5%8F%96"><span class="toc-text">1. NiRNE 的特征提取</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-norld-%E7%9A%84%E7%89%B9%E5%BE%81%E6%8F%90%E5%8F%96"><span class="toc-text">2. NoRLD 的特征提取</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E4%B8%89%E7%BB%B4%E5%9C%BA%E6%99%AF%E7%94%9F%E6%88%90%E6%AD%A5%E9%AA%A4"><span class="toc-text">6. 三维场景生成步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%9B%BE%E5%83%8F%E5%88%B0%E6%B3%95%E7%BA%BF%E6%98%A0%E5%B0%84-nirne-%E9%98%B6%E6%AE%B5"><span class="toc-text">1. 图像到法线映射（NiRNE 阶段）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%B3%95%E7%BA%BF%E5%88%B0-3d-%E5%87%A0%E4%BD%95%E7%94%9F%E6%88%90-norld-%E9%98%B6%E6%AE%B5"><span class="toc-text">2. 法线到 3D 几何生成（NoRLD 阶段）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%95%B0%E6%8D%AE%E6%94%AF%E6%92%91-detailverse-%E9%98%B6%E6%AE%B5"><span class="toc-text">3. 数据支撑（DetailVerse 阶段）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0%E8%AE%BE%E8%AE%A1"><span class="toc-text">7. 损失函数设计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-%E6%B5%8B%E8%AF%95%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="toc-text">8. 测试数据集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-%E8%AE%AD%E7%BB%83%E6%95%B0%E6%8D%AE%E9%9B%86%E4%B8%8E%E6%8E%A8%E7%90%86%E9%83%A8%E7%BD%B2"><span class="toc-text">9. 训练数据集与推理部署</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-%E6%B6%88%E8%9E%8D%E5%AE%9E%E9%AA%8C%E7%BB%84%E4%BB%B6"><span class="toc-text">10. 消融实验组件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-%E5%85%B6%E4%BB%96%E8%AF%B4%E6%98%8E"><span class="toc-text">11. 其他说明</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/03/#%20%E4%B8%89%E7%BB%B4%E8%A7%86%E8%A7%89%E5%87%A0%E4%BD%95%E5%A4%A7%E6%95%B4%E7%90%86/" title="无标题">无标题</a><time datetime="2025-12-03T05:46:01.418Z" title="发表于 2025-12-03 13:46:01">2025-12-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/03/Label%E8%BD%AF%E4%BB%B6%E8%B0%83%E7%A0%94%E5%92%8C%E4%BD%BF%E7%94%A8/" title="无标题">无标题</a><time datetime="2025-12-03T05:46:01.417Z" title="发表于 2025-12-03 13:46:01">2025-12-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/03/MVS%E6%A1%86%E6%9E%B6%E5%BC%80%E6%BA%90%E6%95%B4%E7%90%86/" title="无标题">无标题</a><time datetime="2025-12-03T05:46:01.417Z" title="发表于 2025-12-03 13:46:01">2025-12-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/03/GAN%E7%AC%94%E8%AE%B0/" title="无标题">无标题</a><time datetime="2025-12-03T05:46:01.416Z" title="发表于 2025-12-03 13:46:01">2025-12-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/03/%E6%97%A0%E5%9B%BE%E5%BD%A2%E5%AE%89%E8%A3%85matalb%E7%AC%94%E8%AE%B0/" title="无标题">无标题</a><time datetime="2025-12-03T05:46:01.416Z" title="发表于 2025-12-03 13:46:01">2025-12-03</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By outbreak_sen</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><div class="js-pjax"></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

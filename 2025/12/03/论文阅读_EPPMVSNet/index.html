@@ -1,0 +1,312 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>This is a 部落格 of outbreak_sen | This is a 部落格 of outbreak_sen</title><meta name="author" content="outbreak_sen"><meta name="copyright" content="outbreak_sen"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="EPP-MVSNet（Epipolar-assembling based Depth Prediction for Multi-view Stereo） 基本信息    项目 内容     论文标题 EPP-MVSNet（Epipolar-assembling based Depth Prediction for Multi-view Stereo）   作者 Xinjun Ma, Yue Gon">
+<meta property="og:type" content="article">
+<meta property="og:title" content="This is a 部落格 of outbreak_sen">
+<meta property="og:url" content="http://outbreak-sen.github.io/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_EPPMVSNet/index.html">
+<meta property="og:site_name" content="This is a 部落格 of outbreak_sen">
+<meta property="og:description" content="EPP-MVSNet（Epipolar-assembling based Depth Prediction for Multi-view Stereo） 基本信息    项目 内容     论文标题 EPP-MVSNet（Epipolar-assembling based Depth Prediction for Multi-view Stereo）   作者 Xinjun Ma, Yue Gon">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://outbreak-sen.github.io/img/head.png">
+<meta property="article:published_time" content="2025-12-03T05:46:01.309Z">
+<meta property="article:modified_time" content="2025-11-26T15:49:26.090Z">
+<meta property="article:author" content="outbreak_sen">
+<meta property="article:tag" content="static scale model, deep learning, vlog, radio control model, music">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://outbreak-sen.github.io/img/head.png"><link rel="shortcut icon" href="/img/h_beautygirl.png"><link rel="canonical" href="http://outbreak-sen.github.io/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_EPPMVSNet/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'This is a 部落格 of outbreak_sen',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  isShuoshuo: false
+}</script><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="This is a 部落格 of outbreak_sen" type="application/atom+xml">
+<link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head><body><div id="web_bg" style="background-image: url(/img/v_beautygirl0.jpeg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/./img/head.png" onerror="onerror=null;src='./img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">76</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">25</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw fa fa-camera-retro"></i><span> 树洞</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 作品与鉴赏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/h_beautygirl.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/h_beautygirl.png" alt="Logo"><span class="site-name">This is a 部落格 of outbreak_sen</span></a><a class="nav-page-title" href="/"><span class="site-name">This is a 部落格 of outbreak_sen</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw fa fa-camera-retro"></i><span> 树洞</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 作品与鉴赏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">无标题</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-12-03T05:46:01.309Z" title="发表于 2025-12-03 13:46:01">2025-12-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-11-26T15:49:26.090Z" title="更新于 2025-11-26 23:49:26">2025-11-26</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1>EPP-MVSNet（Epipolar-assembling based Depth Prediction for Multi-view Stereo）</h1>
+<h2 id="基本信息">基本信息</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">项目</th>
+<th style="text-align:left">内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>论文标题</strong></td>
+<td style="text-align:left">EPP-MVSNet（Epipolar-assembling based Depth Prediction for Multi-view Stereo）</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>作者</strong></td>
+<td style="text-align:left">Xinjun Ma, Yue Gong, Qirui Wang, Jingwei Huang, Lei Chen, Fan Yu</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>作者单位</strong></td>
+<td style="text-align:left">华为技术有限公司</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>时间</strong></td>
+<td style="text-align:left">2021</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>发表会议/期刊</strong></td>
+<td style="text-align:left">ICCV</td>
+</tr>
+</tbody>
+</table>
+<h2 id="方法概览">方法概览</h2>
+<table>
+<thead>
+<tr>
+<th>特点</th>
+<th>文章性质</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>输入</strong></td>
+<td>多视角</td>
+</tr>
+<tr>
+<td><strong>输出</strong></td>
+<td>参考视角深度图</td>
+</tr>
+<tr>
+<td><strong>所属领域</strong></td>
+<td>MVS</td>
+</tr>
+</tbody>
+</table>
+<h2 id="摘要精简">摘要精简</h2>
+<p>本文提出 EPP-MVSNet，一种基于极线组装的多视图立体 3D  重建网络。该网络通过极线组装模块，将高分辨率特征自适应聚合到有限尺寸的代价体中，充分利用图像分辨率的同时控制内存消耗；引入熵基精炼策略，根据深度预测置信度动态调整深度假设范围，减少代价体冗余；采用融合伪 3D 卷积的轻量正则网络，在保证精度的前提下提升推理效率。EPP-MVSNet 在 Tanks &amp; Temples、ETH3D 和  DTU 数据集上表现优异，其中在 Tanks &amp; Temples intermediate 基准测试中取得最高  F-score，兼顾重建效果与效率。</p>
+<h2 id="研究动机与出发点">研究动机与出发点</h2>
+<p>当前学习-based MVS方法在构建和正则化代价体时需要高内存和计算量，无法充分利用高分辨率图像。虽然基于块匹配的方法可以通过搜索最小代价来克服这个问题，但现有方法仍然存在效率问题。作者旨在设计一个能够充分利用高分辨率图像信息的深度神经网络。</p>
+<h2 id="3-创新点">3. 创新点</h2>
+<h3 id="3-1-极线组装模块-epipolar-assembling-module">3.1 极线组装模块（Epipolar-Assembling Module）</h3>
+<ul>
+<li>针对粗阶段代价体构建，提出沿极线自适应聚合高分辨率特征的策略。通过在极线上以半像素最优间隔密集插值特征点，再通过 3×1×1 卷积聚合邻域特征和自适应窗口大小的最大池化，将高分辨率代价体压缩为紧凑尺寸。</li>
+<li>突破了传统方法中 “深度假设数量决定代价体分辨率” 的约束，在有限内存消耗下充分利用高分辨率图像信息，提升粗阶段深度预测精度。</li>
+</ul>
+<h3 id="3-2-熵基精炼策略-entropy-based-refining-strategy-vismvsnet同款">3.2 熵基精炼策略（Entropy-based Refining Strategy）VisMVSNet同款</h3>
+<ul>
+<li>基于概率体的熵值衡量深度预测置信度，熵值越大表示置信度越低，需更大的深度假设范围；反之则缩小范围。</li>
+</ul>
+<h3 id="3-3-轻量代价体正则网络-light-weighted-regularization-network">3.3 轻量代价体正则网络（Light-weighted Regularization Network）</h3>
+<ul>
+<li><strong>用伪 3D 卷积替代传统 3D 卷积</strong>，将 3D 卷积分解为空间维度的 1×3×3 卷积和深度维度的 3×1×1 卷积，分别捕捉空间邻域和深度维度的相关性。</li>
+<li>在不损失重建精度的前提下，大幅降低计算量和内存消耗，提升网络训练与推理效率。</li>
+</ul>
+<h3 id="3-4-多阶段协同架构">3.4 多阶段协同架构</h3>
+<ul>
+<li>粗阶段采用极线组装模块构建高质量代价体，联合预测深度图与可见性图；细阶段复用粗阶段上采样后的可见性图融合代价体，通过熵基策略优化深度范围，仅需轻量正则即可实现高精度精炼。</li>
+</ul>
+<h2 id="网络架构">网络架构</h2>
+<p>EPP-MVSNet 采用粗到精三阶段架构（1 个粗阶段 + 2 个细阶段），整体流程分为四大核心步骤，各阶段均包含该流程：</p>
+<p>特征提取：生成多尺度金字塔特征；</p>
+<p>代价体构建：粗阶段用极线组装模块，细阶段用熵基精炼策略；</p>
+<p>代价体正则：粗阶段含 pairwise 正则和融合正则，细阶段仅需融合正则；</p>
+<p>深度回归与概率体生成：输出深度图与对应概率体，为下一阶段提供置信度信息。</p>
+<h2 id="特征提取">特征提取</h2>
+<p>采用金字塔特征提取策略，对参考图像和源图像分别提取多尺度特征：</p>
+<ol>
+<li>输入图像经卷积层逐步下采样，生成不同空间分辨率的特征图，适配粗、细阶段的代价体构建需求；</li>
+<li>特征图维度统一为固定通道数，确保后续代价计算的一致性；</li>
+<li>所有图像共享特征提取权重，保证特征空间的一致性，便于跨视图匹配。</li>
+</ol>
+<h2 id="代价体构建">代价体构建</h2>
+<p><strong>粗阶段 - 极线装配模块</strong>：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20251126234708680.png" alt="image-20251126234708680"></p>
+<p>通过密集插值极线上的点构建高分辨率代价体，经极线组装模块**（3×1×1 卷积聚合 + 自适应最大池化）**压缩为紧凑代价体。</p>
+<p>论文用的是 <strong>3×1×1 的卷积核</strong> 做聚合：这里的 “3” 对应极线方向（只沿极线合并 3 个相邻点），“1×1”  对应图像的其他两个方向（不合并，避免跨极线的信息干扰）。比如极线上有 “点 A - 点 B - 点 C”，用这个卷积把它们的代价合并成一个  “代表值”，既能保留极线上的细节（比如点 B 是边缘，合并后仍能体现），又能减少代价体的通道数。最后一步是 “压缩”：沿 “深度方向”（也就是 “假设深度” 的数量方向）做最大池化，<strong>把原本上百个深度假设的代价，压缩到和初始离散采样点数量一致（比如 32 个）</strong>。这里的 “自适应” 是指：池化窗口的大小会根据 “插值率” 调整（比如插值后有 64 个点，要压缩回 32 个，窗口就设为  2）。最大池化的好处是 —— 只保留每个窗口里 “匹配代价最小”  的那个值（代价小意味着匹配度高），相当于筛选出极线上最可能的对应点，进一步提升代价体的可靠性。</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi><mi>o</mi><mi>s</mi><msup><mi>t</mi><mi>a</mi></msup><mo stretchy="false">(</mo><msubsup><mi>p</mi><mi>m</mi><mi>s</mi></msubsup><mo stretchy="false">)</mo><mo>=</mo><msubsup><mo>∫</mo><mrow><msubsup><mi>p</mi><mi>m</mi><mi>s</mi></msubsup><mo>−</mo><mfrac><mi>α</mi><mn>2</mn></mfrac></mrow><mrow><msubsup><mi>p</mi><mi>m</mi><mi>s</mi></msubsup><mo>+</mo><mfrac><mi>α</mi><mn>2</mn></mfrac></mrow></msubsup><mi mathvariant="normal">Ω</mi><mo stretchy="false">(</mo><mi>c</mi><mi>o</mi><mi>s</mi><mi>t</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mi mathvariant="normal">d</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">cost^a(p_m^s)=\int_{p_m^s-\frac{\alpha}{2}}^{p_m^s+\frac{\alpha}{2}}\Omega(cost(x))\mathrm{d}x
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">c</span><span class="mord mathdefault">o</span><span class="mord mathdefault">s</span><span class="mord"><span class="mord mathdefault">t</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7143919999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">a</span></span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.7143919999999999em;"><span style="top:-2.4530000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">m</span></span></span><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">s</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.7826299999999997em;vertical-align:-1.15275em;"></span><span class="mop"><span class="mop op-symbol large-op" style="margin-right:0.44445em;position:relative;top:-0.0011249999999999316em;">∫</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.6298799999999998em;"><span style="top:-2.08805em;margin-left:-0.44445em;margin-right:0.05em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathdefault mtight">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.5935428571428571em;"><span style="top:-2.214em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathdefault mtight">m</span></span></span><span style="top:-2.786em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathdefault mtight">s</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286em;"><span></span></span></span></span></span></span><span class="mbin mtight">−</span><span class="mord mtight"><span class="mopen nulldelimiter sizing reset-size3 size6"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.6915428571428572em;"><span style="top:-2.656em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span><span style="top:-3.2255000000000003em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line mtight" style="border-bottom-width:0.049em;"></span></span><span style="top:-3.384em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.0037em;">α</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.344em;"><span></span></span></span></span></span><span class="mclose nulldelimiter sizing reset-size3 size6"></span></span></span></span></span><span style="top:-4.1129em;margin-right:0.05em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathdefault mtight">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.7385428571428572em;"><span style="top:-2.214em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathdefault mtight">m</span></span></span><span style="top:-2.931em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathdefault mtight">s</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286em;"><span></span></span></span></span></span></span><span class="mbin mtight">+</span><span class="mord mtight"><span class="mopen nulldelimiter sizing reset-size3 size6"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.6915428571428572em;"><span style="top:-2.656em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span><span style="top:-3.2255000000000003em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line mtight" style="border-bottom-width:0.049em;"></span></span><span style="top:-3.384em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.0037em;">α</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.344em;"><span></span></span></span></span></span><span class="mclose nulldelimiter sizing reset-size3 size6"></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.15275em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">Ω</span><span class="mopen">(</span><span class="mord mathdefault">c</span><span class="mord mathdefault">o</span><span class="mord mathdefault">s</span><span class="mord mathdefault">t</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span><span class="mclose">)</span><span class="mord"><span class="mord mathrm">d</span></span><span class="mord mathdefault">x</span></span></span></span></span></p>
+<p><strong>细阶段 - 基于熵的细化策略</strong>：<br>
+根据上一阶段概率体的熵值计算置信度，动态调整深度假设范围；在新范围内构建代价体，通过组相关性计算匹配代价，确保代价体无冗余且覆盖真值深度。如果概率分布很&quot;集中&quot;（熵小）→ 我们很确定深度是多少</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>E</mi><mi>k</mi></msup><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo><mo>=</mo><mo>−</mo><munderover><mo>∑</mo><mrow><mi>m</mi><mo>=</mo><mn>0</mn></mrow><mrow><mi>M</mi><mo>−</mo><mn>1</mn></mrow></munderover><msup><mi>P</mi><mi>k</mi></msup><mo stretchy="false">(</mo><mi>p</mi><mo separator="true">,</mo><msubsup><mi>d</mi><mi>m</mi><mi>k</mi></msubsup><mo stretchy="false">)</mo><msub><mo><mi>log</mi><mo>⁡</mo></mo><mi>M</mi></msub><msup><mi>P</mi><mi>k</mi></msup><mo stretchy="false">(</mo><mi>p</mi><mo separator="true">,</mo><msubsup><mi>d</mi><mi>m</mi><mi>k</mi></msubsup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">E^k(p)=-\sum_{m=0}^{M-1}P^k(p,d_m^k)\log_M P^k(p,d_m^k)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.149108em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8991079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault">p</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:3.0954490000000003em;vertical-align:-1.267113em;"></span><span class="mord">−</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.8283360000000004em;"><span style="top:-1.882887em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">m</span><span class="mrel mtight">=</span><span class="mord mtight">0</span></span></span></span><span style="top:-3.050005em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.300005em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.10903em;">M</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.267113em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8991079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault">p</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault">d</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8991079999999998em;"><span style="top:-2.4530000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">m</span></span></span><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop"><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.23419099999999995em;"><span style="top:-2.4558600000000004em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.10903em;">M</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.24414em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8991079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault">p</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault">d</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8991079999999998em;"><span style="top:-2.4530000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">m</span></span></span><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></span></p>
+<p>动态调整细阶段深度假设范围，不确定性大（熵大）→ 用大一点的搜索范围，公式为：</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>r</mi><mrow><mi>k</mi><mo>+</mo><mn>1</mn></mrow></msup><mo>=</mo><mo stretchy="false">(</mo><mfrac><msup><mi>M</mi><mrow><mi>λ</mi><mo>⋅</mo><mover accent="true"><mrow><msup><mi>E</mi><mi>k</mi></msup><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo></mrow><mo stretchy="true">‾</mo></mover></mrow></msup><mi>M</mi></mfrac><mo stretchy="false">)</mo><mo>⋅</mo><msup><mi>r</mi><mi>k</mi></msup></mrow><annotation encoding="application/x-tex">r^{k+1}=(\frac{M^{\lambda\cdot\overline{E^k(p)}}}{M})\cdot r^k
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8991079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8991079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span><span class="mbin mtight">+</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.4449199999999998em;vertical-align:-0.686em;"></span><span class="mopen">(</span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.7589199999999998em;"><span style="top:-2.39592em;"><span class="pstrut" style="height:3.0819199999999998em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10903em;">M</span></span></span><span style="top:-3.3119199999999998em;"><span class="pstrut" style="height:3.0819199999999998em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.75892em;"><span class="pstrut" style="height:3.0819199999999998em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:1.0819199999999998em;"><span style="top:-3.363em;margin-right:0.05em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">λ</span><span class="mbin mtight">⋅</span><span class="mord overline mtight"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.0270285714285714em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.05764em;">E</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7820285714285713em;"><span style="top:-2.786em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span></span></span></span></span><span class="mopen mtight">(</span><span class="mord mathdefault mtight">p</span><span class="mclose mtight">)</span></span></span><span style="top:-3.9290285714285713em;"><span class="pstrut" style="height:3em;"></span><span class="overline-line mtight" style="border-bottom-width:0.049em;"></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.25em;"><span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.8991079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8991079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span></span></span></span></span></span></span></span></span></p>
+<h2 id="代价体正则化-学vismvsnet先成对输出可视性然后融合-但是用了伪3dcnn">代价体正则化（学VisMVSNet先成对输出可视性然后融合，但是用了伪3DCNN）</h2>
+<p>采用轻量级正则化网络，使用Pseudo-3D卷积（伪 3D 卷积）替代标准3D卷积：</p>
+<ol>
+<li>粗阶段：包含两个 2 块 3D U-Net，分别对 pairwise 代价体进行正则化（输出可见性图）和对融合代价体进行正则化；</li>
+<li>细阶段：仅用 1 个 2 块 3D U-Net 对融合代价体进行正则化；</li>
+<li><strong>伪 3D 卷积操作：先通过 1×3×3 卷积捕捉空间邻域像素的相关性，再通过 3×1×1 卷积捕捉同一像素不同深度假设的相关性，避免传统 3D 卷积的冗余计算，提升正则化效率。</strong></li>
+</ol>
+<h2 id="补充知识-伪3dcnn">补充知识-伪3DCNN</h2>
+<p>在代价体正则化中，传统3D卷积是这样的：它在空间（宽高）和深度维度上<strong>同时</strong>做卷积。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conv3d(kernel=3x3x3)  # 27个参数，计算量大</span><br></pre></td></tr></table></figure>
+<p>伪3D卷积的做法</p>
+<p>把3D卷积拆成2步：</p>
+<p><strong>第1步 - 处理空间关系</strong>（只看同一深度的邻居）：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conv2d(kernel=1x3x3)  # 只看同一深度的左右邻居</span><br></pre></td></tr></table></figure>
+<p><strong>第2步 - 处理深度关系</strong>（只看同一位置的不同深度）：</p>
+<p>python</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conv1d(kernel=3x1x1)  # 只看同一位置的不同深度假设</span><br></pre></td></tr></table></figure>
+<p><strong>计算量对比</strong>：</p>
+<ul>
+<li>标准3D卷积：<code>3×3×3 = 27</code> 次计算</li>
+<li>伪3D卷积：<code>(3×3) + 3 = 12</code> 次计算</li>
+</ul>
+<h2 id="深度图生成">深度图生成</h2>
+<ol>
+<li>深度回归：正则化后的代价体通过 soft-argmin 操作生成当前阶段的深度图 Dk，同时输出对应概率体 Pk；</li>
+<li>多阶段精炼：粗阶段输出的深度图经上采样后作为细阶段的深度假设中心，细阶段通过熵基策略调整范围，逐步提升深度图分辨率与精度；</li>
+<li>后处理：采用**动态一致性检查方法（这个就是MVSNet那个，重投影两次看差距过滤）**过滤低置信度深度像素，融合所有阶段的深度图，生成最终 3D 稠密点云。</li>
+</ol>
+<h2 id="损失函数">损失函数</h2>
+<p>使用所有阶段预测深度图的<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>L</mi><mn>1</mn></msub></mrow><annotation encoding="application/x-tex">L_1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">L</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>损失总和，以及粗阶段概率体的不确定性损失：</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="script">L</mi><mo>=</mo><munderover><mo>∑</mo><mrow><mi>k</mi><mo>=</mo><mn>1</mn></mrow><mn>3</mn></munderover><msub><mi>L</mi><mn>1</mn></msub><mo stretchy="false">(</mo><msup><mi>D</mi><mi>k</mi></msup><mo separator="true">,</mo><msub><mi>D</mi><mrow><mi>g</mi><mi>t</mi></mrow></msub><mo stretchy="false">)</mo><mo>+</mo><msub><mi mathvariant="script">L</mi><mrow><mi>u</mi><mi>n</mi><mi>c</mi><mi>e</mi><mi>r</mi><mi>t</mi><mi>a</mi><mi>i</mi><mi>n</mi><mi>t</mi><mi>y</mi></mrow></msub></mrow><annotation encoding="application/x-tex">\mathcal{L} = \sum_{k=1}^{3} L_1(D^k, D_{gt}) + \mathcal{L}_{uncertainty}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord"><span class="mord mathcal">L</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:3.1032260000000003em;vertical-align:-1.302113em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.801113em;"><span style="top:-1.8478869999999998em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.0500049999999996em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.300005em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">3</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.302113em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault">L</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">D</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8991079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">D</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.28055599999999997em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord mathdefault mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.969438em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord"><span class="mord mathcal">L</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">u</span><span class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">t</span><span class="mord mathdefault mtight">a</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight">t</span><span class="mord mathdefault mtight" style="margin-right:0.03588em;">y</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span></span></p>
+<p>L1 损失：衡量各阶段预测深度图 Dk 与地面真值 Dgt 的绝对误差，保证深度回归精度；</p>
+<p>不确定性损失：基于粗阶段概率体 P1 计算，鼓励网络输出置信度高的概率分布，提升粗阶段预测的可靠性，为细阶段精炼提供高质量初始值。</p>
+<h2 id="测试数据集">测试数据集</h2>
+<ul>
+<li><strong>Tanks &amp; Temples</strong>：室外和室内真实场景基准测试</li>
+<li><strong>ETH3D</strong>：包含复杂自然场景和人造环境的多样化数据集</li>
+<li><strong>DTU</strong>：室内物体扫描数据集</li>
+</ul>
+<h2 id="11-消融实验内容">11. 消融实验内容</h2>
+<p>消融实验基于 DTU 数据集，验证各核心模块的有效性：</p>
+<ol>
+<li>极线组装模块（EAM）：对比无 EAM（不同深度假设数量）与有 EAM 的粗阶段重建效果，验证 EAM 在有限深度假设下聚合高分辨率特征的能力；</li>
+<li>EAM 核结构：测试不同卷积核尺寸（3×1×1、5×1×1、1×1×1）和池化方式（最大池化、平均池化）对重建精度的影响；</li>
+<li>熵基精炼策略（ER）：对比细阶段有无 ER 的重建效果，验证动态深度范围调整对精度的提升；</li>
+<li>伪 3D 卷积：对比传统 3D 卷积与伪 3D 卷积的重建精度、运行时间和内存消耗，验证伪 3D 卷积的效率优势。</li>
+</ol>
+<h2 id="创新点详解">创新点详解</h2>
+<h3 id="极线装配模块">极线装配模块</h3>
+<p>传统的代价体构建在离散的深度假设位置采样特征，而EPP-MVSNet通过在极线上密集插值点（半像素间隔）构建高分辨率代价体，然后通过设计的装配网络（包含聚合和池化步骤）将其降采样到紧凑的代价体。这种方法充分利用了图像分辨率信息，同时保持了代价体的大小可控。</p>
+<h3 id="基于熵的细化策略">基于熵的细化策略</h3>
+<p>在多阶段结构中，细阶段的深度假设范围传统上通过固定因子缩小。EPP-MVSNet利用粗阶段预测的概率体熵来度量深度预测的置信度，并据此自适应调整细阶段的深度范围。高熵（低置信度）区域使用较大范围，低熵（高置信度）区域使用较小范围，从而在减少冗余的同时确保真实深度包含在假设范围内。</p>
+<h3 id="轻量级正则化网络">轻量级正则化网络</h3>
+<p>通过用Pseudo-3D卷积替代标准3D卷积，将卷积操作分离到空间维度和深度维度，显著降低了计算复杂度和内存消耗，同时保持了正则化效果。这种设计基于代价体在空间和深度维度上不同特性的观察，使得网络更加高效。</p>
+<h3 id="整体架构优势">整体架构优势</h3>
+<p>EPP-MVSNet通过上述创新点的结合，在高分辨率图像上实现了准确且高效的深度预测，在多个基准测试上取得了最先进的结果，同时在运行时间和内存消耗方面表现出色。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://outbreak-sen.github.io">outbreak_sen</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://outbreak-sen.github.io/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_EPPMVSNet/">http://outbreak-sen.github.io/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_EPPMVSNet/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://outbreak-sen.github.io" target="_blank">This is a 部落格 of outbreak_sen</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/./img/head.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_GPMVSNet/" title=""><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2"></div></div><div class="info-2"><div class="info-item-1">GP-MVSNet 基本信息    项目 内容     论文标题 Multi-View Stereo by Temporal Nonparametric Fusion   作者 Yuxin HouJuho KannalaArno Solin   作者单位 Multi-View Stereo by Temporal Nonparametric Fusion   时间 2019   发表会议/期刊 ICCV     方法概览    特点 文章性质     输入 单目相机拍摄的视频序列，已知每一帧的相机位姿   输出 每一帧单独预测深度图   所属领域 对单目相机拍摄的视频序列，已知每一帧的相机位姿（位置 + 角度，可由手机 ARKit/ARCore、视觉惯性里程计等实时获取），为序列中每一帧单独预测深度图；关键是利用 “历史帧的信息” 辅助当前帧预测，让深度图更稳定、边缘更清晰，且能在手机等设备实时运行。    1. 摘要精简 本文提出一种从多视图图像 - 姿态对估计深度的新方法，核心是结合编码器 - 解码器视差估计网络与非参数高斯过程（GP）先验。该方法将图像 -...</div></div></div></a><a class="pagination-related" href="/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_ECMVSNet/" title=""><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2"></div></div><div class="info-2"><div class="info-item-1">基本信息    项目 内容     论文标题 EC-MVSNet: Enhanced Cascaded Multi-View Stereo with Cross-Scale Relevance Integration   作者 wangshaoqian   作者单位    时间 2025   发表会议/期刊 AAAI    方法概览    特点 文章性质     输入 标定之后的多视角图像   输出 场景的点云图   所属领域 MVS    背景 创新点  利用小尺度信息在构建代价体的时候构造一个patch一样  网络架构  摘要 基于级联的多尺度多视图立体（MVS）架构是目前多视图立体重建的主流，实现了计算效率和重建精度之间的平衡。然而，现有的级联 MVS 方法在跨尺度信息利用方面存在重大局限性，其中深度估计过程跨尺度独立运行，而没有充分利用相邻尺度之间的丰富相关性。为了解决这一基本限制，我们提出了增强级联多视图立体框架（ECMVSNet），该框架引入了一种新颖的跨尺度相关性集成策略。 我们的框架包含三个关键组件：  一个跨尺度基于特征的联合构建...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/./img/head.png" onerror="this.onerror=null;this.src='/./img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">outbreak_sen</div><div class="author-info-description">an interesting man</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">76</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">25</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/outbreak-sen" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://blog.csdn.net/outbreakrmb" target="_blank" title="CSDN"><i class="fa fa-book-open"></i></a><a class="social-icon" href="/1023786231" target="_blank" title="QQ"><i class="fab fa-qq"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">EPP-MVSNet（Epipolar-assembling based Depth Prediction for Multi-view Stereo）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="toc-text">基本信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E6%A6%82%E8%A7%88"><span class="toc-text">方法概览</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%91%98%E8%A6%81%E7%B2%BE%E7%AE%80"><span class="toc-text">摘要精简</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A0%94%E7%A9%B6%E5%8A%A8%E6%9C%BA%E4%B8%8E%E5%87%BA%E5%8F%91%E7%82%B9"><span class="toc-text">研究动机与出发点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%88%9B%E6%96%B0%E7%82%B9"><span class="toc-text">3. 创新点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E6%9E%81%E7%BA%BF%E7%BB%84%E8%A3%85%E6%A8%A1%E5%9D%97-epipolar-assembling-module"><span class="toc-text">3.1 极线组装模块（Epipolar-Assembling Module）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E7%86%B5%E5%9F%BA%E7%B2%BE%E7%82%BC%E7%AD%96%E7%95%A5-entropy-based-refining-strategy-vismvsnet%E5%90%8C%E6%AC%BE"><span class="toc-text">3.2 熵基精炼策略（Entropy-based Refining Strategy）VisMVSNet同款</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-%E8%BD%BB%E9%87%8F%E4%BB%A3%E4%BB%B7%E4%BD%93%E6%AD%A3%E5%88%99%E7%BD%91%E7%BB%9C-light-weighted-regularization-network"><span class="toc-text">3.3 轻量代价体正则网络（Light-weighted Regularization Network）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-%E5%A4%9A%E9%98%B6%E6%AE%B5%E5%8D%8F%E5%90%8C%E6%9E%B6%E6%9E%84"><span class="toc-text">3.4 多阶段协同架构</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84"><span class="toc-text">网络架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%89%B9%E5%BE%81%E6%8F%90%E5%8F%96"><span class="toc-text">特征提取</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E4%BB%B7%E4%BD%93%E6%9E%84%E5%BB%BA"><span class="toc-text">代价体构建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E4%BB%B7%E4%BD%93%E6%AD%A3%E5%88%99%E5%8C%96-%E5%AD%A6vismvsnet%E5%85%88%E6%88%90%E5%AF%B9%E8%BE%93%E5%87%BA%E5%8F%AF%E8%A7%86%E6%80%A7%E7%84%B6%E5%90%8E%E8%9E%8D%E5%90%88-%E4%BD%86%E6%98%AF%E7%94%A8%E4%BA%86%E4%BC%AA3dcnn"><span class="toc-text">代价体正则化（学VisMVSNet先成对输出可视性然后融合，但是用了伪3DCNN）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A5%E5%85%85%E7%9F%A5%E8%AF%86-%E4%BC%AA3dcnn"><span class="toc-text">补充知识-伪3DCNN</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%B1%E5%BA%A6%E5%9B%BE%E7%94%9F%E6%88%90"><span class="toc-text">深度图生成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0"><span class="toc-text">损失函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="toc-text">测试数据集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-%E6%B6%88%E8%9E%8D%E5%AE%9E%E9%AA%8C%E5%86%85%E5%AE%B9"><span class="toc-text">11. 消融实验内容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E6%96%B0%E7%82%B9%E8%AF%A6%E8%A7%A3"><span class="toc-text">创新点详解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%81%E7%BA%BF%E8%A3%85%E9%85%8D%E6%A8%A1%E5%9D%97"><span class="toc-text">极线装配模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E7%86%B5%E7%9A%84%E7%BB%86%E5%8C%96%E7%AD%96%E7%95%A5"><span class="toc-text">基于熵的细化策略</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BD%BB%E9%87%8F%E7%BA%A7%E6%AD%A3%E5%88%99%E5%8C%96%E7%BD%91%E7%BB%9C"><span class="toc-text">轻量级正则化网络</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84%E4%BC%98%E5%8A%BF"><span class="toc-text">整体架构优势</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/03/#%20%E4%B8%89%E7%BB%B4%E8%A7%86%E8%A7%89%E5%87%A0%E4%BD%95%E5%A4%A7%E6%95%B4%E7%90%86/" title="无标题">无标题</a><time datetime="2025-12-03T05:46:01.418Z" title="发表于 2025-12-03 13:46:01">2025-12-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/03/Label%E8%BD%AF%E4%BB%B6%E8%B0%83%E7%A0%94%E5%92%8C%E4%BD%BF%E7%94%A8/" title="无标题">无标题</a><time datetime="2025-12-03T05:46:01.417Z" title="发表于 2025-12-03 13:46:01">2025-12-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/03/MVS%E6%A1%86%E6%9E%B6%E5%BC%80%E6%BA%90%E6%95%B4%E7%90%86/" title="无标题">无标题</a><time datetime="2025-12-03T05:46:01.417Z" title="发表于 2025-12-03 13:46:01">2025-12-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/03/GAN%E7%AC%94%E8%AE%B0/" title="无标题">无标题</a><time datetime="2025-12-03T05:46:01.416Z" title="发表于 2025-12-03 13:46:01">2025-12-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/03/%E6%97%A0%E5%9B%BE%E5%BD%A2%E5%AE%89%E8%A3%85matalb%E7%AC%94%E8%AE%B0/" title="无标题">无标题</a><time datetime="2025-12-03T05:46:01.416Z" title="发表于 2025-12-03 13:46:01">2025-12-03</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By outbreak_sen</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><div class="js-pjax"></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

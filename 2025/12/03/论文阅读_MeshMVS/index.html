@@ -1,0 +1,374 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>This is a 部落格 of outbreak_sen | This is a 部落格 of outbreak_sen</title><meta name="author" content="outbreak_sen"><meta name="copyright" content="outbreak_sen"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="MeshMVS 基本信息    项目 内容     论文标题 MeshMVS（Multi-View Stereo Guided Mesh Reconstruction）   作者 Rakesh Shrestha, Zhiwen Fan, Qingkun Su, Zuozhuo Dai, Siyu Zhu, Ping Tan   作者单位 西蒙弗雷泽大学（Simon Fraser Universit">
+<meta property="og:type" content="article">
+<meta property="og:title" content="This is a 部落格 of outbreak_sen">
+<meta property="og:url" content="http://outbreak-sen.github.io/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_MeshMVS/index.html">
+<meta property="og:site_name" content="This is a 部落格 of outbreak_sen">
+<meta property="og:description" content="MeshMVS 基本信息    项目 内容     论文标题 MeshMVS（Multi-View Stereo Guided Mesh Reconstruction）   作者 Rakesh Shrestha, Zhiwen Fan, Qingkun Su, Zuozhuo Dai, Siyu Zhu, Ping Tan   作者单位 西蒙弗雷泽大学（Simon Fraser Universit">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://outbreak-sen.github.io/img/head.png">
+<meta property="article:published_time" content="2025-12-03T05:46:01.333Z">
+<meta property="article:modified_time" content="2025-12-02T09:03:28.389Z">
+<meta property="article:author" content="outbreak_sen">
+<meta property="article:tag" content="static scale model, deep learning, vlog, radio control model, music">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://outbreak-sen.github.io/img/head.png"><link rel="shortcut icon" href="/img/h_beautygirl.png"><link rel="canonical" href="http://outbreak-sen.github.io/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_MeshMVS/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'This is a 部落格 of outbreak_sen',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  isShuoshuo: false
+}</script><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="This is a 部落格 of outbreak_sen" type="application/atom+xml">
+<link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head><body><div id="web_bg" style="background-image: url(/img/v_beautygirl0.jpeg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/./img/head.png" onerror="onerror=null;src='./img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">76</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">25</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw fa fa-camera-retro"></i><span> 树洞</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 作品与鉴赏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/h_beautygirl.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/h_beautygirl.png" alt="Logo"><span class="site-name">This is a 部落格 of outbreak_sen</span></a><a class="nav-page-title" href="/"><span class="site-name">This is a 部落格 of outbreak_sen</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw fa fa-camera-retro"></i><span> 树洞</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 作品与鉴赏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">无标题</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-12-03T05:46:01.333Z" title="发表于 2025-12-03 13:46:01">2025-12-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-12-02T09:03:28.389Z" title="更新于 2025-12-02 17:03:28">2025-12-02</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1>MeshMVS</h1>
+<h2 id="基本信息">基本信息</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">项目</th>
+<th style="text-align:left">内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>论文标题</strong></td>
+<td style="text-align:left">MeshMVS（Multi-View Stereo Guided Mesh Reconstruction）</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>作者</strong></td>
+<td style="text-align:left">Rakesh Shrestha, Zhiwen Fan, Qingkun Su, Zuozhuo Dai, Siyu Zhu, Ping Tan</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>作者单位</strong></td>
+<td style="text-align:left">西蒙弗雷泽大学（Simon Fraser University）</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>时间</strong></td>
+<td style="text-align:left">2021</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>发表会议/期刊</strong></td>
+<td style="text-align:left"></td>
+</tr>
+</tbody>
+</table>
+<h2 id="方法概览">方法概览</h2>
+<table>
+<thead>
+<tr>
+<th>特点</th>
+<th>文章性质</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>输入</strong></td>
+<td>标定之后的多视角图像</td>
+</tr>
+<tr>
+<td><strong>输出</strong></td>
+<td>Mesh</td>
+</tr>
+<tr>
+<td><strong>所属领域</strong></td>
+<td>MeshMVS</td>
+</tr>
+</tbody>
+</table>
+<h2 id="一-摘要精简">一、 摘要精简</h2>
+<p>本文提出了一种新颖的多视角网格生成方法。与以往仅利用彩色图像语义特征的工作不同，该方法通过引入<strong>多视角立体视觉(MVS)的深度特征</strong>来显式地利用几何信息，从而提升重建准确性。具体流程是：首先从多视角彩色图像预测一个粗略的体素占用网格；然后，利用图卷积网络(GCN)，以多视角立体预测的深度图与当前网格渲染深度图的<strong>对比特征</strong>作为指导，对这个粗略网格进行由粗到精的细化。该方法在ShapeNet数据集上显著优于当时的最佳方法。</p>
+<h2 id="二-引言与出发点">二、 引言与出发点</h2>
+<p>现有深度学习 - based 3D 形状生成方法存在两大核心问题：</p>
+<ul>
+<li>依赖彩色图像的语义特征进行形状生成，这些特征仅隐式编码 3D 几何信息，限制了重建形状的准确性，尤其在低纹理、复杂拓扑区域表现不佳；</li>
+<li>多视角 Mesh 重建方法（如 Pixel2Mesh++）采用固定拓扑的初始模板（椭球体）进行变形，难以适配拓扑与模板差异较大的物体，导致后续细化模块无法修正拓扑偏差。</li>
+</ul>
+<p>因此，本文的出发点是：通过显式融入多视角立体匹配的几何信息，替代单纯依赖 RGB 语义特征；采用可灵活表示复杂拓扑的体素网格作为初始形状，而非固定模板，从而突破现有方法的拓扑限制与几何信息缺失问题，提升 Mesh 重建的准确性与拓扑适应性。</p>
+<h2 id="四-网络架构构成">四、 网络架构构成</h2>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20251202170328123.png" alt="image-20251202170328123"></p>
+<p>系统分为两大模块，以<strong>由粗到精</strong>的方式工作：</p>
+<ol>
+<li>多视角体素网格预测模块：
+<ol>
+<li>对每个输入的单视角RGB图像，使用一个共享权重的网络预测一个体素占用网格</li>
+<li>将所有单视角预测的体素网格变换到同一坐标系后，采用一种概率占用法进行融合，得到最终的多视角粗糙体素网格。</li>
+<li>通过Cubify操作将融合后的体素网格转换为一个初始的Mesh。</li>
+<li>另外通过一个MVSNet预测每个视角的真实深度图</li>
+</ol>
+</li>
+<li>网格细化模块：
+<ol>
+<li>使用一个基于图卷积网络(GCN)的细化网络，对初始网格的顶点位置进行多次迭代变形。</li>
+<li>GCN的顶点特征由两部分构成：顶点3D坐标 + 多视角特征。</li>
+<li>多视角特征来源于对比深度特征（Mesh投影深度图+真实深度图）与RGB感知特征的结合。</li>
+<li>使用基于注意力的多视角特征池化方法来融合来自不同视角的特征。</li>
+</ol>
+</li>
+</ol>
+<h2 id="创新点">创新点</h2>
+<h3 id="核心创新点">核心创新点</h3>
+<ol>
+<li>概率多视角体素网格融合：借鉴机器人领域的占用图构建技术，将各视角预测的体素网格通过对数几率（log-odds）转换进行概率融合，解决单视角遮挡导致的可见性限制，生成拓扑更准确的粗粒度体素模型。</li>
+<li>对比深度特征引导细化：引入 MVS 网络预测的深度图与中间 Mesh 的渲染深度图，构建对比输入，<strong>通过 VGG-16 提取对比深度特征，为 GCN 提供显式几何约束，引导 Mesh 顶点向真实几何位置变形。</strong></li>
+<li>注意力机制多视图特征融合：采用多头注意力机制融合多视角的 RGB 特征与对比深度特征，该机制对输入视角的顺序和数量具有不变性，适配不同视角配置。</li>
+<li>粗到精 GCN Mesh 变形：以体素网格转换的粗 Mesh 为初始，通过多阶段 GCN 迭代细化，每阶段利用融合特征优化顶点位置，同时约束表面法向量与边长，避免 “飞点” 和不规则面。</li>
+</ol>
+<h2 id="网络架构构成">网络架构构成</h2>
+<p>网络整体采用 “粗模型预测→细模型细化” 的两阶段架构，流程如下：</p>
+<ol>
+<li>输入：多视角彩色图像（已知相机内参和外参）、各视角对应的渲染深度真值（训练阶段）。</li>
+<li>多视角体素网格预测：
+<ul>
+<li>单视角体素分支：通过 ResNet 提取特征，全卷积网络预测 48×48×48 分辨率的体素占用网格；</li>
+<li>概率融合：将各视角体素网格转换为对数几率（log-odds），求和后通过 sigmoid 函数得到多视角融合的体素占用概率网格。</li>
+</ul>
+</li>
+<li>粗 Mesh 生成：对融合后的体素网格执行 cubify 操作，转换为初始粗 Mesh。</li>
+<li>Mesh 细化模块：
+<ul>
+<li>MVS 深度预测：扩展 MVSNet，预测所有输入视角的深度图；</li>
+<li>对比深度特征提取：拼接 MVS 预测深度图与当前阶段 Mesh 的渲染深度图，通过 VGG-16 提取特征；</li>
+<li>多视图特征融合：采用多头注意力机制聚合多视角的 RGB 特征与对比深度特征；</li>
+<li>GCN 迭代细化：3 个 GCN 块依次对粗 Mesh 进行变形，每块输出更精细的 Mesh。</li>
+</ul>
+</li>
+<li>输出：最终结构化三角形 Mesh（顶点集 V + 面集 F）。</li>
+</ol>
+<h2 id="五-特征提取方法">五、 特征提取方法</h2>
+<p>特征提取涵盖 RGB 语义特征、对比深度特征两大类型，结合多视图融合策略，具体如下：</p>
+<ul>
+<li>RGB 语义特征：通过 ResNet 提取每个视角彩色图像的层级特征，捕捉图像的语义与纹理信息，为 Mesh 变形提供外观约束。</li>
+<li>对比深度特征：
+<ol>
+<li>深度输入构建：每个视角包含两类深度图 ——MVSNet 预测的真实场景深度图、当前 GCN 阶段 Mesh 的渲染深度图（通过可微分渲染生成）；</li>
+<li>特征提取：将两类深度图拼接后输入 VGG-16，提取 4800 维 / 视角的层级特征，捕捉几何差异信息；</li>
+<li>多视图融合：通过 5 个注意力头组成的多头注意力机制，聚合所有视角的对比深度特征与 RGB 特征，输出 480 维融合特征（对视角数量和顺序不敏感）。</li>
+</ol>
+</li>
+<li>顶点特征构建：将融合后的多视图特征，与 Mesh 顶点的 3D 世界坐标拼接，作为 GCN 的节点特征，实现几何与外观信息的联合约束。</li>
+</ul>
+<ul>
+<li>这种“对比”机制让网络能够直接学习<strong>当前网格渲染深度</strong>与<strong>真实几何推测深度</strong>之间的差异，从而更精准地指导顶点变形。</li>
+</ul>
+<h2 id="六-mesh生成方式">六、 Mesh生成方式</h2>
+<p>Mesh是通过<strong>渐进式变形</strong>生成的：</p>
+<ol>
+<li>
+<p><strong>初始Mesh生成</strong>：由融合后的粗糙体素网格通过<code>Cubify</code>操作直接转换而来，拥有正确的初始拓扑，将每个占用体素转换为小立方体（含 8 个顶点和 12 条边），所有小立方体拼接形成初始粗 Mesh，该过程可微分，支持端到端训练。</p>
+</li>
+<li>
+<p>GCN 迭代细化：</p>
+<ol>
+<li>图结构定义：Mesh 的顶点作为 GCN 节点，边作为图连接，节点特征为 “多视图融合特征 + 顶点 3D 坐标”；</li>
+<li>特征传播：每个 GCN 块通过图卷积传播邻域顶点特征</li>
+<li><strong>GCN变形</strong>：在每个GCN块中，顶点特征通过图卷积在邻域间传播，最终通过一个顶点细化层更新顶点坐标。公式如下：</li>
+</ol>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>v</mi><mi>i</mi><msup><mrow></mrow><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup></msubsup><mo>=</mo><msub><mi>v</mi><mi>i</mi></msub><mo>+</mo><mi>t</mi><mi>a</mi><mi>n</mi><mi>h</mi><mo stretchy="false">(</mo><msub><mi>W</mi><mrow><mi>v</mi><mi>e</mi><mi>r</mi><mi>t</mi></mrow></msub><mo stretchy="false">[</mo><msub><mi>f</mi><mi>i</mi></msub><mo separator="true">;</mo><msub><mi>v</mi><mi>i</mi></msub><mo stretchy="false">]</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">v_i^{&#x27;} = v_i + tanh(W_{vert}[f_i; v_i])
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.23948em;vertical-align:-0.247em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9924799999999999em;"><span style="top:-2.4530000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8278285714285715em;"><span style="top:-2.931em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.73333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">t</span><span class="mord mathdefault">a</span><span class="mord mathdefault">n</span><span class="mord mathdefault">h</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">W</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03588em;">v</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">[</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">;</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">]</span><span class="mclose">)</span></span></span></span></span></p>
+<p>其中 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>v</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">v_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 是当前顶点坐标， <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">f_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 是该顶点的特征向量， <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>W</mi><mrow><mi>v</mi><mi>e</mi><mi>r</mi><mi>t</mi></mrow></msub></mrow><annotation encoding="application/x-tex">W_{vert}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">W</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03588em;">v</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 是可学习参数。通过多个GCN阶段的逐步变形，得到最终精细的网格。</p>
+</li>
+<li>
+<p>最终 Mesh 输出：经过 3 个 GCN 块细化后，输出满足几何约束（法向量一致、边长合理）的结构化三角形 Mesh，训练时可选择是否添加边长正则以避免 “飞点”。</p>
+</li>
+</ol>
+<h2 id="七-loss函数设计">七、 Loss函数设计</h2>
+<p>总损失函数是多个加权损失的加权和：</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="script">L</mi><mo>=</mo><msub><mi>λ</mi><mtext>chamfer</mtext></msub><msub><mi mathvariant="script">L</mi><mtext>chamfer</mtext></msub><mo>+</mo><msub><mi>λ</mi><mtext>normal</mtext></msub><msub><mi mathvariant="script">L</mi><mtext>normal</mtext></msub><mo>+</mo><msub><mi>λ</mi><mtext>edge</mtext></msub><msub><mi mathvariant="script">L</mi><mtext>edge</mtext></msub><mo>+</mo><msub><mi>λ</mi><mtext>depth</mtext></msub><msub><mi mathvariant="script">L</mi><mtext>depth</mtext></msub><mo>+</mo><msub><mi>λ</mi><mtext>contrastive</mtext></msub><msub><mi mathvariant="script">L</mi><mtext>contrastive</mtext></msub><mo>+</mo><msub><mi>λ</mi><mtext>voxel</mtext></msub><msub><mi mathvariant="script">L</mi><mtext>voxel</mtext></msub></mrow><annotation encoding="application/x-tex">\mathcal{L} = \lambda_{\text{chamfer}}\mathcal{L}_{\text{chamfer}} + \lambda_{\text{normal}}\mathcal{L}_{\text{normal}} + \lambda_{\text{edge}}\mathcal{L}_{\text{edge}} + \lambda_{\text{depth}}\mathcal{L}_{\text{depth}} + \lambda_{\text{contrastive}}\mathcal{L}_{\text{contrastive}} + \lambda_{\text{voxel}}\mathcal{L}_{\text{voxel}}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord"><span class="mord mathcal">L</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">λ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">chamfer</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord"><span class="mord mathcal">L</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">chamfer</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">λ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">normal</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord"><span class="mord mathcal">L</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">normal</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.980548em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathdefault">λ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">edge</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord"><span class="mord mathcal">L</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">edge</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.980548em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathdefault">λ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">depth</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord"><span class="mord mathcal">L</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">depth</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">λ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31750199999999995em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">contrastive</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord"><span class="mord mathcal">L</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31750199999999995em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">contrastive</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">λ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">voxel</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord"><span class="mord mathcal">L</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">voxel</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span></p>
+<p>具体包括：</p>
+<ol>
+<li><strong>网格损失</strong>：监督最终输出，与真值网格比较。
+<ul>
+<li><strong>倒角距离损失</strong> (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi mathvariant="script">L</mi><mtext>chamfer</mtext></msub></mrow><annotation encoding="application/x-tex">\mathcal{L}_{\text{chamfer}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord"><span class="mord mathcal">L</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">chamfer</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>): 度量预测 Mesh 与真值 Mesh 顶点的最近邻距离，约束整体形状一致性,近预测网格与真值网格点云的距离。</li>
+<li><strong>法向损失</strong> (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi mathvariant="script">L</mi><mtext>normal</mtext></msub></mrow><annotation encoding="application/x-tex">\mathcal{L}_{\text{normal}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord"><span class="mord mathcal">L</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">normal</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>): 度量预测 Mesh 与真值 Mesh 顶点法向量的差异，约束表面平滑性,保证局部表面朝向正确。</li>
+<li><strong>边长度损失</strong> (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi mathvariant="script">L</mi><mtext>edge</mtext></msub></mrow><annotation encoding="application/x-tex">\mathcal{L}_{\text{edge}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.969438em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord"><span class="mord mathcal">L</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">edge</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span>): 正则化项，防止出现过长边和“飞点”，使网格更美观。</li>
+</ul>
+</li>
+<li><strong>深度损失</strong> (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi mathvariant="script">L</mi><mtext>depth</mtext></msub></mrow><annotation encoding="application/x-tex">\mathcal{L}_{\text{depth}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.969438em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord"><span class="mord mathcal">L</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">depth</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span>)：BerHu 损失，度量 MVSNet 预测深度与渲染深度真值的差异，平衡 L1 与 L2 损失</li>
+<li><strong>对比深度损失</strong> (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi mathvariant="script">L</mi><mtext>contrastive</mtext></msub></mrow><annotation encoding="application/x-tex">\mathcal{L}_{\text{contrastive}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord"><span class="mord mathcal">L</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31750199999999995em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">contrastive</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>)：使用BerHu损失最小化<strong>网格渲染深度</strong>与<strong>MVS预测深度</strong>之间的差异，这是驱动网格向准确几何变形关键。</li>
+<li><strong>体素占用损失</strong> (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi mathvariant="script">L</mi><mtext>voxel</mtext></msub></mrow><annotation encoding="application/x-tex">\mathcal{L}_{\text{voxel}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord"><span class="mord mathcal">L</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">voxel</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>)：交叉熵损失，监督体素占用概率与真值的差异，约束粗模型拓扑准确性，</li>
+</ol>
+<h2 id="8-网络在哪些数据集上测试了">8. 网络在哪些数据集上测试了</h2>
+<p>测试数据集为 ShapeNet 子集（源自 3DR2N2 的数据集划分）：</p>
+<ul>
+<li>数据规模：50K 3D CAD 模型，涵盖 13 个语义类别（沙发、橱柜、椅子、枪支、汽车等）；</li>
+<li>数据形式：每个模型从 24 个随机相机视角渲染彩色图像（透明背景），同步提供相机内参、外参，测试时使用渲染的深度图作为真值；</li>
+<li>评估指标：F1-score（阈值τ=10−4m2和2τ）、Chamfer 距离（越小越好）；</li>
+<li>测试设置：按 Mesh R-CNN 的训练 / 测试 / 验证划分，评估不同视角数量、初始形状、特征提取方式对性能的影响。</li>
+</ul>
+<h2 id="9-网络在哪些数据集上训练了">9. 网络在哪些数据集上训练了</h2>
+<p>训练数据集与测试数据集一致，即 ShapeNet 子集：</p>
+<ul>
+<li>训练数据：79 个训练扫描对应的 3D 模型及 24 视角渲染图像、深度真值；</li>
+<li>训练流程：先独立训练 MVSNet 深度预测模块 30 个 epoch，冻结其权重后，联合训练整个 Mesh 生成网络 40 个 epoch；</li>
+<li>数据增强：无额外数据增强，依赖多视角融合与多损失约束提升泛化性。</li>
+</ul>
+<h2 id="10-推理和部署在数据输入输出有什么变化">10. 推理和部署在数据输入输出有什么变化</h2>
+<ul>
+<li><strong>训练阶段输入</strong>：多视角（如3视图）的RGB图像 + 对应的相机内外参数。</li>
+<li><strong>训练阶段真值</strong>：物体的3D网格模型（用于计算网格损失）、渲染的深度图（用于计算深度损失）。</li>
+<li><strong>推理/部署阶段输入</strong>：多视角RGB图像 + 对应的相机参数。</li>
+<li><strong>推理/部署阶段输出</strong>：预测的物体三角形网格 ( <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi><mo>=</mo><mo stretchy="false">(</mo><mi>V</mi><mo separator="true">,</mo><mi>F</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">T=(V, F)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.22222em;">V</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mclose">)</span></span></span></span> )。</li>
+</ul>
+<h2 id="十-消融实验测试的组件">十、 消融实验测试的组件</h2>
+<p>论文进行了详尽的消融实验以验证各组件贡献：</p>
+<ol>
+<li><strong>初始形状的影响</strong>：对比了使用单位球体、由预测深度图反投影得到的点云生成的体素、以及本文提出的CNN预测+概率合并的体素作为初始形状的效果。本文方法最优。</li>
+<li><strong>方法组件的增量贡献</strong>：逐步添加“多视角体素预测”、“对比深度特征输入”、“注意力池化”、“对比深度损失”等组件，均带来精度提升。</li>
+<li><strong>对比深度特征的形式</strong>：比较了“输入拼接”、“输入差值”、“特征拼接”、“特征差值”、“仅用预测深度特征”、“仅用渲染深度特征”等多种特征构造方式。“输入拼接”（即本文方法）效果最好。</li>
+<li><strong>输入视角数量的影响</strong>：测试了训练和测试时使用不同数量视图（2,3,4,5,6）的效果。增加训练视图数能持续提升性能；测试时，视图数少于训练时会显著下降，多于训练时则提升不明显。</li>
+<li><strong>深度预测分辨率</strong>：测试了不同深度假设平面数量（即深度图分辨率）的影响，发现在一定范围内对最终网格精度影响不大。</li>
+<li><strong>泛化能力</strong>：测试了在训练集中剔除某个类别后，模型在该类别上的重建性能，证明了较好的跨类别泛化能力。</li>
+</ol>
+<h2 id="三-ppt展示">三、PPT展示</h2>
+<ul>
+<li>输入输出<br>
+训练阶段输入：多视角的RGB图像 + 对应的相机内外参数。<br>
+训练阶段真值：物体的3DMesh、渲染的深度图。<br>
+部署阶段输入：多视角RGB图像 + 对应的相机参数。<br>
+部署阶段输出：预测的物体三角形网格Mesh。</li>
+<li>系统分为两大模块，以由粗到精的方式工作：
+<ol>
+<li>多视角体素网格预测模块：<br>
+对每个输入的单视角RGB图像，使用一个共享权重的网络预测一个体素占用网格48<em>48</em>48<br>
+利用这些已知的相机位姿将所有单视角预测的体素网格变换到同一坐标系后，采用一种概率占用法进行融合，得到最终的多视角粗糙体素网格。<br>
+通过Cubify操作将融合后的体素网格转换为一个初始的Mesh。<br>
+另外通过一个MVSNet预测每个视角的真实深度图</li>
+<li>网格细化模块：<br>
+使用一个基于图卷积网络(GCN)的细化网络，对初始网格的顶点位置进行多次迭代变形。但是无法创建新顶点或改变连接方式，只能改距离。<br>
+GCN的顶点特征由两部分构成：顶点3D坐标 + 多视角特征。最后的mesh分辨率不超过48<em>48</em>48<br>
+多视角特征来源于对比深度特征（Mesh投影深度图+真实深度图）与RGB感知特征的结合。<br>
+使用基于注意力的多视角特征池化方法来融合来自不同视角的特征。</li>
+</ol>
+</li>
+<li>训练/测试数据集为 ShapeNet 子集</li>
+<li>Loss包含：Mesh的顶点倒角距离，顶点法向，MVSNet深度损失，体素占用损失</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://outbreak-sen.github.io">outbreak_sen</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://outbreak-sen.github.io/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_MeshMVS/">http://outbreak-sen.github.io/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_MeshMVS/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://outbreak-sen.github.io" target="_blank">This is a 部落格 of outbreak_sen</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/./img/head.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_MVSAnywhere/" title=""><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2"></div></div><div class="info-2"><div class="info-item-1">MVSAnywhere (Multi-View Stereo Anywhere) 基本信息    项目 内容     论文标题 MVSAnywhere (Multi-View Stereo Anywhere)   作者 Sergio Izquierdo, Mohamed Sayed, Michael Firman, Guillermo  Garcia-Hernando, Daniyar Turmukhambetov, Javier Civera, Oisin Mac Aodha, Gabriel Brostow, Jamie Watson   作者单位 Niantic   时间 2025   发表会议/期刊 TiPami    方法概览    特点 文章性质     输入 标定之后的多视角图像   输出 场景的点云图   所属领域 MVS    摘要精简 MVSA 提出了一种零样本、通用型多视角立体视觉方法，旨在解决传统MVS方法在跨域、跨场景（室内/室外）泛化能力差的问题。它结合了单目与多视角线索，采用自适应代价体解决尺度相关问题，结合 Transformer...</div></div></div></a><a class="pagination-related" href="/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_IterMVSNet/" title=""><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2"></div></div><div class="info-2"><div class="info-item-1">IterMVS 基本信息    项目 内容     论文标题 IterMVS: Iterative Probability Estimation for Efficient Multi-View Stereo   作者 Fangjinhua Wang(又是你), Silvano Galliani, Christoph Vogel, Marc Pollefeys   作者单位 ETH Zurich   时间 2021   发表会议/期刊 CVPR    方法概览    特点 文章性质     输入 标定之后的多视角图像   输出 场景的点云图，每个视角的法线和深度图   所属领域 MVS    摘要精简 本文提出 IterMVS，一种高效的高分辨率多视图立体（MVS）数据驱动方法。核心是基于 GRU  的概率估计器，其隐藏态编码像素级深度概率分布，通过多轮迭代注入多尺度匹配信息，逐步优化分布并推断深度与置信度。该方法创新结合分类与回归策略，兼顾多模态分布鲁棒性与亚像素精度。在 DTU、Tanks&amp;Temples 和 ETH3D 数据集上验证表明，IterMVS...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/./img/head.png" onerror="this.onerror=null;this.src='/./img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">outbreak_sen</div><div class="author-info-description">an interesting man</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">76</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">25</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/outbreak-sen" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://blog.csdn.net/outbreakrmb" target="_blank" title="CSDN"><i class="fa fa-book-open"></i></a><a class="social-icon" href="/1023786231" target="_blank" title="QQ"><i class="fab fa-qq"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">MeshMVS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="toc-text">基本信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E6%A6%82%E8%A7%88"><span class="toc-text">方法概览</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80-%E6%91%98%E8%A6%81%E7%B2%BE%E7%AE%80"><span class="toc-text">一、 摘要精简</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C-%E5%BC%95%E8%A8%80%E4%B8%8E%E5%87%BA%E5%8F%91%E7%82%B9"><span class="toc-text">二、 引言与出发点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B-%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84%E6%9E%84%E6%88%90"><span class="toc-text">四、 网络架构构成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E6%96%B0%E7%82%B9"><span class="toc-text">创新点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E5%88%9B%E6%96%B0%E7%82%B9"><span class="toc-text">核心创新点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84%E6%9E%84%E6%88%90"><span class="toc-text">网络架构构成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94-%E7%89%B9%E5%BE%81%E6%8F%90%E5%8F%96%E6%96%B9%E6%B3%95"><span class="toc-text">五、 特征提取方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD-mesh%E7%94%9F%E6%88%90%E6%96%B9%E5%BC%8F"><span class="toc-text">六、 Mesh生成方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83-loss%E5%87%BD%E6%95%B0%E8%AE%BE%E8%AE%A1"><span class="toc-text">七、 Loss函数设计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-%E7%BD%91%E7%BB%9C%E5%9C%A8%E5%93%AA%E4%BA%9B%E6%95%B0%E6%8D%AE%E9%9B%86%E4%B8%8A%E6%B5%8B%E8%AF%95%E4%BA%86"><span class="toc-text">8. 网络在哪些数据集上测试了</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-%E7%BD%91%E7%BB%9C%E5%9C%A8%E5%93%AA%E4%BA%9B%E6%95%B0%E6%8D%AE%E9%9B%86%E4%B8%8A%E8%AE%AD%E7%BB%83%E4%BA%86"><span class="toc-text">9. 网络在哪些数据集上训练了</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-%E6%8E%A8%E7%90%86%E5%92%8C%E9%83%A8%E7%BD%B2%E5%9C%A8%E6%95%B0%E6%8D%AE%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E6%9C%89%E4%BB%80%E4%B9%88%E5%8F%98%E5%8C%96"><span class="toc-text">10. 推理和部署在数据输入输出有什么变化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%81-%E6%B6%88%E8%9E%8D%E5%AE%9E%E9%AA%8C%E6%B5%8B%E8%AF%95%E7%9A%84%E7%BB%84%E4%BB%B6"><span class="toc-text">十、 消融实验测试的组件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89-ppt%E5%B1%95%E7%A4%BA"><span class="toc-text">三、PPT展示</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/03/#%20%E4%B8%89%E7%BB%B4%E8%A7%86%E8%A7%89%E5%87%A0%E4%BD%95%E5%A4%A7%E6%95%B4%E7%90%86/" title="无标题">无标题</a><time datetime="2025-12-03T05:46:01.418Z" title="发表于 2025-12-03 13:46:01">2025-12-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/03/Label%E8%BD%AF%E4%BB%B6%E8%B0%83%E7%A0%94%E5%92%8C%E4%BD%BF%E7%94%A8/" title="无标题">无标题</a><time datetime="2025-12-03T05:46:01.417Z" title="发表于 2025-12-03 13:46:01">2025-12-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/03/MVS%E6%A1%86%E6%9E%B6%E5%BC%80%E6%BA%90%E6%95%B4%E7%90%86/" title="无标题">无标题</a><time datetime="2025-12-03T05:46:01.417Z" title="发表于 2025-12-03 13:46:01">2025-12-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/03/GAN%E7%AC%94%E8%AE%B0/" title="无标题">无标题</a><time datetime="2025-12-03T05:46:01.416Z" title="发表于 2025-12-03 13:46:01">2025-12-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/03/%E6%97%A0%E5%9B%BE%E5%BD%A2%E5%AE%89%E8%A3%85matalb%E7%AC%94%E8%AE%B0/" title="无标题">无标题</a><time datetime="2025-12-03T05:46:01.416Z" title="发表于 2025-12-03 13:46:01">2025-12-03</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By outbreak_sen</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><div class="js-pjax"></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
