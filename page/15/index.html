@@ -1,0 +1,250 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>This is a 部落格 of outbreak_sen - [object Object]</title><meta name="author" content="outbreak_sen"><meta name="copyright" content="outbreak_sen"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="an interesting man">
+<meta property="og:type" content="website">
+<meta property="og:title" content="This is a 部落格 of outbreak_sen">
+<meta property="og:url" content="http://outbreak-sen.github.io/page/15/index.html">
+<meta property="og:site_name" content="This is a 部落格 of outbreak_sen">
+<meta property="og:description" content="an interesting man">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://outbreak-sen.github.io/img/head.png">
+<meta property="article:author" content="outbreak_sen">
+<meta property="article:tag" content="static scale model, deep learning, vlog, radio control model, music">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://outbreak-sen.github.io/img/head.png"><link rel="shortcut icon" href="/img/h_beautygirl.png"><link rel="canonical" href="http://outbreak-sen.github.io/page/15/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'This is a 部落格 of outbreak_sen',
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  isShuoshuo: false
+}</script><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="This is a 部落格 of outbreak_sen" type="application/atom+xml">
+<link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head><body><div id="web_bg" style="background-image: url(/img/v_beautygirl0.jpeg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/./img/head.png" onerror="onerror=null;src='./img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">153</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">25</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw fa fa-camera-retro"></i><span> 树洞</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 作品与鉴赏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url(/img/h_beautygirl.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/h_beautygirl.png" alt="Logo"><span class="site-name">This is a 部落格 of outbreak_sen</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw fa fa-camera-retro"></i><span> 树洞</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 作品与鉴赏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="site-info"><h1 id="site-title">This is a 部落格 of outbreak_sen</h1><div id="site-subtitle"><span id="subtitle"></span></div><div id="site_social_icons"><a class="social-icon" href="https://github.com/outbreak-sen" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://blog.csdn.net/outbreakrmb" target="_blank" title="CSDN"><i class="fa fa-book-open"></i></a><a class="social-icon" href="/1023786231" target="_blank" title="QQ"><i class="fab fa-qq"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts nc" id="recent-posts"><div class="recent-post-items"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2025/02/13/FPV-ESC%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="FPV ESC学习笔记">FPV ESC学习笔记</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2025-02-13T02:17:58.000Z" title="发表于 2025-02-13 10:17:58">2025-02-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F/">嵌入式</a></span></div><div class="content">...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2025/02/11/LLVM-tablegen/" title="LLVM tablegen">LLVM tablegen</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2025-02-11T02:19:57.000Z" title="发表于 2025-02-11 10:19:57">2025-02-11</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%BC%96%E8%AF%91/">编译</a></span></div><div class="content">LLVM和LLVM tablegen学习笔记 LLVM介绍 LLVM 是一个跨平台（可在 Linux、Windows 和 Mac 上使用）C/C++ 编译器工具集，像 GCC一样。 LLVM 可以编译用  C、C++ 和 Objective-C 编写的代码。  LLVM 通过 libc++ 和 libc++ ABI 项目支持 C++11、C++14 和 C++17。 LLVM 还部分支持最新的 C++20 和 C++2b 标准。LLVM之所以优秀，在于以下几点：  LLVM的中间表达（IR）是可以阅读的文本形式的，其他很多编译器却只有内存中的数据结构，使得学习调试难度大增。 LLVM 工具集提供的 Clang 可以比 GCC 更快地编译 C 和 C++ 代码。与  GCC 相比，LLVM 调试器 LLDB...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2025/02/11/%E5%A4%A7%E6%81%92%E7%9B%B8%E6%9C%BA%E7%A1%AC%E8%A7%A6%E5%8F%91/" title="大恒相机硬触发">大恒相机硬触发</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2025-02-11T01:51:43.000Z" title="发表于 2025-02-11 09:51:43">2025-02-11</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%9B%B8%E6%9C%BA%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91/">相机驱动开发</a></span></div><div class="content">...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2025/02/11/%E6%98%93%E7%94%A8%E6%80%A7mint%E7%AE%97%E5%AD%90%E6%B5%8B%E8%AF%95%E6%97%A5%E8%AE%B0/" title="mindspore.mint接口测试任务">mindspore.mint接口测试任务</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2025-02-11T01:51:43.000Z" title="发表于 2025-02-11 09:51:43">2025-02-11</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a></span></div><div class="content">mindspore.mint接口测试任务 任务 任务背景 mindspore.mint提供了大量的functional、nn、优化器接口，API用法及功能等与业界主流用法一致，方便用户参考使用。 mint接口当前是实验性接口，在图编译模式为O0和PyNative模式下性能比ops更优。当前暂不支持图下沉模式及CPU、GPU后端，后续会逐步完善。 mindspore.mint.div逐元素计算 input 除以 other 的商。 mindspore.mint.divide mindspore.mint.erf mindspore.mint.erfc mindspore.mint.erfinv 需求描述  对应Pytorch 的相应接口进行测试： a) 测试random输入不同dtype，对比两个框架的支持度 b) 测试固定dtype，random输入值，对比两个框架输出是否相等（误差范围为小于1e-3） c) 测试固定shape，固定输入值，不同输入参数（string\bool等类型），两个框架的支持度 d)...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2025/02/10/Mindspore%E5%AE%9E%E4%B9%A0-AKG%20SIG%E7%AE%97%E5%AD%90addlayernorm%E7%BC%96%E8%BE%91%E5%92%8C%E5%90%88%E5%B9%B6/" title="Mindspore实习-AKG SIG算子addlayernorm编辑和合并">Mindspore实习-AKG SIG算子addlayernorm编辑和合并</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2025-02-10T04:53:11.000Z" title="发表于 2025-02-10 12:53:11">2025-02-10</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a></span></div><div class="content">Mindspore实习-AKG SIG算子addlayernorm编辑和合并 什么是算子 计算图和算子在计算本质上是一致的。算子是打包后的计算图，计算图是拆包后的算子 比如sigmod复合算子可以看作一个计算图，由基础算子Exp，Add，Reciprocal等基础算子组成，用小规模的“基本算子”集合就可以表达任意现有计算图。 计算图可以完全由基础算子组成，但是还是得定义复合算子，比如sigmod这种，因为对于基本算子计算图来说，相邻算子之间只能通过全局内存（或显存）进行数据传递。而对于复合算子来说，相邻的基本计算之间则可以通过局部内存或者寄存器进行数据传递。除了性能之外，在一些场景下，通过算子融合也能有效减少对全局内存的的实际占用。 mindspore的算子融合方案是什么 在TVM、XLA等自动算子编译技术出现之前，AI框架主流采用手工融合的方式解决如上问题。主要思路是：   手工融合: 1）识别常见的热点算子组合子图，比如： Add(Mul(x, y))。然后针对该算子子图手工实现对应融合算子；...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2025/02/09/colmap%E4%BB%8B%E7%BB%8D%E5%92%8C%E4%BD%BF%E7%94%A8/" title="colmap介绍和使用">colmap介绍和使用</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2025-02-09T08:12:29.000Z" title="发表于 2025-02-09 16:12:29">2025-02-09</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E4%BC%A0%E7%BB%9F%E5%9B%BE%E5%BD%A2%E5%AD%A6/">传统图形学</a></span></div><div class="content">colmap官方教程的笔记 需要CUDA才能稠密重建，否则只能稀疏重建 Colmap论文——《Structure-from-Motion Revisited》论文阅读笔记 Tutorial 传统上，基于图像的3D重建首先使用“运动结构Structure-from-Motion”来恢复场景的稀疏表示和输入图像的相机姿态。然后，此输出用作“多视图立体Multi-View Stereo”的输入，以恢复场景的密集表示。 12345678/path/to/project/...+── images│   +── image1.jpg│   +── image2.jpg│   +── ...│   +── imageN.jpg+── database.db+── project.ini 重建的过程   Structure-from-Motion  是将3D结构从投影重建为一系列图像的过程。输入是从不同视点拍摄的同一对象的一组重叠图像。输出是物体的三维重建，以及所有图像的重建的内在和外在相机参数。 通常，“运动结构”系统将此过程分为三个阶段： 特征检测与提取 特征匹配和几何验证...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2025/02/09/HuggingFace%E7%9A%84%E4%BD%BF%E7%94%A8/" title="HuggingFace的模型和数据集dataset">HuggingFace的模型和数据集dataset</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2025-02-09T08:10:15.000Z" title="发表于 2025-02-09 16:10:15">2025-02-09</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a></span></div><div class="content">HuggingFace的模型和数据集dataset 微调数据集：wikitext-103-v1 模型：BigBirdPegasusForCausalLM 如何下载模型和数据集并调用 这里的模型和数据集是需要在huggingface上找到专门的名称的，然后有多种下载方法，默认会下载到.cache/huggingface/hub/,但是后面.cache可能会被清空。加载的时候，直接传入地址即可   通过 huggingface model hub 网页的下载按钮进行下载。模型项目页的 Files 栏中可以获取文件的下载链接。无需登录直接点击下载   通过 huggingface 的 huggingface_hub 工具进行下载 123456789pip install huggingface_hubhuggingface-cli download internlm/internlm2-chat-7b# 但是直接这么下载还是网络超时，所以使用镜像python -m pip install huggingface_hubexport...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2025/02/09/GAN%E7%94%9F%E6%88%90%E5%AF%B9%E6%8A%97%E6%A8%A1%E5%9E%8B%E5%85%A5%E9%97%A8/" title="GAN生成对抗模型入门">GAN生成对抗模型入门</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2025-02-09T08:10:15.000Z" title="发表于 2025-02-09 16:10:15">2025-02-09</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a></span></div><div class="content">GAN笔记 简介 GAN的思想来自零和博弈理论，由两个部分组成，一个是生成器Generator，随机接收一个随机噪声来生成图像。一个是鉴别器Discriminator，判断一张图像是不是“真实的”，输入是一张图像，输出是该图像为真实图像的概率，介于0-1之间，概率值越小认为生成图像不真实的可能性越大。生成器的目标是通过生成接近真实的图像来欺骗判别器，而判别器的目标是尽量辨别出生成器生成的假图像和真实图像的区别。 自编码器（Auto-Encoder)以及变分自编码器（Variational  Auto-Encoder)都是典型的生成器。输入通过Encoder编码成code，然后code通过Decoder重建原图，其中自编码器中的Decoder就是生成器，code可随机取值，产生不同的输出。 自编码器是一种能够通过无监督学习，对输入数据进行特征提取，学习到数据的抽象表示，称为编码过程，编码结果往往维度远小于输入数据，自编码器可以用于降维和特征提取， 变分自编码器（Variational auto-encoder，VAE）是一类重要的生成模型（generative...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2025/02/09/%E6%88%91%E7%9A%84ubuntu%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95/" title="我的ubuntu环境配置方法">我的ubuntu环境配置方法</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2025-02-09T07:46:28.000Z" title="发表于 2025-02-09 15:46:28">2025-02-09</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83/">配置环境</a></span></div><div class="content">Environment Installition 20241101 [TOC] Python3.8 123456789101112131415161718192021sudo apt-get updatesudo apt-get install software-properties-commonsudo add-apt-repository ppa:deadsnakes/ppasudo apt-get updatesudo apt-get install python3.8 ls /usr/bin/python* #查看已安装版本sudo rm /usr/bin/python3   # 删除原来的软连接~~sudo ln -s /usr/bin/python3.8 /usr/bin/python3~~ #不要添加python3的软连接，终端打不开，需要进tty终端修复sudo ln -s /usr/bin/python3.8 /usr/bin/python #添加python新的软连接python3 --version #查看版本sudo apt-get install...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2025/02/09/pyQT%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/" title="pyQT的安装和使用">pyQT的安装和使用</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2025-02-09T07:21:26.000Z" title="发表于 2025-02-09 15:21:26">2025-02-09</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83/">配置环境</a></span></div><div class="content">PyQT的安装和使用 pyQT的安装不需要在官网下载QT安装包，只需要创建conda环境然后pip安装，安装pyQT5-tools之后会安装QT designer，然后就可以可视化设计一个UI，然后通过Pyuic工具就可以转化为一个py文件，这个py文件就是整个工程，py文件中有一个class包含了整个UI设计，然后只需要编辑py文件中这个class的功能即可，编辑子函数。 (这个文档非常好)[https://www.w3ccoo.com/pyqt5/index.html] VScode+pyQT installation   安装PyQt 12pip install PyQt5pip install PyQt5-tools vscode安装PYQT Integration便于使用pyqt 12345678# Pyqt-integration &gt; Qtdesigner: Path\venv_QT\Lib\site-packages\qt5_applications\Qt\bin\designer# Pyqt-integration &gt; Pyuic: Cmd...</div></div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/14/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/#content-inner">14</a><span class="page-number current">15</span><a class="page-number" href="/page/16/#content-inner">16</a><a class="extend next" rel="next" href="/page/16/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/./img/head.png" onerror="this.onerror=null;this.src='/./img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">outbreak_sen</div><div class="author-info-description">an interesting man</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">153</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">25</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/outbreak-sen" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://blog.csdn.net/outbreakrmb" target="_blank" title="CSDN"><i class="fa fa-book-open"></i></a><a class="social-icon" href="/1023786231" target="_blank" title="QQ"><i class="fab fa-qq"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_MoGe%202/" title="论文阅读_MoGe 2">论文阅读_MoGe 2</a><time datetime="2025-12-03T06:04:18.000Z" title="发表于 2025-12-03 14:04:18">2025-12-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_%E5%8F%98%E5%88%86%E8%87%AA%E7%BC%96%E7%A0%81%E5%99%A8VAE/" title="论文阅读_变分自编码器VAE">论文阅读_变分自编码器VAE</a><time datetime="2025-12-03T06:01:57.000Z" title="发表于 2025-12-03 14:01:57">2025-12-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/03/Multi%20View%20Stereo/" title="Multi View Stereo">Multi View Stereo</a><time datetime="2025-12-03T05:57:28.000Z" title="发表于 2025-12-03 13:57:28">2025-12-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/03/SFM/" title="SFM">SFM</a><time datetime="2025-12-03T05:57:28.000Z" title="发表于 2025-12-03 13:57:28">2025-12-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/03/VSCode%20Python%20Debug%20%E6%95%99%E7%A8%8B/" title="VSCode Python Debug 教程">VSCode Python Debug 教程</a><time datetime="2025-12-03T05:57:28.000Z" title="发表于 2025-12-03 13:57:28">2025-12-03</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            <a class="card-more-btn" href="/categories/" title="查看更多">
+      <i class="fas fa-angle-right"></i></a>
+          </div>
+          <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/swift/"><span class="card-category-list-name">swift</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E4%BC%A0%E7%BB%9F%E5%9B%BE%E5%BD%A2%E5%AD%A6/"><span class="card-category-list-name">传统图形学</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F/"><span class="card-category-list-name">嵌入式</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"><span class="card-category-list-name">深度学习</span><span class="card-category-list-count">6</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E7%9B%B8%E6%9C%BA%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91/"><span class="card-category-list-name">相机驱动开发</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E7%BC%96%E8%AF%91/"><span class="card-category-list-name">编译</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/"><span class="card-category-list-name">论文阅读</span><span class="card-category-list-count">132</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E8%BF%99%E4%B8%AA%E4%B8%80%E4%B8%AA%E6%B5%8B%E8%AF%951/"><span class="card-category-list-name">这个一个测试1</span><span class="card-category-list-count">1</span></a></li>
+          </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/python/" style="font-size: 1.1em; color: #999">python</a> <a href="/tags/%E8%BF%99%E4%B9%9F%E6%98%AF%E4%B8%80%E4%B8%AA%E6%B5%8B%E8%AF%95/" style="font-size: 1.1em; color: #999">这也是一个测试</a> <a href="/tags/siwft/" style="font-size: 1.1em; color: #999">siwft</a> <a href="/tags/QT/" style="font-size: 1.2em; color: #999da3">QT</a> <a href="/tags/Muilt-View-Stereo/" style="font-size: 1.5em; color: #99a9bf">Muilt View Stereo</a> <a href="/tags/%E7%A1%AC%E8%A7%A6%E5%8F%91/" style="font-size: 1.1em; color: #999">硬触发</a> <a href="/tags/LLVM/" style="font-size: 1.1em; color: #999">LLVM</a> <a href="/tags/mindNLP/" style="font-size: 1.3em; color: #99a1ac">mindNLP</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E7%9B%B8%E6%9C%BA/" style="font-size: 1.1em; color: #999">深度相机</a> <a href="/tags/%E5%A4%A7%E6%81%92/" style="font-size: 1.1em; color: #999">大恒</a> <a href="/tags/%E8%AF%81%E5%88%B8%E6%8A%95%E8%B5%84/" style="font-size: 1.1em; color: #999">证券投资</a> <a href="/tags/nodejs/" style="font-size: 1.1em; color: #999">nodejs</a> <a href="/tags/Hexo/" style="font-size: 1.1em; color: #999">Hexo</a> <a href="/tags/mindspore%E5%AE%9E%E4%B9%A0/" style="font-size: 1.4em; color: #99a5b6">mindspore实习</a> <a href="/tags/%E7%AE%97%E5%AD%90/" style="font-size: 1.1em; color: #999">算子</a> <a href="/tags/colmap/" style="font-size: 1.1em; color: #999">colmap</a> <a href="/tags/%E5%AE%9E%E4%B9%A0/" style="font-size: 1.1em; color: #999">实习</a> <a href="/tags/Mindspore/" style="font-size: 1.1em; color: #999">Mindspore</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 1.1em; color: #999">深度学习</a> <a href="/tags/GAN%E7%94%9F%E6%88%90%E5%AF%B9%E6%8A%97%E6%A8%A1%E5%9E%8B/" style="font-size: 1.1em; color: #999">GAN生成对抗模型</a> <a href="/tags/%E7%9B%B8%E6%9C%BA%E9%A9%B1%E5%8A%A8/" style="font-size: 1.1em; color: #999">相机驱动</a> <a href="/tags/huggingface/" style="font-size: 1.2em; color: #999da3">huggingface</a> <a href="/tags/Hexo-butterfly/" style="font-size: 1.1em; color: #999">Hexo-butterfly</a> <a href="/tags/SFM/" style="font-size: 1.1em; color: #999">SFM</a> <a href="/tags/shell/" style="font-size: 1.1em; color: #999">shell</a></div></div><div class="card-widget card-archives">
+    <div class="item-headline">
+      <i class="fas fa-archive"></i>
+      <span>归档</span>
+      
+    </div>
+    <ul class="card-archive-list">
+  
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2025/12/">
+          <span class="card-archive-list-date">十二月 2025</span>
+          <span class="card-archive-list-count">119</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2025/08/">
+          <span class="card-archive-list-date">八月 2025</span>
+          <span class="card-archive-list-count">1</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2025/07/">
+          <span class="card-archive-list-date">七月 2025</span>
+          <span class="card-archive-list-count">4</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2025/06/">
+          <span class="card-archive-list-date">六月 2025</span>
+          <span class="card-archive-list-count">8</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2025/03/">
+          <span class="card-archive-list-date">三月 2025</span>
+          <span class="card-archive-list-count">4</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2025/02/">
+          <span class="card-archive-list-date">二月 2025</span>
+          <span class="card-archive-list-count">16</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2024/12/">
+          <span class="card-archive-list-date">十二月 2024</span>
+          <span class="card-archive-list-count">1</span>
+        </a>
+      </li>
+    </ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站信息</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">153</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总浏览量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2025-12-03T06:11:43.262Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By outbreak_sen</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><div class="js-pjax"><script>window.typedJSFn = {
+  init: str => {
+    window.typed = new Typed('#subtitle', Object.assign({
+      strings: str,
+      startDelay: 300,
+      typeSpeed: 150,
+      loop: true,
+      backSpeed: 50,
+    }, null))
+  },
+  run: subtitleType => {
+    if (true) {
+      if (typeof Typed === 'function') {
+        subtitleType()
+      } else {
+        btf.getScript('https://cdn.jsdelivr.net/npm/typed.js/dist/typed.umd.min.js').then(subtitleType)
+      }
+    } else {
+      subtitleType()
+    }
+  }
+}
+btf.addGlobalFn('pjaxSendOnce', () => { typed.destroy() }, 'typedDestroy')
+</script><script>function subtitleType () {
+  fetch('https://v1.hitokoto.cn')
+    .then(response => response.json())
+    .then(data => {
+      if (true) {
+        const from = '出自 ' + data.from
+        const sub = ["你在抱怨什么呢","为明天到来的事，说人生像是没有意义","没有选择会是唯一的路","这不是你自己的问题，人终归要好好去生活"]
+        sub.unshift(data.hitokoto, from)
+        typedJSFn.init(sub)
+      } else {
+        document.getElementById('subtitle').textContent = data.hitokoto
+      }
+    })
+}
+typedJSFn.run(subtitleType)
+</script></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

@@ -1,0 +1,380 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>论文阅读_DVPMVSNet | This is a 部落格 of outbreak_sen</title><meta name="author" content="outbreak_sen"><meta name="copyright" content="outbreak_sen"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="DVP-MVSNet 基本信息    项目 内容     论文标题 Synergize Depth-Edge and Visibility Prior for Multi-View Stereo   作者 Zhenlong Yuan, Jinguo Luo, Fei Shen, Zhaoxin Li, Cong Liu, Tianlu Mao*, Zhaoqi Wang   作者单位 中国科学院计">
+<meta property="og:type" content="article">
+<meta property="og:title" content="论文阅读_DVPMVSNet">
+<meta property="og:url" content="http://outbreak-sen.github.io/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_DVPMVSNet/index.html">
+<meta property="og:site_name" content="This is a 部落格 of outbreak_sen">
+<meta property="og:description" content="DVP-MVSNet 基本信息    项目 内容     论文标题 Synergize Depth-Edge and Visibility Prior for Multi-View Stereo   作者 Zhenlong Yuan, Jinguo Luo, Fei Shen, Zhaoxin Li, Cong Liu, Tianlu Mao*, Zhaoqi Wang   作者单位 中国科学院计">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://outbreak-sen.github.io/img/head.png">
+<meta property="article:published_time" content="2025-12-03T05:46:01.000Z">
+<meta property="article:modified_time" content="2025-12-03T06:11:20.418Z">
+<meta property="article:author" content="outbreak_sen">
+<meta property="article:tag" content="Muilt View Stereo">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://outbreak-sen.github.io/img/head.png"><link rel="shortcut icon" href="/img/h_beautygirl.png"><link rel="canonical" href="http://outbreak-sen.github.io/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_DVPMVSNet/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '论文阅读_DVPMVSNet',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  isShuoshuo: false
+}</script><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="This is a 部落格 of outbreak_sen" type="application/atom+xml">
+<link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head><body><div id="web_bg" style="background-image: url(/img/v_beautygirl0.jpeg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/./img/head.png" onerror="onerror=null;src='./img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">153</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">25</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw fa fa-camera-retro"></i><span> 树洞</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 作品与鉴赏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/h_beautygirl.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/h_beautygirl.png" alt="Logo"><span class="site-name">This is a 部落格 of outbreak_sen</span></a><a class="nav-page-title" href="/"><span class="site-name">论文阅读_DVPMVSNet</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw fa fa-camera-retro"></i><span> 树洞</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 作品与鉴赏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">论文阅读_DVPMVSNet</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-12-03T05:46:01.000Z" title="发表于 2025-12-03 13:46:01">2025-12-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-12-03T06:11:20.418Z" title="更新于 2025-12-03 14:11:20">2025-12-03</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/">论文阅读</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1>DVP-MVSNet</h1>
+<h2 id="基本信息">基本信息</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">项目</th>
+<th style="text-align:left">内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>论文标题</strong></td>
+<td style="text-align:left">Synergize Depth-Edge and Visibility Prior for Multi-View Stereo</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>作者</strong></td>
+<td style="text-align:left">Zhenlong Yuan, Jinguo Luo, Fei Shen, Zhaoxin Li, Cong Liu, Tianlu Mao*, Zhaoqi Wang</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>作者单位</strong></td>
+<td style="text-align:left">中国科学院计算技术研究所（Institute of Computing Technology, Chinese Academy of Sciences）</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>时间</strong></td>
+<td style="text-align:left">2025</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>发表会议/期刊</strong></td>
+<td style="text-align:left">AAAI</td>
+</tr>
+</tbody>
+</table>
+<h2 id="方法概览">方法概览</h2>
+<table>
+<thead>
+<tr>
+<th>特点</th>
+<th>文章性质</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>输入</strong></td>
+<td>标定之后的多视角图像</td>
+</tr>
+<tr>
+<td><strong>输出</strong></td>
+<td>场景的点云图，每个视角的法线和深度图</td>
+</tr>
+<tr>
+<td><strong>所属领域</strong></td>
+<td>MVS</td>
+</tr>
+</tbody>
+</table>
+<h1>DVP-MVS 论文笔记</h1>
+<h2 id="基本信息">基本信息</h2>
+<ul>
+<li><strong>方法名称</strong>：DVP-MVS</li>
+<li><strong>作者</strong>：Zhenlong Yuan, Jinguo Luo, Fei Shen, Zhaoxin Li, Cong Liu, Tianlu Mao, Zhaoqi Wang</li>
+<li><strong>第一单位</strong>：中国科学院计算技术研究所</li>
+<li><strong>年份</strong>：2024</li>
+<li><strong>发表会议/期刊</strong>：arXiv预印本</li>
+</ul>
+<hr>
+<h2 id="1-摘要精简">1. 摘要精简</h2>
+<p>基于补丁变形的多视图立体匹配（MVS）方法虽能通过可变形感知重建无纹理区域，但存在边缘跳过和可见性遮挡导致的变形不稳定问题，易引发估计偏差。为此，提出 DVP-MVS 方法，**创新融合深度 - 边缘对齐先验与跨视图先验，**实现鲁棒且感知可见性的补丁变形。具体而言，利用 Depth Anything V2 和 Roberts 算子分别初始化粗深度图和边缘图，通过侵蚀 -  膨胀策略对齐二者以生成细粒度同质边界；将视图选择权重重构为可见性图，经跨视图深度重投影恢复可见区域作为跨视图先验；引入聚合可见半球法线和极线局部投影深度差异，结合多视图几何一致性改进传播与细化过程。在 ETH3D 和 Tanks &amp; Temples 基准测试中，该方法取得了最先进（SOTA）性能，具备优异的鲁棒性和泛化能力。主要贡献包括：</p>
+<ul>
+<li>使用Depth Anything V2和Roberts算子分别初始化深度和边缘图，通过腐蚀-膨胀策略对齐生成细粒度同质边界</li>
+<li>重构视图选择权重为可见性图，通过跨视图深度重投影恢复可见区域</li>
+<li>引入聚合可见半球法线和基于极线的局部投影深度差异来改进传播和细化过程</li>
+</ul>
+<p>在ETH3D和Tanks &amp; Temples基准测试上达到SOTA性能，具有优秀的鲁棒性和泛化能力。</p>
+<hr>
+<h2 id="2-引言与动机">2. 引言与动机</h2>
+<p>MVS 作为计算机视觉核心任务，需通过多视角重叠图像实现场景 / 物体的密集几何表征，广泛应用于场景重建、图像去噪等领域。现有方法分为学习型和传统型：</p>
+<ul>
+<li>学习型 MVS 依赖大规模训练数据集，泛化能力较弱；</li>
+<li>传统型 MVS 基于 PatchMatch  算法，其中平面化方法受限于连通区域大小，平面化过程易偏差；补丁变形方法虽能扩展感受野以重建无纹理区域，但仅关注可靠像素搜索策略，忽略了深度 -  边缘对齐这一变形稳定性关键约束，导致阴影或遮挡引发的边缘跳过问题，破坏深度连续性并造成匹配失真；同时，视角变化带来的可见性差异与遮挡也会导致补丁变形不稳定。</li>
+</ul>
+<p>因此，本文旨在通过融合深度 - 边缘对齐先验、跨视图先验及多视图几何一致性，解决传统补丁变形方法的边缘跳过和可见性遮挡问题，提升 MVS 重建的准确性和鲁棒性。</p>
+<hr>
+<h2 id="3-创新点总结">3. 创新点总结</h2>
+<h3 id="3-1-深度-边缘对齐先验">3.1 深度-边缘对齐先验</h3>
+<ul>
+<li><strong>深度与边缘信息对齐</strong>：使用Depth Anything V2初始化深度图，Roberts算子提取边缘图，通过腐蚀-膨胀策略对齐生成细粒度同质边界，保障补丁在深度连续区域内稳定变形，避免边缘跳过。</li>
+<li><strong>区域级腐蚀-膨胀策略</strong>：
+<ul>
+<li>腐蚀阶段：当子区域平面相似度低且内点比率高时分割区域<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>R</mi><mi>k</mi></msub><mo>→</mo><mo stretchy="false">{</mo><msub><mi>R</mi><mi>i</mi></msub><mo separator="true">,</mo><msub><mi>R</mi><mi>j</mi></msub><mo stretchy="false">}</mo><mtext> </mtext><mo separator="true">,</mo><mtext>if sim</mtext><mo stretchy="false">(</mo><msub><mi>π</mi><mi>i</mi></msub><mo separator="true">,</mo><msub><mi>π</mi><mi>j</mi></msub><mo stretchy="false">)</mo><mo>≤</mo><mi>σ</mi><mtext> s.t. </mtext><mfrac><mrow><msub><mi>r</mi><mi>i</mi></msub><mo>+</mo><msub><mi>r</mi><mi>j</mi></msub></mrow><mrow><mn>2</mn><msub><mi>r</mi><mi>k</mi></msub></mrow></mfrac><mo>≥</mo><mi>γ</mi></mrow><annotation encoding="application/x-tex">R_k \rightarrow \{R_i,R_j\}\,,\text{if }\text{sim}(\pi_i,\pi_j) \leq \sigma\text{ s.t. }\frac{r_i+r_j}{2r_k} \geq \gamma
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.00773em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.036108em;vertical-align:-0.286108em;"></span><span class="mopen">{</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.00773em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:-0.00773em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mclose">}</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord text"><span class="mord">if </span></span><span class="mord text"><span class="mord">sim</span></span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">π</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">π</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.09633em;vertical-align:-0.8360000000000001em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">σ</span><span class="mord text"><span class="mord"> s.t. </span></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.26033em;"><span style="top:-2.3139999999999996em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.8360000000000001em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.05556em;">γ</span></span></span></span></span></p>
+</li>
+<li>膨胀阶段：当区域平面相似度高且可靠时合并区域<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><msub><mi>R</mi><mi>u</mi></msub><mo separator="true">,</mo><msub><mi>R</mi><mi>v</mi></msub><mo stretchy="false">}</mo><mo>→</mo><msub><mi>R</mi><mi>w</mi></msub><mo separator="true">,</mo><mtext> if sim</mtext><mo stretchy="false">(</mo><msub><mi>π</mi><mi>u</mi></msub><mo separator="true">,</mo><msub><mi>π</mi><mi>v</mi></msub><mo stretchy="false">)</mo><mo>≥</mo><mi>σ</mi><mtext> s.t. </mtext><msub><mi>r</mi><mi>u</mi></msub><mo separator="true">,</mo><msub><mi>r</mi><mi>v</mi></msub><mo>≥</mo><mi>κ</mi></mrow><annotation encoding="application/x-tex">\{R_u,R_v\} \rightarrow R_w,\text{ if }\text{sim}(\pi_u,\pi_v) \geq \sigma\text{ s.t. }r_u,r_v \geq \kappa
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.00773em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">u</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.00773em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03588em;">v</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">}</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.00773em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.02691em;">w</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord text"><span class="mord"> if </span></span><span class="mord text"><span class="mord">sim</span></span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">π</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">u</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">π</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03588em;">v</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8304100000000001em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">σ</span><span class="mord text"><span class="mord"> s.t. </span></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">u</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03588em;">v</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">κ</span></span></span></span></span></p>
+</li>
+</ul>
+</li>
+<li><strong>像素级过滤</strong>：确保像素属于其相邻区域的估计平面<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>∈</mo><mi mathvariant="script">E</mi><mo>→</mo><mi>p</mi><mo>∈</mo><msub><mi>R</mi><mi>p</mi></msub><mo separator="true">,</mo><mtext>if </mtext><mfrac><mrow><mi mathvariant="normal">∣</mi><msub><mi mathvariant="bold">n</mi><mi>k</mi></msub><mo>⋅</mo><mi>p</mi><mo>+</mo><msub><mi>d</mi><mi>k</mi></msub><mi mathvariant="normal">∣</mi></mrow><mrow><mi mathvariant="normal">∣</mi><msub><mi mathvariant="bold">n</mi><mi>k</mi></msub><mi mathvariant="normal">∣</mi></mrow></mfrac><mo>≤</mo><mi>δ</mi><mtext> s.t. </mtext><msub><mi>r</mi><mi>k</mi></msub><mo>≥</mo><mi>κ</mi></mrow><annotation encoding="application/x-tex">p \in \mathcal{E} \rightarrow p \in R_p,\text{if }\frac{|\mathbf{n}_k \cdot p+d_k|}{|\mathbf{n}_k|} \leq \delta\text{ s.t. }r_k \geq \kappa
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7335400000000001em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">p</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord"><span class="mord mathcal" style="margin-right:0.08944em;">E</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.7335400000000001em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">p</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.363em;vertical-align:-0.936em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.15139200000000003em;"><span style="top:-2.5500000000000003em;margin-left:-0.00773em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">p</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord text"><span class="mord">if </span></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.427em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">∣</span><span class="mord"><span class="mord"><span class="mord mathbf">n</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">∣</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">∣</span><span class="mord"><span class="mord"><span class="mord mathbf">n</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault">p</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathdefault">d</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">∣</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.936em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord mathdefault" style="margin-right:0.03785em;">δ</span><span class="mord text"><span class="mord"> s.t. </span></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">κ</span></span></span></span></span></p>
+</li>
+</ul>
+<h3 id="3-2-跨视图先验">3.2 跨视图先验</h3>
+<ul>
+<li><strong>可见性图恢复</strong>：将视图选择权重<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>w</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">w_{ij}(p)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.036108em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:-0.02691em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault">p</span><span class="mclose">)</span></span></span></span>重构为可见性图，通过跨视图深度重投影<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>e</mi><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">e(p)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">e</span><span class="mopen">(</span><span class="mord mathdefault">p</span><span class="mclose">)</span></span></span></span>进行后验证来恢复原始可见区域</li>
+<li><strong>可见性感知块变形</strong>：在深度-边缘先验引导的基础上，进一步根据可见性筛选锚点<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>S</mi><mrow><mi>i</mi><mi>j</mi></mrow><mrow><mo mathvariant="normal">′</mo><mo mathvariant="normal">′</mo></mrow></msubsup><mo>=</mo><mo stretchy="false">{</mo><msub><mi>s</mi><mi>i</mi></msub><mo>∈</mo><msup><mi>S</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mo>∣</mo><msub><mi>s</mi><mi>i</mi></msub><mo>∈</mo><msub><mi>R</mi><mi>p</mi></msub><mo separator="true">,</mo><msub><mi>w</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo><mo>&gt;</mo><mn>0</mn><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">S^{\prime\prime}_{ij}=\{s_i \in S^{\prime} \mid s_i \in R_p,w_{ij}(p)&gt;0\}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.185em;vertical-align:-0.383108em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.801892em;"><span style="top:-2.4530000000000003em;margin-left:-0.05764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span></span></span></span><span style="top:-3.1130000000000004em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span><span class="mord mtight">′</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.383108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord"><span class="mord mathdefault">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.051892em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.801892em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∣</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.6891em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.036108em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.15139200000000003em;"><span style="top:-2.5500000000000003em;margin-left:-0.00773em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">p</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:-0.02691em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault">p</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">0</span><span class="mclose">}</span></span></span></span></span></p>
+</li>
+</ul>
+<h3 id="3-3-几何驱动的传播和细化">3.3 几何驱动的传播和细化</h3>
+<ul>
+<li><strong>法线聚合</strong>：利用恢复的可见性图聚合多视图法线，约束法线在可见范围内</li>
+<li><strong>深度聚合</strong>：通过逆投影和多视图极线上固定长度采样的聚合来微调深度区间，确保映射像素在大多数可见源图像中经历显著位移</li>
+</ul>
+<hr>
+<h2 id="4-网络架构">4. 网络架构</h2>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20251130145656631.png" alt="image-20251130145656631"></p>
+<ul>
+<li>采用 Depth Anything V2（零样本泛化能力强的单目深度估计模型）与 Roberts 算子结合，同时获取全局深度信息和局部边缘信息，为同质边界生成奠定基础；</li>
+<li>设计区域级侵蚀 - 膨胀策略和像素级过滤，实现深度与边缘图的精准对齐，解决固定阈值边缘提取在不同深度区域的适应性问题；</li>
+<li>通过迭代更新补丁变形与可见性权重，形成闭环优化，进一步提升匹配代价计算的准确性。</li>
+</ul>
+<p>DVP-MVS基于传统的PatchMatch MVS框架，主要改进组件包括：</p>
+<ol>
+<li><strong>深度-边缘对齐先验模块</strong>：生成同质边界指导块变形</li>
+<li><strong>跨视图先验模块</strong>：恢复可见性图并实现可见性感知变形</li>
+<li><strong>几何驱动传播细化模块</strong>：利用多视图几何一致性改进假设生成</li>
+</ol>
+<p>整体流程采用迭代优化策略，通过多次迭代获得最终深度图。</p>
+<ol>
+<li>
+<p>先验生成：</p>
+<ul>
+<li>
+<p>深度 - 边缘对齐先验：用 Depth Anything V2 生成粗深度图，Roberts 算子提取粗边缘图并得到分散区域，经侵蚀 - 膨胀策略和像素过滤生成细粒度同质边界。</p>
+</li>
+<li>
+<p>跨视图先验：重构 ACMMP 的视图选择权重为初始可见性图，通过跨视图深度重投影后验证恢复无纹理区域可见性，得到最终可见性图。</p>
+</li>
+</ul>
+</li>
+<li>
+<p>可见性感知补丁变形：基于深度 - 边缘对齐先验筛选锚点集合，再结合跨视图先验过滤不可见锚点，更新补丁变形的锚点集合。</p>
+</li>
+<li>
+<p>几何驱动的传播与细化：传播阶段通过聚合可见半球法线约束法线范围；细化阶段通过极线局部投影深度差异生成自适应深度区间，约束深度搜索范围。</p>
+</li>
+<li>
+<p>迭代优化：经多轮传播与细化，计算最小匹配代价对应的假设，输出参考图像的深度图。</p>
+</li>
+</ol>
+<hr>
+<h2 id="5-特征提取">5. 特征提取</h2>
+<p>DVP-MVS 为传统非学习型方法，无专门的深度特征提取网络，特征提取聚焦于深度和边缘信息的获取与对齐：</p>
+<ul>
+<li>深度特征：采用 Depth Anything V2 模型处理输入图像，获取全局层面的单目深度信息，为同质区域划分提供深度连续性依据。</li>
+<li>边缘特征：通过 Roberts 算子对输入图像进行边缘检测，提取粗边缘信息，同时将非边缘区域连接为分散区域，捕捉局部结构边界。</li>
+<li>特征对齐：通过区域级侵蚀 - 膨胀策略（结合 RANSAC 平面化验证区域同质性）和像素级过滤，对齐深度图与边缘图，生成兼具深度连续性和边缘准确性的细粒度同质边界特征，用于指导补丁变形。</li>
+</ul>
+<hr>
+<h2 id="6-代价体构建">6. 代价体构建</h2>
+<p>采用基于块匹配的代价计算方式：</p>
+<ul>
+<li><strong>单应性映射</strong>：通过平面假设<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><msup><mi mathvariant="bold">n</mi><mi>T</mi></msup><mo separator="true">,</mo><mi>d</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\mathbf{n}^T,d)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0913309999999998em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord"><span class="mord mathbf">n</span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8413309999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.13889em;">T</span></span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">d</span><span class="mclose">)</span></span></span></span>计算投影矩阵<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>H</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub></mrow><annotation encoding="application/x-tex">H_{ij}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.969438em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.08125em;">H</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:-0.08125em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span></li>
+<li><strong>块投影</strong>：将参考图像中的固定大小块<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>B</mi><mi>p</mi></msub></mrow><annotation encoding="application/x-tex">B_p</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.969438em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.15139200000000003em;"><span style="top:-2.5500000000000003em;margin-left:-0.05017em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">p</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span>投影到源图像中的映射块<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>B</mi><mi>p</mi><mi>j</mi></msubsup></mrow><annotation encoding="application/x-tex">B^j_p</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.2077719999999998em;vertical-align:-0.383108em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.824664em;"><span style="top:-2.4530000000000003em;margin-left:-0.05017em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">p</span></span></span><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.383108em;"><span></span></span></span></span></span></span></span></span></span></li>
+<li><strong>NCC匹配代价</strong>：变形补丁匹配代价：结合固定补丁与子补丁的代价，公式为：<p class='katex-block katex-error' title='ParseError: KaTeX parse error: Can&#039;t use function &#039;$&#039; in math mode at position 119: …,B^j_p\right)}}$̲$其中 S 为锚点集合，Bs …'>m_{ij}\left(p,B_p\right)=1-\frac{cov\left(B_p,B^j_p\right)}{\sqrt{cov\left(B_p,B_p\right)cov\left(B^j_p,B^j_p\right)}}$$其中 S 为锚点集合，Bs 为锚点 s 为中心的子补丁，λ=0.25，∣S∣=8，补丁大小均为 11×11，采样间隔分别为 5（Bp）和 2（Bs）。
+</p>
+<p class='katex-block katex-error' title='ParseError: KaTeX parse error: Can&#039;t use function &#039;$&#039; in math mode at position 110: …{N-1}w_{ij}(p)}$̲$其中 wij′(p) 为恢复…'>m\left(p,B_p\right)=\frac{\sum_{j=1}^{N-1}w_{ij}(p)\cdot m_{ij}\left(p,B_p\right)}{\sum_{j=1}^{N-1}w_{ij}(p)}$$其中 wij′(p) 为恢复后的可见性权重，Sij′′ 为经深度 - 边缘先验和可见性先验筛选后的锚点集合。
+
+</p>
+</li>
+</ul>
+<h2 id="7-代价体正则化">7. 代价体正则化</h2>
+<p>代价体正则主要通过几何约束和先验过滤实现，核心目标是剔除不可靠代价，提升代价体的有效性：</p>
+<ul>
+<li><strong>深度 - 边缘先验过滤：通过同质边界约束补丁变形范围，确保计算匹配代价的补丁均位于深度连续区域，避免跨异质区域的无效代价。</strong></li>
+<li><strong>可见性先验过滤：利用恢复后的可见性图，过滤源图像中不可见区域对应的锚点，仅保留可见区域的补丁代价参与计算，减少遮挡带来的错误代价。</strong></li>
+</ul>
+<ul>
+<li><strong>传播阶段：通过聚合可见半球法线限制法线范围，仅选择满足法线约束的邻域最优假设，确保传播的代价具有几何一致性。</strong></li>
+<li><strong>细化阶段：基于极线的局部投影深度差异生成自适应深度区间，约束深度搜索范围，避免在不合理深度区间产生无效代价。</strong></li>
+</ul>
+<hr>
+<h2 id="8-深度图生成">8. 深度图生成</h2>
+<p>深度图通过 “假设生成 - 代价计算 - 迭代优化” 的流程生成：</p>
+<ol>
+<li>假设生成：传播阶段从八方向邻域像素中选择最低代价假设，且该假设需满足聚合可见半球法线约束；细化阶段在自适应深度区间内进行局部扰动，生成候选深度假设，同时受法线范围约束。</li>
+<li>代价计算：对每个候选假设，通过上述代价体构建方法计算单视图匹配代价和多视图聚合代价。</li>
+<li>迭代优化：经多轮传播与细化迭代，对每个像素选<strong>择多视图聚合代价最小的假设</strong>作为最终深度值，最终输出完整的深度图。</li>
+</ol>
+<hr>
+<h2 id="9-损失函数">9. 损失函数</h2>
+<p>作为传统非学习方法，DVP-MVS<strong>不需要训练损失函数</strong>。在优化过程中使用匹配代价作为选择标准：</p>
+<ul>
+<li><strong>NCC相似度</strong>：作为主要的匹配质量度量</li>
+<li><strong>几何一致性</strong>：通过法线和深度约束间接指导优化</li>
+<li><strong>可见性权重</strong>：在代价聚合中加权不同视图的贡献</li>
+</ul>
+<hr>
+<h2 id="10-测试数据集">10. 测试数据集</h2>
+<ul>
+<li><strong>ETH3D</strong>：高分辨率图像和多相机视频数据集，包含室内外场景</li>
+<li><strong>Tanks &amp; Temples (TNT)</strong>：大规模室外真实场景数据集，包含Intermediate（8场景）和Advanced（6场景）子集</li>
+<li><strong>评估指标</strong>：使用准确率、完整度和F1分数进行评估</li>
+</ul>
+<hr>
+<h2 id="11-消融实验">11. 消融实验</h2>
+<p>消融实验在ETH3D数据集上验证了各组件的有效性：</p>
+<h3 id="深度-边缘对齐先验">深度-边缘对齐先验</h3>
+<ul>
+<li><strong>w/o. Agn.</strong>：移除整个深度-边缘先验，F1分数下降最严重</li>
+<li><strong>w/o. Ero.</strong>：移除区域腐蚀，性能中等下降</li>
+<li><strong>w/o. Dil.</strong>：移除区域膨胀，性能中等下降</li>
+<li><strong>w/o. Fil.</strong>：移除像素级过滤，性能中等下降</li>
+</ul>
+<h3 id="跨视图先验">跨视图先验</h3>
+<ul>
+<li><strong>w/o. Cro.</strong>：移除整个跨视图先验，F1分数显著下降</li>
+<li><strong>w/o. Res.</strong>：移除可见性图恢复，性能轻微下降</li>
+<li><strong>w/o. Vis.</strong>：移除可见性感知块变形，性能中等下降</li>
+</ul>
+<h3 id="几何驱动的传播和细化">几何驱动的传播和细化</h3>
+<ul>
+<li><strong>w/o. Geo.</strong>：移除整个几何驱动模块，F1分数显著下降</li>
+<li><strong>w/o. Pro.</strong>：移除法线约束传播，性能轻微下降</li>
+<li><strong>w/o. Ref.</strong>：移除法线约束细化，性能中等下降</li>
+<li><strong>w/o. Dep.</strong>：移除深度约束，性能中等下降</li>
+</ul>
+<p>所有组件的完整组合取得了最佳性能，验证了各模块的有效性和互补性。</p>
+<hr>
+<h2 id="总结">总结</h2>
+<p>DVP-MVS通过深度-边缘对齐先验、跨视图先验和几何驱动优化的协同作用，显著提升了基于块变形的MVS方法在挑战性场景下的稳定性和准确性。该方法在保持传统方法良好泛化能力的同时，在多个基准测试上达到了领先性能，为传统MVS方法的进一步发展提供了新思路。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://outbreak-sen.github.io">outbreak_sen</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://outbreak-sen.github.io/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_DVPMVSNet/">http://outbreak-sen.github.io/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_DVPMVSNet/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://outbreak-sen.github.io" target="_blank">This is a 部落格 of outbreak_sen</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Muilt-View-Stereo/">Muilt View Stereo</a></div><div class="post-share"><div class="social-share" data-image="/./img/head.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_D2HC-MVSNet/" title="论文阅读_D2HC-MVSNet"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">论文阅读_D2HC-MVSNet</div></div><div class="info-2"><div class="info-item-1">D²HC-RMVSNet（Dense Hybrid Recurrent Multi-view Stereo Net with Dynamic Consistency Checking无聊） 基本信息    项目 内容     论文标题 Dense Hybrid Recurrent Multi-view Stereo Net with Dynamic Consistency Checking   作者 Jianfeng Yan, Zizhuang Wei, Hongwei Yi, Mingyu Ding, Runze Zhang, Yisong Chen, Guoping Wang, Yu-Wing Tai   作者单位 Peking University   时间 2020   发表会议/期刊 ECCV    方法概览    特点 文章性质     输入 多视角   输出 参考视角深度图   所属领域 MVS     1. 摘要精简 提出一种高效精准的密集混合循环多视图立体匹配网络 D²HC-RMVSNet，用于密集点云重建。核心包含两大模块：1）轻量级 ...</div></div></div></a><a class="pagination-related" href="/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_DiffMVSNet/" title="论文阅读_DiffMVSNet"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">论文阅读_DiffMVSNet</div></div><div class="info-2"><div class="info-item-1">DiffMVS 基本信息    项目 内容     论文标题 Lightweight and Accurate Multi-View Stereo with Confidence-Aware Diffusion Model   作者 Fangjinhua Wang*, Qingshan Xu*, Yew-Soon Ong, Marc Pollefeys   作者单位 ETH Zurich（瑞士苏黎世联邦理工学院）   时间 2025   发表会议/期刊 IEEE Transactions on Pattern Analysis and Machine Intelligence（TPAMI）    方法概览    特点 文章性质     输入 标定之后的多视角图像   输出 场景的点云图，每个视角的法线和深度图   所属领域 MVS     1. 摘要精简 效果不怎么样，而且也没有利用diffusion的知识，因为MVS只是一个在深度上找匹配的任务 本文提出一种基于条件扩散模型的新型 MVS ...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2025/12/03/#%20%E4%B8%89%E7%BB%B4%E8%A7%86%E8%A7%89%E5%87%A0%E4%BD%95%E5%A4%A7%E6%95%B4%E7%90%86/" title=""><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-12-03</div><div class="info-item-2"></div></div><div class="info-2"><div class="info-item-1">三维视觉几何大整理 </div></div></div></a><a class="pagination-related" href="/2025/06/01/AlexNet/" title="AlexNet"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-06-01</div><div class="info-item-2">AlexNet</div></div><div class="info-2"><div class="info-item-1">李沐-AlexNet和卷积基础 ImageNet Classification With Deep Convolutional Neural Networks 俄罗斯人Alex Krizhevsky、Ilya Sutskever和Geoffrey Hinton 2012 在谷歌实习时候见到过这个人，汇报了这个工作。首个真正意义上的深度卷积神经网络 摘要 ImageNet是一个很大的数据集超过1500万张在超过22,000个类别，取其中一部分1000个类 在Imageet上top-1错误率37.5%，top-5错误率17.0%...</div></div></div></a><a class="pagination-related" href="/2025/12/03/Bark%E6%A8%A1%E5%9E%8B%E5%BE%AE%E8%B0%83/" title="Bark模型微调"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-12-03</div><div class="info-item-2">Bark模型微调</div></div><div class="info-2"><div class="info-item-1">Bark模型微调 TTS模型/文本到语音（TTS）生成模型 以下开放的、已支持训练的 TTS 模型：    模型名 是否支持训练 特点 架构类型     SpeechT5（HuggingFace） ✅ 支持 TTS、VC、ASR，多任务训练    Coqui-TTS（强烈推荐） ✅ 支持 Tacotron2/FastSpeech2/VITS    ESPnet（工业级框架） ✅ 支持多种语音模型，配置稍复杂    YourTTS, VITS, GlowTTS ✅ Coqui-TTS/ESPnet 中均支持    VITS   VAE + GAN + flow   Bark   GPT decoder-only   Tacotron2   encoder-decoder + attention    EnCodec 解码器 EnCodec 是由 Facebook FAIR 开源的 神经压缩音频模型，可以高效地将音频压缩成离散 token，再解压回高质量语音。 类似于 VQ-VAE（Vector Quantized Variational...</div></div></div></a><a class="pagination-related" href="/2025/12/03/CUDA%20%E7%8E%AF%E5%A2%83%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%9D%A5%E6%BA%90/" title="CUDA 环境的两种来源"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-12-03</div><div class="info-item-2">CUDA 环境的两种来源</div></div><div class="info-2"><div class="info-item-1">🧩 一、CUDA 环境的两种来源 CUDA（Compute Unified Device Architecture）分为两部分：    类型 功能 通常位置 谁提供     CUDA Toolkit（开发套件） 编译 CUDA 程序、包含 nvcc、头文件、静态库 /usr/local/cuda-* 你自己系统安装   CUDA Runtime（运行时库） 运行 PyTorch / TensorFlow / cuDNN 等程序 通常是 .so 动态库 PyTorch（或 conda 包）自动安装    👉 也就是说：  系统 CUDA Toolkit：给开发者编译用（比如写 CUDA C++、编译自定义算子）。 conda/pip CUDA Runtime：给 PyTorch 运行用，不依赖系统 CUDA。   ⚙️ 二、本地 CUDA 与 conda CUDA 的区别    对比项 系统 CUDA Toolkit conda CUDA runtime     用途 编译代码、开发 运行 PyTorch、推理训练   是否随 PyTorch 一起安装 否 是（通过...</div></div></div></a><a class="pagination-related" href="/2025/06/20/FoundationStereo/" title="FoundationStereo"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-06-20</div><div class="info-item-2">FoundationStereo</div></div><div class="info-2"><div class="info-item-1">FoundationStereo NVIDIA 2025 摘要（有本事别微调刷榜，我就是要做zero-shot） 通过每个域的微调，深度立体匹配在基准数据集上取得了巨大进步。然而，实现强大的零镜头泛化（其他计算机视觉任务中基础模型的标志）对于立体匹配来说仍然具有挑战性。为此，我们首先构建了一个大规模（1M 立体对）合成训练数据集，具有较大的多样性和高照片级真实感，然后是一个自动自我管理管道来去除模棱两可的样本。然后，我们设计了许多网络架构组件来增强可扩展性，包括一个侧调功能主干，它适应了视觉基础模型中丰富的单目先验，以减轻 sim-to-real 的差距，以及用于有效成本量过滤的远程上下文推理。 引言 近半个世纪前第一个立体匹配算法出现，我们已经走过了漫长的道路。，最近的立体算法可以取得惊人的结果，几乎使最具挑战性的基准测试饱和。然而，对目标域的数据集进行微调仍然是获得竞争结果的首选方法。鉴于通过scaling...</div></div></div></a><a class="pagination-related" href="/2025/12/03/Label%E8%BD%AF%E4%BB%B6%E8%B0%83%E7%A0%94%E5%92%8C%E4%BD%BF%E7%94%A8/" title="Label软件调研和使用"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-12-03</div><div class="info-item-2">Label软件调研和使用</div></div><div class="info-2"><div class="info-item-1">Label软件调研和使用 注释 2D 人体姿势的任务涉及在图像中识别和标记人体上的关键点。 首先进行一个人体数据集格式的调研 有几个人体数据集比如coco17点，coco-wholebody133点，Halpe136点，然后对应每种数据集格式有不同的model权重，和不同的config文件，即用什么估计，估计出来几个点，然后经过我的调研，17个点就足以描述项目了，腰部的旋转就是脖子和腰部的夹角角度嘛，所以我现在要找一个做coco数据集标注的软件，其实市面上大多数还是coco数据集的，然后只不过一开始我觉得骨架不一致给吓倒了。 PoseAnnotation（真难用） https://github.com/MiraPurkrabek/PoseAnnotator 该工具主要针对 COCO 样式的注释实现，因此需要其文件结构。每个数据集应有 3 个子文件夹 annotations、val2017 和可选的 train2017 但我们为我们的用例创建了一些自定义姿势格式。如果您使用 option --pose-format coco_with_thumbs...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/./img/head.png" onerror="this.onerror=null;this.src='/./img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">outbreak_sen</div><div class="author-info-description">an interesting man</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">153</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">25</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/outbreak-sen" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://blog.csdn.net/outbreakrmb" target="_blank" title="CSDN"><i class="fa fa-book-open"></i></a><a class="social-icon" href="/1023786231" target="_blank" title="QQ"><i class="fab fa-qq"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">DVP-MVSNet</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="toc-text">基本信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E6%A6%82%E8%A7%88"><span class="toc-text">方法概览</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">DVP-MVS 论文笔记</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="toc-text">基本信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%91%98%E8%A6%81%E7%B2%BE%E7%AE%80"><span class="toc-text">1. 摘要精简</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%BC%95%E8%A8%80%E4%B8%8E%E5%8A%A8%E6%9C%BA"><span class="toc-text">2. 引言与动机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%88%9B%E6%96%B0%E7%82%B9%E6%80%BB%E7%BB%93"><span class="toc-text">3. 创新点总结</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E6%B7%B1%E5%BA%A6-%E8%BE%B9%E7%BC%98%E5%AF%B9%E9%BD%90%E5%85%88%E9%AA%8C"><span class="toc-text">3.1 深度-边缘对齐先验</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E8%B7%A8%E8%A7%86%E5%9B%BE%E5%85%88%E9%AA%8C"><span class="toc-text">3.2 跨视图先验</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-%E5%87%A0%E4%BD%95%E9%A9%B1%E5%8A%A8%E7%9A%84%E4%BC%A0%E6%92%AD%E5%92%8C%E7%BB%86%E5%8C%96"><span class="toc-text">3.3 几何驱动的传播和细化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84"><span class="toc-text">4. 网络架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E7%89%B9%E5%BE%81%E6%8F%90%E5%8F%96"><span class="toc-text">5. 特征提取</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E4%BB%A3%E4%BB%B7%E4%BD%93%E6%9E%84%E5%BB%BA"><span class="toc-text">6. 代价体构建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-%E4%BB%A3%E4%BB%B7%E4%BD%93%E6%AD%A3%E5%88%99%E5%8C%96"><span class="toc-text">7. 代价体正则化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-%E6%B7%B1%E5%BA%A6%E5%9B%BE%E7%94%9F%E6%88%90"><span class="toc-text">8. 深度图生成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0"><span class="toc-text">9. 损失函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-%E6%B5%8B%E8%AF%95%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="toc-text">10. 测试数据集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-%E6%B6%88%E8%9E%8D%E5%AE%9E%E9%AA%8C"><span class="toc-text">11. 消融实验</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B7%B1%E5%BA%A6-%E8%BE%B9%E7%BC%98%E5%AF%B9%E9%BD%90%E5%85%88%E9%AA%8C"><span class="toc-text">深度-边缘对齐先验</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B7%A8%E8%A7%86%E5%9B%BE%E5%85%88%E9%AA%8C"><span class="toc-text">跨视图先验</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%A0%E4%BD%95%E9%A9%B1%E5%8A%A8%E7%9A%84%E4%BC%A0%E6%92%AD%E5%92%8C%E7%BB%86%E5%8C%96"><span class="toc-text">几何驱动的传播和细化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_MoGe%202/" title="论文阅读_MoGe 2">论文阅读_MoGe 2</a><time datetime="2025-12-03T06:04:18.000Z" title="发表于 2025-12-03 14:04:18">2025-12-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_%E5%8F%98%E5%88%86%E8%87%AA%E7%BC%96%E7%A0%81%E5%99%A8VAE/" title="论文阅读_变分自编码器VAE">论文阅读_变分自编码器VAE</a><time datetime="2025-12-03T06:01:57.000Z" title="发表于 2025-12-03 14:01:57">2025-12-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/03/Multi%20View%20Stereo/" title="Multi View Stereo">Multi View Stereo</a><time datetime="2025-12-03T05:57:28.000Z" title="发表于 2025-12-03 13:57:28">2025-12-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/03/SFM/" title="SFM">SFM</a><time datetime="2025-12-03T05:57:28.000Z" title="发表于 2025-12-03 13:57:28">2025-12-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/03/VSCode%20Python%20Debug%20%E6%95%99%E7%A8%8B/" title="VSCode Python Debug 教程">VSCode Python Debug 教程</a><time datetime="2025-12-03T05:57:28.000Z" title="发表于 2025-12-03 13:57:28">2025-12-03</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By outbreak_sen</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><div class="js-pjax"></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

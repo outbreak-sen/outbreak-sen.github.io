@@ -1,0 +1,342 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>AlexNet | This is a 部落格 of outbreak_sen</title><meta name="author" content="outbreak_sen"><meta name="copyright" content="outbreak_sen"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="李沐-AlexNet和卷积基础 ImageNet Classification With Deep Convolutional Neural Networks 俄罗斯人Alex Krizhevsky、Ilya Sutskever和Geoffrey Hinton 2012 在谷歌实习时候见到过这个人，汇报了这个工作。首个真正意义上的深度卷积神经网络 摘要 ImageNet是一个很大的数据集超过150">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AlexNet">
+<meta property="og:url" content="http://outbreak-sen.github.io/2025/06/01/AlexNet/index.html">
+<meta property="og:site_name" content="This is a 部落格 of outbreak_sen">
+<meta property="og:description" content="李沐-AlexNet和卷积基础 ImageNet Classification With Deep Convolutional Neural Networks 俄罗斯人Alex Krizhevsky、Ilya Sutskever和Geoffrey Hinton 2012 在谷歌实习时候见到过这个人，汇报了这个工作。首个真正意义上的深度卷积神经网络 摘要 ImageNet是一个很大的数据集超过150">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://outbreak-sen.github.io/img/head.png">
+<meta property="article:published_time" content="2025-06-01T12:43:30.000Z">
+<meta property="article:modified_time" content="2025-12-03T06:11:20.416Z">
+<meta property="article:author" content="outbreak_sen">
+<meta property="article:tag" content="Muilt View Stereo">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://outbreak-sen.github.io/img/head.png"><link rel="shortcut icon" href="/img/h_beautygirl.png"><link rel="canonical" href="http://outbreak-sen.github.io/2025/06/01/AlexNet/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'AlexNet',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  isShuoshuo: false
+}</script><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="This is a 部落格 of outbreak_sen" type="application/atom+xml">
+<link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head><body><div id="web_bg" style="background-image: url(/img/v_beautygirl0.jpeg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/./img/head.png" onerror="onerror=null;src='./img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">153</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">25</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw fa fa-camera-retro"></i><span> 树洞</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 作品与鉴赏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/h_beautygirl.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/h_beautygirl.png" alt="Logo"><span class="site-name">This is a 部落格 of outbreak_sen</span></a><a class="nav-page-title" href="/"><span class="site-name">AlexNet</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw fa fa-camera-retro"></i><span> 树洞</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 作品与鉴赏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">AlexNet</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-06-01T12:43:30.000Z" title="发表于 2025-06-01 20:43:30">2025-06-01</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-12-03T06:11:20.416Z" title="更新于 2025-12-03 14:11:20">2025-12-03</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/">论文阅读</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1>李沐-AlexNet和卷积基础</h1>
+<p>ImageNet Classification With Deep Convolutional Neural Networks</p>
+<p>俄罗斯人Alex Krizhevsky、Ilya Sutskever和Geoffrey Hinton</p>
+<p>2012</p>
+<p>在谷歌实习时候见到过这个人，汇报了这个工作。首个真正意义上的深度卷积神经网络</p>
+<h2 id="摘要">摘要</h2>
+<p>ImageNet是一个很大的数据集<strong>超过1500万张在超过22,000个类别</strong>，取其中一部分1000个类</p>
+<p>在Imageet上top-1错误率37.5%，top-5错误率17.0% （取出概率最大的前五个类别，如果真实类别在这五个类别中，则预测正确），比第二名好很多</p>
+<p>六千万参数和六十五万神经元</p>
+<p>五个卷经层，三个全链接层，一个softmax层</p>
+<h2 id="创新点">创新点</h2>
+<ol>
+<li>使用了大的深的卷积神经网络进行图像分类；<strong>去除任何一个卷积层（每个卷积层不超过模型参数的1%）都会导致性能下降，这里发现深度很重要</strong></li>
+<li>采用了两块GPU进行分布式训练；当时只是一个工程性质的东西，但是现在大模型都开始用。</li>
+<li>采用了Relu进行训练加速；<strong>文章中称为非饱和神经元</strong></li>
+<li>采用LRN(局部归一化)提高模型泛化能力；</li>
+<li>重叠池化，充分利用信息，提高精度；</li>
+<li>dropout减少神经元之间的依赖性，提高模型泛化能力；<strong>采用了一种最近开发的正则化方法，称为“dropout”，证明非常有效</strong></li>
+<li>训练策略？
+<ol>
+<li>使用SGD（随机梯度下降）来训练，每个batch128，动量为0.9，权重衰减为0.0005（防止过 拟合，在损失函数中添加一个惩罚项，对网络的权重进行约束，使其趋向于较小的值）；</li>
+<li>使用方差为0.1 均值为0的分布来初始化权重，用常数1来初始化第二、四、五层卷积和全连 接隐藏层的偏置；</li>
+<li>学习率初始化为0.1，当验证集的精度不再提高时，将学习率除以10；</li>
+</ol>
+</li>
+</ol>
+<h1>创新点讲解</h1>
+<ul>
+<li>
+<p>那个时候都想做无监督学习，在训练之前进行无标号数据集预热，他做了监督的。</p>
+</li>
+<li>
+<p>提出了非饱和非线性函数：Relu**（Rectified Linear Units，ReLUs）**，<strong>f(x) = max(0, x)<strong>发现这样训练特别快。之前用的是饱和非线性函数</strong>f(x) = tanh(x)<strong>或者sigmod</strong>f(x) = (1 + e^(-x))^(-1)</strong>，训练起来速度慢</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20250601202306407.png" alt="image-20250601202306407"></p>
+</li>
+<li>
+<p><strong>LRN（Local Response Normalization，局部响应归一化）</strong>：Relu不需要归一化来防止饱和，但依然发现了一种归一化方法来提高模型的泛华能力。LRN对**同一空间位置的不同卷积核（通道）<strong>的输出进行归一化，其核心思想是模仿生物神经元中的</strong>侧向抑制（Lateral Inhibition）**机制，即激活较强的神经元会抑制周围神经元的响应。就是说卷积并且ReLU之后的图上一个点的所有通道，比如这个点有8个通道的值，这8个值做归一化</p>
+<ul>
+<li>
+<p><strong>LRN的作用</strong></p>
+<ol>
+<li>
+<p><strong>增强泛化能力</strong></p>
+<ul>
+<li>通过对局部响应的归一化，抑制较大的激活值，避免某些特征通道主导网络训练。</li>
+<li>类似Dropout，引入了一定的正则化效果，减少过拟合。在AlexNet时代有效提升了模型性能。</li>
+</ul>
+</li>
+<li>
+<p><strong>促进特征多样性</strong></p>
+<ul>
+<li>防止所有神经元对相同的特征产生高响应，鼓励网络学习多样化的特征。</li>
+</ul>
+</li>
+<li>
+<p><strong>替代Batch Normalization（BN）的前身</strong></p>
+<ul>
+<li>
+<p>在BN被广泛使用之前，LRN是一种常见的归一化方法。但BN的效果更好，因此后续模型（如VGG、ResNet）逐渐弃用LRN。</p>
+</li>
+<li>
+<p>效果不如后续的**Batch Normalization（BN）**稳定。</p>
+<p>超参数（n,k,α,βn,k,α,β）需要调优，且对不同的数据集可能敏感。</p>
+</li>
+<li>
+<p>在深层网络中效果有限，现代CNN通常使用BN或Layer Normalization替代。</p>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">nn.LocalResponseNorm(</span><br><span class="line">    size=5,   # 局部邻域大小n</span><br><span class="line">    alpha=1e-4,</span><br><span class="line">    beta=0.75,</span><br><span class="line">    k=2.0</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20250601202549083.png" alt="image-20250601202549083"></p>
+</li>
+</ul>
+<h1>网络结构</h1>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20250601202245340.png" alt="image-20250601202245340"></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20250601203552401.png" alt="image-20250601203552401"></p>
+<p>​</p>
+<h3 id="1-卷积-池化层-前五层">1、卷积+池化层（前五层）</h3>
+<p>AlexNet共有五个卷积层，每个卷积层都包含卷积核、偏置项、ReLU激活函数和局部响应归一化（LRN）模块。</p>
+<p>卷积层C1：使用96个核对224 × 224 × 3的输入图像进行滤波，卷积核大小为11 × 11 ×  3，步长为4。将一对55×55×48的特征图分别放入ReLU激活函数，生成激活图。激活后的图像进行最大池化，size为3×3，stride为2，池化后的特征图size为27×27×48（一对）。池化后进行LRN处理。这一层卷积结束之后，还需要ReLU和LRN（Local Response Normalization 局部响应归一化）和Max_Pooling（最大池化）</p>
+<p>卷积层C2：使用卷积层C1的输出（响应归一化和池化）作为输入，并使用256个卷积核进行滤波，核大小为5 × 5 × 48。第一个、第二个卷积层使用了LRN（局部归一化）。第一个、第二个、第五个卷积层使用了最大池化。</p>
+<p>卷积层C3：有384个核，核大小为3 × 3 × 256，与卷积层C2的输出（归一化的，池化的）相连。</p>
+<p>卷积层C4：有384个核，核大小为3 × 3 × 192。</p>
+<p>卷积层C5：有256个核，核大小为3 × 3 × 192。卷积层C5与C3、C4层相比多了个池化，池化核size同样为3×3，stride为2。</p>
+<p>其中，卷积层C3、C4、C5互相连接，中间没有接入池化层或归一化层。</p>
+<h3 id="2-全连接层-后三层">2、全连接层（后三层）</h3>
+<p>全连接层F6：因为是全连接层，卷积核size为6×6×256，4096个卷积核生成4096个特征图，尺寸为1×1。然后放入ReLU函数、Dropout处理。值得注意的是AlexNet使用了Dropout层，以减少过拟合现象的发生。</p>
+<p>全连接层F7：同F6层。</p>
+<p>全连接层F8：最后一层全连接层的输出是1000维softmax的输入，softmax会产生1000个类别预测的值。</p>
+<p>softmax层</p>
+<h1>如何对抗过拟合</h1>
+<h2 id="数据增强">数据增强</h2>
+<p>减轻图像数据过拟合的最简单和最常见方法是使用保持标签的转换人为地扩大数据集。我们使用两种不同形式的数据增强：</p>
+<p>第一种数据增强形式包括生成图像的平移和水平翻转。我们通过**从256×256图像中提取随机的224×224裁剪（及其水平翻转）**来实现这一点，并在这些提取的裁剪上训练我们的网络。这将我们的训练集的大小增加了2048倍。如果没有这个方案，我们的网络将遭受严重的过拟合，这将迫使我们使用规模小得多的网络。</p>
+<p>第二种数据增强形式包括改变训练图像中RGB通道的强度。具体来说，我们对整个ImageNet训练集中的RGB像素值执行PCA。对于每个训练图像，我们添加发现的主成分的倍数，其大小与相应的特征值成比例，乘以从均值为零、标准差为0.1的高斯分布中抽取的随机变量。<strong>对图片进行PCA，高维数据转换为低维数据，保留数据中的主要变化方向。在这里，PCA应用于RGB像素值，以找到它们之间的主要方向。</strong></p>
+<h2 id="dropout">Dropout</h2>
+<p><strong>以0.5的概率将每个隐藏神经元的输出设置为零。</strong></p>
+<p>以这种方式“丢弃”的神经元不会贡献于前向传播，并且不参与反向传播。因此，每次呈现输入时，神经网络会对不同的架构进行采样，但所有这些架构共享权重。这种技术减少了神经元的复杂相互适应，因为一个神经元不能依赖于特定其他神经元的存在。因此，它被迫学习更加健壮的特征，这些特征与其他神经元的许多不同的随机子集一起使用时是有用的。在测试时，我们使用所有神经元，但将它们的输出乘以0.5，这是对由指数多的dropout网络产生的预测分布取几何平均的合理近似。</p>
+<p>前两个全连接层中使用了dropout。没有dropout，我们的网络表现出明显的过拟合。dropout大致使收敛所需的迭代次数加倍。</p>
+<h1>计算层和图大小通道的关系</h1>
+<h2 id="1-输入张量的表示"><strong>1. 输入张量的表示</strong></h2>
+<p>假设输入张量的形状为 <strong><code>(N, C, H, W)</code></strong>（PyTorch格式）：</p>
+<ul>
+<li><strong><code>N</code></strong>：Batch Size（样本数量）</li>
+<li><strong><code>C</code></strong>：Channels（通道数）</li>
+<li><strong><code>H</code></strong>：Height（高度）</li>
+<li><strong><code>W</code></strong>：Width（宽度）</li>
+</ul>
+<hr>
+<h2 id="2-卷积层-convolutional-layer"><strong>2. 卷积层（Convolutional Layer）</strong></h2>
+<p>卷积层通过滑动窗口（卷积核）对输入进行特征提取，其输出尺寸由以下参数决定：</p>
+<ul>
+<li><strong><code>K</code></strong>：卷积核数量（输出通道数 <code>C'</code>）</li>
+<li><strong><code>F</code></strong>：卷积核大小（<code>F × F</code>）</li>
+<li><strong><code>S</code></strong>：步长（Stride）</li>
+<li><strong><code>P</code></strong>：填充（Padding）</li>
+<li>每个卷积核会对输入的所有通道进行<strong>逐通道卷积</strong>，再将结果<strong>相加</strong>，最终输出一个单通道的特征图。所以3通道图经过64个卷积核之后还是64个，不是64*3个</li>
+</ul>
+<h3 id="输出尺寸计算公式"><strong>输出尺寸计算公式</strong></h3>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20250601203946984.png" alt="image-20250601203946984"></p>
+<h4 id="示例"><strong>示例</strong></h4>
+<ul>
+<li>
+<p>输入：<code>(N, 3, 32, 32)</code>（RGB图像）</p>
+</li>
+<li>
+<p>卷积层参数：<code>K=64, F=3, S=1, P=1</code></p>
+</li>
+<li>
+<p>输出：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20250601204005907.png" alt="image-20250601204005907"></p>
+</li>
+<li>
+<p><strong>输出张量</strong>：<code>(N, 64, 32, 32)</code></p>
+</li>
+</ul>
+<hr>
+<h2 id="3-relu-激活函数"><strong>3. ReLU（激活函数）</strong></h2>
+<p>ReLU（Rectified Linear Unit）不改变张量的尺寸，仅对每个元素进行非线性变换：</p>
+<p>ReLU(x)=max⁡(0,x)ReLU(x)=max(0,x)</p>
+<h4 id="示例"><strong>示例</strong></h4>
+<ul>
+<li>输入：<code>(N, 64, 32, 32)</code></li>
+<li>输出：<code>(N, 64, 32, 32)</code>（尺寸不变）</li>
+</ul>
+<hr>
+<h2 id="4-最大池化-max-pooling"><strong>4. 最大池化（Max Pooling）</strong></h2>
+<p>池化层用于降采样，减少计算量并增强特征不变性。常用参数：</p>
+<ul>
+<li><strong><code>F</code></strong>：池化窗口大小（<code>F × F</code>）</li>
+<li><strong><code>S</code></strong>：步长（Stride）</li>
+<li><strong><code>P</code></strong>：填充（Padding，通常为0）</li>
+</ul>
+<h3 id="输出尺寸计算公式"><strong>输出尺寸计算公式</strong></h3>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20250601204022425.png" alt="image-20250601204022425"></p>
+<h4 id="示例"><strong>示例</strong></h4>
+<ul>
+<li>
+<p>输入：<code>(N, 64, 32, 32)</code></p>
+</li>
+<li>
+<p>池化参数：<code>F=2, S=2, P=0</code></p>
+</li>
+<li>
+<p>输出：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20250601204028451.png" alt="image-20250601204028451"></p>
+</li>
+<li>
+<p><strong>输出张量</strong>：<code>(N, 64, 16, 16)</code></p>
+</li>
+</ul>
+<hr>
+<h2 id="5-全连接层-fully-connected-layer-fc"><strong>5. 全连接层（Fully Connected Layer, FC）</strong></h2>
+<p>全连接层将输入展平（Flatten）后与权重矩阵相乘，其输出尺寸由神经元数量决定：</p>
+<ul>
+<li><strong><code>M</code></strong>：输出神经元数量</li>
+</ul>
+<h3 id="计算步骤"><strong>计算步骤</strong></h3>
+<ol>
+<li><strong>展平输入</strong>：将 <code>(N, C, H, W)</code> 转换为 <code>(N, C × H × W)</code></li>
+<li><strong>矩阵乘法</strong>：<code>(N, C × H × W) @ (C × H × W, M) → (N, M)</code></li>
+</ol>
+<h4 id="示例"><strong>示例</strong></h4>
+<ul>
+<li>输入：<code>(N, 64, 16, 16)</code></li>
+<li>展平后：<code>(N, 64 × 16 × 16) = (N, 16384)</code></li>
+<li>全连接层参数：<code>M=1024</code></li>
+<li><strong>输出张量</strong>：<code>(N, 1024)</code></li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://outbreak-sen.github.io">outbreak_sen</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://outbreak-sen.github.io/2025/06/01/AlexNet/">http://outbreak-sen.github.io/2025/06/01/AlexNet/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://outbreak-sen.github.io" target="_blank">This is a 部落格 of outbreak_sen</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Muilt-View-Stereo/">Muilt View Stereo</a></div><div class="post-share"><div class="social-share" data-image="/./img/head.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/06/01/%E6%9D%8E%E6%B2%90-TransFormer%E5%9F%BA%E7%A1%80/" title="李沐-TransFormer基础"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">李沐-TransFormer基础</div></div><div class="info-2"><div class="info-item-1">李沐-TransFormer基础 Attention Is All You Need 谷歌在2017年的论文 同等贡献很多 代码在tensor2tensor 摘要  序列转换模型都是基于复杂的循环神经网络或卷积神经网络，且都包含一个encoder和一个decoder。表现最好的模型还通过attention机制把encoder和decoder联接起来。 提出了一个新的、简单的网络架构，Transformer....</div></div></div></a><a class="pagination-related" href="/2025/03/19/swiftUI%E7%9A%84%E7%AC%94%E8%AE%B0/" title="swiftUI"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">swiftUI</div></div><div class="info-2"><div class="info-item-1">swiftUI OK，我们先学习官方的swiftUI教程 Creating and combining views  创建一个项目   interface中的storyboard可以使用swift或者objective-C进行编写  项目初建 File &gt; New &gt; File （文件 &gt; New &gt; File） 以再次打开模板选择器。在用户界面部分，选择“SwiftUI 视图”，然后单击下一步。将文件命名为 CircleImage.swift，然后单击 Create。  12345678910111213141516171819202122232425262728import SwiftUI// `@main` 属性标识应用程序的入口点。@mainstruct LandmarksApp: App &#123;    var body: some Scene &#123;        WindowGroup &#123;            ContentView()        &#125;    &#125;&#125;//...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2025/12/03/#%20%E4%B8%89%E7%BB%B4%E8%A7%86%E8%A7%89%E5%87%A0%E4%BD%95%E5%A4%A7%E6%95%B4%E7%90%86/" title=""><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-12-03</div><div class="info-item-2"></div></div><div class="info-2"><div class="info-item-1">三维视觉几何大整理 </div></div></div></a><a class="pagination-related" href="/2025/12/03/Bark%E6%A8%A1%E5%9E%8B%E5%BE%AE%E8%B0%83/" title="Bark模型微调"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-12-03</div><div class="info-item-2">Bark模型微调</div></div><div class="info-2"><div class="info-item-1">Bark模型微调 TTS模型/文本到语音（TTS）生成模型 以下开放的、已支持训练的 TTS 模型：    模型名 是否支持训练 特点 架构类型     SpeechT5（HuggingFace） ✅ 支持 TTS、VC、ASR，多任务训练    Coqui-TTS（强烈推荐） ✅ 支持 Tacotron2/FastSpeech2/VITS    ESPnet（工业级框架） ✅ 支持多种语音模型，配置稍复杂    YourTTS, VITS, GlowTTS ✅ Coqui-TTS/ESPnet 中均支持    VITS   VAE + GAN + flow   Bark   GPT decoder-only   Tacotron2   encoder-decoder + attention    EnCodec 解码器 EnCodec 是由 Facebook FAIR 开源的 神经压缩音频模型，可以高效地将音频压缩成离散 token，再解压回高质量语音。 类似于 VQ-VAE（Vector Quantized Variational...</div></div></div></a><a class="pagination-related" href="/2025/12/03/CUDA%20%E7%8E%AF%E5%A2%83%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%9D%A5%E6%BA%90/" title="CUDA 环境的两种来源"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-12-03</div><div class="info-item-2">CUDA 环境的两种来源</div></div><div class="info-2"><div class="info-item-1">🧩 一、CUDA 环境的两种来源 CUDA（Compute Unified Device Architecture）分为两部分：    类型 功能 通常位置 谁提供     CUDA Toolkit（开发套件） 编译 CUDA 程序、包含 nvcc、头文件、静态库 /usr/local/cuda-* 你自己系统安装   CUDA Runtime（运行时库） 运行 PyTorch / TensorFlow / cuDNN 等程序 通常是 .so 动态库 PyTorch（或 conda 包）自动安装    👉 也就是说：  系统 CUDA Toolkit：给开发者编译用（比如写 CUDA C++、编译自定义算子）。 conda/pip CUDA Runtime：给 PyTorch 运行用，不依赖系统 CUDA。   ⚙️ 二、本地 CUDA 与 conda CUDA 的区别    对比项 系统 CUDA Toolkit conda CUDA runtime     用途 编译代码、开发 运行 PyTorch、推理训练   是否随 PyTorch 一起安装 否 是（通过...</div></div></div></a><a class="pagination-related" href="/2025/06/20/FoundationStereo/" title="FoundationStereo"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-06-20</div><div class="info-item-2">FoundationStereo</div></div><div class="info-2"><div class="info-item-1">FoundationStereo NVIDIA 2025 摘要（有本事别微调刷榜，我就是要做zero-shot） 通过每个域的微调，深度立体匹配在基准数据集上取得了巨大进步。然而，实现强大的零镜头泛化（其他计算机视觉任务中基础模型的标志）对于立体匹配来说仍然具有挑战性。为此，我们首先构建了一个大规模（1M 立体对）合成训练数据集，具有较大的多样性和高照片级真实感，然后是一个自动自我管理管道来去除模棱两可的样本。然后，我们设计了许多网络架构组件来增强可扩展性，包括一个侧调功能主干，它适应了视觉基础模型中丰富的单目先验，以减轻 sim-to-real 的差距，以及用于有效成本量过滤的远程上下文推理。 引言 近半个世纪前第一个立体匹配算法出现，我们已经走过了漫长的道路。，最近的立体算法可以取得惊人的结果，几乎使最具挑战性的基准测试饱和。然而，对目标域的数据集进行微调仍然是获得竞争结果的首选方法。鉴于通过scaling...</div></div></div></a><a class="pagination-related" href="/2025/12/03/Label%E8%BD%AF%E4%BB%B6%E8%B0%83%E7%A0%94%E5%92%8C%E4%BD%BF%E7%94%A8/" title="Label软件调研和使用"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-12-03</div><div class="info-item-2">Label软件调研和使用</div></div><div class="info-2"><div class="info-item-1">Label软件调研和使用 注释 2D 人体姿势的任务涉及在图像中识别和标记人体上的关键点。 首先进行一个人体数据集格式的调研 有几个人体数据集比如coco17点，coco-wholebody133点，Halpe136点，然后对应每种数据集格式有不同的model权重，和不同的config文件，即用什么估计，估计出来几个点，然后经过我的调研，17个点就足以描述项目了，腰部的旋转就是脖子和腰部的夹角角度嘛，所以我现在要找一个做coco数据集标注的软件，其实市面上大多数还是coco数据集的，然后只不过一开始我觉得骨架不一致给吓倒了。 PoseAnnotation（真难用） https://github.com/MiraPurkrabek/PoseAnnotator 该工具主要针对 COCO 样式的注释实现，因此需要其文件结构。每个数据集应有 3 个子文件夹 annotations、val2017 和可选的 train2017 但我们为我们的用例创建了一些自定义姿势格式。如果您使用 option --pose-format coco_with_thumbs...</div></div></div></a><a class="pagination-related" href="/2025/12/03/MASt3R-SLAM/" title="MASt3R-SLAM"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-12-03</div><div class="info-item-2">MASt3R-SLAM</div></div><div class="info-2"><div class="info-item-1">阅读MASt3R-SLAM的代码，重点关注检索、回环部分 通过MASt3R_ViTLarge_BaseDecoder_512_catmlpdpt_metric_retrieval_trainingfree生成特征进行检索，track成功进行全局因子图优化，track失败则回环检测，检测成功则再因子图优化，优化成功就可以继续，但是如果失败就直接continue，不添加到keyframe？MASt3R-SLAM 系统中的 RetrievalDatabase 并非传统的词袋模型，而是一个基于深度学习特征的高效图像检索系统复杂度相对于图像数量是准线性的（nearly linear），非常适合大规模场景 VGGT-LONG的论文和代码，重点关注里面回环检测相关的技术 VGGT-Long 的流程遵循：“Chunk it → Loop it → Align it” 的三阶段设计。回环匹配（Loop it）是在 chunk...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/./img/head.png" onerror="this.onerror=null;this.src='/./img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">outbreak_sen</div><div class="author-info-description">an interesting man</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">153</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">25</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/outbreak-sen" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://blog.csdn.net/outbreakrmb" target="_blank" title="CSDN"><i class="fa fa-book-open"></i></a><a class="social-icon" href="/1023786231" target="_blank" title="QQ"><i class="fab fa-qq"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">李沐-AlexNet和卷积基础</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E6%96%B0%E7%82%B9"><span class="toc-text">创新点</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">创新点讲解</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">网络结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%8D%B7%E7%A7%AF-%E6%B1%A0%E5%8C%96%E5%B1%82-%E5%89%8D%E4%BA%94%E5%B1%82"><span class="toc-text">1、卷积+池化层（前五层）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%85%A8%E8%BF%9E%E6%8E%A5%E5%B1%82-%E5%90%8E%E4%B8%89%E5%B1%82"><span class="toc-text">2、全连接层（后三层）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">如何对抗过拟合</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA"><span class="toc-text">数据增强</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#dropout"><span class="toc-text">Dropout</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">计算层和图大小通道的关系</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E8%BE%93%E5%85%A5%E5%BC%A0%E9%87%8F%E7%9A%84%E8%A1%A8%E7%A4%BA"><span class="toc-text">1. 输入张量的表示</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%8D%B7%E7%A7%AF%E5%B1%82-convolutional-layer"><span class="toc-text">2. 卷积层（Convolutional Layer）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BE%93%E5%87%BA%E5%B0%BA%E5%AF%B8%E8%AE%A1%E7%AE%97%E5%85%AC%E5%BC%8F"><span class="toc-text">输出尺寸计算公式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B"><span class="toc-text">示例</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-relu-%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0"><span class="toc-text">3. ReLU（激活函数）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B"><span class="toc-text">示例</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E6%9C%80%E5%A4%A7%E6%B1%A0%E5%8C%96-max-pooling"><span class="toc-text">4. 最大池化（Max Pooling）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BE%93%E5%87%BA%E5%B0%BA%E5%AF%B8%E8%AE%A1%E7%AE%97%E5%85%AC%E5%BC%8F"><span class="toc-text">输出尺寸计算公式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B"><span class="toc-text">示例</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E5%85%A8%E8%BF%9E%E6%8E%A5%E5%B1%82-fully-connected-layer-fc"><span class="toc-text">5. 全连接层（Fully Connected Layer, FC）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%AD%A5%E9%AA%A4"><span class="toc-text">计算步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B"><span class="toc-text">示例</span></a></li></ol></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_MoGe%202/" title="论文阅读_MoGe 2">论文阅读_MoGe 2</a><time datetime="2025-12-03T06:04:18.000Z" title="发表于 2025-12-03 14:04:18">2025-12-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_%E5%8F%98%E5%88%86%E8%87%AA%E7%BC%96%E7%A0%81%E5%99%A8VAE/" title="论文阅读_变分自编码器VAE">论文阅读_变分自编码器VAE</a><time datetime="2025-12-03T06:01:57.000Z" title="发表于 2025-12-03 14:01:57">2025-12-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/03/Multi%20View%20Stereo/" title="Multi View Stereo">Multi View Stereo</a><time datetime="2025-12-03T05:57:28.000Z" title="发表于 2025-12-03 13:57:28">2025-12-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/03/SFM/" title="SFM">SFM</a><time datetime="2025-12-03T05:57:28.000Z" title="发表于 2025-12-03 13:57:28">2025-12-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/03/VSCode%20Python%20Debug%20%E6%95%99%E7%A8%8B/" title="VSCode Python Debug 教程">VSCode Python Debug 教程</a><time datetime="2025-12-03T05:57:28.000Z" title="发表于 2025-12-03 13:57:28">2025-12-03</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By outbreak_sen</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><div class="js-pjax"></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
