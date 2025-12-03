@@ -112,94 +112,6 @@
   </entry>
   
   <entry>
-    <title>SFM</title>
-    <link href="http://outbreak-sen.github.io/2025/12/03/SFM/"/>
-    <id>http://outbreak-sen.github.io/2025/12/03/SFM/</id>
-    <published>2025-12-03T05:57:28.000Z</published>
-    <updated>2025-12-03T06:11:20.414Z</updated>
-    
-    <content type="html"><![CDATA[<h1>SFM</h1><h2 id="sfm是什么？和mvs的对比？">SFM是什么？和MVS的对比？</h2><p>运动恢复结构（SfM）问题是从二维（2D）图像的集合中恢复静止场景的三维（3D）结构的问题</p><ul><li><p>SFM相当于获得由二维点获得三维点输出稀疏点云还有每张图片对应的相机参数</p></li><li><p>MVS相当于给三维点贴图输出稠密点云</p></li></ul><p>3D点阵可以通过MeshLab来重建稀疏的Mesh。也可以通过PMVS（Patch-based Multi-view Stereo）来重建Dense的Mesh</p><h2 id="sfm的阶段">SFM的阶段</h2><p>SfM 涉及三个主要阶段：</p><ol><li>提取图像中的特征（例如，兴趣点、线条等）并在图像之间匹配这些特征<ol><li>SIFT，SURF来提取并匹配，也可以用最新的AKAZE（SIFT的改进版，2010）来匹配。</li><li>误匹配会造成较大的Error，所以要对匹配进行筛选，目前流行的方法是RANSAC（Random Sample Consensus）。2D的误匹配点可以应用3D的Geometric特征来进行排除。</li></ol></li><li>相机运动估计–外参（使用提取的特征）</li><li>使用估计的外参特征恢复 3D 结构（通过最小化所谓的重投影误差）</li></ol><p>该技术旨在优化称为<strong>total reprojection error的成本函数</strong></p><h2 id="sfm分类">SfM分类</h2><ul><li><p>增量式（incremental/sequential）：</p><ul><li>优–对错误的匹配点有较强鲁棒性，总体精度更高</li><li>劣运行时间长，<strong>drift: error随着camera registration(相机校准)逐步积累</strong></li></ul></li><li><p>全局式（global）：</p><ul><li>优–避免了drift的问题（更反映了图像的全局性), 速度快（只需解决两个global synchronization(global SfM算法中的全局同步操作)+一次BA<br>(光束平差法)）</li><li>劣–对错误的匹配点鲁棒性较差，且错误难以修正 (error会沿着pipeline累积）</li></ul></li><li><p>混合式（hybrid）：</p><ul><li>全局估计摄像机旋转矩阵，增量估计摄像机中心</li></ul></li><li><p>层次式（hierarchical）：</p><ul><li>执行顺序上采用了层次式的聚类策略（clustering）。其先生成一棵聚类二叉树（binary cluster tree），然后算法自底向上进行处理:<strong>算法的每次迭代合并具有最小距离的两个clusters，每个cluster可以是一张图片，也可以是一个合并之后的cluster</strong>。</li></ul></li><li><p>基于语义的(Semantic)</p></li></ul><h2 id="2006-年-sfm-的-sequential-pipeline增量式">2006 年 SfM 的 sequential  pipeline增量式</h2><ol><li>测每个图像中的关键点。使用SIFT 描述符来比较跨图像的这些关键点</li><li>应用随机采样和一致性（RANSAC），以稳健地估计<strong>图像对之间的基本矩阵</strong>（用于相机相对运动）并丢弃异常匹配</li><li>从找到<strong>内部匹配数量最多的一对图像开始</strong>，然后一次贪婪地添加一个图像，反复求解束调整</li></ol><h2 id="cvpr-2016structure-from-motion-revisited提出colmap">CVPR 2016Structure-from-Motion Revisited提出colmap</h2><ul><li><a href="https://ieeexplore.ieee.org/document/7780814">https://ieeexplore.ieee.org/document/7780814</a></li><li>(论文“Structure-from-Motion Revisited” 对ISFM改进的理解)[<a href="https://blog.csdn.net/Z5122/article/details/103287832?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-1-103287832-blog-124490400.235%5Ev38%5Epc_relevant_sort&amp;spm=1001.2101.3001.4242.2&amp;utm_relevant_index=4">https://blog.csdn.net/Z5122/article/details/103287832?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-1-103287832-blog-124490400.235^v38^pc_relevant_sort&amp;spm=1001.2101.3001.4242.2&amp;utm_relevant_index=4</a>]</li><li>在实验部分对比的两个incremetal SfM框架：<a href="http://phototour.cs.washington.edu/Photo_Tourism.pdf">Bundler</a>、<a href="https://ieeexplore.ieee.org/document/6599068">VisualSFM</a>；两个global SfM 框架：<a href="https://ieeexplore.ieee.org/document/5995626">DISCO</a>、<a href="http://theia-sfm.org/">Theia</a>提出了一个当时“近乎理想”的incremental SfM并开源了代码[COLMAP]</li></ul>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1&gt;SFM&lt;/h1&gt;
-&lt;h2 id=&quot;sfm是什么？和mvs的对比？&quot;&gt;SFM是什么？和MVS的对比？&lt;/h2&gt;
-&lt;p&gt;运动恢复结构（SfM）问题是从二维（2D）图像的集合中恢复静止场景的三维（3D）结构的问题&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;SFM相当于获得由二维点获得三</summary>
-      
-    
-    
-    
-    <category term="论文阅读" scheme="http://outbreak-sen.github.io/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/"/>
-    
-    
-    <category term="Muilt View Stereo" scheme="http://outbreak-sen.github.io/tags/Muilt-View-Stereo/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>VSCode Python Debug</title>
-    <link href="http://outbreak-sen.github.io/2025/12/03/VSCode%20Python%20Debug%20%E6%95%99%E7%A8%8B/"/>
-    <id>http://outbreak-sen.github.io/2025/12/03/VSCode%20Python%20Debug%20%E6%95%99%E7%A8%8B/</id>
-    <published>2025-12-03T05:57:28.000Z</published>
-    <updated>2025-12-03T06:14:59.307Z</updated>
-    
-    <content type="html"><![CDATA[<h1>VSCode Python Debug 教程</h1><p>我有以下几个目的：</p><ol><li>debug时候传入参数，就像运行python test -pram a -pram1 b这样子，这个如何实现</li><li>如何实现conda环境下运行</li><li>看每个变量的大小和值</li><li>步进运行每一行</li></ol><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 使用 IntelliSense 了解相关属性。 </span></span><br><span class="line">    <span class="comment">// 悬停以查看现有属性的描述。</span></span><br><span class="line">    <span class="comment">// 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387</span></span><br><span class="line">    <span class="string">&quot;version&quot;</span>: <span class="string">&quot;0.2.0&quot;</span>,</span><br><span class="line">    <span class="string">&quot;configurations&quot;</span>: [</span><br><span class="line">        <span class="comment">// 基于内置的 Node.js 调试器</span></span><br><span class="line">        <span class="comment">// 可以创建多个调试器，然后起不同名字，选择对应的进行操作</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">// 这个是调试器配置的名称</span></span><br><span class="line">            <span class="string">&quot;name&quot;</span>: <span class="string">&quot;Python经典调试配置名称&quot;</span>,</span><br><span class="line">            <span class="comment">// 指定了使用Python调试器</span></span><br><span class="line">            <span class="string">&quot;type&quot;</span>: <span class="string">&quot;debugpy&quot;</span>,</span><br><span class="line">            <span class="comment">// 表示启动一个新的调试会话</span></span><br><span class="line">            <span class="string">&quot;request&quot;</span>: <span class="string">&quot;launch&quot;</span>,</span><br><span class="line">            <span class="comment">// 指定要调试的Python脚本， workspaceFolder/train.py&quot;:指定要调试的Python脚本</span></span><br><span class="line">            <span class="comment">// &#123;workspaceFolder&#125;是当前VS Code工作区目录的占位符，假设train.py位于工作区的根目录下。</span></span><br><span class="line">            <span class="string">&quot;program&quot;</span>: <span class="string">&quot;$&#123;file&#125;&quot;</span>,</span><br><span class="line">            <span class="comment">// 调试输出将显示在VS Code的集成终端中。</span></span><br><span class="line">            <span class="string">&quot;console&quot;</span>: <span class="string">&quot;integratedTerminal&quot;</span>,</span><br><span class="line">            <span class="comment">// 这样做可以让Python的输出在终端中实时显示，而不是被缓冲。</span></span><br><span class="line">            <span class="string">&quot;env&quot;</span>: &#123;<span class="string">&quot;PYTHONUNBUFFERED&quot;</span>: <span class="string">&quot;1&quot;</span>&#125;,</span><br><span class="line">            <span class="comment">// &quot;args&quot;: &quot;$&#123;command:pickArgs&#125;&quot; ,</span></span><br><span class="line">            <span class="string">&quot;args&quot;</span>: [</span><br><span class="line">                <span class="string">&quot;-batch&quot;</span>, <span class="string">&quot;64&quot;</span>,</span><br><span class="line">                <span class="string">&quot;-dataset&quot;</span>, <span class="string">&quot;cifar_fs&quot;</span>,</span><br><span class="line">                <span class="string">&quot;-gpu&quot;</span>, <span class="string">&quot;1&quot;</span>,</span><br><span class="line">                <span class="string">&quot;-extra_dir&quot;</span>, <span class="string">&quot;your_run&quot;</span>,</span><br><span class="line">                <span class="string">&quot;-temperature_attn&quot;</span>, <span class="string">&quot;5.0&quot;</span>,</span><br><span class="line">                <span class="string">&quot;-lamb&quot;</span>, <span class="string">&quot;0.5&quot;</span></span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">// 这个是调试器配置的名称</span></span><br><span class="line">            <span class="string">&quot;name&quot;</span>: <span class="string">&quot;MotionBert调试&quot;</span>,</span><br><span class="line">            <span class="comment">// 指定了使用Python调试器</span></span><br><span class="line">            <span class="string">&quot;type&quot;</span>: <span class="string">&quot;debugpy&quot;</span>,</span><br><span class="line">            <span class="comment">// 表示启动一个新的调试会话</span></span><br><span class="line">            <span class="string">&quot;request&quot;</span>: <span class="string">&quot;launch&quot;</span>,</span><br><span class="line">            <span class="comment">// 指定要调试的Python脚本， workspaceFolder/train.py&quot;:指定要调试的Python脚本</span></span><br><span class="line">            <span class="comment">// &#123;workspaceFolder&#125;是当前VS Code工作区目录的占位符，假设train.py位于工作区的根目录下。</span></span><br><span class="line">            <span class="string">&quot;program&quot;</span>: <span class="string">&quot;$&#123;file&#125;&quot;</span>,</span><br><span class="line">            <span class="comment">// 调试输出将显示在VS Code的集成终端中。</span></span><br><span class="line">            <span class="string">&quot;console&quot;</span>: <span class="string">&quot;integratedTerminal&quot;</span>,</span><br><span class="line">            <span class="comment">// 这样做可以让Python的输出在终端中实时显示，而不是被缓冲。</span></span><br><span class="line">            <span class="string">&quot;env&quot;</span>: &#123;<span class="string">&quot;PYTHONUNBUFFERED&quot;</span>: <span class="string">&quot;1&quot;</span>&#125;,</span><br><span class="line">            <span class="comment">// &quot;args&quot;: &quot;$&#123;command:pickArgs&#125;&quot; ,</span></span><br><span class="line">            <span class="string">&quot;args&quot;</span>: [</span><br><span class="line">                <span class="string">&quot;-batch&quot;</span>, <span class="string">&quot;64&quot;</span>,</span><br><span class="line">                <span class="string">&quot;-dataset&quot;</span>, <span class="string">&quot;cifar_fs&quot;</span>,</span><br><span class="line">                <span class="string">&quot;-gpu&quot;</span>, <span class="string">&quot;1&quot;</span>,</span><br><span class="line">                <span class="string">&quot;-extra_dir&quot;</span>, <span class="string">&quot;your_run&quot;</span>,</span><br><span class="line">                <span class="string">&quot;-temperature_attn&quot;</span>, <span class="string">&quot;5.0&quot;</span>,</span><br><span class="line">                <span class="string">&quot;-lamb&quot;</span>, <span class="string">&quot;0.5&quot;</span></span><br><span class="line">            ]</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1&gt;VSCode Python Debug 教程&lt;/h1&gt;
-&lt;p&gt;我有以下几个目的：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;debug时候传入参数，就像运行python test -pram a -pram1 b这样子，这个如何实现&lt;/li&gt;
-&lt;li&gt;如何实现conda环境下运行&lt;/li</summary>
-      
-    
-    
-    
-    <category term="论文阅读" scheme="http://outbreak-sen.github.io/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/"/>
-    
-    
-    <category term="Muilt View Stereo" scheme="http://outbreak-sen.github.io/tags/Muilt-View-Stereo/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>blender学习笔记</title>
-    <link href="http://outbreak-sen.github.io/2025/12/03/blender%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    <id>http://outbreak-sen.github.io/2025/12/03/blender%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</id>
-    <published>2025-12-03T05:57:28.000Z</published>
-    <updated>2025-12-03T06:11:20.416Z</updated>
-    
-    <content type="html"><![CDATA[<h1>BLENDER</h1><h2 id="基本操作">基本操作</h2><p>左上角有不同编辑器视图模式</p><p>3D模式右上角有着色方式‘</p><p>​cavity：边线</p><p>右下角是编辑器</p><p>​修改器（扳手）</p><p>​倒角：摁住shift拖动，更精确，小数点后三三位</p><p>SHIFT+中建 平移视角</p><p>变换工具：是移动缩放旋转的整合</p><p>游标：添加物体的位置，操作点</p><p>shift+a： 添加</p><p>x：删除</p><p>~：视图切换</p><p>shift+d：复制几何体并移动，假如再输入x则在x轴移动</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1&gt;BLENDER&lt;/h1&gt;
-&lt;h2 id=&quot;基本操作&quot;&gt;基本操作&lt;/h2&gt;
-&lt;p&gt;左上角有不同编辑器视图模式&lt;/p&gt;
-&lt;p&gt;3D模式右上角有着色方式‘&lt;/p&gt;
-&lt;p&gt;​	cavity：边线&lt;/p&gt;
-&lt;p&gt;右下角是编辑器&lt;/p&gt;
-&lt;p&gt;​	修改器（扳手）&lt;/p&gt;
-&lt;p&gt;​		</summary>
-      
-    
-    
-    
-    <category term="论文阅读" scheme="http://outbreak-sen.github.io/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/"/>
-    
-    
-    <category term="Muilt View Stereo" scheme="http://outbreak-sen.github.io/tags/Muilt-View-Stereo/"/>
-    
-  </entry>
-  
-  <entry>
     <title>学习笔记_SFM</title>
     <link href="http://outbreak-sen.github.io/2025/12/03/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0_SFM/"/>
     <id>http://outbreak-sen.github.io/2025/12/03/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0_SFM/</id>
@@ -588,6 +500,105 @@
       
     <summary type="html">&lt;h1&gt;Image Sculpting: Precise Object Editing with 3D Geometry Control&lt;/h1&gt;
 &lt;p&gt;通过结合3D几何和图形工具来编辑2D图像。Image Sculpting 将 2D 对象转换为 3D，直接在3D空间中编辑目标</summary>
+      
+    
+    
+    
+    <category term="论文阅读" scheme="http://outbreak-sen.github.io/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/"/>
+    
+    
+    <category term="Muilt View Stereo" scheme="http://outbreak-sen.github.io/tags/Muilt-View-Stereo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>论文阅读_MAE</title>
+    <link href="http://outbreak-sen.github.io/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_MAE/"/>
+    <id>http://outbreak-sen.github.io/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_MAE/</id>
+    <published>2025-12-03T05:57:16.000Z</published>
+    <updated>2025-12-03T06:11:20.413Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="基本信息">基本信息</h2><table><thead><tr><th style="text-align:left">项目</th><th style="text-align:left">内容</th></tr></thead><tbody><tr><td style="text-align:left"><strong>论文标题</strong></td><td style="text-align:left">An Image is Worth 16x16 Words: Transformers for Image Classification at Scale</td></tr><tr><td style="text-align:left"><strong>作者</strong></td><td style="text-align:left"><strong>Kaiming He</strong></td></tr><tr><td style="text-align:left"><strong>作者单位</strong></td><td style="text-align:left"><strong>Google Research</strong></td></tr><tr><td style="text-align:left"><strong>时间</strong></td><td style="text-align:left">2021</td></tr><tr><td style="text-align:left"><strong>发表会议/期刊</strong></td><td style="text-align:left"><strong>ICCV 2021</strong></td></tr><tr><td style="text-align:left"><strong>全称</strong></td><td style="text-align:left">Masked Autoencoders，cv中的bert</td></tr></tbody></table><h2 id="方法概览">方法概览</h2><table><thead><tr><th>特点</th><th>文章性质</th></tr></thead><tbody><tr><td><strong>输入</strong></td><td>单张 RGB 图像</td></tr><tr><td><strong>输出</strong></td><td>分类</td></tr><tr><td><strong>所属领域</strong></td><td></td></tr></tbody></table><p>在 MAE 之前，视觉自监督学习主要有两类方法：</p><ol><li><strong>对比学习</strong>（Contrastive Learning）如 SimCLR、MoCo：通过“拉近正样本，推远负样本”学习，需要精心设计数据增强和负样本</li><li><strong>生成式建模</strong>如 VAE、iGPT：重建完整图像，计算成本高，关注低级细节（如像素）</li><li>能否像 BERT 一样，用掩码重建（Masked Reconstruction）来学习视觉表征？BERT 成功的关键是：掩码掉 15% 的词。直接套用到图像上效果差，因为图像比文本更“连续”像素级重建太容易。 <strong>所以MAE思想是：重建一整个块，并且大量掩码75% ~ 95%</strong></li></ol><h3 id="创新点">创新点</h3><ol><li>自监督学习，在 ImageNet 等基准上取得了远超之前方法的性能，推动了视觉自监督学习进入“大规模预训练”时代</li><li>高比例随机掩码（High Ratio of Random Masking）只保留 5%~25% 的 patch 作为输入，强迫模型必须从极小的可见信息中推断全局语义</li><li>非对称编解码器结构（Asymmetric Encoder-Decoder）<ol><li>Encoder：只处理可见的 patch（轻量）</li><li>Decoder：接收 encoder 输出 + 掩码 token，重建所有像素</li></ol></li></ol><h3 id="网络架构">网络架构</h3><h4 id="训练阶段">训练阶段</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">输入图像 </span><br><span class="line">│ </span><br><span class="line">├── 分块（Patchify）→ 14x14 = 196 个 patch (16x16) </span><br><span class="line">│ </span><br><span class="line">├── 随机打乱196 个 patch 的顺序</span><br><span class="line">│ </span><br><span class="line">├── 保留前K个作为可见 patch。可见 patch（25%）</span><br><span class="line">│ </span><br><span class="line">├── 可见 patch →线性嵌入768 维 →可学习位置编码 → Encoder → ViT输出K个上下文化的特征向量</span><br><span class="line">│                                                   ↓    </span><br><span class="line">└── 掩码 patch → 随机初始化的 mask token+位置编码 → 拼接回196个特征向量</span><br><span class="line">↓ </span><br><span class="line">所有 token+位置编码</span><br><span class="line">↓</span><br><span class="line">Decoder（轻量 ViT） </span><br><span class="line">↓ </span><br><span class="line">196 个向量</span><br><span class="line">↓ </span><br><span class="line">一个线性层</span><br><span class="line">↓ </span><br><span class="line">映射回 16×16×3 = 768维</span><br><span class="line">↓ </span><br><span class="line">像素级重建</span><br><span class="line">↓ </span><br><span class="line">求MSE loss，只有mask部分</span><br></pre></td></tr></table></figure><h4 id="推理阶段-微调">推理阶段（微调）</h4><p>只保留 encode。在 encoder 输出（如 <code>[CLS]</code> 或全局平均池化）上加分类头。在 ImageNet 等数据集上微调</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;基本信息&quot;&gt;基本信息&lt;/h2&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&quot;text-align:left&quot;&gt;项目&lt;/th&gt;
+&lt;th style=&quot;text-align:left&quot;&gt;内容&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+</summary>
+      
+    
+    
+    
+    <category term="论文阅读" scheme="http://outbreak-sen.github.io/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/"/>
+    
+    
+    <category term="Muilt View Stereo" scheme="http://outbreak-sen.github.io/tags/Muilt-View-Stereo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>论文阅读_MASt3R-MVS</title>
+    <link href="http://outbreak-sen.github.io/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_MASt3R-MVS/"/>
+    <id>http://outbreak-sen.github.io/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_MASt3R-MVS/</id>
+    <published>2025-12-03T05:57:16.000Z</published>
+    <updated>2025-12-03T06:11:20.414Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="基本信息">基本信息</h2><table><thead><tr><th style="text-align:left">项目</th><th style="text-align:left">内容</th></tr></thead><tbody><tr><td style="text-align:left"><strong>论文标题</strong></td><td style="text-align:left">MUSt3R: Multi-view Network for Stereo 3D Reconstructio</td></tr><tr><td style="text-align:left"><strong>作者</strong></td><td style="text-align:left"></td></tr><tr><td style="text-align:left"><strong>作者单位</strong></td><td style="text-align:left">NAVER LABS Europe（欧洲Naver实验室）</td></tr><tr><td style="text-align:left"><strong>时间</strong></td><td style="text-align:left">2025</td></tr><tr><td style="text-align:left"><strong>发表会议/期刊</strong></td><td style="text-align:left"></td></tr><tr><td style="text-align:left"><strong>全称</strong></td><td style="text-align:left"></td></tr></tbody></table><h2 id="方法概览">方法概览</h2><table><thead><tr><th>特点</th><th>文章性质</th></tr></thead><tbody><tr><td><strong>输入</strong></td><td>单张 RGB 图像</td></tr><tr><td><strong>输出</strong></td><td></td></tr><tr><td><strong>所属领域</strong></td><td>一个 3D 点、一个置信度值和一个局部特征。<br></td></tr></tbody></table><h3 id="创新点">创新点</h3><ol><li>在 DUSt3R 前额外加一个 network 输出稠密的 local features，并添加 matching loss 来训练。最后引入一种快速相互匹配方案，能够将匹配速度提高几个数量级。</li></ol><h3 id="网络架构">网络架构</h3><p><img src="IMG-20250907114911708.png" alt=""><img src="%E9%99%84%E4%BB%B6/Pasted%20image%2020250907114933.png" alt=""><br>如何匹配？</p><h3 id="背景知识">背景知识</h3><p>匹配方法通常被归结为一个三步流程，首先提取稀疏且可重复的关键点，然后用局部不变特征描述它们，最后通过比较它们在特征空间中的距离来配对离散的关键点集。SIFT在 COLMAP等 3D 重建流程中的成功。<br>基于关键点的方法通过将匹配简化为关键点袋（BoK）问题，丢弃了对应任务的全局几何上下文信息。这使得它们在具有重复模式或低纹理区域的情况下特别容易出错，而这些区域实际上对于局部描述符来说是不适定的。解决此问题的一种方法是在配对步骤中引入全局优化策略，通常利用一些关于匹配的先验知识。如SuperGlue。<br>但是，如果关键点及其描述符尚未编码足够的信息，则在匹配过程中利用全局上下文可能为时已晚。因此，另一个方向是考虑密集的整体匹配，即完全避免关键点，并一次匹配整个图像。如LoFTR将图像视为一个整体，并且得到的对应集是密集的。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;基本信息&quot;&gt;基本信息&lt;/h2&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&quot;text-align:left&quot;&gt;项目&lt;/th&gt;
+&lt;th style=&quot;text-align:left&quot;&gt;内容&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+</summary>
+      
+    
+    
+    
+    <category term="论文阅读" scheme="http://outbreak-sen.github.io/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/"/>
+    
+    
+    <category term="Muilt View Stereo" scheme="http://outbreak-sen.github.io/tags/Muilt-View-Stereo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>论文阅读_MASt3R-SFM</title>
+    <link href="http://outbreak-sen.github.io/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_MASt3R-SFM/"/>
+    <id>http://outbreak-sen.github.io/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_MASt3R-SFM/</id>
+    <published>2025-12-03T05:57:16.000Z</published>
+    <updated>2025-12-03T06:11:20.419Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="基本信息">基本信息</h2><table><thead><tr><th style="text-align:left">项目</th><th style="text-align:left">内容</th></tr></thead><tbody><tr><td style="text-align:left"><strong>论文标题</strong></td><td style="text-align:left">MUSt3R: Multi-view Network for Stereo 3D Reconstructio</td></tr><tr><td style="text-align:left"><strong>作者</strong></td><td style="text-align:left"></td></tr><tr><td style="text-align:left"><strong>作者单位</strong></td><td style="text-align:left">NAVER LABS Europe（欧洲Naver实验室）</td></tr><tr><td style="text-align:left"><strong>时间</strong></td><td style="text-align:left">2024.6</td></tr><tr><td style="text-align:left"><strong>发表会议/期刊</strong></td><td style="text-align:left"></td></tr><tr><td style="text-align:left"><strong>全称</strong></td><td style="text-align:left"></td></tr></tbody></table><h2 id="方法概览">方法概览</h2><table><thead><tr><th>特点</th><th>文章性质</th></tr></thead><tbody><tr><td><strong>输入</strong></td><td>单张 RGB 图像</td></tr><tr><td><strong>输出</strong></td><td></td></tr><tr><td><strong>所属领域</strong></td><td>一个 3D 点、一个置信度值和一个局部特征。<br></td></tr></tbody></table><h3 id="创新点">创新点</h3><ol><li>在 DUSt3R 前额外加一个 network 输出稠密的 local features，并添加 matching loss 来训练。最后引入一种快速相互匹配方案，能够将匹配速度提高几个数量级。</li></ol><h3 id="网络架构">网络架构</h3><p><img src="%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_MASt3R-MVS/IMG-20250907114911708.png" alt=""><br>如何匹配？</p><h3 id="背景知识">背景知识</h3><p>匹配方法通常被归结为一个三步流程，首先提取稀疏且可重复的关键点，然后用局部不变特征描述它们，最后通过比较它们在特征空间中的距离来配对离散的关键点集。SIFT在 COLMAP等 3D 重建流程中的成功。<br>基于关键点的方法通过将匹配简化为关键点袋（BoK）问题，丢弃了对应任务的全局几何上下文信息。这使得它们在具有重复模式或低纹理区域的情况下特别容易出错，而这些区域实际上对于局部描述符来说是不适定的。解决此问题的一种方法是在配对步骤中引入全局优化策略，通常利用一些关于匹配的先验知识。如SuperGlue。<br>但是，如果关键点及其描述符尚未编码足够的信息，则在匹配过程中利用全局上下文可能为时已晚。因此，另一个方向是考虑密集的整体匹配，即完全避免关键点，并一次匹配整个图像。如LoFTR将图像视为一个整体，并且得到的对应集是密集的。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;基本信息&quot;&gt;基本信息&lt;/h2&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&quot;text-align:left&quot;&gt;项目&lt;/th&gt;
+&lt;th style=&quot;text-align:left&quot;&gt;内容&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+</summary>
       
     
     
