@@ -141,11 +141,11 @@
   </entry>
   
   <entry>
-    <title>VSCode Python Debug 教程</title>
+    <title>VSCode Python Debug</title>
     <link href="http://outbreak-sen.github.io/2025/12/03/VSCode%20Python%20Debug%20%E6%95%99%E7%A8%8B/"/>
     <id>http://outbreak-sen.github.io/2025/12/03/VSCode%20Python%20Debug%20%E6%95%99%E7%A8%8B/</id>
     <published>2025-12-03T05:57:28.000Z</published>
-    <updated>2025-12-03T06:11:20.413Z</updated>
+    <updated>2025-12-03T06:14:59.307Z</updated>
     
     <content type="html"><![CDATA[<h1>VSCode Python Debug 教程</h1><p>我有以下几个目的：</p><ol><li>debug时候传入参数，就像运行python test -pram a -pram1 b这样子，这个如何实现</li><li>如何实现conda环境下运行</li><li>看每个变量的大小和值</li><li>步进运行每一行</li></ol><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 使用 IntelliSense 了解相关属性。 </span></span><br><span class="line">    <span class="comment">// 悬停以查看现有属性的描述。</span></span><br><span class="line">    <span class="comment">// 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387</span></span><br><span class="line">    <span class="string">&quot;version&quot;</span>: <span class="string">&quot;0.2.0&quot;</span>,</span><br><span class="line">    <span class="string">&quot;configurations&quot;</span>: [</span><br><span class="line">        <span class="comment">// 基于内置的 Node.js 调试器</span></span><br><span class="line">        <span class="comment">// 可以创建多个调试器，然后起不同名字，选择对应的进行操作</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">// 这个是调试器配置的名称</span></span><br><span class="line">            <span class="string">&quot;name&quot;</span>: <span class="string">&quot;Python经典调试配置名称&quot;</span>,</span><br><span class="line">            <span class="comment">// 指定了使用Python调试器</span></span><br><span class="line">            <span class="string">&quot;type&quot;</span>: <span class="string">&quot;debugpy&quot;</span>,</span><br><span class="line">            <span class="comment">// 表示启动一个新的调试会话</span></span><br><span class="line">            <span class="string">&quot;request&quot;</span>: <span class="string">&quot;launch&quot;</span>,</span><br><span class="line">            <span class="comment">// 指定要调试的Python脚本， workspaceFolder/train.py&quot;:指定要调试的Python脚本</span></span><br><span class="line">            <span class="comment">// &#123;workspaceFolder&#125;是当前VS Code工作区目录的占位符，假设train.py位于工作区的根目录下。</span></span><br><span class="line">            <span class="string">&quot;program&quot;</span>: <span class="string">&quot;$&#123;file&#125;&quot;</span>,</span><br><span class="line">            <span class="comment">// 调试输出将显示在VS Code的集成终端中。</span></span><br><span class="line">            <span class="string">&quot;console&quot;</span>: <span class="string">&quot;integratedTerminal&quot;</span>,</span><br><span class="line">            <span class="comment">// 这样做可以让Python的输出在终端中实时显示，而不是被缓冲。</span></span><br><span class="line">            <span class="string">&quot;env&quot;</span>: &#123;<span class="string">&quot;PYTHONUNBUFFERED&quot;</span>: <span class="string">&quot;1&quot;</span>&#125;,</span><br><span class="line">            <span class="comment">// &quot;args&quot;: &quot;$&#123;command:pickArgs&#125;&quot; ,</span></span><br><span class="line">            <span class="string">&quot;args&quot;</span>: [</span><br><span class="line">                <span class="string">&quot;-batch&quot;</span>, <span class="string">&quot;64&quot;</span>,</span><br><span class="line">                <span class="string">&quot;-dataset&quot;</span>, <span class="string">&quot;cifar_fs&quot;</span>,</span><br><span class="line">                <span class="string">&quot;-gpu&quot;</span>, <span class="string">&quot;1&quot;</span>,</span><br><span class="line">                <span class="string">&quot;-extra_dir&quot;</span>, <span class="string">&quot;your_run&quot;</span>,</span><br><span class="line">                <span class="string">&quot;-temperature_attn&quot;</span>, <span class="string">&quot;5.0&quot;</span>,</span><br><span class="line">                <span class="string">&quot;-lamb&quot;</span>, <span class="string">&quot;0.5&quot;</span></span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">// 这个是调试器配置的名称</span></span><br><span class="line">            <span class="string">&quot;name&quot;</span>: <span class="string">&quot;MotionBert调试&quot;</span>,</span><br><span class="line">            <span class="comment">// 指定了使用Python调试器</span></span><br><span class="line">            <span class="string">&quot;type&quot;</span>: <span class="string">&quot;debugpy&quot;</span>,</span><br><span class="line">            <span class="comment">// 表示启动一个新的调试会话</span></span><br><span class="line">            <span class="string">&quot;request&quot;</span>: <span class="string">&quot;launch&quot;</span>,</span><br><span class="line">            <span class="comment">// 指定要调试的Python脚本， workspaceFolder/train.py&quot;:指定要调试的Python脚本</span></span><br><span class="line">            <span class="comment">// &#123;workspaceFolder&#125;是当前VS Code工作区目录的占位符，假设train.py位于工作区的根目录下。</span></span><br><span class="line">            <span class="string">&quot;program&quot;</span>: <span class="string">&quot;$&#123;file&#125;&quot;</span>,</span><br><span class="line">            <span class="comment">// 调试输出将显示在VS Code的集成终端中。</span></span><br><span class="line">            <span class="string">&quot;console&quot;</span>: <span class="string">&quot;integratedTerminal&quot;</span>,</span><br><span class="line">            <span class="comment">// 这样做可以让Python的输出在终端中实时显示，而不是被缓冲。</span></span><br><span class="line">            <span class="string">&quot;env&quot;</span>: &#123;<span class="string">&quot;PYTHONUNBUFFERED&quot;</span>: <span class="string">&quot;1&quot;</span>&#125;,</span><br><span class="line">            <span class="comment">// &quot;args&quot;: &quot;$&#123;command:pickArgs&#125;&quot; ,</span></span><br><span class="line">            <span class="string">&quot;args&quot;</span>: [</span><br><span class="line">                <span class="string">&quot;-batch&quot;</span>, <span class="string">&quot;64&quot;</span>,</span><br><span class="line">                <span class="string">&quot;-dataset&quot;</span>, <span class="string">&quot;cifar_fs&quot;</span>,</span><br><span class="line">                <span class="string">&quot;-gpu&quot;</span>, <span class="string">&quot;1&quot;</span>,</span><br><span class="line">                <span class="string">&quot;-extra_dir&quot;</span>, <span class="string">&quot;your_run&quot;</span>,</span><br><span class="line">                <span class="string">&quot;-temperature_attn&quot;</span>, <span class="string">&quot;5.0&quot;</span>,</span><br><span class="line">                <span class="string">&quot;-lamb&quot;</span>, <span class="string">&quot;0.5&quot;</span></span><br><span class="line">            ]</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
     
@@ -262,32 +262,6 @@
   </entry>
   
   <entry>
-    <title>学习笔记_深度学习入门几个常见的概念</title>
-    <link href="http://outbreak-sen.github.io/2025/12/03/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0_%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8%E5%87%A0%E4%B8%AA%E5%B8%B8%E8%A7%81%E7%9A%84%E6%A6%82%E5%BF%B5/"/>
-    <id>http://outbreak-sen.github.io/2025/12/03/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0_%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8%E5%87%A0%E4%B8%AA%E5%B8%B8%E8%A7%81%E7%9A%84%E6%A6%82%E5%BF%B5/</id>
-    <published>2025-12-03T05:57:28.000Z</published>
-    <updated>2025-12-03T06:11:20.413Z</updated>
-    
-    <content type="html"><![CDATA[<h1>无监督和有监督学习</h1><h2 id="监督学习-supervised-learning">监督学习（supervised learning）</h2><p>擅长在“给定输入特征”的情况下预测标签。 每个“特征-标签”对都称为一个<em>样本</em>（example）。</p><p>回归问题：（regression）平方误差损失函数。</p><p>分类问题：（classification）<em>分类</em>问题希望模型能够预测样本属于哪个<em>类别</em>（category，正式称为<em>类</em>（class）），当有两个以上的类别时，我们把这个问题称为<em>多项分类</em>（multiclass classification）问题。 常见的例子包括手写字符识别 。 与解决回归问题不同，分类问题的常见损失函数被称为<em>交叉熵</em>（cross-entropy）</p><p>标记问题：学习预测不相互排斥的类别的问题称为<em>多标签分类</em>（multi-label classification），一个样本点有多个标签，标记问题输出样本点上的所有标签，分类只有一个标签</p><p>搜索问题：搜索一个标签，输出多个结果，需要对输出多个结果进行相关度排序。</p><p>序列学习问题：输入是连续的，模型可能就需要拥有“记忆”功能</p><h3 id="无监督学习">无监督学习</h3><p>聚类（clustering）问题：没有标签的情况下，给定一组照片，我们能把它们分成风景照片、狗、婴儿、猫和山峰的照片</p><p>主成分分析（principal component analysis）问题：我们能否找到少量的参数来准确地捕捉数据的线性相关属性？比如，一个球的运动轨迹可以用球的速度、直径和质量来描述。</p><p>因果关系（causality）和<em>概率图模型</em>（probabilistic graphical models）问题：我们能否描述观察到的许多数据的根本原因？例如，如果我们有关于房价、污染、犯罪、地理位置、教育和工资的人口统计数据，我们能否简单地根据经验数据发现它们之间的关系？</p><p>生成对抗性网络（generative adversarial networks）：为我们提供一种合成数据的方法，甚至像图像和音频这样复杂的非结构化数据。潜在的统计机制是检查真实和虚假数据是否相同的测试，它是无监督学习的另一个重要而令人兴奋的领域。<br>1.聚类是最常见的无监督学习方法之一。聚类的方法包括将未标记的数据组织成类似的组。此处的主要目标是发现数据点中的相似性，并将相似的数据点分组到一个聚类中。</p><p>2.异常检测是识别与大多数数据显著不同的特殊项、事件或观测值的方法。通常在数据中寻找异常或异常值的原因在于它们是可疑的。异常检测常用于银行欺诈和医疗差错检测。</p><h3 id="强化学习">强化学习</h3><p><em>离线学习</em>：（offline learning）预先获取大量数据，然后启动模型，不再与环境交互。 这里所有学习都是在算法与环境断开后进行的。但是有些策略与环境互动，而不是离线的，比如强化学习</p><p>机器学习开发与环境交互并采取行动感兴趣，那么最终可能会专注于<em>强化学习</em>（reinforcement learning）</p><p>在强化学习问题中，智能体（agent）在一系列的时间步骤上与环境交互。 在每个特定时间点，智能体从环境接收一些<em>观察</em>（observation），并且必须选择一个<em>动作</em>（action），然后通过某种机制（有时称为执行器）将其传输回环境，最后智能体从环境中获得<em>奖励</em>（reward）。 此后新一轮循环开始，智能体接收后续观察，并选择后续操作，依此类推。强化学习的目标是产生一个好的<em>策略</em>（policy）。</p><h2 id="前馈神经网络-全连接神经网络-feedforward-neural-network-fnn-：">前馈神经网络/全连接神经网络(Feedforward Neural Network,FNN)：</h2><p>线性函数和激活函数叠好几个层最简单</p><h2 id="循环神经网络-recurrent-neural-network">循环神经网络(Recurrent Neural Network):</h2><p><a href="https://blog.csdn.net/bestrivern/article/details/90723524">RNN详解</a></p><p><a href="https://zhuanlan.zhihu.com/p/123211148">史上最详细循环神经网络讲解（RNN/LSTM/GRU）</a></p><p><a href="https://link.zhihu.com/?target=http%3A//colah.github.io/posts/2015-08-Understanding-LSTMs/">Understanding LSTM Networks</a></p><p>层与层之间是全连接的，每层之间的节点也是连接的，每一步的参数共享</p><p>RNN对具有序列特性的数据非常有效，它能挖掘数据中的时序信息以及语义信息</p><h2 id="长短期记忆递归神经网络-long-short-term-memory-lstm">长短期记忆递归神经网络（Long-Short Term Memory，LSTM):</h2><p>LSTM是RNN的一种变体</p><p>LSTM的内部结构。通过门控状态来控制传输状态，记住需要长时间记忆的，忘记不重要的信息；</p><p>引入了很多内容，导致参数变多，也使得训练难度加大了很多。</p><p>因此往往会使用效果和LSTM相当但参数更少的GRU来构建大训练量的模型。</p><p>三个门：</p><ol><li>Input Gate：中文是输入门，在每一时刻从输入层输入的信息会首先经过输入门，输入门的开关会决定这一时刻是否会有信息输入到Memory Cell。</li><li>Output Gate：中文是输出门，每一时刻是否有信息从Memory Cell输出取决于这一道门。</li><li>Forget Gate：中文是遗忘门，每一时刻Memory Cell里的值都会经历一个是否被遗忘的过程，就是由该门控制的，如果打卡，那么将会把Memory Cell里的值清除，也就是遗忘掉。</li></ol><h2 id="门控循环单元-gate-recurrent-unit-gru-2014提出循环神经网络的一种">门控循环单元（Gate Recurrent Unit，GRU）:2014提出循环神经网络的一种</h2><p>GRU模型中有两个门，重置门和更新门</p><p><strong>重置门决定了如何将新的输入信息与前面的记忆相结合</strong></p><p>更新门用于控制前一时刻的状态信息被带入到当前状态中的程度</p><h2 id="递归神经网络-recursive-neural-network-rnn">递归神经网络 (Recursive Neural Network, RNN)</h2><p>尽管<strong>递归神经网络</strong>具有更为强大的表示能力，但是在实际应用中并不太流行。其中一个主要原因是，<strong>递归神经网络</strong>的输入是树/图结构，而这种结构需要花费很多人工去标注。想象一下，如果我们用<strong>循环神经网络</strong>处理句子，那么我们可以直接把句子作为输入。然而，如果我们用<strong>递归神经网络</strong>处理句子，我们就必须把每个句子标注为语法解析树的形式，这无疑要花费非常大的精力。很多时候，相对于<strong>递归神经网络</strong>能够带来的性能提升，这个投入是不太划算的。</p><h2 id="深度神经网络dnn：">深度神经网络DNN：</h2><p>有很多隐藏层的神经网络</p><h2 id="卷积神经网络cnn">卷积神经网络CNN</h2><h2 id="生成对抗网络gan">生成对抗网络GAN</h2><h2 id="自然语言处理nlp">自然语言处理NLP</h2><p>分类问题的常见损失函数：交叉熵</p><p>回归问题的常见损失函数：均方差</p><p>激活函数：<a href="https://zhuanlan.zhihu.com/p/364620596">https://zhuanlan.zhihu.com/p/364620596</a></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1&gt;无监督和有监督学习&lt;/h1&gt;
-&lt;h2 id=&quot;监督学习-supervised-learning&quot;&gt;监督学习（supervised learning）&lt;/h2&gt;
-&lt;p&gt;擅长在“给定输入特征”的情况下预测标签。 每个“特征-标签”对都称为一个&lt;em&gt;样本&lt;/em&gt;（examp</summary>
-      
-    
-    
-    
-    <category term="论文阅读" scheme="http://outbreak-sen.github.io/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/"/>
-    
-    
-    <category term="Muilt View Stereo" scheme="http://outbreak-sen.github.io/tags/Muilt-View-Stereo/"/>
-    
-  </entry>
-  
-  <entry>
     <title>学习笔记_文生图串讲</title>
     <link href="http://outbreak-sen.github.io/2025/12/03/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0_%E6%96%87%E7%94%9F%E5%9B%BE%E4%B8%B2%E8%AE%B2/"/>
     <id>http://outbreak-sen.github.io/2025/12/03/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0_%E6%96%87%E7%94%9F%E5%9B%BE%E4%B8%B2%E8%AE%B2/</id>
@@ -304,6 +278,32 @@
 &lt;li&gt;Stable Diffusion=DiffusionUNet+VAE+CLIP&lt;/li&gt;
 &lt;li&gt;Dalle2=CLIP+像素级别DiffusionUNet&lt;/li&gt;
 &lt;li&gt;其他还有其他的文生图的网络，也用了diffusi</summary>
+      
+    
+    
+    
+    <category term="论文阅读" scheme="http://outbreak-sen.github.io/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/"/>
+    
+    
+    <category term="Muilt View Stereo" scheme="http://outbreak-sen.github.io/tags/Muilt-View-Stereo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>学习笔记_深度学习入门几个常见的概念</title>
+    <link href="http://outbreak-sen.github.io/2025/12/03/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0_%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8%E5%87%A0%E4%B8%AA%E5%B8%B8%E8%A7%81%E7%9A%84%E6%A6%82%E5%BF%B5/"/>
+    <id>http://outbreak-sen.github.io/2025/12/03/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0_%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8%E5%87%A0%E4%B8%AA%E5%B8%B8%E8%A7%81%E7%9A%84%E6%A6%82%E5%BF%B5/</id>
+    <published>2025-12-03T05:57:28.000Z</published>
+    <updated>2025-12-03T06:11:20.413Z</updated>
+    
+    <content type="html"><![CDATA[<h1>无监督和有监督学习</h1><h2 id="监督学习-supervised-learning">监督学习（supervised learning）</h2><p>擅长在“给定输入特征”的情况下预测标签。 每个“特征-标签”对都称为一个<em>样本</em>（example）。</p><p>回归问题：（regression）平方误差损失函数。</p><p>分类问题：（classification）<em>分类</em>问题希望模型能够预测样本属于哪个<em>类别</em>（category，正式称为<em>类</em>（class）），当有两个以上的类别时，我们把这个问题称为<em>多项分类</em>（multiclass classification）问题。 常见的例子包括手写字符识别 。 与解决回归问题不同，分类问题的常见损失函数被称为<em>交叉熵</em>（cross-entropy）</p><p>标记问题：学习预测不相互排斥的类别的问题称为<em>多标签分类</em>（multi-label classification），一个样本点有多个标签，标记问题输出样本点上的所有标签，分类只有一个标签</p><p>搜索问题：搜索一个标签，输出多个结果，需要对输出多个结果进行相关度排序。</p><p>序列学习问题：输入是连续的，模型可能就需要拥有“记忆”功能</p><h3 id="无监督学习">无监督学习</h3><p>聚类（clustering）问题：没有标签的情况下，给定一组照片，我们能把它们分成风景照片、狗、婴儿、猫和山峰的照片</p><p>主成分分析（principal component analysis）问题：我们能否找到少量的参数来准确地捕捉数据的线性相关属性？比如，一个球的运动轨迹可以用球的速度、直径和质量来描述。</p><p>因果关系（causality）和<em>概率图模型</em>（probabilistic graphical models）问题：我们能否描述观察到的许多数据的根本原因？例如，如果我们有关于房价、污染、犯罪、地理位置、教育和工资的人口统计数据，我们能否简单地根据经验数据发现它们之间的关系？</p><p>生成对抗性网络（generative adversarial networks）：为我们提供一种合成数据的方法，甚至像图像和音频这样复杂的非结构化数据。潜在的统计机制是检查真实和虚假数据是否相同的测试，它是无监督学习的另一个重要而令人兴奋的领域。<br>1.聚类是最常见的无监督学习方法之一。聚类的方法包括将未标记的数据组织成类似的组。此处的主要目标是发现数据点中的相似性，并将相似的数据点分组到一个聚类中。</p><p>2.异常检测是识别与大多数数据显著不同的特殊项、事件或观测值的方法。通常在数据中寻找异常或异常值的原因在于它们是可疑的。异常检测常用于银行欺诈和医疗差错检测。</p><h3 id="强化学习">强化学习</h3><p><em>离线学习</em>：（offline learning）预先获取大量数据，然后启动模型，不再与环境交互。 这里所有学习都是在算法与环境断开后进行的。但是有些策略与环境互动，而不是离线的，比如强化学习</p><p>机器学习开发与环境交互并采取行动感兴趣，那么最终可能会专注于<em>强化学习</em>（reinforcement learning）</p><p>在强化学习问题中，智能体（agent）在一系列的时间步骤上与环境交互。 在每个特定时间点，智能体从环境接收一些<em>观察</em>（observation），并且必须选择一个<em>动作</em>（action），然后通过某种机制（有时称为执行器）将其传输回环境，最后智能体从环境中获得<em>奖励</em>（reward）。 此后新一轮循环开始，智能体接收后续观察，并选择后续操作，依此类推。强化学习的目标是产生一个好的<em>策略</em>（policy）。</p><h2 id="前馈神经网络-全连接神经网络-feedforward-neural-network-fnn-：">前馈神经网络/全连接神经网络(Feedforward Neural Network,FNN)：</h2><p>线性函数和激活函数叠好几个层最简单</p><h2 id="循环神经网络-recurrent-neural-network">循环神经网络(Recurrent Neural Network):</h2><p><a href="https://blog.csdn.net/bestrivern/article/details/90723524">RNN详解</a></p><p><a href="https://zhuanlan.zhihu.com/p/123211148">史上最详细循环神经网络讲解（RNN/LSTM/GRU）</a></p><p><a href="https://link.zhihu.com/?target=http%3A//colah.github.io/posts/2015-08-Understanding-LSTMs/">Understanding LSTM Networks</a></p><p>层与层之间是全连接的，每层之间的节点也是连接的，每一步的参数共享</p><p>RNN对具有序列特性的数据非常有效，它能挖掘数据中的时序信息以及语义信息</p><h2 id="长短期记忆递归神经网络-long-short-term-memory-lstm">长短期记忆递归神经网络（Long-Short Term Memory，LSTM):</h2><p>LSTM是RNN的一种变体</p><p>LSTM的内部结构。通过门控状态来控制传输状态，记住需要长时间记忆的，忘记不重要的信息；</p><p>引入了很多内容，导致参数变多，也使得训练难度加大了很多。</p><p>因此往往会使用效果和LSTM相当但参数更少的GRU来构建大训练量的模型。</p><p>三个门：</p><ol><li>Input Gate：中文是输入门，在每一时刻从输入层输入的信息会首先经过输入门，输入门的开关会决定这一时刻是否会有信息输入到Memory Cell。</li><li>Output Gate：中文是输出门，每一时刻是否有信息从Memory Cell输出取决于这一道门。</li><li>Forget Gate：中文是遗忘门，每一时刻Memory Cell里的值都会经历一个是否被遗忘的过程，就是由该门控制的，如果打卡，那么将会把Memory Cell里的值清除，也就是遗忘掉。</li></ol><h2 id="门控循环单元-gate-recurrent-unit-gru-2014提出循环神经网络的一种">门控循环单元（Gate Recurrent Unit，GRU）:2014提出循环神经网络的一种</h2><p>GRU模型中有两个门，重置门和更新门</p><p><strong>重置门决定了如何将新的输入信息与前面的记忆相结合</strong></p><p>更新门用于控制前一时刻的状态信息被带入到当前状态中的程度</p><h2 id="递归神经网络-recursive-neural-network-rnn">递归神经网络 (Recursive Neural Network, RNN)</h2><p>尽管<strong>递归神经网络</strong>具有更为强大的表示能力，但是在实际应用中并不太流行。其中一个主要原因是，<strong>递归神经网络</strong>的输入是树/图结构，而这种结构需要花费很多人工去标注。想象一下，如果我们用<strong>循环神经网络</strong>处理句子，那么我们可以直接把句子作为输入。然而，如果我们用<strong>递归神经网络</strong>处理句子，我们就必须把每个句子标注为语法解析树的形式，这无疑要花费非常大的精力。很多时候，相对于<strong>递归神经网络</strong>能够带来的性能提升，这个投入是不太划算的。</p><h2 id="深度神经网络dnn：">深度神经网络DNN：</h2><p>有很多隐藏层的神经网络</p><h2 id="卷积神经网络cnn">卷积神经网络CNN</h2><h2 id="生成对抗网络gan">生成对抗网络GAN</h2><h2 id="自然语言处理nlp">自然语言处理NLP</h2><p>分类问题的常见损失函数：交叉熵</p><p>回归问题的常见损失函数：均方差</p><p>激活函数：<a href="https://zhuanlan.zhihu.com/p/364620596">https://zhuanlan.zhihu.com/p/364620596</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1&gt;无监督和有监督学习&lt;/h1&gt;
+&lt;h2 id=&quot;监督学习-supervised-learning&quot;&gt;监督学习（supervised learning）&lt;/h2&gt;
+&lt;p&gt;擅长在“给定输入特征”的情况下预测标签。 每个“特征-标签”对都称为一个&lt;em&gt;样本&lt;/em&gt;（examp</summary>
       
     
     
@@ -397,32 +397,6 @@
   </entry>
   
   <entry>
-    <title>深度学习代码学习笔记</title>
-    <link href="http://outbreak-sen.github.io/2025/12/03/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%BB%A3%E7%A0%81%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    <id>http://outbreak-sen.github.io/2025/12/03/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%BB%A3%E7%A0%81%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</id>
-    <published>2025-12-03T05:57:28.000Z</published>
-    <updated>2025-12-03T06:11:20.415Z</updated>
-    
-    <content type="html"><![CDATA[<h1>深度学习代码学习笔记</h1><h2 id="setuptools">setuptools</h2><p><a href="https://blog.csdn.net/gongdiwudu/article/details/118726517">介绍是什么</a></p><p><a href="https://zhuanlan.zhihu.com/p/162842824">简单使用</a></p><p><a href="https://blog.csdn.net/zylooooooooong/article/details/115564782">_ <em>all</em> _是什么</a></p><p>当我们向文件导入某个模块时，导入的是该模块中那些<strong>名称不以下划线（单下划线“_”或者双下划线“__”）开头</strong>的变量、函数和类。因此，如果我们不想模块文件中的某个成员被引入到其它文件中使用，可以在其名称前添加下划线。</p><p>通过在模块文件中设置__all__变量，当其它文件以“<code>from 模块名 import *</code>”的形式导入该模块时，该文件中只能使用__all__ 列表中指定的成员。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"># mytest.py</span><br><span class="line">__all__ = [&#x27;a&#x27;,&#x27;b&#x27;,&#x27;d&#x27;]  #这里不同</span><br><span class="line"></span><br><span class="line">def a():</span><br><span class="line">    print(&#x27;aaaaa&#x27;)</span><br><span class="line">def b():</span><br><span class="line">    print(&#x27;bbbbb&#x27;) </span><br><span class="line">def c():                  # 这里不同</span><br><span class="line">    print(&#x27;ccccc&#x27;)</span><br><span class="line">def _d():</span><br><span class="line">    print(&#x27;ccccc&#x27;)    </span><br><span class="line"># mytest2.py</span><br><span class="line">from mytest import * #只在以from 模块名 import *形式导入模块时起作用</span><br><span class="line">a()</span><br><span class="line">b()</span><br><span class="line">c()不成功</span><br><span class="line">d()不成功</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure><h2 id="self">self</h2><ul><li><p>self指的是实例Instance本身</p></li><li><p>在Python类中规定，函数的第一个参数是实例对象本身，并且约定俗成，把其名字写为self</p></li></ul><ul><li>self指的是实例本身，而不是类</li><li>self可以用this替代，但是不要这么去写</li><li>类的方法中的self不可以省略</li><li>类中的方法的第一个参数一定要是self，而且不能省略。</li></ul><h2 id="init-方法">__ init__ ()方法</h2><p>在python中创建类后，通常会创建一个\ __ init__ ()方法，这个方法会在创建类的实例的时候自动执行。 \ __ init__ ()方法必须包含一个self参数，而且要是第一个参数。</p><h2 id="super-net-self-init">super(Net, self).<strong>init</strong>()</h2><p>子类把父类的__init__()放到自己的__init__()当中，这样子类就有了父类的__init__()的那些东西。Net类继承nn.<a href="https://so.csdn.net/so/search?q=Module&amp;spm=1001.2101.3001.7020">Module</a>，super(Net, self).<strong>init</strong>()就是对继承自父类nn.Module的属性进行初始化。而且是用nn.Module的初始化方法来初始化继承的属性</p><h2 id="from-gru-import-gru中的-是什么？">from .gru import GRU中的.是什么？</h2><p><a href="http://xn--gru-y28d05bt0k1s1asa426f6og6o6cjbb.py">指当前文件目录下的gru.py</a></p><h2 id="字典类型">字典类型</h2><p><a href="https://zhuanlan.zhihu.com/p/183788519">https://zhuanlan.zhihu.com/p/183788519</a></p><h2 id="os模块">OS模块</h2><p><code>os</code>模块提供  Python 程序 与 操作系统进行交互的接口。</p><p>太多了，边用边学吧</p><h2 id="torch">torch</h2>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1&gt;深度学习代码学习笔记&lt;/h1&gt;
-&lt;h2 id=&quot;setuptools&quot;&gt;setuptools&lt;/h2&gt;
-&lt;p&gt;&lt;a href=&quot;https://blog.csdn.net/gongdiwudu/article/details/118726517&quot;&gt;介绍是什么&lt;/a&gt;&lt;/p</summary>
-      
-    
-    
-    
-    <category term="论文阅读" scheme="http://outbreak-sen.github.io/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/"/>
-    
-    
-    <category term="Muilt View Stereo" scheme="http://outbreak-sen.github.io/tags/Muilt-View-Stereo/"/>
-    
-  </entry>
-  
-  <entry>
     <title>实践笔记CUDA切换版本</title>
     <link href="http://outbreak-sen.github.io/2025/12/03/%E5%AE%9E%E8%B7%B5%E7%AC%94%E8%AE%B0CUDA%E5%88%87%E6%8D%A2%E7%89%88%E6%9C%AC/"/>
     <id>http://outbreak-sen.github.io/2025/12/03/%E5%AE%9E%E8%B7%B5%E7%AC%94%E8%AE%B0CUDA%E5%88%87%E6%8D%A2%E7%89%88%E6%9C%AC/</id>
@@ -438,6 +412,32 @@
 但是如果需要cuda编译一些东西，比如AlphaPose需要cuda编译，就需要cuda安装到本地。&lt;br&gt;
 安装之后，&lt;br&gt;
 &lt;strong&gt;系统变量</summary>
+      
+    
+    
+    
+    <category term="论文阅读" scheme="http://outbreak-sen.github.io/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/"/>
+    
+    
+    <category term="Muilt View Stereo" scheme="http://outbreak-sen.github.io/tags/Muilt-View-Stereo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>深度学习代码学习笔记</title>
+    <link href="http://outbreak-sen.github.io/2025/12/03/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%BB%A3%E7%A0%81%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    <id>http://outbreak-sen.github.io/2025/12/03/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%BB%A3%E7%A0%81%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</id>
+    <published>2025-12-03T05:57:28.000Z</published>
+    <updated>2025-12-03T06:11:20.415Z</updated>
+    
+    <content type="html"><![CDATA[<h1>深度学习代码学习笔记</h1><h2 id="setuptools">setuptools</h2><p><a href="https://blog.csdn.net/gongdiwudu/article/details/118726517">介绍是什么</a></p><p><a href="https://zhuanlan.zhihu.com/p/162842824">简单使用</a></p><p><a href="https://blog.csdn.net/zylooooooooong/article/details/115564782">_ <em>all</em> _是什么</a></p><p>当我们向文件导入某个模块时，导入的是该模块中那些<strong>名称不以下划线（单下划线“_”或者双下划线“__”）开头</strong>的变量、函数和类。因此，如果我们不想模块文件中的某个成员被引入到其它文件中使用，可以在其名称前添加下划线。</p><p>通过在模块文件中设置__all__变量，当其它文件以“<code>from 模块名 import *</code>”的形式导入该模块时，该文件中只能使用__all__ 列表中指定的成员。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"># mytest.py</span><br><span class="line">__all__ = [&#x27;a&#x27;,&#x27;b&#x27;,&#x27;d&#x27;]  #这里不同</span><br><span class="line"></span><br><span class="line">def a():</span><br><span class="line">    print(&#x27;aaaaa&#x27;)</span><br><span class="line">def b():</span><br><span class="line">    print(&#x27;bbbbb&#x27;) </span><br><span class="line">def c():                  # 这里不同</span><br><span class="line">    print(&#x27;ccccc&#x27;)</span><br><span class="line">def _d():</span><br><span class="line">    print(&#x27;ccccc&#x27;)    </span><br><span class="line"># mytest2.py</span><br><span class="line">from mytest import * #只在以from 模块名 import *形式导入模块时起作用</span><br><span class="line">a()</span><br><span class="line">b()</span><br><span class="line">c()不成功</span><br><span class="line">d()不成功</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure><h2 id="self">self</h2><ul><li><p>self指的是实例Instance本身</p></li><li><p>在Python类中规定，函数的第一个参数是实例对象本身，并且约定俗成，把其名字写为self</p></li></ul><ul><li>self指的是实例本身，而不是类</li><li>self可以用this替代，但是不要这么去写</li><li>类的方法中的self不可以省略</li><li>类中的方法的第一个参数一定要是self，而且不能省略。</li></ul><h2 id="init-方法">__ init__ ()方法</h2><p>在python中创建类后，通常会创建一个\ __ init__ ()方法，这个方法会在创建类的实例的时候自动执行。 \ __ init__ ()方法必须包含一个self参数，而且要是第一个参数。</p><h2 id="super-net-self-init">super(Net, self).<strong>init</strong>()</h2><p>子类把父类的__init__()放到自己的__init__()当中，这样子类就有了父类的__init__()的那些东西。Net类继承nn.<a href="https://so.csdn.net/so/search?q=Module&amp;spm=1001.2101.3001.7020">Module</a>，super(Net, self).<strong>init</strong>()就是对继承自父类nn.Module的属性进行初始化。而且是用nn.Module的初始化方法来初始化继承的属性</p><h2 id="from-gru-import-gru中的-是什么？">from .gru import GRU中的.是什么？</h2><p><a href="http://xn--gru-y28d05bt0k1s1asa426f6og6o6cjbb.py">指当前文件目录下的gru.py</a></p><h2 id="字典类型">字典类型</h2><p><a href="https://zhuanlan.zhihu.com/p/183788519">https://zhuanlan.zhihu.com/p/183788519</a></p><h2 id="os模块">OS模块</h2><p><code>os</code>模块提供  Python 程序 与 操作系统进行交互的接口。</p><p>太多了，边用边学吧</p><h2 id="torch">torch</h2>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1&gt;深度学习代码学习笔记&lt;/h1&gt;
+&lt;h2 id=&quot;setuptools&quot;&gt;setuptools&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://blog.csdn.net/gongdiwudu/article/details/118726517&quot;&gt;介绍是什么&lt;/a&gt;&lt;/p</summary>
       
     
     

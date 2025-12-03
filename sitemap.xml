@@ -2,6 +2,33 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://outbreak-sen.github.io/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_%E5%8F%8C%E6%B5%81%E7%BD%91%E7%BB%9C/</loc>
+    
+    <lastmod>2025-12-03</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://outbreak-sen.github.io/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_Bert/</loc>
+    
+    <lastmod>2025-12-03</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://outbreak-sen.github.io/2025/12/03/VSCode%20Python%20Debug%20%E6%95%99%E7%A8%8B/</loc>
+    
+    <lastmod>2025-12-03</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://outbreak-sen.github.io/2025/12/03/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0_%E4%BD%8D%E7%BD%AE%E7%BC%96%E7%A0%81/</loc>
     
     <lastmod>2025-12-03</lastmod>
@@ -273,15 +300,6 @@
   
   <url>
     <loc>http://outbreak-sen.github.io/2025/12/03/%E5%AE%9E%E8%B7%B5%E6%97%A5%E8%AE%B0_AlphaPose%E5%BE%AE%E8%B0%83/</loc>
-    
-    <lastmod>2025-12-03</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://outbreak-sen.github.io/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_AlexNet%E5%92%8CResNet%E5%92%8CGoogleNet/</loc>
     
     <lastmod>2025-12-03</lastmod>
     
@@ -740,15 +758,6 @@
   </url>
   
   <url>
-    <loc>http://outbreak-sen.github.io/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_%E5%8F%8C%E6%B5%81%E7%BD%91%E7%BB%9C/</loc>
-    
-    <lastmod>2025-12-03</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://outbreak-sen.github.io/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_%E5%8F%98%E5%88%86%E8%87%AA%E7%BC%96%E7%A0%81%E5%99%A8VQ-VAE/</loc>
     
     <lastmod>2025-12-03</lastmod>
@@ -785,7 +794,7 @@
   </url>
   
   <url>
-    <loc>http://outbreak-sen.github.io/2025/12/03/VSCode%20Python%20Debug%20%E6%95%99%E7%A8%8B/</loc>
+    <loc>http://outbreak-sen.github.io/2025/12/03/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0_%E6%96%87%E7%94%9F%E5%9B%BE%E4%B8%B2%E8%AE%B2/</loc>
     
     <lastmod>2025-12-03</lastmod>
     
@@ -803,25 +812,7 @@
   </url>
   
   <url>
-    <loc>http://outbreak-sen.github.io/2025/12/03/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0_%E6%96%87%E7%94%9F%E5%9B%BE%E4%B8%B2%E8%AE%B2/</loc>
-    
-    <lastmod>2025-12-03</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://outbreak-sen.github.io/2025/12/03/%E5%B7%A5%E5%85%B7%E7%AC%94%E8%AE%B0_tmux/</loc>
-    
-    <lastmod>2025-12-03</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://outbreak-sen.github.io/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_Bert/</loc>
     
     <lastmod>2025-12-03</lastmod>
     
@@ -1055,7 +1046,7 @@
   </url>
   
   <url>
-    <loc>http://outbreak-sen.github.io/2025/12/03/%E5%B7%A5%E5%85%B7%E7%AC%94%E8%AE%B0_WSLubuntuUsage/</loc>
+    <loc>http://outbreak-sen.github.io/2025/12/03/%E5%AE%9E%E8%B7%B5%E7%AC%94%E8%AE%B0CUDA%E5%88%87%E6%8D%A2%E7%89%88%E6%9C%AC/</loc>
     
     <lastmod>2025-12-03</lastmod>
     
@@ -1064,7 +1055,7 @@
   </url>
   
   <url>
-    <loc>http://outbreak-sen.github.io/2025/12/03/%E5%AE%9E%E8%B7%B5%E7%AC%94%E8%AE%B0CUDA%E5%88%87%E6%8D%A2%E7%89%88%E6%9C%AC/</loc>
+    <loc>http://outbreak-sen.github.io/2025/12/03/%E5%B7%A5%E5%85%B7%E7%AC%94%E8%AE%B0_WSLubuntuUsage/</loc>
     
     <lastmod>2025-12-03</lastmod>
     
@@ -1110,15 +1101,6 @@
   
   <url>
     <loc>http://outbreak-sen.github.io/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_Slam3R/</loc>
-    
-    <lastmod>2025-12-03</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://outbreak-sen.github.io/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_%E7%BB%8F%E5%85%B8%E5%B7%A5%E4%BD%9C%E6%B8%85%E5%8D%95/</loc>
     
     <lastmod>2025-12-03</lastmod>
     
