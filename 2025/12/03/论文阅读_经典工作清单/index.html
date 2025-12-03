@@ -1,0 +1,969 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>This is a 部落格 of outbreak_sen | This is a 部落格 of outbreak_sen</title><meta name="author" content="outbreak_sen"><meta name="copyright" content="outbreak_sen"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="计算机视觉 - CNN    已录制 年份 名字 简介 引用     ✅ 2012 AlexNet 深度学习热潮的奠基作     2014 VGG 使用 3x3 卷积构造更深的网络     2014 GoogleNet 使用并行架构构造更深的网络    ✅ 2015 ResNet 构建深层网络都要有的残差连接。     2017 MobileNet 适合终端设备的小CNN     2019 Eff">
+<meta property="og:type" content="article">
+<meta property="og:title" content="This is a 部落格 of outbreak_sen">
+<meta property="og:url" content="http://outbreak-sen.github.io/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_%E7%BB%8F%E5%85%B8%E5%B7%A5%E4%BD%9C%E6%B8%85%E5%8D%95/index.html">
+<meta property="og:site_name" content="This is a 部落格 of outbreak_sen">
+<meta property="og:description" content="计算机视觉 - CNN    已录制 年份 名字 简介 引用     ✅ 2012 AlexNet 深度学习热潮的奠基作     2014 VGG 使用 3x3 卷积构造更深的网络     2014 GoogleNet 使用并行架构构造更深的网络    ✅ 2015 ResNet 构建深层网络都要有的残差连接。     2017 MobileNet 适合终端设备的小CNN     2019 Eff">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://outbreak-sen.github.io/img/head.png">
+<meta property="article:published_time" content="2025-12-03T05:57:15.666Z">
+<meta property="article:modified_time" content="2025-08-31T14:12:40.000Z">
+<meta property="article:author" content="outbreak_sen">
+<meta property="article:tag" content="static scale model, deep learning, vlog, radio control model, music">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://outbreak-sen.github.io/img/head.png"><link rel="shortcut icon" href="/img/h_beautygirl.png"><link rel="canonical" href="http://outbreak-sen.github.io/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_%E7%BB%8F%E5%85%B8%E5%B7%A5%E4%BD%9C%E6%B8%85%E5%8D%95/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'This is a 部落格 of outbreak_sen',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  isShuoshuo: false
+}</script><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="This is a 部落格 of outbreak_sen" type="application/atom+xml">
+<link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head><body><div id="web_bg" style="background-image: url(/img/v_beautygirl0.jpeg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/./img/head.png" onerror="onerror=null;src='./img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">129</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">24</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">9</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw fa fa-camera-retro"></i><span> 树洞</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 作品与鉴赏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/h_beautygirl.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/h_beautygirl.png" alt="Logo"><span class="site-name">This is a 部落格 of outbreak_sen</span></a><a class="nav-page-title" href="/"><span class="site-name">This is a 部落格 of outbreak_sen</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw fa fa-camera-retro"></i><span> 树洞</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 作品与鉴赏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">无标题</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-12-03T05:57:15.666Z" title="发表于 2025-12-03 13:57:15">2025-12-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-08-31T14:12:40.000Z" title="更新于 2025-08-31 22:12:40">2025-08-31</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h3 id="计算机视觉-cnn">计算机视觉 - CNN</h3>
+<table>
+<thead>
+<tr>
+<th>已录制</th>
+<th>年份</th>
+<th>名字</th>
+<th>简介</th>
+<th>引用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>✅</td>
+<td>2012</td>
+<td><a target="_blank" rel="noopener" href="https://papers.nips.cc/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Paper.pdf">AlexNet</a></td>
+<td>深度学习热潮的奠基作</td>
+<td><a target="_blank" rel="noopener" href="https://www.semanticscholar.org/paper/ImageNet-classification-with-deep-convolutional-Krizhevsky-Sutskever/abd1c342495432171beb7ca8fd9551ef13cbd0ff"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://camo.githubusercontent.com/bec95bff4c6cbc62d9fa6019da32fab2b993c88a9e72ec6f9419eb959639232a/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f64796e616d69632f6a736f6e3f6c6162656c3d6369746174696f6e2671756572793d6369746174696f6e436f756e742675726c3d68747470732533412532462532466170692e73656d616e7469637363686f6c61722e6f7267253246677261706825324676312532467061706572253246616264316333343234393534333231373162656237636138666439353531656631336362643066662533466669656c64732533446369746174696f6e436f756e74" alt="citation"></a></td>
+</tr>
+<tr>
+<td></td>
+<td>2014</td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1409.1556.pdf">VGG</a></td>
+<td>使用 3x3 卷积构造更深的网络</td>
+<td><a target="_blank" rel="noopener" href="https://www.semanticscholar.org/paper/Very-Deep-Convolutional-Networks-for-Large-Scale-Simonyan-Zisserman/eb42cf88027de515750f230b23b1a057dc782108"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://camo.githubusercontent.com/dbcbcdaa0b190d6560c312133ac33402987f724dd7b50b461148576370f5fcf3/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f64796e616d69632f6a736f6e3f6c6162656c3d6369746174696f6e2671756572793d6369746174696f6e436f756e742675726c3d68747470732533412532462532466170692e73656d616e7469637363686f6c61722e6f7267253246677261706825324676312532467061706572253246656234326366383830323764653531353735306632333062323362316130353764633738323130382533466669656c64732533446369746174696f6e436f756e74" alt="citation"></a></td>
+</tr>
+<tr>
+<td></td>
+<td>2014</td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1409.4842.pdf">GoogleNet</a></td>
+<td>使用并行架构构造更深的网络</td>
+<td><a target="_blank" rel="noopener" href="https://www.semanticscholar.org/paper/Going-deeper-with-convolutions-Szegedy-Liu/e15cf50aa89fee8535703b9f9512fca5bfc43327"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://camo.githubusercontent.com/cf1f916225cff7369437003bae97a14bbc48d46fcd4eba26707c05a6632c6d85/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f64796e616d69632f6a736f6e3f6c6162656c3d6369746174696f6e2671756572793d6369746174696f6e436f756e742675726c3d68747470732533412532462532466170692e73656d616e7469637363686f6c61722e6f7267253246677261706825324676312532467061706572253246653135636635306161383966656538353335373033623966393531326663613562666334333332372533466669656c64732533446369746174696f6e436f756e74" alt="citation"></a></td>
+</tr>
+<tr>
+<td>✅</td>
+<td>2015</td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1512.03385.pdf">ResNet</a></td>
+<td>构建深层网络都要有的残差连接。</td>
+<td><a target="_blank" rel="noopener" href="https://www.semanticscholar.org/paper/Deep-Residual-Learning-for-Image-Recognition-He-Zhang/2c03df8b48bf3fa39054345bafabfeff15bfd11d"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://camo.githubusercontent.com/2fe23e7fa090123f9cda1516e7764012e77049af4bdd6500f5cbc9e8f13d0139/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f64796e616d69632f6a736f6e3f6c6162656c3d6369746174696f6e2671756572793d6369746174696f6e436f756e742675726c3d68747470732533412532462532466170692e73656d616e7469637363686f6c61722e6f7267253246677261706825324676312532467061706572253246326330336466386234386266336661333930353433343562616661626665666631356266643131642533466669656c64732533446369746174696f6e436f756e74" alt="citation"></a></td>
+</tr>
+<tr>
+<td></td>
+<td>2017</td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1704.04861.pdf">MobileNet</a></td>
+<td>适合终端设备的小CNN</td>
+<td><a target="_blank" rel="noopener" href="https://www.semanticscholar.org/paper/MobileNets%3A-Efficient-Convolutional-Neural-Networks-Howard-Zhu/3647d6d0f151dc05626449ee09cc7bce55be497e"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://camo.githubusercontent.com/067f01614cb5474d890c92d1d91bcfc88398580bc2b59b993619138ba8b9005e/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f64796e616d69632f6a736f6e3f6c6162656c3d6369746174696f6e2671756572793d6369746174696f6e436f756e742675726c3d68747470732533412532462532466170692e73656d616e7469637363686f6c61722e6f7267253246677261706825324676312532467061706572253246333634376436643066313531646330353632363434396565303963633762636535356265343937652533466669656c64732533446369746174696f6e436f756e74" alt="citation"></a></td>
+</tr>
+<tr>
+<td></td>
+<td>2019</td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1905.11946.pdf">EfficientNet</a></td>
+<td>通过架构搜索得到的CNN</td>
+<td><a target="_blank" rel="noopener" href="https://www.semanticscholar.org/paper/EfficientNet%3A-Rethinking-Model-Scaling-for-Neural-Tan-Le/4f2eda8077dc7a69bb2b4e0a1a086cf054adb3f9"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://camo.githubusercontent.com/ffe9bf87a2ae19793439a86e06e8c1c46ce290c15d124f568f58c86f59cfd57b/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f64796e616d69632f6a736f6e3f6c6162656c3d6369746174696f6e2671756572793d6369746174696f6e436f756e742675726c3d68747470732533412532462532466170692e73656d616e7469637363686f6c61722e6f7267253246677261706825324676312532467061706572253246346632656461383037376463376136396262326234653061316130383663663035346164623366392533466669656c64732533446369746174696f6e436f756e74" alt="citation"></a></td>
+</tr>
+<tr>
+<td></td>
+<td>2021</td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2110.07641.pdf">Non-deep networks</a></td>
+<td>让不深的网络也能在ImageNet刷到SOTA</td>
+<td><a target="_blank" rel="noopener" href="https://www.semanticscholar.org/paper/Non-deep-Networks-Goyal-Bochkovskiy/0d7f6086772079bc3e243b7b375a9ca1a517ba8b"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://camo.githubusercontent.com/528bd9e48e6d7b9a2963e3626afa709dd73d9f28f1b5401c97e1cee328ce2c67/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f64796e616d69632f6a736f6e3f6c6162656c3d6369746174696f6e2671756572793d6369746174696f6e436f756e742675726c3d68747470732533412532462532466170692e73656d616e7469637363686f6c61722e6f7267253246677261706825324676312532467061706572253246306437663630383637373230373962633365323433623762333735613963613161353137626138622533466669656c64732533446369746174696f6e436f756e74" alt="citation"></a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="计算机视觉-transformer">计算机视觉 - Transformer</h3>
+<table>
+<thead>
+<tr>
+<th>已录制</th>
+<th>年份</th>
+<th>名字</th>
+<th>简介</th>
+<th>引用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>✅</td>
+<td>2020</td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2010.11929.pdf">ViT</a></td>
+<td>Transformer杀入CV界</td>
+<td><a target="_blank" rel="noopener" href="https://www.semanticscholar.org/paper/An-Image-is-Worth-16x16-Words%3A-Transformers-for-at-Dosovitskiy-Beyer/7b15fa1b8d413fbe14ef7a97f651f47f5aff3903"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://camo.githubusercontent.com/6814f95178e97944114eb74f66fa179c172ca728d7879d3ba6577d5bbaa8e127/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f64796e616d69632f6a736f6e3f6c6162656c3d6369746174696f6e2671756572793d6369746174696f6e436f756e742675726c3d68747470732533412532462532466170692e73656d616e7469637363686f6c61722e6f7267253246677261706825324676312532467061706572253246376231356661316238643431336662653134656637613937663635316634376635616666333930332533466669656c64732533446369746174696f6e436f756e74" alt="citation"></a></td>
+</tr>
+<tr>
+<td>✅</td>
+<td>2021</td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2103.14030.pdf">Swin Transformer</a></td>
+<td>多层次的Vision Transformer</td>
+<td><a target="_blank" rel="noopener" href="https://www.semanticscholar.org/paper/Swin-Transformer%3A-Hierarchical-Vision-Transformer-Liu-Lin/c8b25fab5608c3e033d34b4483ec47e68ba109b7"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://camo.githubusercontent.com/7f462761b95e238f0b444142ec6ace389b16f5e0c45c46e93c128b622393e984/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f64796e616d69632f6a736f6e3f6c6162656c3d6369746174696f6e2671756572793d6369746174696f6e436f756e742675726c3d68747470732533412532462532466170692e73656d616e7469637363686f6c61722e6f7267253246677261706825324676312532467061706572253246633862323566616235363038633365303333643334623434383365633437653638626131303962372533466669656c64732533446369746174696f6e436f756e74" alt="citation"></a></td>
+</tr>
+<tr>
+<td></td>
+<td>2021</td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2105.01601.pdf">MLP-Mixer</a></td>
+<td>使用MLP替换self-attention</td>
+<td><a target="_blank" rel="noopener" href="https://www.semanticscholar.org/paper/MLP-Mixer%3A-An-all-MLP-Architecture-for-Vision-Tolstikhin-Houlsby/2def61f556f9a5576ace08911496b7c7e4f970a4"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://camo.githubusercontent.com/f2d4daee5294e41b0a23c8357fb86a86889a01d5d38b61dd9af8423f234b2c3a/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f64796e616d69632f6a736f6e3f6c6162656c3d6369746174696f6e2671756572793d6369746174696f6e436f756e742675726c3d68747470732533412532462532466170692e73656d616e7469637363686f6c61722e6f7267253246677261706825324676312532467061706572253246326465663631663535366639613535373661636530383931313439366237633765346639373061342533466669656c64732533446369746174696f6e436f756e74" alt="citation"></a></td>
+</tr>
+<tr>
+<td>✅</td>
+<td>2021</td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2111.06377.pdf">MAE</a></td>
+<td>BERT的CV版</td>
+<td><a target="_blank" rel="noopener" href="https://www.semanticscholar.org/paper/Masked-Autoencoders-Are-Scalable-Vision-Learners-He-Chen/c1962a8cf364595ed2838a097e9aa7cd159d3118"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://camo.githubusercontent.com/0b5ba9af1ced83f159c094b050d7ef238c7a67fbc1468b7cb92a015745dde102/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f64796e616d69632f6a736f6e3f6c6162656c3d6369746174696f6e2671756572793d6369746174696f6e436f756e742675726c3d68747470732533412532462532466170692e73656d616e7469637363686f6c61722e6f7267253246677261706825324676312532467061706572253246633139363261386366333634353935656432383338613039376539616137636431353964333131382533466669656c64732533446369746174696f6e436f756e74" alt="citation"></a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="生成模型">生成模型</h3>
+<table>
+<thead>
+<tr>
+<th>已录制</th>
+<th>年份</th>
+<th>名字</th>
+<th>简介</th>
+<th>引用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>✅</td>
+<td>2014</td>
+<td><a target="_blank" rel="noopener" href="https://papers.nips.cc/paper/2014/file/5ca3e9b122f61f8f06494c97b1afccf3-Paper.pdf">GAN</a></td>
+<td>生成模型的开创工作</td>
+<td><a target="_blank" rel="noopener" href="https://www.semanticscholar.org/paper/Generative-Adversarial-Nets-Goodfellow-Pouget-Abadie/54e325aee6b2d476bbbb88615ac15e251c6e8214"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://camo.githubusercontent.com/afe5150f3a80e8ff56146480e343effa6c0072f5ead2f8c5f6a4a466d36c81d3/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f64796e616d69632f6a736f6e3f6c6162656c3d6369746174696f6e2671756572793d6369746174696f6e436f756e742675726c3d68747470732533412532462532466170692e73656d616e7469637363686f6c61722e6f7267253246677261706825324676312532467061706572253246353465333235616565366232643437366262626238383631356163313565323531633665383231342533466669656c64732533446369746174696f6e436f756e74" alt="citation"></a></td>
+</tr>
+<tr>
+<td></td>
+<td>2015</td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1511.06434.pdf">DCGAN</a></td>
+<td>使用CNN的GAN</td>
+<td><a target="_blank" rel="noopener" href="https://www.semanticscholar.org/paper/Unsupervised-Representation-Learning-with-Deep-Radford-Metz/8388f1be26329fa45e5807e968a641ce170ea078"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://camo.githubusercontent.com/adbcbb879f2b3ed1f061e96af48baae0e40d2029febe135e6823562d001cd6fa/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f64796e616d69632f6a736f6e3f6c6162656c3d6369746174696f6e2671756572793d6369746174696f6e436f756e742675726c3d68747470732533412532462532466170692e73656d616e7469637363686f6c61722e6f7267253246677261706825324676312532467061706572253246383338386631626532363332396661343565353830376539363861363431636531373065613037382533466669656c64732533446369746174696f6e436f756e74" alt="citation"></a></td>
+</tr>
+<tr>
+<td></td>
+<td>2016</td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1611.07004.pdf">pix2pix</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://www.semanticscholar.org/paper/Image-to-Image-Translation-with-Conditional-Isola-Zhu/8acbe90d5b852dadea7810345451a99608ee54c7"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://camo.githubusercontent.com/479e987a3fda56b0b67a43d1fde86e43aaeb74185ff08da2694d367e8514cbe7/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f64796e616d69632f6a736f6e3f6c6162656c3d6369746174696f6e2671756572793d6369746174696f6e436f756e742675726c3d68747470732533412532462532466170692e73656d616e7469637363686f6c61722e6f7267253246677261706825324676312532467061706572253246386163626539306435623835326461646561373831303334353435316139393630386565353463372533466669656c64732533446369746174696f6e436f756e74" alt="citation"></a></td>
+</tr>
+<tr>
+<td></td>
+<td>2016</td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1609.04802.pdf">SRGAN</a></td>
+<td>图片超分辨率</td>
+<td><a target="_blank" rel="noopener" href="https://www.semanticscholar.org/paper/Photo-Realistic-Single-Image-Super-Resolution-Using-Ledig-Theis/df0c54fe61f0ffb9f0e36a17c2038d9a1964cba3"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://camo.githubusercontent.com/df1ab37e9efec818a1615b10f767fe162893dbe0d664daf4ce74336c7c3c7bfb/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f64796e616d69632f6a736f6e3f6c6162656c3d6369746174696f6e2671756572793d6369746174696f6e436f756e742675726c3d68747470732533412532462532466170692e73656d616e7469637363686f6c61722e6f7267253246677261706825324676312532467061706572253246646630633534666536316630666662396630653336613137633230333864396131393634636261332533466669656c64732533446369746174696f6e436f756e74" alt="citation"></a></td>
+</tr>
+<tr>
+<td></td>
+<td>2017</td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/1701.07875">WGAN</a></td>
+<td>训练更加容易</td>
+<td><a target="_blank" rel="noopener" href="https://www.semanticscholar.org/paper/Wasserstein-GAN-Arjovsky-Chintala/2f85b7376769473d2bed56f855f115e23d727094"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://camo.githubusercontent.com/825c64463ffeed31e578d2e4c5c76540a533a274afd0e578946ec5dc9c3c2a70/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f64796e616d69632f6a736f6e3f6c6162656c3d6369746174696f6e2671756572793d6369746174696f6e436f756e742675726c3d68747470732533412532462532466170692e73656d616e7469637363686f6c61722e6f7267253246677261706825324676312532467061706572253246326638356237333736373639343733643262656435366638353566313135653233643732373039342533466669656c64732533446369746174696f6e436f756e74" alt="citation"></a></td>
+</tr>
+<tr>
+<td></td>
+<td>2017</td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/1703.10593">CycleGAN</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://www.semanticscholar.org/paper/Unpaired-Image-to-Image-Translation-Using-Networks-Zhu-Park/c43d954cf8133e6254499f3d68e45218067e4941"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://camo.githubusercontent.com/27e13bacc906b3d4669cb1995d92e1b83f446b9dd3f713c74466c6de28c109d1/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f64796e616d69632f6a736f6e3f6c6162656c3d6369746174696f6e2671756572793d6369746174696f6e436f756e742675726c3d68747470732533412532462532466170692e73656d616e7469637363686f6c61722e6f7267253246677261706825324676312532467061706572253246633433643935346366383133336536323534343939663364363865343532313830363765343934312533466669656c64732533446369746174696f6e436f756e74" alt="citation"></a></td>
+</tr>
+<tr>
+<td></td>
+<td>2018</td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/1812.04948">StyleGAN</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://www.semanticscholar.org/paper/A-Style-Based-Generator-Architecture-for-Generative-Karras-Laine/ceb2ebef0b41e31c1a21b28c2734123900c005e2"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://camo.githubusercontent.com/888f077e4bae1abcf931f5333c255a58837089f2a59335f196165fb7d00e52be/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f64796e616d69632f6a736f6e3f6c6162656c3d6369746174696f6e2671756572793d6369746174696f6e436f756e742675726c3d68747470732533412532462532466170692e73656d616e7469637363686f6c61722e6f7267253246677261706825324676312532467061706572253246636562326562656630623431653331633161323162323863323733343132333930306330303565322533466669656c64732533446369746174696f6e436f756e74" alt="citation"></a></td>
+</tr>
+<tr>
+<td></td>
+<td>2019</td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1912.04958.pdf">StyleGAN2</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://www.semanticscholar.org/paper/Analyzing-and-Improving-the-Image-Quality-of-Karras-Laine/f3e3d1f86a534a3654d0ee263142e44f4e2c61e9"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://camo.githubusercontent.com/814f0d2c033a89fa8cced57e7d17b8aab3827980f3361c8568fb6e75f02ab9e5/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f64796e616d69632f6a736f6e3f6c6162656c3d6369746174696f6e2671756572793d6369746174696f6e436f756e742675726c3d68747470732533412532462532466170692e73656d616e7469637363686f6c61722e6f7267253246677261706825324676312532467061706572253246663365336431663836613533346133363534643065653236333134326534346634653263363165392533466669656c64732533446369746174696f6e436f756e74" alt="citation"></a></td>
+</tr>
+<tr>
+<td></td>
+<td>2020</td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2006.11239.pdf">DDPM</a></td>
+<td>Diffusion Models</td>
+<td><a target="_blank" rel="noopener" href="https://www.semanticscholar.org/paper/Denoising-Diffusion-Probabilistic-Models-Ho-Jain/289db3be7bf77e06e75541ba93269de3d604ac72"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://camo.githubusercontent.com/8fcee0ac0bcfe1949d0be0b76c3c010f8e548c1e6938f8a1dcd47c34990e0275/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f64796e616d69632f6a736f6e3f6c6162656c3d6369746174696f6e2671756572793d6369746174696f6e436f756e742675726c3d68747470732533412532462532466170692e73656d616e7469637363686f6c61722e6f7267253246677261706825324676312532467061706572253246323839646233626537626637376530366537353534316261393332363964653364363034616337322533466669656c64732533446369746174696f6e436f756e74" alt="citation"></a></td>
+</tr>
+<tr>
+<td></td>
+<td>2021</td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2102.09672.pdf">Improved DDPM</a></td>
+<td>改进的 DDPM</td>
+<td><a target="_blank" rel="noopener" href="https://www.semanticscholar.org/paper/Improved-Denoising-Diffusion-Probabilistic-Models-Nichol-Dhariwal/de18baa4964804cf471d85a5a090498242d2e79f"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://camo.githubusercontent.com/f912bf5fd49c794d9e5625d42e7552f36a59936a8ed57bccc5f41433a724f5ff/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f64796e616d69632f6a736f6e3f6c6162656c3d6369746174696f6e2671756572793d6369746174696f6e436f756e742675726c3d68747470732533412532462532466170692e73656d616e7469637363686f6c61722e6f7267253246677261706825324676312532467061706572253246646531386261613439363438303463663437316438356135613039303439383234326432653739662533466669656c64732533446369746174696f6e436f756e74" alt="citation"></a></td>
+</tr>
+<tr>
+<td></td>
+<td>2021</td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2105.05233.pdf">Guided Diffusion Models</a></td>
+<td>号称超越 GAN</td>
+<td><a target="_blank" rel="noopener" href="https://www.semanticscholar.org/paper/Diffusion-Models-Beat-GANs-on-Image-Synthesis-Dhariwal-Nichol/64ea8f180d0682e6c18d1eb688afdb2027c02794"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://camo.githubusercontent.com/36460cb04c5fe922042a784d5dd707edc4e0124c98bcb207f4d16ab31a305a6f/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f64796e616d69632f6a736f6e3f6c6162656c3d6369746174696f6e2671756572793d6369746174696f6e436f756e742675726c3d68747470732533412532462532466170692e73656d616e7469637363686f6c61722e6f7267253246677261706825324676312532467061706572253246363465613866313830643036383265366331386431656236383861666462323032376330323739342533466669656c64732533446369746174696f6e436f756e74" alt="citation"></a></td>
+</tr>
+<tr>
+<td></td>
+<td>2021</td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2106.12423.pdf">StyleGAN3</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://www.semanticscholar.org/paper/Alias-Free-Generative-Adversarial-Networks-Karras-Aittala/c1ff08b59f00c44f34dfdde55cd53370733a2c19"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://camo.githubusercontent.com/fc41bb2224776dbf7e806b69e0dc44b540113f21e542e80bfb9e77f4a26f02db/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f64796e616d69632f6a736f6e3f6c6162656c3d6369746174696f6e2671756572793d6369746174696f6e436f756e742675726c3d68747470732533412532462532466170692e73656d616e7469637363686f6c61722e6f7267253246677261706825324676312532467061706572253246633166663038623539663030633434663334646664646535356364353333373037333361326331392533466669656c64732533446369746174696f6e436f756e74" alt="citation"></a></td>
+</tr>
+<tr>
+<td>✅</td>
+<td>2022</td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2204.06125.pdf">DALL.E 2</a></td>
+<td>CLIP + Diffusion models，文本生成图像新高度</td>
+<td><a target="_blank" rel="noopener" href="https://www.semanticscholar.org/paper/Hierarchical-Text-Conditional-Image-Generation-with-Ramesh-Dhariwal/c57293882b2561e1ba03017902df9fc2f289dea2"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://camo.githubusercontent.com/c9d44e69a414a4a961b91ebeb317bb9aeeee1a2723a5343e09fe2d266e483b94/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f64796e616d69632f6a736f6e3f6c6162656c3d6369746174696f6e2671756572793d6369746174696f6e436f756e742675726c3d68747470732533412532462532466170692e73656d616e7469637363686f6c61722e6f7267253246677261706825324676312532467061706572253246633537323933383832623235363165316261303330313739303264663966633266323839646561322533466669656c64732533446369746174696f6e436f756e74" alt="citation"></a></td>
+</tr>
+<tr>
+<td>✅</td>
+<td>2024</td>
+<td><a target="_blank" rel="noopener" href="https://openai.com/index/video-generation-models-as-world-simulators/">Sora</a></td>
+<td>开启视频生成热潮</td>
+<td></td>
+</tr>
+<tr>
+<td>✅</td>
+<td>2024</td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2410.13720">Movie Gen</a></td>
+<td>精确的文本指导视频编辑、个性化视频生成</td>
+<td></td>
+</tr>
+<tr>
+<td>✅</td>
+<td>2025</td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2412.03603">HunyuanVideo</a></td>
+<td>开源视频生成框架</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="计算机视觉-object-detection">计算机视觉 - Object Detection</h3>
+<table>
+<thead>
+<tr>
+<th>已录制</th>
+<th>年份</th>
+<th>名字</th>
+<th>简介</th>
+<th>引用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td>2014</td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1311.2524v5.pdf">R-CNN</a></td>
+<td>Two-stage</td>
+<td><a target="_blank" rel="noopener" href="https://www.semanticscholar.org/paper/2f4df08d9072fc2ac181b7fced6a245315ce05c8"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://camo.githubusercontent.com/dcb198f6d9c80e0761bec426a5866f1353160b9b22d70066c67f8987180bc738/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f64796e616d69632f6a736f6e3f6c6162656c3d6369746174696f6e2671756572793d6369746174696f6e436f756e742675726c3d68747470732533412532462532466170692e73656d616e7469637363686f6c61722e6f7267253246677261706825324676312532467061706572253246326634646630386439303732666332616331383162376663656436613234353331356365303563382533466669656c64732533446369746174696f6e436f756e74" alt="citation"></a></td>
+</tr>
+<tr>
+<td></td>
+<td>2015</td>
+<td><a target="_blank" rel="noopener" href="http://arxiv.org/abs/1504.08083v2">Fast R-CNN</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://www.semanticscholar.org/paper/7ffdbc358b63378f07311e883dddacc9faeeaf4b"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://camo.githubusercontent.com/23cc96e0f86d204d9762e349fce79e01bb5c62ffaede090e8b2e299a6db7f2d6/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f64796e616d69632f6a736f6e3f6c6162656c3d6369746174696f6e2671756572793d6369746174696f6e436f756e742675726c3d68747470732533412532462532466170692e73656d616e7469637363686f6c61722e6f7267253246677261706825324676312532467061706572253246376666646263333538623633333738663037333131653838336464646163633966616565616634622533466669656c64732533446369746174696f6e436f756e74" alt="citation"></a></td>
+</tr>
+<tr>
+<td></td>
+<td>2015</td>
+<td><a target="_blank" rel="noopener" href="http://arxiv.org/abs/1506.01497v3">Faster R-CNN</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://www.semanticscholar.org/paper/424561d8585ff8ebce7d5d07de8dbf7aae5e7270"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://camo.githubusercontent.com/2e7b8271c598ddc021a796754d9f372afcc58fd2965396d3ad1449d154a9d4ac/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f64796e616d69632f6a736f6e3f6c6162656c3d6369746174696f6e2671756572793d6369746174696f6e436f756e742675726c3d68747470732533412532462532466170692e73656d616e7469637363686f6c61722e6f7267253246677261706825324676312532467061706572253246343234353631643835383566663865626365376435643037646538646266376161653565373237302533466669656c64732533446369746174696f6e436f756e74" alt="citation"></a></td>
+</tr>
+<tr>
+<td></td>
+<td>2016</td>
+<td><a target="_blank" rel="noopener" href="http://arxiv.org/abs/1512.02325v5">SSD</a></td>
+<td>Single stage</td>
+<td><a target="_blank" rel="noopener" href="https://www.semanticscholar.org/paper/4d7a9197433acbfb24ef0e9d0f33ed1699e4a5b0"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://camo.githubusercontent.com/42580acfed0c3d362e74637c1d81f2fc4dc8afdd1cbc0d7e5b1aaa5f70993da0/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f64796e616d69632f6a736f6e3f6c6162656c3d6369746174696f6e2671756572793d6369746174696f6e436f756e742675726c3d68747470732533412532462532466170692e73656d616e7469637363686f6c61722e6f7267253246677261706825324676312532467061706572253246346437613931393734333361636266623234656630653964306633336564313639396534613562302533466669656c64732533446369746174696f6e436f756e74" alt="citation"></a></td>
+</tr>
+<tr>
+<td></td>
+<td>2016</td>
+<td><a target="_blank" rel="noopener" href="http://arxiv.org/abs/1506.02640v5">YOLO</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://www.semanticscholar.org/paper/f8e79ac0ea341056ef20f2616628b3e964764cfd"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://camo.githubusercontent.com/4850ea9024616ef122d151bdc13fedb2a0e1a527169503fd420fc386471a1a3e/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f64796e616d69632f6a736f6e3f6c6162656c3d6369746174696f6e2671756572793d6369746174696f6e436f756e742675726c3d68747470732533412532462532466170692e73656d616e7469637363686f6c61722e6f7267253246677261706825324676312532467061706572253246663865373961633065613334313035366566323066323631363632386233653936343736346366642533466669656c64732533446369746174696f6e436f756e74" alt="citation"></a></td>
+</tr>
+<tr>
+<td></td>
+<td>2017</td>
+<td><a target="_blank" rel="noopener" href="http://arxiv.org/abs/1703.06870v3">Mask R-CNN</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://www.semanticscholar.org/paper/ea99a5535388196d0d44be5b4d7dd02029a43bb2"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://camo.githubusercontent.com/44ead5b20d626ab34e1a9407e5f14e90fba5b533ded31694e5d0eee436b187a8/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f64796e616d69632f6a736f6e3f6c6162656c3d6369746174696f6e2671756572793d6369746174696f6e436f756e742675726c3d68747470732533412532462532466170692e73656d616e7469637363686f6c61722e6f7267253246677261706825324676312532467061706572253246656139396135353335333838313936643064343462653562346437646430323032396134336262322533466669656c64732533446369746174696f6e436f756e74" alt="citation"></a></td>
+</tr>
+<tr>
+<td></td>
+<td>2017</td>
+<td><a target="_blank" rel="noopener" href="http://arxiv.org/abs/1612.08242v1">YOLOv2</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://www.semanticscholar.org/paper/7d39d69b23424446f0400ef603b2e3e22d0309d6"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://camo.githubusercontent.com/1570e811dcf2bdc5df428944a47f481a655692c88d01a78af576f0ba6523afa0/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f64796e616d69632f6a736f6e3f6c6162656c3d6369746174696f6e2671756572793d6369746174696f6e436f756e742675726c3d68747470732533412532462532466170692e73656d616e7469637363686f6c61722e6f7267253246677261706825324676312532467061706572253246376433396436396232333432343434366630343030656636303362326533653232643033303964362533466669656c64732533446369746174696f6e436f756e74" alt="citation"></a></td>
+</tr>
+<tr>
+<td></td>
+<td>2018</td>
+<td><a target="_blank" rel="noopener" href="http://arxiv.org/abs/1804.02767v1">YOLOv3</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://www.semanticscholar.org/paper/e4845fb1e624965d4f036d7fd32e8dcdd2408148"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://camo.githubusercontent.com/2020390980f27704cce44ebd350be146b98be4e227468ca691d26bc4b9b985f7/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f64796e616d69632f6a736f6e3f6c6162656c3d6369746174696f6e2671756572793d6369746174696f6e436f756e742675726c3d68747470732533412532462532466170692e73656d616e7469637363686f6c61722e6f7267253246677261706825324676312532467061706572253246653438343566623165363234393635643466303336643766643332653864636464323430383134382533466669656c64732533446369746174696f6e436f756e74" alt="citation"></a></td>
+</tr>
+<tr>
+<td></td>
+<td>2019</td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1904.07850.pdf">CenterNet</a></td>
+<td>Anchor free</td>
+<td><a target="_blank" rel="noopener" href="https://www.semanticscholar.org/paper/Objects-as-Points-Zhou-Wang/6a2e2fd1b5bb11224daef98b3fb6d029f68a73f2"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://camo.githubusercontent.com/6f78fef9017fb9ac53b0e95f00fab185612935f444de90793cd30167356423ee/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f64796e616d69632f6a736f6e3f6c6162656c3d6369746174696f6e2671756572793d6369746174696f6e436f756e742675726c3d68747470732533412532462532466170692e73656d616e7469637363686f6c61722e6f7267253246677261706825324676312532467061706572253246366132653266643162356262313132323464616566393862336662366430323966363861373366322533466669656c64732533446369746174696f6e436f756e74" alt="citation"></a></td>
+</tr>
+<tr>
+<td>✅</td>
+<td>2020</td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2005.12872.pdf">DETR</a></td>
+<td>Transformer</td>
+<td><a target="_blank" rel="noopener" href="https://www.semanticscholar.org/paper/End-to-End-Object-Detection-with-Transformers-Carion-Massa/962dc29fdc3fbdc5930a10aba114050b82fe5a3e"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://camo.githubusercontent.com/e7a51e1e19735463cb264a474924c0501cbfbded5c2baf4b81417f099ef5506c/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f64796e616d69632f6a736f6e3f6c6162656c3d6369746174696f6e2671756572793d6369746174696f6e436f756e742675726c3d68747470732533412532462532466170692e73656d616e7469637363686f6c61722e6f7267253246677261706825324676312532467061706572253246393632646332396664633366626463353933306131306162613131343035306238326665356133652533466669656c64732533446369746174696f6e436f756e74" alt="citation"></a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="计算机视觉-对比学习">计算机视觉 - 对比学习</h3>
+<table>
+<thead>
+<tr>
+<th>已录制</th>
+<th>年份</th>
+<th>名字</th>
+<th>简介</th>
+<th>引用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>✅</td>
+<td>2018</td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1805.01978.pdf">InstDisc</a></td>
+<td>提出实例判别和memory bank做对比学习</td>
+<td><a target="_blank" rel="noopener" href="https://www.semanticscholar.org/paper/Unsupervised-Feature-Learning-via-Non-parametric-Wu-Xiong/155b7782dbd713982a4133df3aee7adfd0b6b304"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://camo.githubusercontent.com/05c187d2fbbbe8ff846a0e8063c4519a79b3d76437595972567446fa39fd93f4/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f64796e616d69632f6a736f6e3f6c6162656c3d6369746174696f6e2671756572793d6369746174696f6e436f756e742675726c3d68747470732533412532462532466170692e73656d616e7469637363686f6c61722e6f7267253246677261706825324676312532467061706572253246313535623737383264626437313339383261343133336466336165653761646664306236623330342533466669656c64732533446369746174696f6e436f756e74" alt="citation"></a></td>
+</tr>
+<tr>
+<td>✅</td>
+<td>2018</td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1807.03748.pdf">CPC</a></td>
+<td>对比预测编码，图像语音文本强化学习全都能做</td>
+<td><a target="_blank" rel="noopener" href="https://www.semanticscholar.org/paper/Representation-Learning-with-Contrastive-Predictive-Oord-Li/b227f3e4c0dc96e5ac5426b85485a70f2175a205"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://camo.githubusercontent.com/2613153e22682f164be71b8938b4d8f22708294dac2e9006990501625f230323/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f64796e616d69632f6a736f6e3f6c6162656c3d6369746174696f6e2671756572793d6369746174696f6e436f756e742675726c3d68747470732533412532462532466170692e73656d616e7469637363686f6c61722e6f7267253246677261706825324676312532467061706572253246623232376633653463306463393665356163353432366238353438356137306632313735613230352533466669656c64732533446369746174696f6e436f756e74" alt="citation"></a></td>
+</tr>
+<tr>
+<td>✅</td>
+<td>2019</td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1904.03436.pdf">InvaSpread</a></td>
+<td>一个编码器的端到端对比学习</td>
+<td><a target="_blank" rel="noopener" href="https://www.semanticscholar.org/paper/Unsupervised-Embedding-Learning-via-Invariant-and-Ye-Zhang/e4bde6fe33b6c2cf9d1647ac0b041f7d1ba29c5b"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://camo.githubusercontent.com/87ce10a580470caef54076277cc8ff4d5a28900859da340f8a34443c831717a2/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f64796e616d69632f6a736f6e3f6c6162656c3d6369746174696f6e2671756572793d6369746174696f6e436f756e742675726c3d68747470732533412532462532466170692e73656d616e7469637363686f6c61722e6f7267253246677261706825324676312532467061706572253246653462646536666533336236633263663964313634376163306230343166376431626132396335622533466669656c64732533446369746174696f6e436f756e74" alt="citation"></a></td>
+</tr>
+<tr>
+<td>✅</td>
+<td>2019</td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1906.05849.pdf">CMC</a></td>
+<td>多视角下的对比学习</td>
+<td><a target="_blank" rel="noopener" href="https://www.semanticscholar.org/paper/Contrastive-Multiview-Coding-Tian-Krishnan/97f4d09175705be4677d675fa27e55defac44800"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://camo.githubusercontent.com/ce1d8483f179acd66c90dda03f279f7520b676b2560f44b9e235ef777bfcce99/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f64796e616d69632f6a736f6e3f6c6162656c3d6369746174696f6e2671756572793d6369746174696f6e436f756e742675726c3d68747470732533412532462532466170692e73656d616e7469637363686f6c61722e6f7267253246677261706825324676312532467061706572253246393766346430393137353730356265343637376436373566613237653535646566616334343830302533466669656c64732533446369746174696f6e436f756e74" alt="citation"></a></td>
+</tr>
+<tr>
+<td>✅</td>
+<td>2019</td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1911.05722.pdf">MoCov1</a></td>
+<td>无监督训练效果也很好</td>
+<td><a target="_blank" rel="noopener" href="https://www.semanticscholar.org/paper/Momentum-Contrast-for-Unsupervised-Visual-Learning-He-Fan/ec46830a4b275fd01d4de82bffcabe6da086128f"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://camo.githubusercontent.com/6eb2286a96958fd31fdfe1741f0cb45ecee0b24ad1a09d3200973e92687bfbcf/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f64796e616d69632f6a736f6e3f6c6162656c3d6369746174696f6e2671756572793d6369746174696f6e436f756e742675726c3d68747470732533412532462532466170692e73656d616e7469637363686f6c61722e6f7267253246677261706825324676312532467061706572253246656334363833306134623237356664303164346465383262666663616265366461303836313238662533466669656c64732533446369746174696f6e436f756e74" alt="citation"></a></td>
+</tr>
+<tr>
+<td>✅</td>
+<td>2020</td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2002.05709.pdf">SimCLRv1</a></td>
+<td>简单的对比学习 (数据增强 + MLP head + 大batch训练久)</td>
+<td><a target="_blank" rel="noopener" href="https://www.semanticscholar.org/paper/A-Simple-Framework-for-Contrastive-Learning-of-Chen-Kornblith/34733eaf66007516347a40ad5d9bbe1cc9dacb6b"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://camo.githubusercontent.com/5758dea656edbc048462362ed84a54eb31a9b7744d0771b57db34f61c691bc87/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f64796e616d69632f6a736f6e3f6c6162656c3d6369746174696f6e2671756572793d6369746174696f6e436f756e742675726c3d68747470732533412532462532466170692e73656d616e7469637363686f6c61722e6f7267253246677261706825324676312532467061706572253246333437333365616636363030373531363334376134306164356439626265316363396461636236622533466669656c64732533446369746174696f6e436f756e74" alt="citation"></a></td>
+</tr>
+<tr>
+<td>✅</td>
+<td>2020</td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2003.04297.pdf">MoCov2</a></td>
+<td>MoCov1 + improvements from SimCLRv1</td>
+<td><a target="_blank" rel="noopener" href="https://www.semanticscholar.org/paper/Improved-Baselines-with-Momentum-Contrastive-Chen-Fan/a1b8a8df281bbaec148a897927a49ea47ea31515"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://camo.githubusercontent.com/e83ed178ff0412b483346627096ec8607911d5b0e4040b86c45195633ba842dd/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f64796e616d69632f6a736f6e3f6c6162656c3d6369746174696f6e2671756572793d6369746174696f6e436f756e742675726c3d68747470732533412532462532466170692e73656d616e7469637363686f6c61722e6f7267253246677261706825324676312532467061706572253246613162386138646632383162626165633134386138393739323761343965613437656133313531352533466669656c64732533446369746174696f6e436f756e74" alt="citation"></a></td>
+</tr>
+<tr>
+<td>✅</td>
+<td>2020</td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2006.10029.pdf">SimCLRv2</a></td>
+<td>大的自监督预训练模型很适合做半监督学习</td>
+<td><a target="_blank" rel="noopener" href="https://www.semanticscholar.org/paper/Big-Self-Supervised-Models-are-Strong-Learners-Chen-Kornblith/3e7f5f4382ac6f9c4fef6197dd21abf74456acd1"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://camo.githubusercontent.com/4fe03921c569337087d5326cfa50e6238f3d831904c2dce556bc83543cbf9e44/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f64796e616d69632f6a736f6e3f6c6162656c3d6369746174696f6e2671756572793d6369746174696f6e436f756e742675726c3d68747470732533412532462532466170692e73656d616e7469637363686f6c61722e6f7267253246677261706825324676312532467061706572253246336537663566343338326163366639633466656636313937646432316162663734343536616364312533466669656c64732533446369746174696f6e436f756e74" alt="citation"></a></td>
+</tr>
+<tr>
+<td>✅</td>
+<td>2020</td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2006.07733.pdf">BYOL</a></td>
+<td>不需要负样本的对比学习</td>
+<td><a target="_blank" rel="noopener" href="https://www.semanticscholar.org/paper/Bootstrap-Your-Own-Latent%3A-A-New-Approach-to-Grill-Strub/38f93092ece8eee9771e61c1edaf11b1293cae1b"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://camo.githubusercontent.com/754c75518832aa9ed9af4f93df364ddd773f99a777b4795eb7af616f1a22c35f/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f64796e616d69632f6a736f6e3f6c6162656c3d6369746174696f6e2671756572793d6369746174696f6e436f756e742675726c3d68747470732533412532462532466170692e73656d616e7469637363686f6c61722e6f7267253246677261706825324676312532467061706572253246333866393330393265636538656565393737316536316331656461663131623132393363616531622533466669656c64732533446369746174696f6e436f756e74" alt="citation"></a></td>
+</tr>
+<tr>
+<td>✅</td>
+<td>2020</td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2006.09882.pdf">SWaV</a></td>
+<td>聚类对比学习</td>
+<td><a target="_blank" rel="noopener" href="https://www.semanticscholar.org/paper/Unsupervised-Learning-of-Visual-Features-by-Cluster-Caron-Misra/10161d83d29fc968c4612c9e9e2b61a2fc25842e"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://camo.githubusercontent.com/3bdb006ceefe36f29063e57d4831f8c014c620d334b90fad5e8534061defe4a6/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f64796e616d69632f6a736f6e3f6c6162656c3d6369746174696f6e2671756572793d6369746174696f6e436f756e742675726c3d68747470732533412532462532466170692e73656d616e7469637363686f6c61722e6f7267253246677261706825324676312532467061706572253246313031363164383364323966633936386334363132633965396532623631613266633235383432652533466669656c64732533446369746174696f6e436f756e74" alt="citation"></a></td>
+</tr>
+<tr>
+<td>✅</td>
+<td>2020</td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2011.10566.pdf">SimSiam</a></td>
+<td>化繁为简的孪生表征学习</td>
+<td><a target="_blank" rel="noopener" href="https://www.semanticscholar.org/paper/Exploring-Simple-Siamese-Representation-Learning-Chen-He/0e23d2f14e7e56e81538f4a63e11689d8ac1eb9d"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://camo.githubusercontent.com/68c91d0a8740ee282c2321026b1aebbb454928cb8f00ffafbf0540e53f8defde/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f64796e616d69632f6a736f6e3f6c6162656c3d6369746174696f6e2671756572793d6369746174696f6e436f756e742675726c3d68747470732533412532462532466170692e73656d616e7469637363686f6c61722e6f7267253246677261706825324676312532467061706572253246306532336432663134653765353665383135333866346136336531313638396438616331656239642533466669656c64732533446369746174696f6e436f756e74" alt="citation"></a></td>
+</tr>
+<tr>
+<td>✅</td>
+<td>2021</td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2104.02057.pdf">MoCov3</a></td>
+<td>如何更稳定的自监督训练ViT</td>
+<td><a target="_blank" rel="noopener" href="https://www.semanticscholar.org/paper/An-Empirical-Study-of-Training-Self-Supervised-Chen-Xie/739ceacfafb1c4eaa17509351b647c773270b3ae"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://camo.githubusercontent.com/5bb569b1ea5bccc80db8f5354e15ab0e16636a404fc7af7b51850f18979219ba/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f64796e616d69632f6a736f6e3f6c6162656c3d6369746174696f6e2671756572793d6369746174696f6e436f756e742675726c3d68747470732533412532462532466170692e73656d616e7469637363686f6c61722e6f7267253246677261706825324676312532467061706572253246373339636561636661666231633465616131373530393335316236343763373733323730623361652533466669656c64732533446369746174696f6e436f756e74" alt="citation"></a></td>
+</tr>
+<tr>
+<td>✅</td>
+<td>2021</td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2104.14294.pdf">DINO</a></td>
+<td>transformer加自监督在视觉也很香</td>
+<td><a target="_blank" rel="noopener" href="https://www.semanticscholar.org/paper/Emerging-Properties-in-Self-Supervised-Vision-Caron-Touvron/ad4a0938c48e61b7827869e4ac3baffd0aefab35"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://camo.githubusercontent.com/1eeb8a63f2b0b8835db1d9e81be0890386d96954df573ccefbc771885aa2451c/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f64796e616d69632f6a736f6e3f6c6162656c3d6369746174696f6e2671756572793d6369746174696f6e436f756e742675726c3d68747470732533412532462532466170692e73656d616e7469637363686f6c61722e6f7267253246677261706825324676312532467061706572253246616434613039333863343865363162373832373836396534616333626166666430616566616233352533466669656c64732533446369746174696f6e436f756e74" alt="citation"></a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="计算机视觉-视频理解">计算机视觉 - 视频理解</h3>
+<table>
+<thead>
+<tr>
+<th>已录制</th>
+<th>年份</th>
+<th>名字</th>
+<th>简介</th>
+<th>引用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>✅</td>
+<td>2014</td>
+<td><a target="_blank" rel="noopener" href="https://cs.stanford.edu/people/karpathy/deepvideo/">DeepVideo</a></td>
+<td>提出sports1M数据集，用深度学习做视频理解</td>
+<td><a target="_blank" rel="noopener" href="https://www.semanticscholar.org/paper/Large-Scale-Video-Classification-with-Convolutional-Karpathy-Toderici/6d4c9c923e9f145d1c01a2de2afc38ec23c44253"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://camo.githubusercontent.com/c27bdd32990889d6e49d7274bcd90942af39e02551b1619efe9ad454d904c9d0/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f64796e616d69632f6a736f6e3f6c6162656c3d6369746174696f6e2671756572793d6369746174696f6e436f756e742675726c3d68747470732533412532462532466170692e73656d616e7469637363686f6c61722e6f7267253246677261706825324676312532467061706572253246366434633963393233653966313435643163303161326465326166633338656332336334343235332533466669656c64732533446369746174696f6e436f756e74" alt="citation"></a></td>
+</tr>
+<tr>
+<td>✅</td>
+<td>2014</td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1406.2199.pdf">Two-stream</a></td>
+<td>引入光流做时序建模，神经网络首次超越手工特征</td>
+<td><a target="_blank" rel="noopener" href="https://www.semanticscholar.org/paper/Two-Stream-Convolutional-Networks-for-Action-in-Simonyan-Zisserman/67dccc9a856b60bdc4d058d83657a089b8ad4486"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://camo.githubusercontent.com/562522ee5a4921c9fd2d27cd88fb6bf525191f903e31e352fe80e7ccf51ea070/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f64796e616d69632f6a736f6e3f6c6162656c3d6369746174696f6e2671756572793d6369746174696f6e436f756e742675726c3d68747470732533412532462532466170692e73656d616e7469637363686f6c61722e6f7267253246677261706825324676312532467061706572253246363764636363396138353662363062646334643035386438333635376130383962386164343438362533466669656c64732533446369746174696f6e436f756e74" alt="citation"></a></td>
+</tr>
+<tr>
+<td>✅</td>
+<td>2014</td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1412.0767.pdf">C3D</a></td>
+<td>比较深的3D-CNN做视频理解</td>
+<td><a target="_blank" rel="noopener" href="https://www.semanticscholar.org/paper/Learning-Spatiotemporal-Features-with-3D-Networks-Tran-Bourdev/d25c65d261ea0e6a458be4c50c40ffe5bc508f77"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://camo.githubusercontent.com/1e33cc2591aebcbe2422e4e09032d75cb6759e830a326ae452008bdacccf37c0/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f64796e616d69632f6a736f6e3f6c6162656c3d6369746174696f6e2671756572793d6369746174696f6e436f756e742675726c3d68747470732533412532462532466170692e73656d616e7469637363686f6c61722e6f7267253246677261706825324676312532467061706572253246643235633635643236316561306536613435386265346335306334306666653562633530386637372533466669656c64732533446369746174696f6e436f756e74" alt="citation"></a></td>
+</tr>
+<tr>
+<td>✅</td>
+<td>2015</td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1503.08909.pdf">Beyond-short-snippets</a></td>
+<td>尝试使用LSTM</td>
+<td><a target="_blank" rel="noopener" href="https://www.semanticscholar.org/paper/Beyond-short-snippets%3A-Deep-networks-for-video-Ng-Hausknecht/5418b2a482720e013d487a385c26fae0f017c6a6"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://camo.githubusercontent.com/394040c947b8ed5c533b6e7c62ef5b11eb56e5dc904a30d427bc1ed4c4b49bde/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f64796e616d69632f6a736f6e3f6c6162656c3d6369746174696f6e2671756572793d6369746174696f6e436f756e742675726c3d68747470732533412532462532466170692e73656d616e7469637363686f6c61722e6f7267253246677261706825324676312532467061706572253246353431386232613438323732306530313364343837613338356332366661653066303137633661362533466669656c64732533446369746174696f6e436f756e74" alt="citation"></a></td>
+</tr>
+<tr>
+<td>✅</td>
+<td>2016</td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1604.06573.pdf">Convolutional fusion</a></td>
+<td>做early fusion来加强时空间建模</td>
+<td><a target="_blank" rel="noopener" href="https://www.semanticscholar.org/paper/Convolutional-Two-Stream-Network-Fusion-for-Video-Feichtenhofer-Pinz/9d9aced120e530484609164c836da64548693484"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://camo.githubusercontent.com/e9edacaa13573a105bb6d18efc8fd9a6f802d77a04edac3d815e47d7f96b0aca/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f64796e616d69632f6a736f6e3f6c6162656c3d6369746174696f6e2671756572793d6369746174696f6e436f756e742675726c3d68747470732533412532462532466170692e73656d616e7469637363686f6c61722e6f7267253246677261706825324676312532467061706572253246396439616365643132306535333034383436303931363463383336646136343534383639333438342533466669656c64732533446369746174696f6e436f756e74" alt="citation"></a></td>
+</tr>
+<tr>
+<td>✅</td>
+<td>2016</td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1608.00859.pdf">TSN</a></td>
+<td>超级有效的视频分段建模，bag of tricks in video</td>
+<td><a target="_blank" rel="noopener" href="https://www.semanticscholar.org/paper/Temporal-Segment-Networks%3A-Towards-Good-Practices-Wang-Xiong/ea3d7de6c0880e14455b9acb28f1bc1234321456"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://camo.githubusercontent.com/2c769fa084be7c4d4a4612549f172d61c99f3c0104caf543d817b7d7e2a36766/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f64796e616d69632f6a736f6e3f6c6162656c3d6369746174696f6e2671756572793d6369746174696f6e436f756e742675726c3d68747470732533412532462532466170692e73656d616e7469637363686f6c61722e6f7267253246677261706825324676312532467061706572253246656133643764653663303838306531343435356239616362323866316263313233343332313435362533466669656c64732533446369746174696f6e436f756e74" alt="citation"></a></td>
+</tr>
+<tr>
+<td>✅</td>
+<td>2017</td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1705.07750.pdf">I3D</a></td>
+<td>提出Kinetics数据集，膨胀2D网络到3D，开启3D-CNN时代</td>
+<td><a target="_blank" rel="noopener" href="https://www.semanticscholar.org/paper/Quo-Vadis%2C-Action-Recognition-A-New-Model-and-the-Carreira-Zisserman/b61a3f8b80bbd44f24544dc915f52fd30bbdf485"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://camo.githubusercontent.com/852e5c2096293b0050a8507fa3a1c0fcbcd92bfda20b8d77a4acdbe261dd8d2e/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f64796e616d69632f6a736f6e3f6c6162656c3d6369746174696f6e2671756572793d6369746174696f6e436f756e742675726c3d68747470732533412532462532466170692e73656d616e7469637363686f6c61722e6f7267253246677261706825324676312532467061706572253246623631613366386238306262643434663234353434646339313566353266643330626264663438352533466669656c64732533446369746174696f6e436f756e74" alt="citation"></a></td>
+</tr>
+<tr>
+<td>✅</td>
+<td>2017</td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1711.11248.pdf">R2+1D</a></td>
+<td>拆分3D卷积核，使3D网络容易优化</td>
+<td><a target="_blank" rel="noopener" href="https://www.semanticscholar.org/paper/A-Closer-Look-at-Spatiotemporal-Convolutions-for-Tran-Wang/89c3050522a0bb9820c32dc7444e003ef0d3e2e4"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://camo.githubusercontent.com/9aafa3fb98ff9d9e23fe49d747b470f4536c3fcfad11d5326dc1ef0d2673de61/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f64796e616d69632f6a736f6e3f6c6162656c3d6369746174696f6e2671756572793d6369746174696f6e436f756e742675726c3d68747470732533412532462532466170692e73656d616e7469637363686f6c61722e6f7267253246677261706825324676312532467061706572253246383963333035303532326130626239383230633332646337343434653030336566306433653265342533466669656c64732533446369746174696f6e436f756e74" alt="citation"></a></td>
+</tr>
+<tr>
+<td>✅</td>
+<td>2017</td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1711.07971.pdf">Non-local</a></td>
+<td>引入自注意力做视觉问题</td>
+<td><a target="_blank" rel="noopener" href="https://www.semanticscholar.org/paper/Non-local-Neural-Networks-Wang-Girshick/8899094797e82c5c185a0893896320ef77f60e64"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://camo.githubusercontent.com/c77e665b46c2aaa8ab378cd99e0fd27c2bf2687595aa08c86801fd8b1b0aae8e/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f64796e616d69632f6a736f6e3f6c6162656c3d6369746174696f6e2671756572793d6369746174696f6e436f756e742675726c3d68747470732533412532462532466170692e73656d616e7469637363686f6c61722e6f7267253246677261706825324676312532467061706572253246383839393039343739376538326335633138356130383933383936333230656637376636306536342533466669656c64732533446369746174696f6e436f756e74" alt="citation"></a></td>
+</tr>
+<tr>
+<td>✅</td>
+<td>2018</td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1812.03982.pdf">SlowFast</a></td>
+<td>快慢两支提升效率</td>
+<td><a target="_blank" rel="noopener" href="https://www.semanticscholar.org/paper/SlowFast-Networks-for-Video-Recognition-Feichtenhofer-Fan/8b47b9c3c35b2b2a78bff7822605b3040f87d699"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://camo.githubusercontent.com/770bf911fdb847431450c7aa1c92f400cbfa88edfaa2bdf2fc11ed456e2c1484/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f64796e616d69632f6a736f6e3f6c6162656c3d6369746174696f6e2671756572793d6369746174696f6e436f756e742675726c3d68747470732533412532462532466170692e73656d616e7469637363686f6c61722e6f7267253246677261706825324676312532467061706572253246386234376239633363333562326232613738626666373832323630356233303430663837643639392533466669656c64732533446369746174696f6e436f756e74" alt="citation"></a></td>
+</tr>
+<tr>
+<td>✅</td>
+<td>2021</td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2102.05095.pdf">TimeSformer</a></td>
+<td>视频中第一个引入transformer，开启video transformer时代</td>
+<td><a target="_blank" rel="noopener" href="https://www.semanticscholar.org/paper/Is-Space-Time-Attention-All-You-Need-for-Video-Bertasius-Wang/c143ea9e30b1f2d93a9c060253845423f9e60e1f"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://camo.githubusercontent.com/c2d1d48589bfbd86e3ac673dfd581eaab0acc0279be4c192be04d4a515a965a0/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f64796e616d69632f6a736f6e3f6c6162656c3d6369746174696f6e2671756572793d6369746174696f6e436f756e742675726c3d68747470732533412532462532466170692e73656d616e7469637363686f6c61722e6f7267253246677261706825324676312532467061706572253246633134336561396533306231663264393361396330363032353338343534323366396536306531662533466669656c64732533446369746174696f6e436f756e74" alt="citation"></a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="多模态学习">多模态学习</h3>
+<table>
+<thead>
+<tr>
+<th>已录制</th>
+<th>年份</th>
+<th>名字</th>
+<th>简介</th>
+<th>引用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>✅</td>
+<td>2021</td>
+<td><a target="_blank" rel="noopener" href="https://openai.com/blog/clip/">CLIP</a></td>
+<td>图片和文本之间的对比学习</td>
+<td><a target="_blank" rel="noopener" href="https://www.semanticscholar.org/paper/Learning-Transferable-Visual-Models-From-Natural-Radford-Kim/6f870f7f02a8c59c3e23f407f3ef00dd1dcf8fc4"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://camo.githubusercontent.com/24da9cbae3a636924f47e9dd05c3665e88bdfe7a7fe965808218621a972ba8ad/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f64796e616d69632f6a736f6e3f6c6162656c3d6369746174696f6e2671756572793d6369746174696f6e436f756e742675726c3d68747470732533412532462532466170692e73656d616e7469637363686f6c61722e6f7267253246677261706825324676312532467061706572253246366638373066376630326138633539633365323366343037663365663030646431646366386663342533466669656c64732533446369746174696f6e436f756e74" alt="citation"></a></td>
+</tr>
+<tr>
+<td>✅</td>
+<td>2021</td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2102.03334.pdf">ViLT</a></td>
+<td>第一个摆脱了目标检测的视觉文本模型</td>
+<td><a target="_blank" rel="noopener" href="https://www.semanticscholar.org/paper/ViLT%3A-Vision-and-Language-Transformer-Without-or-Kim-Son/0839722fb5369c0abaff8515bfc08299efc790a1"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://camo.githubusercontent.com/a68e22252652bdbf4e6e51abe5031eecab10ac916b5220f54e3022e3197b7245/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f64796e616d69632f6a736f6e3f6c6162656c3d6369746174696f6e2671756572793d6369746174696f6e436f756e742675726c3d68747470732533412532462532466170692e73656d616e7469637363686f6c61722e6f7267253246677261706825324676312532467061706572253246303833393732326662353336396330616261666638353135626663303832393965666337393061312533466669656c64732533446369746174696f6e436f756e74" alt="citation"></a></td>
+</tr>
+<tr>
+<td>✅</td>
+<td>2021</td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2104.13921.pdf">ViLD</a></td>
+<td>CLIP蒸馏帮助开集目标检测</td>
+<td><a target="_blank" rel="noopener" href="https://www.semanticscholar.org/paper/Open-vocabulary-Object-Detection-via-Vision-and-Gu-Lin/cf9b8da26d9b92e75ba49616ed2a1033f59fce14"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://camo.githubusercontent.com/cc567504eb6c985ecf8bc6720194ae3d881461eb74c07d6adde999ad0c77d094/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f64796e616d69632f6a736f6e3f6c6162656c3d6369746174696f6e2671756572793d6369746174696f6e436f756e742675726c3d68747470732533412532462532466170692e73656d616e7469637363686f6c61722e6f7267253246677261706825324676312532467061706572253246636639623864613236643962393265373562613439363136656432613130333366353966636531342533466669656c64732533446369746174696f6e436f756e74" alt="citation"></a></td>
+</tr>
+<tr>
+<td>✅</td>
+<td>2021</td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2112.03857.pdf">GLIP</a></td>
+<td>联合目标检测和文本定位</td>
+<td><a target="_blank" rel="noopener" href="https://www.semanticscholar.org/paper/Grounded-Language-Image-Pre-training-Li-Zhang/5341b412383c43f4a693ad63ec4489e3ec7688c8"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://camo.githubusercontent.com/517e9b54219e0a4885fe97b449c4c900eff6f7b04eb51a03441f2931bb2a28df/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f64796e616d69632f6a736f6e3f6c6162656c3d6369746174696f6e2671756572793d6369746174696f6e436f756e742675726c3d68747470732533412532462532466170692e73656d616e7469637363686f6c61722e6f7267253246677261706825324676312532467061706572253246353334316234313233383363343366346136393361643633656334343839653365633736383863382533466669656c64732533446369746174696f6e436f756e74" alt="citation"></a></td>
+</tr>
+<tr>
+<td>✅</td>
+<td>2021</td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2104.08860.pdf">CLIP4Clip</a></td>
+<td>拿CLIP直接做视频文本retrieval</td>
+<td><a target="_blank" rel="noopener" href="https://www.semanticscholar.org/paper/CLIP4Clip%3A-An-Empirical-Study-of-CLIP-for-End-to-Luo-Ji/281ad83e06d731d5d686acf07cd701576f1188c4"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://camo.githubusercontent.com/a7a9a759bb1c865f0097fc91bb767ccdd58365139162d0dbb0fe5be687bddc01/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f64796e616d69632f6a736f6e3f6c6162656c3d6369746174696f6e2671756572793d6369746174696f6e436f756e742675726c3d68747470732533412532462532466170692e73656d616e7469637363686f6c61722e6f7267253246677261706825324676312532467061706572253246323831616438336530366437333164356436383661636630376364373031353736663131383863342533466669656c64732533446369746174696f6e436f756e74" alt="citation"></a></td>
+</tr>
+<tr>
+<td>✅</td>
+<td>2021</td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2109.08472.pdf">ActionCLIP</a></td>
+<td>用多模态对比学习有监督的做视频动作分类</td>
+<td><a target="_blank" rel="noopener" href="https://www.semanticscholar.org/paper/ActionCLIP%3A-A-New-Paradigm-for-Video-Action-Wang-Xing/dc05240a06326b5b1664f7e8c95c330b08cd0349"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://camo.githubusercontent.com/a1b42b514754a619280da9c1f863d19b565a28adeb418a84d036f3f5436f3dec/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f64796e616d69632f6a736f6e3f6c6162656c3d6369746174696f6e2671756572793d6369746174696f6e436f756e742675726c3d68747470732533412532462532466170692e73656d616e7469637363686f6c61722e6f7267253246677261706825324676312532467061706572253246646330353234306130363332366235623136363466376538633935633333306230386364303334392533466669656c64732533446369746174696f6e436f756e74" alt="citation"></a></td>
+</tr>
+<tr>
+<td>✅</td>
+<td>2021</td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2112.02413.pdf">PointCLIP</a></td>
+<td>3D变2D，巧妙利用CLIP做点云</td>
+<td><a target="_blank" rel="noopener" href="https://www.semanticscholar.org/paper/PointCLIP%3A-Point-Cloud-Understanding-by-CLIP-Zhang-Guo/f3ce9ba3fcec362b70263a7ed63d9404975496a0"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://camo.githubusercontent.com/a49d4f24c23b948e0e19a0b167513681e3170018a430b5088b75d3160171747e/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f64796e616d69632f6a736f6e3f6c6162656c3d6369746174696f6e2671756572793d6369746174696f6e436f756e742675726c3d68747470732533412532462532466170692e73656d616e7469637363686f6c61722e6f7267253246677261706825324676312532467061706572253246663363653962613366636563333632623730323633613765643633643934303439373534393661302533466669656c64732533446369746174696f6e436f756e74" alt="citation"></a></td>
+</tr>
+<tr>
+<td>✅</td>
+<td>2022</td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2201.03546.pdf">LSeg</a></td>
+<td>有监督的开集分割</td>
+<td><a target="_blank" rel="noopener" href="https://www.semanticscholar.org/paper/Language-driven-Semantic-Segmentation-Li-Weinberger/cc9826c222ac1e81b4b374dd9e0df130f298b1e8"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://camo.githubusercontent.com/04aa213307d0376528bf101475b8b68e8df4c705955d07b59724ee7fe33a8bfd/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f64796e616d69632f6a736f6e3f6c6162656c3d6369746174696f6e2671756572793d6369746174696f6e436f756e742675726c3d68747470732533412532462532466170692e73656d616e7469637363686f6c61722e6f7267253246677261706825324676312532467061706572253246636339383236633232326163316538316234623337346464396530646631333066323938623165382533466669656c64732533446369746174696f6e436f756e74" alt="citation"></a></td>
+</tr>
+<tr>
+<td>✅</td>
+<td>2022</td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2202.11094.pdf">GroupViT</a></td>
+<td>只用图像文本对也能无监督做分割</td>
+<td><a target="_blank" rel="noopener" href="https://www.semanticscholar.org/paper/GroupViT%3A-Semantic-Segmentation-Emerges-from-Text-Xu-Mello/0b5f27a5766c5d1394a6282ad94fec21d620bd6b"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://camo.githubusercontent.com/348003d0177aed8378e88c5ece06f8a921909d9cceb676a5603e7f4e48218f46/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f64796e616d69632f6a736f6e3f6c6162656c3d6369746174696f6e2671756572793d6369746174696f6e436f756e742675726c3d68747470732533412532462532466170692e73656d616e7469637363686f6c61722e6f7267253246677261706825324676312532467061706572253246306235663237613537363663356431333934613632383261643934666563323164363230626436622533466669656c64732533446369746174696f6e436f756e74" alt="citation"></a></td>
+</tr>
+<tr>
+<td>✅</td>
+<td>2022</td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2202.05822.pdf">CLIPasso</a></td>
+<td>CLIP跨界生成简笔画</td>
+<td><a target="_blank" rel="noopener" href="https://www.semanticscholar.org/paper/CLIPasso%3A-Semantically-Aware-Object-Sketching-Vinker-Pajouheshgar/9dec819778bebae4a468c7813f7638534c826f52"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://camo.githubusercontent.com/b648e37912116701fe821086d10071f7b2d8bbfde0106b3e01f35c89fcb4fc79/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f64796e616d69632f6a736f6e3f6c6162656c3d6369746174696f6e2671756572793d6369746174696f6e436f756e742675726c3d68747470732533412532462532466170692e73656d616e7469637363686f6c61722e6f7267253246677261706825324676312532467061706572253246396465633831393737386265626165346134363863373831336637363338353334633832366635322533466669656c64732533446369746174696f6e436f756e74" alt="citation"></a></td>
+</tr>
+<tr>
+<td>✅</td>
+<td>2022</td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2207.01077.pdf">DepthCLIP</a></td>
+<td>用文本跨界估计深度</td>
+<td><a target="_blank" rel="noopener" href="https://www.semanticscholar.org/paper/Can-Language-Understand-Depth-Zhang-Zeng/9d0afe58801fe9e5537902e853d6e9e385340a92"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://camo.githubusercontent.com/f1166337f67fa78e6db320247d93956746742e515b69313bdfccac134f383ab5/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f64796e616d69632f6a736f6e3f6c6162656c3d6369746174696f6e2671756572793d6369746174696f6e436f756e742675726c3d68747470732533412532462532466170692e73656d616e7469637363686f6c61722e6f7267253246677261706825324676312532467061706572253246396430616665353838303166653965353533373930326538353364366539653338353334306139322533466669656c64732533446369746174696f6e436f756e74" alt="citation"></a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="自然语言处理-transformer">自然语言处理 - Transformer</h3>
+<table>
+<thead>
+<tr>
+<th>已录制</th>
+<th>年份</th>
+<th>名字</th>
+<th>简介</th>
+<th>引用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>✅</td>
+<td>2017</td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/1706.03762">Transformer</a></td>
+<td>继MLP、CNN、RNN后的第四大类架构</td>
+<td><a target="_blank" rel="noopener" href="https://www.semanticscholar.org/paper/Attention-is-All-you-Need-Vaswani-Shazeer/204e3073870fae3d05bcbc2f6a8e263d9b72e776"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://camo.githubusercontent.com/a7e2f44ca8e77ed58ad14321ec6b46ecadf09ba94d76494077209c2d68332c9f/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f64796e616d69632f6a736f6e3f6c6162656c3d6369746174696f6e2671756572793d6369746174696f6e436f756e742675726c3d68747470732533412532462532466170692e73656d616e7469637363686f6c61722e6f7267253246677261706825324676312532467061706572253246323034653330373338373066616533643035626362633266366138653236336439623732653737362533466669656c64732533446369746174696f6e436f756e74" alt="citation"></a></td>
+</tr>
+<tr>
+<td>✅</td>
+<td>2018</td>
+<td><a target="_blank" rel="noopener" href="https://s3-us-west-2.amazonaws.com/openai-assets/research-covers/language-unsupervised/language_understanding_paper.pdf">GPT</a></td>
+<td>使用 Transformer 解码器来做预训练</td>
+<td><a target="_blank" rel="noopener" href="https://www.semanticscholar.org/paper/Improving-Language-Understanding-by-Generative-Radford-Narasimhan/cd18800a0fe0b668a1cc19f2ec95b5003d0a5035"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://camo.githubusercontent.com/2583030d8c9dfdcc80d6137e629100812a0e5056341426b7aa3fb8b9de6fe548/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f64796e616d69632f6a736f6e3f6c6162656c3d6369746174696f6e2671756572793d6369746174696f6e436f756e742675726c3d68747470732533412532462532466170692e73656d616e7469637363686f6c61722e6f7267253246677261706825324676312532467061706572253246636431383830306130666530623636386131636331396632656339356235303033643061353033352533466669656c64732533446369746174696f6e436f756e74" alt="citation"></a></td>
+</tr>
+<tr>
+<td>✅</td>
+<td>2018</td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/1810.04805">BERT</a></td>
+<td>Transformer一统NLP的开始</td>
+<td><a target="_blank" rel="noopener" href="https://www.semanticscholar.org/paper/BERT%3A-Pre-training-of-Deep-Bidirectional-for-Devlin-Chang/df2b0e26d0599ce3e70df8a9da02e51594e0e992"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://camo.githubusercontent.com/b4694d4c0c9edcabf7068684dc8b9fbc0429d8936556051ca2c1ef74332383fb/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f64796e616d69632f6a736f6e3f6c6162656c3d6369746174696f6e2671756572793d6369746174696f6e436f756e742675726c3d68747470732533412532462532466170692e73656d616e7469637363686f6c61722e6f7267253246677261706825324676312532467061706572253246646632623065323664303539396365336537306466386139646130326535313539346530653939322533466669656c64732533446369746174696f6e436f756e74" alt="citation"></a></td>
+</tr>
+<tr>
+<td>✅</td>
+<td>2019</td>
+<td><a target="_blank" rel="noopener" href="https://d4mucfpksywv.cloudfront.net/better-language-models/language_models_are_unsupervised_multitask_learners.pdf">GPT-2</a></td>
+<td>更大的 GPT 模型，朝着zero-shot learning迈了一大步</td>
+<td><a target="_blank" rel="noopener" href="https://www.semanticscholar.org/paper/Language-Models-are-Unsupervised-Multitask-Learners-Radford-Wu/9405cc0d6169988371b2755e573cc28650d14dfe"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://camo.githubusercontent.com/a38c4ad0bdaa9a72e1f2cd764959fe4c4b625f8b149a3bac8785f85e2f4da9c2/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f64796e616d69632f6a736f6e3f6c6162656c3d6369746174696f6e2671756572793d6369746174696f6e436f756e742675726c3d68747470732533412532462532466170692e73656d616e7469637363686f6c61722e6f7267253246677261706825324676312532467061706572253246393430356363306436313639393838333731623237353565353733636332383635306431346466652533466669656c64732533446369746174696f6e436f756e74" alt="citation"></a></td>
+</tr>
+<tr>
+<td>✅</td>
+<td>2020</td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2005.14165">GPT-3</a></td>
+<td>100倍更大的 GPT-2，few-shot learning效果显著</td>
+<td><a target="_blank" rel="noopener" href="https://www.semanticscholar.org/paper/Language-Models-are-Few-Shot-Learners-Brown-Mann/6b85b63579a916f705a8e10a49bd8d849d91b1fc"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://camo.githubusercontent.com/e5be62ea4d0732427f3dcb9df9debadfcbb26b4cb5121f53b7b17981dee4d2f2/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f64796e616d69632f6a736f6e3f6c6162656c3d6369746174696f6e2671756572793d6369746174696f6e436f756e742675726c3d68747470732533412532462532466170692e73656d616e7469637363686f6c61722e6f7267253246677261706825324676312532467061706572253246366238356236333537396139313666373035613865313061343962643864383439643931623166632533466669656c64732533446369746174696f6e436f756e74" alt="citation"></a></td>
+</tr>
+<tr>
+<td>✅</td>
+<td>2024</td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2407.21783">Llama 3.1</a></td>
+<td>强大的Meta开源模型 - 动态扩展，多模态学习，零样本学习，高效计算</td>
+<td><a target="_blank" rel="noopener" href="https://www.semanticscholar.org/paper/4176a4cecfaef26b2c503827493867e703f3411a"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://camo.githubusercontent.com/ad27232849364df1bbe826a58122607d7b71600bae66fc683e72e168d6c7fbec/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f64796e616d69632f6a736f6e3f6c6162656c3d6369746174696f6e2671756572793d6369746174696f6e436f756e742675726c3d68747470732533412532462532466170692e73656d616e7469637363686f6c61722e6f7267253246677261706825324676312532467061706572253246343137366134636563666165663236623263353033383237343933383637653730336633343131612533466669656c64732533446369746174696f6e436f756e74" alt="citation"></a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="系统">系统</h3>
+<table>
+<thead>
+<tr>
+<th>已录制</th>
+<th>年份</th>
+<th>名字</th>
+<th>简介</th>
+<th>引用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>✅</td>
+<td>2014</td>
+<td><a target="_blank" rel="noopener" href="https://www.usenix.org/system/files/conference/osdi14/osdi14-paper-li_mu.pdf">参数服务器</a></td>
+<td>支持千亿参数的传统机器学习模型</td>
+<td><a target="_blank" rel="noopener" href="https://www.semanticscholar.org/paper/Scaling-Distributed-Machine-Learning-with-the-Li-Andersen/0de0c3240bda7972bd0a3c8369ebc4b4f2e4f9c2"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://camo.githubusercontent.com/145587ee99302db16eddcef2dbaf17311773710804402940ef35fe6052128d61/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f64796e616d69632f6a736f6e3f6c6162656c3d6369746174696f6e2671756572793d6369746174696f6e436f756e742675726c3d68747470732533412532462532466170692e73656d616e7469637363686f6c61722e6f7267253246677261706825324676312532467061706572253246306465306333323430626461373937326264306133633833363965626334623466326534663963322533466669656c64732533446369746174696f6e436f756e74" alt="citation"></a></td>
+</tr>
+<tr>
+<td>✅</td>
+<td>2018</td>
+<td><a target="_blank" rel="noopener" href="https://proceedings.neurips.cc/paper/2019/file/093f65e080a295f8076b1c5722a46aa2-Paper.pdf">GPipe</a></td>
+<td>流水线（Pipeline）并行</td>
+<td><a target="_blank" rel="noopener" href="https://www.semanticscholar.org/paper/GPipe%3A-Efficient-Training-of-Giant-Neural-Networks-Huang-Cheng/c18663fea10c8a303d045fd2c1f33cacf9b73ca3"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://camo.githubusercontent.com/a067ddc818e672ede75b297c4827fe00fd204db39c5792209e6cf5cb3d95a950/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f64796e616d69632f6a736f6e3f6c6162656c3d6369746174696f6e2671756572793d6369746174696f6e436f756e742675726c3d68747470732533412532462532466170692e73656d616e7469637363686f6c61722e6f7267253246677261706825324676312532467061706572253246633138363633666561313063386133303364303435666432633166333363616366396237336361332533466669656c64732533446369746174696f6e436f756e74" alt="citation"></a></td>
+</tr>
+<tr>
+<td>✅</td>
+<td>2019</td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1909.08053.pdf">Megatron-LM</a></td>
+<td>张量（Tensor）并行</td>
+<td><a target="_blank" rel="noopener" href="https://www.semanticscholar.org/paper/Megatron-LM%3A-Training-Multi-Billion-Parameter-Using-Shoeybi-Patwary/8323c591e119eb09b28b29fd6c7bc76bd889df7a"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://camo.githubusercontent.com/92b74b4a953c586d3262066e77e895f48e57ff1daf0f3dea6678ad300e2de85c/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f64796e616d69632f6a736f6e3f6c6162656c3d6369746174696f6e2671756572793d6369746174696f6e436f756e742675726c3d68747470732533412532462532466170692e73656d616e7469637363686f6c61722e6f7267253246677261706825324676312532467061706572253246383332336335393165313139656230396232386232396664366337626337366264383839646637612533466669656c64732533446369746174696f6e436f756e74" alt="citation"></a></td>
+</tr>
+<tr>
+<td>✅</td>
+<td>2019</td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1910.02054.pdf">Zero</a></td>
+<td>参数分片</td>
+<td><a target="_blank" rel="noopener" href="https://www.semanticscholar.org/paper/ZeRO%3A-Memory-optimizations-Toward-Training-Trillion-Rajbhandari-Rasley/00c957711b12468cb38424caccdf5291bb354033"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://camo.githubusercontent.com/793abe6771d7bca42974eaf2d0948e47241ef7629f8b4fb4b0ab3f76ff7aac94/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f64796e616d69632f6a736f6e3f6c6162656c3d6369746174696f6e2671756572793d6369746174696f6e436f756e742675726c3d68747470732533412532462532466170692e73656d616e7469637363686f6c61722e6f7267253246677261706825324676312532467061706572253246303063393537373131623132343638636233383432346361636364663532393162623335343033332533466669656c64732533446369746174696f6e436f756e74" alt="citation"></a></td>
+</tr>
+<tr>
+<td>✅</td>
+<td>2022</td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2203.12533.pdf">Pathways</a></td>
+<td>将Jax拓展到上千TPU核上</td>
+<td><a target="_blank" rel="noopener" href="https://www.semanticscholar.org/paper/Pathways%3A-Asynchronous-Distributed-Dataflow-for-ML-Barham-Chowdhery/512e9aa873a1cd7eb61ce1f25ca7df6acb7e2352"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://camo.githubusercontent.com/bc587495a70ed78783f72f5c3eaf1b5ce225849154cd6f74fe9ddcbc8454122f/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f64796e616d69632f6a736f6e3f6c6162656c3d6369746174696f6e2671756572793d6369746174696f6e436f756e742675726c3d68747470732533412532462532466170692e73656d616e7469637363686f6c61722e6f7267253246677261706825324676312532467061706572253246353132653961613837336131636437656236316365316632356361376466366163623765323335322533466669656c64732533446369746174696f6e436f756e74" alt="citation"></a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="图神经网络">图神经网络</h3>
+<table>
+<thead>
+<tr>
+<th>已录制</th>
+<th>年份</th>
+<th>名字</th>
+<th>简介</th>
+<th>引用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>✅</td>
+<td>2021</td>
+<td><a target="_blank" rel="noopener" href="https://distill.pub/2021/gnn-intro/">图神经网络介绍</a></td>
+<td>GNN的可视化介绍</td>
+<td><a target="_blank" rel="noopener" href="https://www.semanticscholar.org/paper/A-Gentle-Introduction-to-Graph-Neural-Networks-S%C3%A1nchez-Lengeling-Reif/2c0e0440882a42be752268d0b64243243d752a74"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://camo.githubusercontent.com/ef121352371bdb5fdbffddf608524c26c22e293de5a3f7cc624a5c741e195fbf/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f64796e616d69632f6a736f6e3f6c6162656c3d6369746174696f6e2671756572793d6369746174696f6e436f756e742675726c3d68747470732533412532462532466170692e73656d616e7469637363686f6c61722e6f7267253246677261706825324676312532467061706572253246326330653034343038383261343262653735323236386430623634323433323433643735326137342533466669656c64732533446369746174696f6e436f756e74" alt="citation"></a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="优化算法">优化算法</h3>
+<table>
+<thead>
+<tr>
+<th>已录制</th>
+<th>年份</th>
+<th>名字</th>
+<th>简介</th>
+<th>引用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td>2014</td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/1412.6980">Adam</a></td>
+<td>深度学习里最常用的优化算法之一</td>
+<td><a target="_blank" rel="noopener" href="https://www.semanticscholar.org/paper/Adam%3A-A-Method-for-Stochastic-Optimization-Kingma-Ba/a6cb366736791bcccc5c8639de5a8f9636bf87e8"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://camo.githubusercontent.com/2186210ec1581cd3221d9843e22466cd6b65aca17c072852a32e94d176506774/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f64796e616d69632f6a736f6e3f6c6162656c3d6369746174696f6e2671756572793d6369746174696f6e436f756e742675726c3d68747470732533412532462532466170692e73656d616e7469637363686f6c61722e6f7267253246677261706825324676312532467061706572253246613663623336363733363739316263636363356338363339646535613866393633366266383765382533466669656c64732533446369746174696f6e436f756e74" alt="citation"></a></td>
+</tr>
+<tr>
+<td></td>
+<td>2016</td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/1611.03530">为什么超大的模型泛化性不错</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://www.semanticscholar.org/paper/Understanding-deep-learning-requires-rethinking-Zhang-Bengio/54ddb00fa691728944fd8becea90a373d21597cf"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://camo.githubusercontent.com/134c5ece96d8ebd0ae9122b0500d1714a009cc0850ff21bf5729923c015af29d/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f64796e616d69632f6a736f6e3f6c6162656c3d6369746174696f6e2671756572793d6369746174696f6e436f756e742675726c3d68747470732533412532462532466170692e73656d616e7469637363686f6c61722e6f7267253246677261706825324676312532467061706572253246353464646230306661363931373238393434666438626563656139306133373364323135393763662533466669656c64732533446369746174696f6e436f756e74" alt="citation"></a></td>
+</tr>
+<tr>
+<td></td>
+<td>2017</td>
+<td><a target="_blank" rel="noopener" href="https://distill.pub/2017/momentum/">为什么Momentum有效</a></td>
+<td>Distill的可视化介绍</td>
+<td><a target="_blank" rel="noopener" href="https://www.semanticscholar.org/paper/Why-Momentum-Really-Works-Goh/3e8ccf9d3d843c9855c5d76ab66d3e775384da72"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://camo.githubusercontent.com/d39078fb4ef934e6dc8908da674bffc0f55b0eb5f9f094800874710b58de3f91/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f64796e616d69632f6a736f6e3f6c6162656c3d6369746174696f6e2671756572793d6369746174696f6e436f756e742675726c3d68747470732533412532462532466170692e73656d616e7469637363686f6c61722e6f7267253246677261706825324676312532467061706572253246336538636366396433643834336339383535633564373661623636643365373735333834646137322533466669656c64732533446369746174696f6e436f756e74" alt="citation"></a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="新领域应用">新领域应用</h3>
+<table>
+<thead>
+<tr>
+<th>已录制</th>
+<th>年份</th>
+<th>名字</th>
+<th>简介</th>
+<th>引用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td>2016</td>
+<td><a target="_blank" rel="noopener" href="https://storage.googleapis.com/deepmind-media/alphago/AlphaGoNaturePaper.pdf">AlphaGo</a></td>
+<td>强化学习出圈</td>
+<td><a target="_blank" rel="noopener" href="https://www.semanticscholar.org/paper/Mastering-the-game-of-Go-with-deep-neural-networks-Silver-Huang/846aedd869a00c09b40f1f1f35673cb22bc87490"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://camo.githubusercontent.com/860ceef78e2f1d67149ab1e3715ded5fb16202ea1dc4a99fdb643a16acb030ac/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f64796e616d69632f6a736f6e3f6c6162656c3d6369746174696f6e2671756572793d6369746174696f6e436f756e742675726c3d68747470732533412532462532466170692e73656d616e7469637363686f6c61722e6f7267253246677261706825324676312532467061706572253246383436616564643836396130306330396234306631663166333536373363623232626338373439302533466669656c64732533446369746174696f6e436f756e74" alt="citation"></a></td>
+</tr>
+<tr>
+<td></td>
+<td>2020</td>
+<td><a target="_blank" rel="noopener" href="https://discovery.ucl.ac.uk/id/eprint/10089234/1/343019_3_art_0_py4t4l_convrt.pdf">AlphaFold</a></td>
+<td>赢得比赛的的蛋白质3D结构预测</td>
+<td><a target="_blank" rel="noopener" href="https://www.semanticscholar.org/paper/Improved-protein-structure-prediction-using-from-Senior-Evans/3a083d843f891b3574494c385699c21766ce8b7a"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://camo.githubusercontent.com/3333ddecf9a41f3826ef433dff61d2e2a8980e1b12238b07a501156bbc119030/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f64796e616d69632f6a736f6e3f6c6162656c3d6369746174696f6e2671756572793d6369746174696f6e436f756e742675726c3d68747470732533412532462532466170692e73656d616e7469637363686f6c61722e6f7267253246677261706825324676312532467061706572253246336130383364383433663839316233353734343934633338353639396332313736366365386237612533466669656c64732533446369746174696f6e436f756e74" alt="citation"></a></td>
+</tr>
+<tr>
+<td>✅</td>
+<td>2021</td>
+<td><a target="_blank" rel="noopener" href="https://www.nature.com/articles/s41586-021-03819-2.pdf">AlphaFold 2</a></td>
+<td>原子级别精度的蛋白质3D结构预测</td>
+<td><a target="_blank" rel="noopener" href="https://www.semanticscholar.org/paper/Highly-accurate-protein-structure-prediction-with-Jumper-Evans/dc32a984b651256a8ec282be52310e6bd33d9815"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://camo.githubusercontent.com/358a1219d75052bae3cf4ee8a7399836de0f89f6acb895a0ca23f5efc8b7e7a5/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f64796e616d69632f6a736f6e3f6c6162656c3d6369746174696f6e2671756572793d6369746174696f6e436f756e742675726c3d68747470732533412532462532466170692e73656d616e7469637363686f6c61722e6f7267253246677261706825324676312532467061706572253246646333326139383462363531323536613865633238326265353233313065366264333364393831352533466669656c64732533446369746174696f6e436f756e74" alt="citation"></a></td>
+</tr>
+<tr>
+<td>✅</td>
+<td>2021</td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2107.03374.pdf">Codex</a></td>
+<td>使用注释生成代码</td>
+<td><a target="_blank" rel="noopener" href="https://www.semanticscholar.org/paper/Evaluating-Large-Language-Models-Trained-on-Code-Chen-Tworek/acbdbf49f9bc3f151b93d9ca9a06009f4f6eb269"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://camo.githubusercontent.com/f74f147544d46e3ca6032da23b5ac584a75d84e978db1482e5f24ece7619ea85/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f64796e616d69632f6a736f6e3f6c6162656c3d6369746174696f6e2671756572793d6369746174696f6e436f756e742675726c3d68747470732533412532462532466170692e73656d616e7469637363686f6c61722e6f7267253246677261706825324676312532467061706572253246616362646266343966396263336631353162393364396361396130363030396634663665623236392533466669656c64732533446369746174696f6e436f756e74" alt="citation"></a></td>
+</tr>
+<tr>
+<td>✅</td>
+<td>2021</td>
+<td><a target="_blank" rel="noopener" href="https://www.nature.com/articles/s41586-021-04086-x.pdf">指导数学直觉</a></td>
+<td>分析不同数学物体之前的联系来帮助发现新定理</td>
+<td><a target="_blank" rel="noopener" href="https://www.semanticscholar.org/paper/Advancing-mathematics-by-guiding-human-intuition-AI-Davies-Velickovic/f672b8fb430606fee0bb368f16603531ce1e90c4"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://camo.githubusercontent.com/3b4d542df62b77ab43dbdf63924eaabb3cefa9b93e74539e27e79e053bd040d6/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f64796e616d69632f6a736f6e3f6c6162656c3d6369746174696f6e2671756572793d6369746174696f6e436f756e742675726c3d68747470732533412532462532466170692e73656d616e7469637363686f6c61722e6f7267253246677261706825324676312532467061706572253246663637326238666234333036303666656530626233363866313636303335333163653165393063342533466669656c64732533446369746174696f6e436f756e74" alt="citation"></a></td>
+</tr>
+<tr>
+<td>✅</td>
+<td>2022</td>
+<td><a target="_blank" rel="noopener" href="https://storage.googleapis.com/deepmind-media/AlphaCode/competition_level_code_generation_with_alphacode.pdf">AlphaCode</a></td>
+<td>媲美一般程序员的编程解题水平</td>
+<td><a target="_blank" rel="noopener" href="https://www.semanticscholar.org/paper/Competition-Level-Code-Generation-with-AlphaCode-Li-Choi/5cbe278b65a81602a864184bbca37de91448a5f5"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://camo.githubusercontent.com/cc0655707661a6e8bf40a405c81c4a71f0b1b14db23753008547d8742c3108ac/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f64796e616d69632f6a736f6e3f6c6162656c3d6369746174696f6e2671756572793d6369746174696f6e436f756e742675726c3d68747470732533412532462532466170692e73656d616e7469637363686f6c61722e6f7267253246677261706825324676312532467061706572253246356362653237386236356138313630326138363431383462626361333764653931343438613566352533466669656c64732533446369746174696f6e436f756e74" alt="citation"></a></td>
+</tr>
+</tbody>
+</table>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://outbreak-sen.github.io">outbreak_sen</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://outbreak-sen.github.io/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_%E7%BB%8F%E5%85%B8%E5%B7%A5%E4%BD%9C%E6%B8%85%E5%8D%95/">http://outbreak-sen.github.io/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_%E7%BB%8F%E5%85%B8%E5%B7%A5%E4%BD%9C%E6%B8%85%E5%8D%95/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://outbreak-sen.github.io" target="_blank">This is a 部落格 of outbreak_sen</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/./img/head.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_%E5%8F%8C%E6%B5%81%E7%BD%91%E7%BB%9C/" title=""><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2"></div></div><div class="info-2"><div class="info-item-1">基本信息    项目 内容     论文标题 Two-Stream ConvNets for Action Recognition in Videos   作者    作者单位 牛津大学   时间 2014   发表会议/期刊    全称 Two-Stream Network    方法概览    特点 文章性质     输入 一个输入图像序列，一个输入光流图序列   输出 分类   所属领域 视频分类，视频理解，视频动作识别    在 双流网络之前，视频动作识别主要有前两种方式：    方法 问题     2D CNN + LSTM/RNN 2D 卷积只提取空间特征，RNN 建模时序，但时空分离，难以捕捉时空联合特征。   纯 3D CNN（如 C3D） 能同时建模空间和时间，但通常从零训练，参数多、训练难、性能有限。   双流网络 在时间和空间上分别用卷积神经网络，时间上是先抽取光流，然后用卷积神经网络来学习光流到最后动作的一个映射关系，最后再融合（late...</div></div></div></a><a class="pagination-related" href="/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_%E5%8F%98%E5%88%86%E8%87%AA%E7%BC%96%E7%A0%81%E5%99%A8VQ-VAE/" title=""><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2"></div></div><div class="info-2"><div class="info-item-1">基本信息    项目 内容     论文标题 Neural Discrete Representation Learning   作者 Aaron van den Oord, Oriol Vinyals, 和 Koray Kavukcuoglu   作者单位    发表会议/期刊 2017   论文链接    别名 Vector Quantized-Variational Autoencoder    方法概览    特点 文章性质     输入 单张 RGB 图像   输出 分类、分割   所属领域 视觉 Transformer    背景  标准 VAE 的局限：  潜在变量 z 是连续的（通常是高斯分布）。 这导致生成的样本（尤其是图像）往往比较模糊。 连续潜在空间可能难以捕捉数据中固有的离散结构（如物体类别、音素、单词）。   VQ-VAE 的解决方案：  放弃连续潜在变量：VQ-VAE 的编码器输出的不是分布参数，而是一个连续的潜在向量 z_e。 引入离散潜在空间：这个连续向量 z_e 会通过一个向量量化 (Vector...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/./img/head.png" onerror="this.onerror=null;this.src='/./img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">outbreak_sen</div><div class="author-info-description">an interesting man</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">129</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">24</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">9</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/outbreak-sen" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://blog.csdn.net/outbreakrmb" target="_blank" title="CSDN"><i class="fa fa-book-open"></i></a><a class="social-icon" href="/1023786231" target="_blank" title="QQ"><i class="fab fa-qq"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89-cnn"><span class="toc-text">计算机视觉 - CNN</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89-transformer"><span class="toc-text">计算机视觉 - Transformer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B"><span class="toc-text">生成模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89-object-detection"><span class="toc-text">计算机视觉 - Object Detection</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89-%E5%AF%B9%E6%AF%94%E5%AD%A6%E4%B9%A0"><span class="toc-text">计算机视觉 - 对比学习</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89-%E8%A7%86%E9%A2%91%E7%90%86%E8%A7%A3"><span class="toc-text">计算机视觉 - 视频理解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E6%A8%A1%E6%80%81%E5%AD%A6%E4%B9%A0"><span class="toc-text">多模态学习</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86-transformer"><span class="toc-text">自然语言处理 - Transformer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F"><span class="toc-text">系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BE%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C"><span class="toc-text">图神经网络</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95"><span class="toc-text">优化算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B0%E9%A2%86%E5%9F%9F%E5%BA%94%E7%94%A8"><span class="toc-text">新领域应用</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/03/VSCode%20Python%20Debug%20%E6%95%99%E7%A8%8B/" title="无标题">无标题</a><time datetime="2025-12-03T05:57:28.299Z" title="发表于 2025-12-03 13:57:28">2025-12-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/03/SFM/" title="无标题">无标题</a><time datetime="2025-12-03T05:57:28.288Z" title="发表于 2025-12-03 13:57:28">2025-12-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/03/Multi%20View%20Stereo/" title="无标题">无标题</a><time datetime="2025-12-03T05:57:28.276Z" title="发表于 2025-12-03 13:57:28">2025-12-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/03/dive%20into%20deeplearning/" title="无标题">无标题</a><time datetime="2025-12-03T05:57:28.264Z" title="发表于 2025-12-03 13:57:28">2025-12-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/03/Deep%20LearningOverview/" title="无标题">无标题</a><time datetime="2025-12-03T05:57:28.253Z" title="发表于 2025-12-03 13:57:28">2025-12-03</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By outbreak_sen</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><div class="js-pjax"></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

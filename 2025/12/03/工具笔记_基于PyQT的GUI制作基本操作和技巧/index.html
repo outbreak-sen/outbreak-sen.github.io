@@ -1,0 +1,323 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>This is a 部落格 of outbreak_sen | This is a 部落格 of outbreak_sen</title><meta name="author" content="outbreak_sen"><meta name="copyright" content="outbreak_sen"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="PyQT基本语法和操作 环境配置与GUI绘制思路 UI和算法代码看作前端和再 UI与代码分离 用 Qt Designer 设计界面并保存为 mywidget.ui,在代码里动态加载 .ui 文件，用 uic 模块加载 比如一个按钮叫 pushButton，就可以用 self.pushButton 访问。 不用生成 Python 代码，方便快速修改 UI 1234567from PyQt5 impo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="This is a 部落格 of outbreak_sen">
+<meta property="og:url" content="http://outbreak-sen.github.io/2025/12/03/%E5%B7%A5%E5%85%B7%E7%AC%94%E8%AE%B0_%E5%9F%BA%E4%BA%8EPyQT%E7%9A%84GUI%E5%88%B6%E4%BD%9C%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C%E5%92%8C%E6%8A%80%E5%B7%A7/index.html">
+<meta property="og:site_name" content="This is a 部落格 of outbreak_sen">
+<meta property="og:description" content="PyQT基本语法和操作 环境配置与GUI绘制思路 UI和算法代码看作前端和再 UI与代码分离 用 Qt Designer 设计界面并保存为 mywidget.ui,在代码里动态加载 .ui 文件，用 uic 模块加载 比如一个按钮叫 pushButton，就可以用 self.pushButton 访问。 不用生成 Python 代码，方便快速修改 UI 1234567from PyQt5 impo">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://outbreak-sen.github.io/img/head.png">
+<meta property="article:published_time" content="2025-12-03T05:57:15.640Z">
+<meta property="article:modified_time" content="2025-12-03T05:56:09.780Z">
+<meta property="article:author" content="outbreak_sen">
+<meta property="article:tag" content="static scale model, deep learning, vlog, radio control model, music">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://outbreak-sen.github.io/img/head.png"><link rel="shortcut icon" href="/img/h_beautygirl.png"><link rel="canonical" href="http://outbreak-sen.github.io/2025/12/03/%E5%B7%A5%E5%85%B7%E7%AC%94%E8%AE%B0_%E5%9F%BA%E4%BA%8EPyQT%E7%9A%84GUI%E5%88%B6%E4%BD%9C%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C%E5%92%8C%E6%8A%80%E5%B7%A7/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'This is a 部落格 of outbreak_sen',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  isShuoshuo: false
+}</script><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="This is a 部落格 of outbreak_sen" type="application/atom+xml">
+<link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head><body><div id="web_bg" style="background-image: url(/img/v_beautygirl0.jpeg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/./img/head.png" onerror="onerror=null;src='./img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">129</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">24</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">9</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw fa fa-camera-retro"></i><span> 树洞</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 作品与鉴赏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/h_beautygirl.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/h_beautygirl.png" alt="Logo"><span class="site-name">This is a 部落格 of outbreak_sen</span></a><a class="nav-page-title" href="/"><span class="site-name">This is a 部落格 of outbreak_sen</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw fa fa-camera-retro"></i><span> 树洞</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 作品与鉴赏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">无标题</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-12-03T05:57:15.640Z" title="发表于 2025-12-03 13:57:15">2025-12-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-12-03T05:56:09.780Z" title="更新于 2025-12-03 13:56:09">2025-12-03</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1>PyQT基本语法和操作</h1>
+<h2 id="环境配置与gui绘制思路">环境配置与GUI绘制思路</h2>
+<p>UI和算法代码看作前端和再</p>
+<h2 id="ui与代码分离">UI与代码分离</h2>
+<p>用 Qt Designer 设计界面并保存为 <code>mywidget.ui</code>,<strong>在代码里动态加载 <code>.ui</code> 文件</strong>，用 <code>uic</code> 模块加载</p>
+<p>比如一个按钮叫 <code>pushButton</code>，就可以用 <code>self.pushButton</code> 访问。</p>
+<p>不用生成 Python 代码，方便快速修改 UI</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">from PyQt5 import uic</span><br><span class="line">from PyQt5.QtWidgets import QWidget</span><br><span class="line"></span><br><span class="line">class MyWidget(QWidget):</span><br><span class="line">    def __init__(self):</span><br><span class="line">        super().__init__()</span><br><span class="line">        uic.loadUi(&#x27;mywidget.ui&#x27;, self)  # 直接加载ui文件，控件自动成为self的属性</span><br></pre></td></tr></table></figure>
+<h2 id="ui设计完转化为py然后再补充算法代码">UI设计完转化为py然后再补充算法代码</h2>
+<p>用 Qt Designer 设计全新界面，生成 <code>.UI</code>文件，然后用pyuic转化.</p>
+<p>UI 改动后要重新用 <code>pyuic5</code> 生成</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pyuic5 -o ui_mywidget.py mywidget.ui</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">from PyQt5.QtWidgets import QWidget</span><br><span class="line">from ui_mywidget import Ui_Form  # 这个名字看你的ui设计文件的类名</span><br><span class="line"></span><br><span class="line">class MyWidget(QWidget, Ui_Form):</span><br><span class="line">    def __init__(self):</span><br><span class="line">        super().__init__()</span><br><span class="line">        self.setupUi(self)  # 这个方法来自 Ui_Form，完成控件初始化</span><br><span class="line">        # 你可以在这里写逻辑，连接信号槽等</span><br></pre></td></tr></table></figure>
+<h2 id="直接用py写ui和算法代码">直接用py写UI和算法代码</h2>
+<h1>QSS设置现代风格</h1>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PyQt5.QtWidgets <span class="keyword">import</span> QApplication, QWidget, QPushButton, QVBoxLayout</span><br><span class="line"></span><br><span class="line">app = QApplication([])</span><br><span class="line"></span><br><span class="line">window = QWidget()</span><br><span class="line">window.setWindowTitle(<span class="string">&quot;现代化PyQt界面&quot;</span>)</span><br><span class="line">window.setStyleSheet(<span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    QWidget &#123;</span></span><br><span class="line"><span class="string">        background-color: #f0f2f5;</span></span><br><span class="line"><span class="string">        font-family: &quot;Segoe UI&quot;, Tahoma, Geneva, Verdana, sans-serif;</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string">    QPushButton &#123;</span></span><br><span class="line"><span class="string">        background-color: #0078d7;</span></span><br><span class="line"><span class="string">        color: white;</span></span><br><span class="line"><span class="string">        border: none;</span></span><br><span class="line"><span class="string">        border-radius: 6px;</span></span><br><span class="line"><span class="string">        padding: 10px 20px;</span></span><br><span class="line"><span class="string">        font-size: 14px;</span></span><br><span class="line"><span class="string">        font-weight: 600;</span></span><br><span class="line"><span class="string">        transition: background-color 0.3s ease;</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string">    QPushButton:hover &#123;</span></span><br><span class="line"><span class="string">        background-color: #005a9e;</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span>)</span><br><span class="line"></span><br><span class="line">layout = QVBoxLayout()</span><br><span class="line">btn = QPushButton(<span class="string">&quot;点击我&quot;</span>)</span><br><span class="line">layout.addWidget(btn)</span><br><span class="line">window.setLayout(layout)</span><br><span class="line"></span><br><span class="line">window.show()</span><br><span class="line">app.<span class="built_in">exec</span>()</span><br></pre></td></tr></table></figure>
+<h1>PyQT运行深度学习算法 QThread + subprocess+cmd</h1>
+<h1>PyQT打印print()和重定向算法进程输出</h1>
+<ul>
+<li>如果没有其他操作，print会打印在终端，在pyinstaller导出的时候会打开exe同时创建一个终端并可以打印输出，也输出可能会丢失。最好创建一个输出控制台</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PyQt5.QtWidgets <span class="keyword">import</span> QTextEdit</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ConsoleOutput</span>(<span class="title class_ inherited__">QTextEdit</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">super</span>().__init__()</span><br><span class="line">        <span class="variable language_">self</span>.setReadOnly(<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">write</span>(<span class="params">self, text</span>):</span><br><span class="line">        <span class="variable language_">self</span>.insertPlainText(text)  <span class="comment"># 在QTextEdit中显示文本</span></span><br><span class="line">        <span class="variable language_">self</span>.ensureCursorVisible()  <span class="comment"># 自动滚动到底部</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">flush</span>(<span class="params">self</span>):  <span class="comment"># 需要实现flush方法以完全模拟sys.stdout</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 在主窗口中添加</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MainWindow</span>(<span class="title class_ inherited__">QMainWindow</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">super</span>().__init__()</span><br><span class="line">        central = QWidget()</span><br><span class="line">        layout = QVBoxLayout()</span><br><span class="line">        <span class="variable language_">self</span>.console = ConsoleOutput()</span><br><span class="line">        layout.addWidget(<span class="variable language_">self</span>.console)</span><br><span class="line">        central.setLayout(layout)</span><br><span class="line">        <span class="variable language_">self</span>.setCentralWidget(central)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 重定向标准输出</span></span><br><span class="line">        sys.stdout = <span class="variable language_">self</span>.console</span><br><span class="line">        sys.stderr = <span class="variable language_">self</span>.console</span><br><span class="line">        <span class="comment"># 如果需要恢复原始终端输出</span></span><br><span class="line">        sys.stdout = sys.__stdout__</span><br><span class="line">        sys.stderr = sys.__stderr__</span><br><span class="line">        <span class="comment"># 测试输出</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;=== 应用启动 ===&quot;</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;标准输出和错误都会显示在这里&quot;</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;\033[91m红色错误消息\033[0m&quot;</span>)  <span class="comment"># 如果终端支持颜色</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;这条消息会显示在GUI中！&quot;</span>)  <span class="comment"># 现在会显示在QTextEdit里</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>但是子进程的输出需要定向到主pyQT才能输出</li>
+</ul>
+<h1>cv.imshow与pyQT冲突</h1>
+<ul>
+<li>纯 headless + PyQt 显示</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip uninstall opencv-python </span><br><span class="line">pip install opencv-python-headless -y</span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<p>但是有时候这个方法不好，还是想写imshow，那就用qt重新编写imshow</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">import cv2</span><br><span class="line">from PyQt5.QtWidgets import QApplication, QLabel</span><br><span class="line">from PyQt5.QtGui import QPixmap, QImage</span><br><span class="line"></span><br><span class="line">def custom_imshow(title, image):</span><br><span class="line">    app = QApplication.instance()</span><br><span class="line">    if app is None:</span><br><span class="line">        app = QApplication([])</span><br><span class="line"></span><br><span class="line">    label = QLabel()</span><br><span class="line">    qimage = QImage(image.data, image.shape[1], image.shape[0], QImage.Format_RGB888)</span><br><span class="line">    pixmap = QPixmap.fromImage(qimage)</span><br><span class="line">    label.setPixmap(pixmap)</span><br><span class="line">    label.setWindowTitle(title)</span><br><span class="line">    label.show()</span><br><span class="line">    app.exec_()</span><br><span class="line"></span><br><span class="line"># 替换原版 cv2.imshow</span><br><span class="line">cv2.imshow = custom_imshow</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1>使用PyInstaller打包conda环境和GUI及算法为exe</h1>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install pyinstaller</span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<p>PyInstaller会通过分析你的Python脚本来自动检测依赖关系，对于SciPy这样的科学计算库，PyInstaller通常能够自动检测并包含它们。包括：</p>
+<ul>
+<li>
+<p>直接import的库</p>
+</li>
+<li>
+<p>间接依赖的库</p>
+</li>
+<li>
+<p>动态加载的库</p>
+</li>
+</ul>
+</li>
+<li>
+<p>直接使用命令行即可打包</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">pyinstaller --onefile --windowed app.py </span><br><span class="line"># 用`--onedir`而不是`--onefile`创建目录分布</span><br><span class="line"># 如果某些库未被自动包含，用显式包含hidden-import</span><br><span class="line">pyinstaller --onefile --hidden-import scipy --hidden-import numpy app.py</span><br></pre></td></tr></table></figure>
+<ul>
+<li>但是由于深度学习模型通常有较大的依赖，建议创建一个spec文件：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"># keypoint_detector.spec</span><br><span class="line">block_cipher = None</span><br><span class="line"></span><br><span class="line">a = Analysis([&#x27;app.py&#x27;],</span><br><span class="line">             pathex=[&#x27;/path/to/your/project&#x27;],</span><br><span class="line">             binaries=[],</span><br><span class="line">             datas=[(&#x27;demo.py&#x27;, &#x27;.&#x27;), (&#x27;data&#x27;, &#x27;data&#x27;)],  # 包含你的模型文件和数据</span><br><span class="line">             hiddenimports=[&#x27;cv2&#x27;, &#x27;numpy.core._dtype_ctypes&#x27;], # 显式包含一些库</span><br><span class="line">             hookspath=[],</span><br><span class="line">             runtime_hooks=[],</span><br><span class="line">             excludes=[],</span><br><span class="line">             win_no_prefer_redirects=False,</span><br><span class="line">             win_private_assemblies=False,</span><br><span class="line">             cipher=block_cipher,</span><br><span class="line">             noarchive=False)</span><br><span class="line">pyz = PYZ(a.pure, a.zipped_data,</span><br><span class="line">             cipher=block_cipher)</span><br><span class="line">exe = EXE(pyz,</span><br><span class="line">          a.scripts,</span><br><span class="line">          [],</span><br><span class="line">          exclude_binaries=True,</span><br><span class="line">          name=&#x27;KeypointDetector&#x27;,</span><br><span class="line">          debug=False,</span><br><span class="line">          bootloader_ignore_signals=False,</span><br><span class="line">          strip=False,</span><br><span class="line">          upx=True,</span><br><span class="line">          console=False)  # 设置为False以隐藏控制台窗口</span><br><span class="line">coll = COLLECT(exe,</span><br><span class="line">               a.binaries,</span><br><span class="line">               a.zipfiles,</span><br><span class="line">               a.datas,</span><br><span class="line">               strip=False,</span><br><span class="line">               upx=True,</span><br><span class="line">               name=&#x27;KeypointDetector&#x27;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pyinstaller keypoint_detector.spec</span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<p><strong>在Ubuntu上使用PyInstaller打包的EXE文件无法直接在Windows系统上运行，需要在Windows重新打包</strong></p>
+<ul>
+<li><strong>二进制不兼容</strong>：Linux和Windows使用完全不同的可执行文件格式（ELF vs PE）</li>
+<li><strong>依赖库差异</strong>：系统库和Python扩展模块（.so vs .dll）格式不同</li>
+<li><strong>路径处理差异</strong>：Linux和Windows使用不同的路径分隔符（/ vs \）</li>
+<li>CUDA工具链在Linux和Windows上是不同的</li>
+<li>PyInstaller打包时绑定了特定平台的CUDA相关库</li>
+<li>Python轮子（wheel）也是平台特定的（manylinux vs win32/win_amd64）</li>
+</ul>
+</li>
+<li>
+<p>使用UPX压缩解决打包后文件过大</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pyinstaller --upx-dir=/path/to/upx ...</span><br></pre></td></tr></table></figure>
+<h1>可视化平台制作GUI搭建过程</h1>
+<p>基于已有的图形处理库以及深度学习模型等，结合GUI编程，研制具有可视化操作界面的运动学数据提取与分析工具（简称“提取分析工具”），实现图像和视频中目标对象的运动学数据提取与统计分析，主要功能及技术指标要求如下：</p>
+<p>a. <s>图像和视频显示与播放功能，能够打开1个或多个图像和视频进行显示与播放，支持多窗口同步显示与播放；</s></p>
+<p>b. ~~运动学数据提取功能，能够选择视频起止时间，基于深度学习模型等提取该时间段内视频中的运动学数据，~~视频中目标对象有1个或2个；</p>
+<p>c. 运动学数据显示功能，能够对提取的运动学数据进行三维可视化显示，如以棍棒骨架或三维模型等形式显示，能够和视频同步显示；</p>
+<p>d. 运动学数据修正功能，主要包括：</p>
+<p>（1） <s>选择某一时间点数据进行删除；</s></p>
+<p>（2） <s>复制某一时间点的数据并插入到另一时间点之后；</s></p>
+<p>（3） <s>修改某一时间点的1个或多个关节角度数据；</s></p>
+<p>（4） <s>选择两个时间点，通过对两个时间点的数据进行插值计算生成新的数据，并覆盖两个时间点内原有的数据。</s></p>
+<p>e. 运动学数据导出功能，能够将提取的运动学数据导出为BVH或EXCEL文件，文件中需要包含目标对象的骨架系统信息以及视频每一帧对应的目标对象的姿态角度数据等，骨架系统的定义标准由委托方提供；</p>
+<p>f. 运动学数据分析功能，包括：</p>
+<p>（1） 特征参数计算，针对提取的运动学数据，实现关节点速度、加速度、角位移等运动参数求解功能；</p>
+<p>（2） 特征参数查看，以图表等形式查看特征参数计算结果，能够与运动学数据同步动态查看；</p>
+<p>（3） 特征参数导出，将特征参数计算结果导出为EXCEL等格式的文件。</p>
+<p>g. <s>模型训练与优化功能，提供可视化界面支持开展模型训练与优化，如通过手工标记的二维图像和视频对模型进行模型训练，支持新标记数据的增量式学习；</s></p>
+<h1>模块总框架</h1>
+<p>pyQT制作</p>
+<p>深度学习脚本使用OS命令运行，不打包成库</p>
+<p>PyInstaller打包为exe</p>
+<p>但是需要在windows下重新打包才能使用</p>
+<p>我需要用pyQT做一个可视化界面，用于人体位姿识别和结果导出以及可视化，具体操作流程如下：</p>
+<ol>
+<li>单目视频人体关节检测（第一个大界面）
+<ol>
+<li>选择视频，点击摁纽打开文件浏览器，选中一个视频比如1.avi</li>
+<li>选择使用的检测权重，点击摁纽打开文件浏览器，选择AlphaPose使用的权重权重，比如default.pth</li>
+<li>执行检测：点击摁纽执行关键点检测，执行命令CUDA_VISIBLE_DEVICES=0 python demo_inference.py --cfg configs/coco22/resnet/a256x192_res152_lr1e-3_1x-duc.yaml --detector yolox-s --checkpoint 权重路径 --video 视频路径 --outdir 视频路径/AlphaposeResult+视频名称前缀 --pose_track --save_video --vis_fast，然后就会在输出路径创建一个AlphaposeResult+视频名称前缀保存识别结果视频和一个结果json文件，应有一个进度条表现当前检测运行进度</li>
+<li>查看识别结果：点击摁纽播放检测结果视频，可以快进，有进度条，有播放/暂停摁建</li>
+<li>查看每个关键点检测结果：可以拉一个下拉栏查看22个关节点的检测结果，根据json文件绘制一个曲线，x坐标是视频的总帧数，y轴是当前识别到的关键点的X坐标变化（归一化到0到10），表现当前识别结果，有则绘制上点，没，有则不绘制</li>
+<li>插值功能，点击摁纽则对识别结果则运行脚本进行插值，对没有识别到的部分进行二维坐标插值</li>
+</ol>
+</li>
+<li>三维人体关节生成功能（第二个大界面）
+<ol>
+<li>经过人体关节检测之后可以把单目识别的二维关键点转化为三维关键点</li>
+<li>选择单目模式或者多目模式：下拉框选择单目模式或者多目模式，如果选择单目模式则下面出现一个视频文件选择框，选择一个包含视频和alphapose识别结果json的文件夹，选择多目模式，则下面出现一个文件夹选择框和一个标定文件输入框，文件夹选择框可以选择一个文件夹输入文件夹下应包含多个视频比如1.avi 2.avi 3.avi，和对应的alphapose识别结果json文件的文件夹，标定文件输入框可以选择一个json标定文件输入</li>
+<li>单目检测结果生成三维骨架：如果是单目模式下，点击摁纽则执行脚本python <a target="_blank" rel="noopener" href="http://demo.py">demo.py</a>，脚本会在视频目录下保存一个MonoResult文件夹，里面包含一个识别结果视频和对应的SMPL的JSON文件，应有一个进度条表现当前检测运行进度</li>
+<li>多目检测结果生成三维骨架：如果是多目模式下，点击摁纽则执行脚本python3 scripts/preprocess/extract_video.py {data} --handface和python3 apps/demo/mv1p.py {data} --out ${data}/output/smpl --vis_det --vis_repro --undis --sub_vis 1 7 13 19 --vis_smpl，执行脚本之后会在目录下保存识别结果视频和对应的SMPL的json文件，应有一个进度条表现当前检测运行进度</li>
+<li>SMPL重建结果查看功能：点击摁纽播放SMPL重建结果视频，可以快进，有进度条，有播放/暂停摁建</li>
+<li>导出重建结果功能：可以选择导出CSV或者BVH，使用下拉框选择，然后点击导出摁纽弹出文件浏览器选择导出目录，然后就执行脚本 python <a target="_blank" rel="noopener" href="http://export.py">export.py</a> -dataFolder 导出到目录</li>
+</ol>
+</li>
+<li>重新训练功能（第三个大界面）
+<ol>
+<li>选择数据集目录：选择数据集目录该数据集包括train和valid文件夹，文件夹中包括labelme的json文件和同名的图片</li>
+<li>选择预训练权重：点击摁纽打开文件浏览器，选中一个alphapose的权重比如default.pth</li>
+<li>点击摁纽处理数据集：点击摁纽则处理数据集目录下的数据集，会运行python labelme2coco。py，该脚本会把数据集中的文件夹重新命名为数字并在同级目录创建一个annotation文件夹保存标注文件</li>
+<li>点击摁纽进行训练，点击摁纽则运行CUDA_VISIBLE_DEVICES=2 ./scripts/train.sh ./configs/coco22/resnet/a256x192_res152_lr1e-3_1x-duc.yaml 0517res152num22 然后就会进行训练，需要根据终端输出在可视化界面查看训练进程</li>
+</ol>
+</li>
+</ol>
+<p>综上你需要设计一个软件内容如上，可视化界面有三个大子页面：单目视频人体关节检测，三维人体关节生成功能，重新训练功能，每个界面的子功能如</p>
+<h1>增量训练模块</h1>
+<h3 id="数据集处理部分">数据集处理部分</h3>
+<p>经过select_dataset并选择了一个包含train2017和val2017的文件夹，并且每个文件夹里面包含了jpg图和对应的labelme标注文件，需要检查select_dataset选择的文件夹下面包不包含train2017和val2017,如果不是则不保存路径，并在log_output进行输出。然后点击preprocess_btn进行数据预处理，在run_preprocess函数中，需要调用其他python脚本进行数据处理，具体命令如下<br>
+其中self.dataset_path/是select_dataset已经获得的路径<br>
+python tools/convertjpg.py self.dataset_path/val2017<br>
+python tools/convertjpg.py self.dataset_path/train2017<br>
+python tools/labelme2cocoAll.py self.dataset_path/train2017 1 train<br>
+python tools/labelme2cocoAll.py self.dataset_path/val2017 800000 val<br>
+python tools/insertCOCOUrl.py self.dataset_path/annotationsFull/convertcoco_full_person_keypoints_train2017.json train2017 person_keypoints_train2017.json<br>
+python tools/insertCOCOUrl.py self.dataset_path/annotationsFull/convertcoco_full_person_keypoints_val2017.json val2017 person_keypoints_val2017.json<br>
+python tools/changeNameToNumber.py self.dataset_path/annotationsFull/person_keypoints_train2017.json self.dataset_path/train2017 1<br>
+python tools/changeNameToNumber.py self.dataset_path/annotationsFull/person_keypoints_val2017.json self.dataset_path/val2017 800000<br>
+然后把self.dataset_path/目录下的annotationsFull文件夹复制一份到self.dataset_path/目录下并重命名为annotation</p>
+<h3 id="训练部分">训练部分</h3>
+<p>把a256x192_res152_lr1e-3_1x-duc.yaml保存到gui文件夹下</p>
+<p>首先保存一个alphapose的目录，self.alphapose_path=…/alphapose，默认的pth权重是self.alphapose_path/exp/0607res152num22setdetsrepeatwight-a256x192_res152_lr1e-3_1x-duc.yaml/final.pth，经过select_weight函数并选择一个pth文件，在select_weight函数中需要检查是否是pth，如果是则更新self.weight_path。如果有了权重路径self.weight_path和处理完的数据集self.dataset_path，点击train_btn进入run_training函数，先检查权重路径和数据集路径是否存在，并检查数据集路径下是否包含annotations和train2017和val2017目录，如果包含的话检查在annotations下是否包含person_keypoints_train2017.json和person_keypoints_val2017.json。然后根据已经保存的变量更改当前config文件configs/coco22/a256x192_res152_lr1e-3_1x-duc.yaml，具体而言把DATASET:TRAIN:ROOT和DATASET:VAL:ROOT和DATASET:TEST:ROOT，这三个三级yaml条目更改为数据集目录self.dataset_path，比如’/home/houbosen/coco0606’。更改MODEL:TRY_LOAD:二级yaml条目为self.weight_path权重目录，比如 ‘pretrained_models/fast_421_res152_256x192.pth’。并删除alphapose目录下exp/json的文件。训练后的文件保存名称为self.trainID：“当前时间+train”</p>
+<p>最后执行训练命令，训练命令如下，并把训练的输出打印到self.log_output：</p>
+<p>python self.alphapose_path/scripts/trainRepeatweight.py --cfg ./configs/coco22/resnet/a256x192_res152_lr1e-3_1x-duc.yaml --detector yolox-s --exp-id self.trainID</p>
+<h1>检测模块</h1>
+<p>我需要用pyQT写一个Qwidgt模块，总体是加载单视角或者多视角的图片或者视频然后、使用alphapose进行检测，alphapose的目录为self.alphapose_path = os.path.join(&quot;…&quot;, “AlphaPose”)，并把检测结果保存到图片的同级目录中：这个模块首先可以打开一个文件浏览器加载视频或者图片或者含有视频的文件夹：</p>
+<ol>
+<li>如果打开的是一个图片，则进入图片模式，首先显示当前图片，注意把图片进行缩放使得图片按照适应当前显示屏幕大小展示，然后只有一个检测功能摁钮，运行python self.alphapose_path/demo_inference.py --cfg configs/coco/resnet/256x192_res50_lr1e-3_1x.yaml --checkpoint self.alphapose_path/exp/250420FirstTrain-256x192_res50_lr1e-3_1x.yaml/model_199.pth --image test.jpg --outdir 保存地址是test.jpg同级目录下创建同名文件夹 --pose_track --save_img --vis_fast，检测结果保存test.jpg同级目录下同名文件夹有一个AlphaPose_原文件名.jpg,在然后还有一个显示检测结果摁纽，点击则显示检测结果到刚才显示图片的位置</li>
+<li>如果打开的是一个视频文件，则进入单视频模式，首先展示当前视频，注意把视频缩放到适应当前显示屏幕大小展示，然后有一个进度条，有暂停/播放摁建，进度条有两个进度块，拖动左边的可以设置起始帧，拖动又变的可以设置结束帧，然后需要把当前起始帧/结束帧/总帧数打印到进度条旁边。然后有一个检测功能摁纽，如果摁下则首先把视频按照起始帧和结束帧截取出目标视频段然后保存为一个新的视频文件，命名为视频原名称+cliped.mp4，保存到原视频的同名文件夹下，然后再运行python self.alphapose_pat/demo_inference.py --cfg configs/coco/resnet/256x192_res50_lr1e-3_1x.yaml --checkpoint self.alphapose_pat/exp/250420FirstTrain-256x192_res50_lr1e-3_1x.yaml/model_199.pth --video截取出来的视频的文件 --outdir 原视频的目录下创建的一个同名文件夹 --pose_track --save_video --vis_fast，检测结果保存在原视频的目录下的同名文件夹有一个AlphaPose_原文件名,然后还有一个显示检测结果摁纽，点击则显示检测结果则在原视频位置播放检测视频</li>
+<li>如果打开的是一个文件夹，则进入多视频模式，首先会检测当前文件夹下所有视频文件，比如<br>
+data包含202403270042_Miqus_2_28518.avi和202403270042_Miqus_5_28518.avi和202403270042_Miqus_9_28518.avi和202403270042_Miqus_13_28518.avi个视频，然后判断这几个视频文件是否帧数是相同的，如果不相同则弹出error说明该视频文件夹下所有视频帧数不同，无法进行多视频检测，如果帧数相同，则一次性展示所有视频，注意将多个视频进行缩放使得适应当前显示屏幕大小，一般来说，一行有四个视频即可，也有可能文件夹有三个或者两个，如果多于4个则再另起一行进行显示，注意只有一个播放进度条，有暂停/播放摁纽，同步播放或者暂停所有视频，进度条有两个进度块，拖动左边的可以设置起始帧，拖动又变的可以设置结束帧，然后需要把当前起始帧/结束帧/总帧数打印到进度条旁边。然后有一个检测功能摁纽，如果摁下则首先分别把每个视频按照起始帧和结束帧截取出目标视频段然后保存为一个新的视频文件，命名为视频原名称+cliped.mp4，保存到原视频的同名文件夹下，然后再分别运行python self.alphapose_pat/demo_inference.py --cfg configs/coco/resnet/256x192_res50_lr1e-3_1x.yaml --checkpoint self.alphapose_pat/exp/250420FirstTrain-256x192_res50_lr1e-3_1x.yaml/model_199.pth --video截取出来的视频的文件 --outdir 原视频的目录下创建的一个同名文件夹 --pose_track --save_video --vis_fast，检测结果保存在每个原视频的目录下的同名文件夹有一个AlphaPose_原文件名,然后还有一个显示检测结果摁纽，点击则显示检测结果则在每个原视频位置播放检测视频</li>
+</ol>
+<h1>修正编辑模块</h1>
+<p>有一个视频和视频中人的alphapose的识别结果，创建一个pyqt的QWidget，打开一个文件浏览器，输入一个视频，则再在视频同级文件夹下找到alphapose_result.json。alphapose识别结果是一个json文件，文件中是每一帧的人体22个关节坐标和置信度，现在我需要做一个播放功能，有一个进度条调整当前播放帧，可以暂停，播放和可以拖动，有一个label展示当前进度条在哪一帧，然后需要通过当前帧值找到alpahpose中对应帧的识别结果然后把置信度大于0.5关节点的绘制到画面上，但是需要画面上的关节点是可以拖动的，因为识别结果可能不对，然后拖动之后json文件中对应的关节坐标也会更新。还可以右键点击关节点删除该关节点。建立一个button，可以输入一个其他帧的帧值，把输入帧的关节坐标数据复制覆盖到当前帧上并更新json中对应帧的数据。再添加一个功能，输入两帧的帧值，通过插值生成覆盖数据，并更新json中对应帧的数据。我输入的json文件就是一个alphapose的识别结果。你需要通过pyQT实现</p>
+<h2 id="三维重建">三维重建</h2>
+<p>视频名.avi/图片名.png</p>
+<p>视频名/图片名包含alpahpose.json，Alphapose_视频名_cliped.avi或者AlphaPose_图片名.png</p>
+<p>单目模式下</p>
+<p>选择单目模式，选择视频或者图片之后，检测本地是否有同名的文件夹，如果是视频，检查文件夹中是否包含alphapose.json和Alphapose_视频名_cliped.avi，如果是图片，检查是否包含AlphaPose_图片名.png。如果是视频，则只取alphapose.json的每个图片的id为1的图，如果没有则创建一个66个0的json文件</p>
+<p>我需要利用qyQT创建一个继承wight的界面，内容是输入单目或者多目视频利用他们的识别出来的Alphapose人体关节数据重建人体的SMPL模型并展示，这个界面可以选择进入单目重建模式或者多视角模式。</p>
+<p>单目模式下，可打开文件浏览器，打开一个视频或者一个图片</p>
+<p>如果是单目模式并且输入是一个视频videoname.avi，在视频同级目录应包含一个同名文件夹videoname，并且同名文件夹中应包含一个alphapose-result.jsonAlphaPose_videoname_cliped.avi，videoname_cliped.avi三个文件，如果没有同名文件夹或者文件则弹出错误对话框“请先执行检测并保证检测结果按照以下格式命名”，如果都存在，则首先在打开目录摁钮下面播放视频AlphaPose_videoname_cliped.avi，视频下面有播放/停止摁钮和拖动条，如果检测结果都存在允许摁下“单目重建”摁钮进行单目重建，运行python …/key2mesh/fitmono.py --input_dir videoname文件夹，然后就会在videoname文件夹下保存了一个monoreconstruction目录，里面保存了视频所有帧的重建结果图片，图片命名格式为000000.jpg，在播放视频下面有一个“展示重建结果”摁钮，摁下则原先播放视频的位置会播放monoreconstruction目录下所有的重建图片，也有播放/停止摁钮和进度拖动条。 在播放视频框下面有一个log_output的text位置，会把该软件的输出以及python子脚本输出一起打印出来</p>
+<p>在单目模式并且输入是一个图片imgname.png，在图片同级目录应包含一个同名文件夹imgname，并且同名文件夹中应包含一个alphapose-result.json，AlphaPose_imgname.png，imgname.png三个文件，如果没有同名文件夹或者文件则弹出错误对话框“请先执行检测并保证检测结果按照以下格式命名”，如果都存在，则首先在打开目录摁钮下面展示图片AlphaPose_imgname.png，图片输入时候播放/停止摁钮和拖动条不可点击，如果检测结果都存在允许摁下摁钮进行单目重建，运行python …/key2mesh/fitmono.py --input_dir imgname文件夹，然后就会在imgname文件夹下保存了一个monoreconstruction目录，里面保存了视频所有帧的重建结果图片，图片命名格式为000000.jpg，在播放视频下面有一个“展示重建结果”摁钮，摁下则原先播放视频的位置会播放monoreconstruction目录下所有的重建图片，也有播放/停止摁钮和进度拖动条。</p>
+<p>如果是多目模式下，点击文件浏览器，打开必须是一个文件夹，文件夹下应包含多个视频（videoname1.avi，videoname2.avi，videoname3.avi）和同名的文件夹（videoname1，videoname2，videoname3），每个文件夹包含alphpose-result.json和AlphaPose_videoname1_cliped.avi，videoname1_cliped.avi，如果视频只有一个或者每个视频缺少对应的文件夹和文件夹下面的文件，则弹出报错“视频数目过少”“缺少检测结果：”，然后如果都存在则可以点击下面的“加载标定数据”然后需要输入一个json文件，然后会运行“python <a target="_blank" rel="noopener" href="http://convertjson2yml.py">convertjson2yml.py</a> json文件目录”，运行完之后会保存一个yml文件到当前文件夹下并读取yml文件中的相机的数据（有1，2，3，4等13个）并弹出一个框，框中左边是每个视频名称videoname1，2，3列排列，每个videoname的右边有一个下拉选项框，可以选择对应的相机数据序号（1，2，3，4等13个），需要给每个相机videoname都选择完，然后就可以在底部摁下“多目重建”，摁下则执行“python …/eastmocap/demo_interface.py --input_dir 当前工作文件夹” 注意所有模式下最底部有一个text_output可以输出软件的输出和所有运行的python脚本的输出</p>
+<p>在播放过程中，每个图片或视频帧要锁定纵横比缩放并padding到1920*1088</p>
+<p>继续补充弹出yml匹配每个视频对应的匹配相机id，首先利用camera_idx = python <a target="_blank" rel="noopener" href="http://readyml.py">readyml.py</a> --input_path,camera_idx = [1,2,3,4,9，6],然后比如读取到多目文件夹下保存了videoname1.avi videoname2.avi videoname3.avi videoname4.avi则弹出的提示框左边是一个下拉框，下拉框的内容是camera_idx的每个id，需要选择每个视频对应的id，如果id都选择了可以点击弹出框的“确认”摁钮，则下拉框关闭，并保存每个视频对应的相机id到一个self.camera_map</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://outbreak-sen.github.io">outbreak_sen</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://outbreak-sen.github.io/2025/12/03/%E5%B7%A5%E5%85%B7%E7%AC%94%E8%AE%B0_%E5%9F%BA%E4%BA%8EPyQT%E7%9A%84GUI%E5%88%B6%E4%BD%9C%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C%E5%92%8C%E6%8A%80%E5%B7%A7/">http://outbreak-sen.github.io/2025/12/03/%E5%B7%A5%E5%85%B7%E7%AC%94%E8%AE%B0_%E5%9F%BA%E4%BA%8EPyQT%E7%9A%84GUI%E5%88%B6%E4%BD%9C%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C%E5%92%8C%E6%8A%80%E5%B7%A7/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://outbreak-sen.github.io" target="_blank">This is a 部落格 of outbreak_sen</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/./img/head.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/12/03/%E5%B7%A5%E5%85%B7%E7%AC%94%E8%AE%B0_tmux/" title=""><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2"></div></div><div class="info-2"><div class="info-item-1">tmux 新建会话tmux new -s 第一个启动的 Tmux 窗口，编号是0，第二个窗口的编号是1，以此类推。这些窗口对应的会话，就是 0 号会话、1 号会话。 使用编号区分会话，不太直观，更好的方法是为会话起名。  1tmux new -s &lt;session-name&gt;  上面命令新建一个指定名称的会话。 分离会话Ctrl+b d 在 Tmux 窗口中，按下Ctrl+b d或者输入tmux detach命令，就会将当前会话与窗口分离。  1tmux detach  上面命令执行后，就会退出当前 Tmux 窗口，但是会话和里面的进程仍然在后台运行。 查看会话tmux ls tmux ls命令可以查看当前所有的 Tmux 会话。  1tmux ls  接入会话tmux attach -t tmux attach命令用于重新接入某个已存在的会话。  12345# 使用会话编号tmux attach -t 0# 使用会话名称tmux attach -t &lt;session-name&gt;  杀死会话tmux kill-session -t tmux...</div></div></div></a><a class="pagination-related" href="/2025/12/03/CUDA%20%E7%8E%AF%E5%A2%83%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%9D%A5%E6%BA%90/" title=""><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2"></div></div><div class="info-2"><div class="info-item-1">🧩 一、CUDA 环境的两种来源 CUDA（Compute Unified Device Architecture）分为两部分：    类型 功能 通常位置 谁提供     CUDA Toolkit（开发套件） 编译 CUDA 程序、包含 nvcc、头文件、静态库 /usr/local/cuda-* 你自己系统安装   CUDA Runtime（运行时库） 运行 PyTorch / TensorFlow / cuDNN 等程序 通常是 .so 动态库 PyTorch（或 conda 包）自动安装    👉 也就是说：  系统 CUDA Toolkit：给开发者编译用（比如写 CUDA C++、编译自定义算子）。 conda/pip CUDA Runtime：给 PyTorch 运行用，不依赖系统 CUDA。   ⚙️ 二、本地 CUDA 与 conda CUDA 的区别    对比项 系统 CUDA Toolkit conda CUDA runtime     用途 编译代码、开发 运行 PyTorch、推理训练   是否随 PyTorch 一起安装 否 是（通过...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/./img/head.png" onerror="this.onerror=null;this.src='/./img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">outbreak_sen</div><div class="author-info-description">an interesting man</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">129</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">24</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">9</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/outbreak-sen" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://blog.csdn.net/outbreakrmb" target="_blank" title="CSDN"><i class="fa fa-book-open"></i></a><a class="social-icon" href="/1023786231" target="_blank" title="QQ"><i class="fab fa-qq"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">PyQT基本语法和操作</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E4%B8%8Egui%E7%BB%98%E5%88%B6%E6%80%9D%E8%B7%AF"><span class="toc-text">环境配置与GUI绘制思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ui%E4%B8%8E%E4%BB%A3%E7%A0%81%E5%88%86%E7%A6%BB"><span class="toc-text">UI与代码分离</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ui%E8%AE%BE%E8%AE%A1%E5%AE%8C%E8%BD%AC%E5%8C%96%E4%B8%BApy%E7%84%B6%E5%90%8E%E5%86%8D%E8%A1%A5%E5%85%85%E7%AE%97%E6%B3%95%E4%BB%A3%E7%A0%81"><span class="toc-text">UI设计完转化为py然后再补充算法代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B4%E6%8E%A5%E7%94%A8py%E5%86%99ui%E5%92%8C%E7%AE%97%E6%B3%95%E4%BB%A3%E7%A0%81"><span class="toc-text">直接用py写UI和算法代码</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">QSS设置现代风格</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">PyQT运行深度学习算法 QThread + subprocess+cmd</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">PyQT打印print()和重定向算法进程输出</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">cv.imshow与pyQT冲突</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">使用PyInstaller打包conda环境和GUI及算法为exe</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">可视化平台制作GUI搭建过程</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">模块总框架</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">增量训练模块</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E9%9B%86%E5%A4%84%E7%90%86%E9%83%A8%E5%88%86"><span class="toc-text">数据集处理部分</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%AD%E7%BB%83%E9%83%A8%E5%88%86"><span class="toc-text">训练部分</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">检测模块</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">修正编辑模块</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E7%BB%B4%E9%87%8D%E5%BB%BA"><span class="toc-text">三维重建</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/03/VSCode%20Python%20Debug%20%E6%95%99%E7%A8%8B/" title="无标题">无标题</a><time datetime="2025-12-03T05:57:28.299Z" title="发表于 2025-12-03 13:57:28">2025-12-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/03/SFM/" title="无标题">无标题</a><time datetime="2025-12-03T05:57:28.288Z" title="发表于 2025-12-03 13:57:28">2025-12-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/03/Multi%20View%20Stereo/" title="无标题">无标题</a><time datetime="2025-12-03T05:57:28.276Z" title="发表于 2025-12-03 13:57:28">2025-12-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/03/dive%20into%20deeplearning/" title="无标题">无标题</a><time datetime="2025-12-03T05:57:28.264Z" title="发表于 2025-12-03 13:57:28">2025-12-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/03/Deep%20LearningOverview/" title="无标题">无标题</a><time datetime="2025-12-03T05:57:28.253Z" title="发表于 2025-12-03 13:57:28">2025-12-03</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By outbreak_sen</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><div class="js-pjax"></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

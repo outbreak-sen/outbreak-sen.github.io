@@ -1,0 +1,267 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>This is a 部落格 of outbreak_sen | This is a 部落格 of outbreak_sen</title><meta name="author" content="outbreak_sen"><meta name="copyright" content="outbreak_sen"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="基本信息    项目 内容     论文标题 Neural Discrete Representation Learning   作者 Aaron van den Oord, Oriol Vinyals, 和 Koray Kavukcuoglu   作者单位    发表会议&#x2F;期刊 2017   论文链接    别名 Vector Quantized-Variational Autoencoder">
+<meta property="og:type" content="article">
+<meta property="og:title" content="This is a 部落格 of outbreak_sen">
+<meta property="og:url" content="http://outbreak-sen.github.io/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_%E5%8F%98%E5%88%86%E8%87%AA%E7%BC%96%E7%A0%81%E5%99%A8VQ-VAE/index.html">
+<meta property="og:site_name" content="This is a 部落格 of outbreak_sen">
+<meta property="og:description" content="基本信息    项目 内容     论文标题 Neural Discrete Representation Learning   作者 Aaron van den Oord, Oriol Vinyals, 和 Koray Kavukcuoglu   作者单位    发表会议&#x2F;期刊 2017   论文链接    别名 Vector Quantized-Variational Autoencoder">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://outbreak-sen.github.io/img/head.png">
+<meta property="article:published_time" content="2025-12-03T05:57:15.654Z">
+<meta property="article:modified_time" content="2025-08-30T04:11:00.000Z">
+<meta property="article:author" content="outbreak_sen">
+<meta property="article:tag" content="static scale model, deep learning, vlog, radio control model, music">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://outbreak-sen.github.io/img/head.png"><link rel="shortcut icon" href="/img/h_beautygirl.png"><link rel="canonical" href="http://outbreak-sen.github.io/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_%E5%8F%98%E5%88%86%E8%87%AA%E7%BC%96%E7%A0%81%E5%99%A8VQ-VAE/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'This is a 部落格 of outbreak_sen',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  isShuoshuo: false
+}</script><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="This is a 部落格 of outbreak_sen" type="application/atom+xml">
+<link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head><body><div id="web_bg" style="background-image: url(/img/v_beautygirl0.jpeg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/./img/head.png" onerror="onerror=null;src='./img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">129</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">24</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">9</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw fa fa-camera-retro"></i><span> 树洞</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 作品与鉴赏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/h_beautygirl.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/h_beautygirl.png" alt="Logo"><span class="site-name">This is a 部落格 of outbreak_sen</span></a><a class="nav-page-title" href="/"><span class="site-name">This is a 部落格 of outbreak_sen</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw fa fa-camera-retro"></i><span> 树洞</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 作品与鉴赏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">无标题</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-12-03T05:57:15.654Z" title="发表于 2025-12-03 13:57:15">2025-12-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-08-30T04:11:00.000Z" title="更新于 2025-08-30 12:11:00">2025-08-30</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h2 id="基本信息">基本信息</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">项目</th>
+<th style="text-align:left">内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>论文标题</strong></td>
+<td style="text-align:left">Neural Discrete Representation Learning</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>作者</strong></td>
+<td style="text-align:left">Aaron van den Oord, Oriol Vinyals, 和 Koray Kavukcuoglu</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>作者单位</strong></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>发表会议/期刊</strong></td>
+<td style="text-align:left">2017</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>论文链接</strong></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>别名</strong></td>
+<td style="text-align:left">Vector Quantized-Variational Autoencoder</td>
+</tr>
+</tbody>
+</table>
+<h2 id="方法概览">方法概览</h2>
+<table>
+<thead>
+<tr>
+<th>特点</th>
+<th>文章性质</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>输入</td>
+<td>单张 RGB 图像</td>
+</tr>
+<tr>
+<td>输出</td>
+<td>分类、分割</td>
+</tr>
+<tr>
+<td>所属领域</td>
+<td>视觉 Transformer</td>
+</tr>
+</tbody>
+</table>
+<h3 id="背景">背景</h3>
+<ul>
+<li><strong>标准 VAE 的局限：</strong>
+<ul>
+<li>潜在变量 <code>z</code> 是连续的（通常是高斯分布）。</li>
+<li>这导致生成的样本（尤其是图像）往往比较<strong>模糊</strong>。</li>
+<li>连续潜在空间可能难以捕捉数据中固有的<strong>离散结构</strong>（如物体类别、音素、单词）。</li>
+</ul>
+</li>
+<li><strong>VQ-VAE 的解决方案：</strong>
+<ul>
+<li><strong>放弃连续潜在变量</strong>：VQ-VAE 的编码器输出的不是分布参数，而是一个<strong>连续的潜在向量 <code>z_e</code></strong>。</li>
+<li><strong>引入离散潜在空间</strong>：这个连续向量 <code>z_e</code> 会通过一个<strong>向量量化 (Vector Quantization)</strong> 过程，被映射到一个<strong>有限的、离散的码本 (Codebook)</strong> 中最接近的<strong>嵌入向量 (Embedding Vector) <code>e</code></strong> 上。这个离散的 <code>e</code> 就是真正的潜在表示。</li>
+<li><strong>解码器使用离散的 <code>e</code></strong>：解码器接收这个离散的 <code>e</code> 来重构原始数据 <code>x</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="创新点">创新点</h3>
+<ol>
+<li>解决了标准 VAE 潜在空间连续性带来的问题，并允许学习<strong>离散的、高维的潜在表示</strong>，特别适用于生成高质量图像、音频和视频等复杂数据。</li>
+<li>一个 VQ-VAE 模型包含三个核心组件：
+<ol>
+<li><strong>编码器 (Encoder - <code>Enc</code>):</strong>
+<ul>
+<li>输入：原始数据 <code>x</code> (如图像)。</li>
+<li>输出：一个连续的潜在表示 <code>z_e = Enc(x)</code>。注意，这里没有输出方差或进行重参数化。</li>
+</ul>
+</li>
+<li><strong>码本 (Codebook - <code>E</code>):</strong>
+<ul>
+<li>一个可学习的嵌入矩阵 <code>E ∈ R^(K×D)</code>，其中 <code>K</code> 是码本大小（嵌入向量的数量），<code>D</code> 是每个嵌入向量的维度。</li>
+<li>码本中的每一行 <code>e_k</code> (<code>k=1,2,...,K</code>) 是一个 D 维的嵌入向量。</li>
+</ul>
+</li>
+<li><strong>解码器 (Decoder - <code>Dec</code>):</strong>
+<ul>
+<li>输入：量化的潜在向量 <code>z_q</code>。</li>
+<li>输出：重构的数据 <code>x' = Dec(z_q)</code>。</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="怎么使用vae">怎么使用VAE</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"><span class="keyword">import</span> torch.nn.functional <span class="keyword">as</span> F</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">VectorQuantizer</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, num_embeddings, embedding_dim, commitment_cost</span>):</span><br><span class="line">        <span class="built_in">super</span>(VectorQuantizer, <span class="variable language_">self</span>).__init__()</span><br><span class="line">        <span class="variable language_">self</span>.embedding_dim = embedding_dim</span><br><span class="line">        <span class="variable language_">self</span>.num_embeddings = num_embeddings</span><br><span class="line">        <span class="variable language_">self</span>.commitment_cost = commitment_cost</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 初始化码本</span></span><br><span class="line">        <span class="variable language_">self</span>.embedding = nn.Embedding(num_embeddings, embedding_dim)</span><br><span class="line">        <span class="variable language_">self</span>.embedding.weight.data.uniform_(-<span class="number">1</span>/num_embeddings, <span class="number">1</span>/num_embeddings)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, z_e</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        z_e: shape [B, D, H, W] (假设是特征图)</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="comment"># 1. 将 z_e 展平以便计算距离</span></span><br><span class="line">        z_e_flat = z_e.permute(<span class="number">0</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">1</span>).contiguous() <span class="comment"># [B, H, W, D]</span></span><br><span class="line">        z_e_flat = z_e_flat.view(-<span class="number">1</span>, <span class="variable language_">self</span>.embedding_dim) <span class="comment"># [B*H*W, D]</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 2. 计算 z_e_flat 与码本中所有嵌入的距离</span></span><br><span class="line">        distances = (torch.<span class="built_in">sum</span>(z_e_flat**<span class="number">2</span>, dim=<span class="number">1</span>, keepdim=<span class="literal">True</span>) </span><br><span class="line">                   + torch.<span class="built_in">sum</span>(<span class="variable language_">self</span>.embedding.weight**<span class="number">2</span>, dim=<span class="number">1</span>)</span><br><span class="line">                   - <span class="number">2</span> * torch.matmul(z_e_flat, <span class="variable language_">self</span>.embedding.weight.t()))</span><br><span class="line">        <span class="comment"># distances.shape = [B*H*W, K]</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 3. 找到最近的嵌入索引</span></span><br><span class="line">        encoding_indices = torch.argmin(distances, dim=<span class="number">1</span>).unsqueeze(<span class="number">1</span>) <span class="comment"># [B*H*W, 1]</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 4. 获取量化的向量 z_q</span></span><br><span class="line">        z_q = <span class="variable language_">self</span>.embedding(encoding_indices).squeeze(<span class="number">1</span>) <span class="comment"># [B*H*W, D]</span></span><br><span class="line">        z_q = z_q.view_as(z_e_flat) <span class="comment"># [B*H*W, D]</span></span><br><span class="line">        z_q = z_q.permute(<span class="number">0</span>, <span class="number">2</span>, <span class="number">1</span>).contiguous() <span class="comment"># [B, D, H, W] - 恢复形状</span></span><br><span class="line">        z_q = z_q.view_as(z_e) <span class="comment"># 确保形状完全匹配</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 5. 计算损失 (在 forward 中计算，便于返回)</span></span><br><span class="line">        <span class="comment"># 码本损失: ||sg[z_e] - E||^2</span></span><br><span class="line">        loss_codebook = F.mse_loss(z_q.detach(), z_e)</span><br><span class="line">        <span class="comment"># 承诺损失: γ ||z_e - sg[E]||^2</span></span><br><span class="line">        loss_commitment = <span class="variable language_">self</span>.commitment_cost * F.mse_loss(z_e, z_q.detach())</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 6. 直通估计器 (Straight-Through Estimator)</span></span><br><span class="line">        <span class="comment"># 让梯度从 z_q &quot;直通&quot; 到 z_e</span></span><br><span class="line">        z_q = z_e + (z_q - z_e).detach() </span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> z_q, loss_codebook, loss_commitment, encoding_indices</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">VQVAE</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, in_channels=<span class="number">3</span>, hidden_dim=<span class="number">128</span>, num_embeddings=<span class="number">512</span>, embedding_dim=<span class="number">64</span>, commitment_cost=<span class="number">0.25</span></span>):</span><br><span class="line">        <span class="built_in">super</span>(VQVAE, <span class="variable language_">self</span>).__init__()</span><br><span class="line">        <span class="comment"># 简化的卷积编码器/解码器</span></span><br><span class="line">        <span class="variable language_">self</span>.encoder = nn.Sequential(</span><br><span class="line">            nn.Conv2d(in_channels, hidden_dim, <span class="number">4</span>, <span class="number">2</span>, <span class="number">1</span>),</span><br><span class="line">            nn.ReLU(),</span><br><span class="line">            nn.Conv2d(hidden_dim, hidden_dim, <span class="number">4</span>, <span class="number">2</span>, <span class="number">1</span>),</span><br><span class="line">            nn.ReLU(),</span><br><span class="line">            nn.Conv2d(hidden_dim, embedding_dim, <span class="number">1</span>)  <span class="comment"># 输出 embedding_dim 维的 z_e</span></span><br><span class="line">        )</span><br><span class="line">        <span class="variable language_">self</span>.vector_quantizer = VectorQuantizer(num_embeddings, embedding_dim, commitment_cost)</span><br><span class="line">        <span class="variable language_">self</span>.decoder = nn.Sequential(</span><br><span class="line">            nn.Conv2d(embedding_dim, hidden_dim, <span class="number">1</span>),</span><br><span class="line">            nn.ReLU(),</span><br><span class="line">            nn.ConvTranspose2d(hidden_dim, hidden_dim, <span class="number">4</span>, <span class="number">2</span>, <span class="number">1</span>),</span><br><span class="line">            nn.ReLU(),</span><br><span class="line">            nn.ConvTranspose2d(hidden_dim, in_channels, <span class="number">4</span>, <span class="number">2</span>, <span class="number">1</span>),</span><br><span class="line">            nn.Sigmoid()  <span class="comment"># 假设输出在 [0,1]</span></span><br><span class="line">        )</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x</span>):</span><br><span class="line">        z_e = <span class="variable language_">self</span>.encoder(x)</span><br><span class="line">        z_q, loss_codebook, loss_commitment, indices = <span class="variable language_">self</span>.vector_quantizer(z_e)</span><br><span class="line">        x_recon = <span class="variable language_">self</span>.decoder(z_q)</span><br><span class="line">        <span class="keyword">return</span> x_recon, loss_codebook, loss_commitment, indices</span><br><span class="line"></span><br><span class="line"><span class="comment"># 实例化模型</span></span><br><span class="line">model = VQVAE(in_channels=<span class="number">3</span>, hidden_dim=<span class="number">128</span>, num_embeddings=<span class="number">512</span>, embedding_dim=<span class="number">64</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">optimizer = torch.optim.Adam(model.parameters(), lr=<span class="number">2e-4</span>)</span><br><span class="line"></span><br><span class="line">model.train()</span><br><span class="line"><span class="keyword">for</span> epoch <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">100</span>):</span><br><span class="line">    <span class="keyword">for</span> batch_idx, (data, _) <span class="keyword">in</span> <span class="built_in">enumerate</span>(train_loader):</span><br><span class="line">        optimizer.zero_grad()</span><br><span class="line">        </span><br><span class="line">        recon_data, loss_codebook, loss_commitment, _ = model(data)</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 总损失</span></span><br><span class="line">        loss_recon = F.mse_loss(recon_data, data)</span><br><span class="line">        loss = loss_recon + loss_codebook + loss_commitment</span><br><span class="line">        </span><br><span class="line">        loss.backward()</span><br><span class="line">        optimizer.step()</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> batch_idx % <span class="number">100</span> == <span class="number">0</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f&#x27;Loss: <span class="subst">&#123;loss.item():<span class="number">.4</span>f&#125;</span> (Recon: <span class="subst">&#123;loss_recon.item():<span class="number">.4</span>f&#125;</span>, &#x27;</span></span><br><span class="line">                  <span class="string">f&#x27;Codebook: <span class="subst">&#123;loss_codebook.item():<span class="number">.4</span>f&#125;</span>, Commitment: <span class="subst">&#123;loss_commitment.item():<span class="number">.4</span>f&#125;</span>)&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="使用训练好的-vq-vae">使用训练好的 VQ-VAE</h3>
+<ul>
+<li><strong>生成新样本：</strong>
+<ol>
+<li>从码本 <code>E</code> 中<strong>随机选择</strong>索引 <code>k</code>，得到 <code>z_q = e_k</code>。</li>
+<li>或者，训练一个<strong>自回归模型</strong>（如PixelCNN、Transformer）在离散的潜在代码序列上。这个自回归模型学习 <code>p(z_q)</code> 或 <code>p(indices)</code>。生成时，先用自回归模型采样一个 <code>indices</code> 序列，得到 <code>z_q</code>，再用 VQ-VAE 的解码器生成最终图像。<strong>这是 VQ-VAE 生成高质量样本的标准方式。</strong></li>
+</ol>
+</li>
+<li><strong>重构数据：</strong> 直接将输入数据通过 <code>model(data)</code> 得到 <code>recon_data</code>。</li>
+<li><strong>获取离散表示：</strong> <code>indices</code> 就是输入数据的离散潜在代码，可用于聚类、检索等任务。</li>
+</ul>
+<h2 id="vae">VAE</h2>
+<p>这里有一个非常好的解释为什么要做变分的自编码器：<a target="_blank" rel="noopener" href="https://blog.csdn.net/a312863063/article/details/87953517">【VAE学习笔记】全面通透地理解VAE(Variational Auto Encoder)_vae架构-CSDN博客</a></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://outbreak-sen.github.io">outbreak_sen</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://outbreak-sen.github.io/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_%E5%8F%98%E5%88%86%E8%87%AA%E7%BC%96%E7%A0%81%E5%99%A8VQ-VAE/">http://outbreak-sen.github.io/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_%E5%8F%98%E5%88%86%E8%87%AA%E7%BC%96%E7%A0%81%E5%99%A8VQ-VAE/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://outbreak-sen.github.io" target="_blank">This is a 部落格 of outbreak_sen</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/./img/head.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_%E7%BB%8F%E5%85%B8%E5%B7%A5%E4%BD%9C%E6%B8%85%E5%8D%95/" title=""><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2"></div></div><div class="info-2"><div class="info-item-1">计算机视觉 - CNN    已录制 年份 名字 简介 引用     ✅ 2012 AlexNet 深度学习热潮的奠基作     2014 VGG 使用 3x3 卷积构造更深的网络     2014 GoogleNet 使用并行架构构造更深的网络    ✅ 2015 ResNet 构建深层网络都要有的残差连接。     2017 MobileNet 适合终端设备的小CNN     2019 EfficientNet 通过架构搜索得到的CNN     2021 Non-deep networks 让不深的网络也能在ImageNet刷到SOTA     计算机视觉 - Transformer    已录制 年份 名字 简介 引用     ✅ 2020 ViT Transformer杀入CV界    ✅ 2021 Swin Transformer 多层次的Vision...</div></div></div></a><a class="pagination-related" href="/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_%E5%8F%98%E5%88%86%E8%87%AA%E7%BC%96%E7%A0%81%E5%99%A8VAE/" title=""><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2"></div></div><div class="info-2"><div class="info-item-1">基本信息    项目 内容     论文标题 Auto-Encoding Variational Bayes   作者 Diederik P. Kingma 和 Max Welling   作者单位    发表会议/期刊 2013   论文链接    别名 Variational Autoencoder，变分自编码器    方法概览    特点 文章性质     输入 单张 RGB 图像   输出 分类、分割   所属领域 视觉 Transformer    背景 传统自编码器 (Autoencoder) 的局限，比如PCA：  传统AE由编码器（Encoder）和解码器（Decoder）组成。 编码器将输入数据 x 压缩成一个低维的潜在向量 z。 解码器尝试从 z 重构回原始数据 x。 PCA：x本身是一个矩阵，通过一个变换W变成了一个低维矩阵c，因为这一过程是线性的，所以再通过一个WT变换就能还原出一个x ^ \widehat{x} x ,现在我们要找到一种变换W，使得矩阵x与x ^ \widehat{x}...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/./img/head.png" onerror="this.onerror=null;this.src='/./img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">outbreak_sen</div><div class="author-info-description">an interesting man</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">129</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">24</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">9</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/outbreak-sen" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://blog.csdn.net/outbreakrmb" target="_blank" title="CSDN"><i class="fa fa-book-open"></i></a><a class="social-icon" href="/1023786231" target="_blank" title="QQ"><i class="fab fa-qq"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="toc-text">基本信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E6%A6%82%E8%A7%88"><span class="toc-text">方法概览</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%83%8C%E6%99%AF"><span class="toc-text">背景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E6%96%B0%E7%82%B9"><span class="toc-text">创新点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%8E%E4%B9%88%E4%BD%BF%E7%94%A8vae"><span class="toc-text">怎么使用VAE</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E8%AE%AD%E7%BB%83%E5%A5%BD%E7%9A%84-vq-vae"><span class="toc-text">使用训练好的 VQ-VAE</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vae"><span class="toc-text">VAE</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/03/VSCode%20Python%20Debug%20%E6%95%99%E7%A8%8B/" title="无标题">无标题</a><time datetime="2025-12-03T05:57:28.299Z" title="发表于 2025-12-03 13:57:28">2025-12-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/03/SFM/" title="无标题">无标题</a><time datetime="2025-12-03T05:57:28.288Z" title="发表于 2025-12-03 13:57:28">2025-12-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/03/Multi%20View%20Stereo/" title="无标题">无标题</a><time datetime="2025-12-03T05:57:28.276Z" title="发表于 2025-12-03 13:57:28">2025-12-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/03/dive%20into%20deeplearning/" title="无标题">无标题</a><time datetime="2025-12-03T05:57:28.264Z" title="发表于 2025-12-03 13:57:28">2025-12-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/03/Deep%20LearningOverview/" title="无标题">无标题</a><time datetime="2025-12-03T05:57:28.253Z" title="发表于 2025-12-03 13:57:28">2025-12-03</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By outbreak_sen</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><div class="js-pjax"></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

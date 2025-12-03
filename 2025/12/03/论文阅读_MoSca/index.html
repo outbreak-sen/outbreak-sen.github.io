@@ -1,0 +1,313 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>This is a 部落格 of outbreak_sen | This is a 部落格 of outbreak_sen</title><meta name="author" content="outbreak_sen"><meta name="copyright" content="outbreak_sen"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="基本信息    项目 内容     论文标题 MoSca: Dynamic Gaussian Fusion from Casual Videos via 4D Motion Scaffolds   作者 Jiahui Lei1 Yĳia Weng2 Adam W. Harley2 Leonidas Guibas2 Kostas Daniilidis1,3   作者单位 宾夕法尼亚大学 斯坦福大学">
+<meta property="og:type" content="article">
+<meta property="og:title" content="This is a 部落格 of outbreak_sen">
+<meta property="og:url" content="http://outbreak-sen.github.io/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_MoSca/index.html">
+<meta property="og:site_name" content="This is a 部落格 of outbreak_sen">
+<meta property="og:description" content="基本信息    项目 内容     论文标题 MoSca: Dynamic Gaussian Fusion from Casual Videos via 4D Motion Scaffolds   作者 Jiahui Lei1 Yĳia Weng2 Adam W. Harley2 Leonidas Guibas2 Kostas Daniilidis1,3   作者单位 宾夕法尼亚大学 斯坦福大学">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://outbreak-sen.github.io/img/head.png">
+<meta property="article:published_time" content="2025-12-03T05:57:16.333Z">
+<meta property="article:modified_time" content="2025-09-15T06:22:52.000Z">
+<meta property="article:author" content="outbreak_sen">
+<meta property="article:tag" content="static scale model, deep learning, vlog, radio control model, music">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://outbreak-sen.github.io/img/head.png"><link rel="shortcut icon" href="/img/h_beautygirl.png"><link rel="canonical" href="http://outbreak-sen.github.io/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_MoSca/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'This is a 部落格 of outbreak_sen',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  isShuoshuo: false
+}</script><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="This is a 部落格 of outbreak_sen" type="application/atom+xml">
+<link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head><body><div id="web_bg" style="background-image: url(/img/v_beautygirl0.jpeg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/./img/head.png" onerror="onerror=null;src='./img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">129</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">24</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">9</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw fa fa-camera-retro"></i><span> 树洞</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 作品与鉴赏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/h_beautygirl.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/h_beautygirl.png" alt="Logo"><span class="site-name">This is a 部落格 of outbreak_sen</span></a><a class="nav-page-title" href="/"><span class="site-name">This is a 部落格 of outbreak_sen</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw fa fa-camera-retro"></i><span> 树洞</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 作品与鉴赏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">无标题</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-12-03T05:57:16.333Z" title="发表于 2025-12-03 13:57:16">2025-12-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-09-15T06:22:52.000Z" title="更新于 2025-09-15 14:22:52">2025-09-15</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h2 id="基本信息">基本信息</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">项目</th>
+<th style="text-align:left">内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>论文标题</strong></td>
+<td style="text-align:left">MoSca: Dynamic Gaussian Fusion from Casual Videos via 4D Motion Scaffolds</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>作者</strong></td>
+<td style="text-align:left">Jiahui Lei1 Yĳia Weng2 Adam W. Harley2 Leonidas Guibas2 Kostas Daniilidis1,3</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>作者单位</strong></td>
+<td style="text-align:left">宾夕法尼亚大学 斯坦福大学      Archimedes, Athena RC</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>时间</strong></td>
+<td style="text-align:left">20241129axiv</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>发表会议/期刊</strong></td>
+<td style="text-align:left"></td>
+</tr>
+</tbody>
+</table>
+<h2 id="方法概览">方法概览</h2>
+<table>
+<thead>
+<tr>
+<th>特点</th>
+<th>文章性质</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>输入</strong></td>
+<td>无位姿单目视频</td>
+</tr>
+<tr>
+<td><strong>输出</strong></td>
+<td>可渲染的动态场景，表示为一组动态高斯分布，并在相机参数未知的情况下恢复其焦距和位姿。</td>
+</tr>
+<tr>
+<td><strong>所属领域</strong></td>
+<td>4D重建</td>
+</tr>
+<tr>
+<td><strong>一句话总结做了什么</strong></td>
+<td>MoSca 从任意单目视频中重建可渲染的动态场景。<strong>核心思想是将2D视频输入提升为一种新颖的4D动态场景表示形式命名为运动骨架（Motion Scaffolds, MoSca），在此表示中，所有的观测数据得以进行全局且几何一致的融合。</strong></td>
+</tr>
+</tbody>
+</table>
+<h2 id="摘要">摘要</h2>
+<p>我们提出了4D运动骨架（MoSca），这是一种现代的4D重建系统，旨在从野外随意拍摄的单目视频中，重建并合成动态场景的新颖视图。为了解决这一具有挑战性且病态的逆问题，我们<strong>利用基础视觉模型中的先验知识，将视频数据格式提升到一种新颖的“运动骨架”（MoSca）表示形式，该表示紧凑且平滑地编码了底层的运动/形变</strong>。随后，<strong>场景的几何结构和外观信息从形变场中解耦</strong>，并通过融合锚定在MoSca上的高斯分布，并借助高斯点阵优化进行全局编码。<strong>此外，无需依赖其他姿态估计工具，仅通过光束法平差即可求解相机焦距和位姿。</strong> 实验表明，该方法在动态渲染基准测试中达到了最先进的性能，并在真实视频上表现出良好的有效性。<br>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="IMG-20250914223144209.png" alt=""></p>
+<h2 id="引言-没啥好看的">引言（没啥好看的）</h2>
+<p>由于<strong>单目拍摄视频没有位姿，这对4d重建有很大挑战</strong>：为应对这一挑战性任务，我们的<br>
+第一个洞察是利用近期预训练视觉模型的进展（见第3.2.1节），这些模型在追踪和深度估计等基础计算机视觉任务上表现出色。尽管这类知识对理解完整的动态场景至关重要，但其本身仍不充分：它无法捕捉被遮挡的场景部分，且通常存在噪声、局部性和不完整性。<br>
+我们的第二个洞察是设计一种名为MoSca的形变表示方法，该方法基于上述基础先验，并引入物理形变先验。尽管现实世界中的几何结构和外观复杂且包含高频细节，但驱动这些几何变化的底层形变通常是紧凑（低秩）且平滑的。MoSca通过将3D几何与运动解耦，利用稀疏图节点来表示形变，并通过平滑插值得以表达（见第3.1节）。<br>
+我们利用的另一个物理先验是“尽可能刚性”（as-rigid-as-possible, ARAP）形变，这可以通过MoSca的轨迹拓扑高效实现。<br>
+以上两个洞察带来了两个重要优势：<br>
+首先，MoSca可以从推断出的2D基础先验中提升至3D空间并进行优化（见第3.2.3节）；<br>
+其次，所有时间步的观测结果可以进行全局融合，并用于任意查询时刻的渲染（见第3.2.4节）。当我们将不同时间观察到的所有高斯分布变形至目标查询时刻时，即可实现高斯融合，形成完整的重建结果，并通过高斯点阵（Gaussian Splatting）[44] 进行监督优化。<br>
+此外，我们的系统<strong>通过光束法平差与光度优化（见第3.2.2节）估计相机位姿和焦距，无需依赖COLMAP等外部位姿估计算法。</strong></p>
+<p>综上所述，本文的主要贡献可总结如下：<br>
+(1) 提出了一种可在真实场景中处理无位姿信息单目视频的全自动4D重建系统；<br>
+(2) 提出了一种新颖的运动骨架（MoSca）形变表示方法，该方法利用2D基础模型的知识构建，并通过基于物理启发的形变正则化进行优化；<br>
+(3) 提出了一种高效且显式的基于高斯的动态场景表示方法，由MoSca驱动，能够融合输入视频中所有时刻的观测信息，从而渲染出任意新视角和任意目标时刻的画面；<br>
+(4) 在动态场景渲染基准测试中实现了最先进的性能。</p>
+<h2 id="创新点">创新点</h2>
+<h2 id="相关工作">相关工作</h2>
+<ol>
+<li>Dynamic Novel-View Synthesis
+<ol>
+<li>现有作品 都假设可用的同步多视图视频输入。另一行作品解决了单目输入的更实际设置，其中有限观察的模糊性使问题进一步复杂化。</li>
+<li>神经辐射场和 3D 高斯是新视图合成的有前途的方法。后者的显式基于点的表示特别适合动态设置。我们采用 3D 高斯进行长期的全局聚合。</li>
+</ol>
+</li>
+<li>Non-Rigid Structure-from-Motion非刚性
+<ol>
+<li>从单个摄像机构建非刚性变形场景是一个长期存在的问题，古早的方法是关注特制定形状的物体</li>
+<li>为了对非刚性变形进行建模，最先进的方法使用嵌入式变形图[89]，其中空间上的密集变换使用一组稀疏的基变换进行建模。</li>
+<li>在 MoSca 中，我们扩展了经典的嵌入式图，将先验从 2D 基础模型连接到动态高斯</li>
+</ol>
+</li>
+<li>2D Vision Foundation Models</li>
+</ol>
+<h2 id="方法">方法</h2>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="IMG-20250915125516353.png" alt=""></p>
+<h3 id="总体：">总体：</h3>
+<p>给定一个包含𝑇帧的随意拍摄的单目动态场景视频 I = [𝐼₁, 𝐼₂, …, 𝐼ₜ]，重建该场景的几何结构与外观，表示为一组动态高斯分布，并在相机参数未知的情况下恢复其焦距和位姿。我们的核心思想是将2D视频输入提升为一种新颖的4D动态场景表示形式，命名为运动骨架（Motion Scaffolds, MoSca），在此表示中，所有的观测数据得以进行<strong>全局</strong>且<strong>几何一致 geometrically</strong>的融合。</p>
+<ol>
+<li>输入单目视频，利用基础模型估计点跟踪，深度，光流RAFT</li>
+<li>然后基于跟踪点的使用BA光束平差法初始化相机内外参数，通过3DGS重建背景</li>
+<li>（C）优化mosca</li>
+<li>（D）初始的3dGS+mosca=4dgs，这个3dgs从所有时间全局渲染，3dgs通过mosca变形场全局融合就获得了动态场景</li>
+</ol>
+<h3 id="3-1-deformation-representation-with-mosca">3.1. Deformation Representation with MoSca</h3>
+<p>如前面描述，这里的MoSca是一个之前非刚性形变里面的一种嵌入图（Embedding Graph）的表示，这个图的表示：</p>
+<ol>
+<li><strong>图（Graph）</strong> 是由<strong>节点（Nodes/Vertices）</strong> 和<strong>边（Edges）</strong> 组成的数据结构。图是一个轨迹，这个轨迹上有很多节点，轨迹之间是边</li>
+<li>节点<strong>Nodes</strong>是代表空间中的关键点或控制点，例如物体表面的某些特征位置。MoSca中的节点一个六自由度的轨迹，每个节点有一个全局变换和控制半径。嵌入图通过引入<strong>稀疏控制点</strong>（图节点）来降低自由度，并通过边上的约束（如ARAP：As-Rigid-As-Possible）施加物理合理性，防止过度扭曲。</li>
+<li>边<strong>Edges</strong> 表示节点之间的空间或时间上的连接关系，可以编码邻近性、运动一致性或物理约束。MoScan中边表示的是估计的局部邻域。对于图中未定义节点的空间位置，可以通过<strong>基于边权重的插值</strong>（如拉普拉斯坐标插值、径向基函数RBF）计算其形变，从而恢复出稠密的每帧几何。</li>
+<li>为什么说是嵌入图，因为指的是将高维、复杂的运动信息（如像素级光流、深度变化、3D位移）<strong>映射到一个低维、结构化的表示空间中</strong>。</li>
+<li>嵌入图提供了一个<strong>时空一致的参考框架</strong>。不同时间步观测到的3D点（如来自SLAM或立体匹配）可以“锚定”到图节点上，实现全局优化和长期一致性。</li>
+<li>至于MoSca是如何定义节点和边的，看下面的截图</li>
+</ol>
+<p>在MoSca中：<br>
+假设你要重建一个人跳舞的视频：</p>
+<ul>
+<li>原始输入：单目视频，每一帧都是2D图像，无深度、无相机位姿。</li>
+<li>构建嵌入图：
+<ul>
+<li>使用特征跟踪找到一些稳定的关键点轨迹。</li>
+<li>将这些轨迹聚类或采样，形成图的节点（如头部、手臂、腿部各设一个节点）。</li>
+<li>节点之间按身体结构连接成边。</li>
+</ul>
+</li>
+<li>每个节点存储一个“形变嵌入向量”，表示该部位随时间的运动模式。</li>
+<li>所有其他非节点位置的形变，通过插值得到。</li>
+<li>最终，整个人体的非刚性运动就被这个“嵌入图”高效地表示出来。</li>
+</ul>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="IMG-20250915132725461.png" alt=""></p>
+<h3 id="3-2-reconstruction-system">3.2. Reconstruction System</h3>
+<h4 id="3-2-1-leveraging-priors-from-2d-foundation-models">3.2.1 Leveraging Priors from 2D Foundation Models</h4>
+<p>这里讲了有哪些先验，单目视频输入到哪些基础模型获得了哪些信息。<br>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="IMG-20250915132214346.png" alt=""></p>
+<h4 id="3-2-2-camera-initializaition">3.2.2 Camera Initializaition</h4>
+<p>提出了一种基于轨道的束调整，以稳健地初始化相机焦距和位姿。</p>
+<ol>
+<li>首先根据光流的估计找到轨迹上不是前景的像素点，也就是找到场景里不动的点</li>
+<li>然后不动的点根据深度图就可以获得三维点了</li>
+<li>然后不就可以通过这些三维点最小化重投影误差估计相机内参和相机位姿，当然这里也有一些其他的操作，具体就是说怎么解决深度图估计的错误<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="IMG-20250915140859105.png" alt=""></li>
+</ol>
+<h4 id="3-2-3-geometric-optimization-of-mosca">3.2.3 Geometric Optimization of MoSca</h4>
+<p>这个Arxiv版本和实际发布版本不一样，我两个结合着看所以会跳。<br>
+<strong>3D Lift and Initialization.</strong><br>
+其实就是</p>
+<ol>
+<li>首先光流图上首先通过基线误差估计出这个像素轨迹T中不是前景的部分，也就是不会动的部分</li>
+<li>然后不会动的跟踪像素，并且是可见的像素通过深度值从图像二维变为三维</li>
+<li>然后如何说这个跟踪像素在这一帧不可见，那么就通过前后帧进行插值获得三维坐标</li>
+<li>然后这样一个不会动的跟踪像素变成了一个不会动的跟踪三维信息Pt，这个Pt还要乘以相机逆和相机位姿</li>
+<li>然后利用这个Pt和初始化旋转和初始化控制半径就组成了[I,Pt,r]，这不就是一个节点吗，这样就初始化了MoSca<br>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="IMG-20250915135903804.png" alt=""><br>
+<strong>Geometry Optimization.</strong><br>
+这里是说如何对初始化之后的MoSca进行几何优化，<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="IMG-20250915141643815.png" alt=""></li>
+</ol>
+<h4 id="3-2-4-photometric-optimization-of-mosca">3.2.4 Photometric Optimization of MoSca</h4>
+<p>这里是讲的光度优化了<br>
+<strong>Dynamic Scene Representation.</strong><br>
+MoSca 的一个重要特点是，其全局变形场可以全局随时变换点，从而能够将所有观察到的视频帧融合成一个单一的相干表示。在系统的最后一步，优化后的 MoSca 收集从所有时间步长的反向投影前景深度点初始化的 3D 高斯。这里定义了3dgs的属性<br>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="IMG-20250915142236714.png" alt=""><br>
+<strong>Photometric Optimization.</strong><br>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="IMG-20250915142201552.png" alt=""><br>
+<strong>NodeControl.</strong><br>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="IMG-20250915142212452.png" alt=""></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://outbreak-sen.github.io">outbreak_sen</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://outbreak-sen.github.io/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_MoSca/">http://outbreak-sen.github.io/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_MoSca/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://outbreak-sen.github.io" target="_blank">This is a 部落格 of outbreak_sen</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/./img/head.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_MoVieS/" title=""><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2"></div></div><div class="info-2"><div class="info-item-1">基本信息    项目 内容     论文标题 MoVieS: Motion-Aware 4D Dynamic View Synthesis in One Second一秒钟内实现运动感知 4D 动态视图合成   作者 Chenguo Lin1∗, Yuchen Lin1,3∗, Panwang Pan2†,Yifan Yu2, Honglei Yan2, Katerina Fragkiadaki3, Yadong Mu∗：平等贡献;†：项目负责人;‡：通讯作者。   作者单位 北京大学、字节跳动、卡内基梅隆大学   时间 20250714axiv   发表会议/期刊     方法概览    特点 文章性质     输入 单目视频   输出 4D 动态新颖视图：   所属领域 新视角生成   一句话总结做了什么 设计了前馈模型可在一秒钟内从单目视频中合成动态高斯然后合成4D 动态新颖视图，首次允许对外观、几何形状和运动进行统一建模    摘要 引言 创新点  在VGGT基础上，MoVieS，这是第一个前馈框架，它联合对外观、几何形状和运动进行建模，以从单目视频中感知 4D...</div></div></div></a><a class="pagination-related" href="/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_MoGe%202/" title=""><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2"></div></div><div class="info-2"><div class="info-item-1">基本信息    项目 内容     论文标题 MoGe-2: Accurate Monocular Geometry with Metric Scale and Sharp Details   作者 Ruicheng Wang1∗ Sicheng Xu2 Yue Dong2 Yu Deng2 Jianfeng Xiang3∗ Zelong Lv1∗ Guangzhong Sun1 Xin Tong2 Jiaolong Yang   作者单位 USTC  Microsoft Research  Tsinghua University   时间 2025   发表会议/期刊     方法概览    特点 文章性质     输入 单张 RGB 图像   输出 将MoGe扩展为公制几何预测，同时不损害仿射不变点表示提供的相对几何精度。   所属领域 视觉...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/./img/head.png" onerror="this.onerror=null;this.src='/./img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">outbreak_sen</div><div class="author-info-description">an interesting man</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">129</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">24</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">9</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/outbreak-sen" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://blog.csdn.net/outbreakrmb" target="_blank" title="CSDN"><i class="fa fa-book-open"></i></a><a class="social-icon" href="/1023786231" target="_blank" title="QQ"><i class="fab fa-qq"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="toc-text">基本信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E6%A6%82%E8%A7%88"><span class="toc-text">方法概览</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%95%E8%A8%80-%E6%B2%A1%E5%95%A5%E5%A5%BD%E7%9C%8B%E7%9A%84"><span class="toc-text">引言（没啥好看的）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E6%96%B0%E7%82%B9"><span class="toc-text">创新点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E5%B7%A5%E4%BD%9C"><span class="toc-text">相关工作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95"><span class="toc-text">方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E4%BD%93%EF%BC%9A"><span class="toc-text">总体：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-deformation-representation-with-mosca"><span class="toc-text">3.1. Deformation Representation with MoSca</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-reconstruction-system"><span class="toc-text">3.2. Reconstruction System</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-1-leveraging-priors-from-2d-foundation-models"><span class="toc-text">3.2.1 Leveraging Priors from 2D Foundation Models</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-2-camera-initializaition"><span class="toc-text">3.2.2 Camera Initializaition</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-3-geometric-optimization-of-mosca"><span class="toc-text">3.2.3 Geometric Optimization of MoSca</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-4-photometric-optimization-of-mosca"><span class="toc-text">3.2.4 Photometric Optimization of MoSca</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/03/VSCode%20Python%20Debug%20%E6%95%99%E7%A8%8B/" title="无标题">无标题</a><time datetime="2025-12-03T05:57:28.299Z" title="发表于 2025-12-03 13:57:28">2025-12-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/03/SFM/" title="无标题">无标题</a><time datetime="2025-12-03T05:57:28.288Z" title="发表于 2025-12-03 13:57:28">2025-12-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/03/Multi%20View%20Stereo/" title="无标题">无标题</a><time datetime="2025-12-03T05:57:28.276Z" title="发表于 2025-12-03 13:57:28">2025-12-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/03/dive%20into%20deeplearning/" title="无标题">无标题</a><time datetime="2025-12-03T05:57:28.264Z" title="发表于 2025-12-03 13:57:28">2025-12-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/03/Deep%20LearningOverview/" title="无标题">无标题</a><time datetime="2025-12-03T05:57:28.253Z" title="发表于 2025-12-03 13:57:28">2025-12-03</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By outbreak_sen</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><div class="js-pjax"></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

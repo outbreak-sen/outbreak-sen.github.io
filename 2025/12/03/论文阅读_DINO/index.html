@@ -1,0 +1,287 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>This is a 部落格 of outbreak_sen | This is a 部落格 of outbreak_sen</title><meta name="author" content="outbreak_sen"><meta name="copyright" content="outbreak_sen"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="基本信息    项目 内容     论文标题 Emerging Properties in Self-Supervised Vision Transformers   作者    作者单位 Meta AI   时间 2021   发表会议&#x2F;期刊    全称 Self-Distillation with No Labels    方法概览    特点 文章性质     输入 单张 RGB 图像">
+<meta property="og:type" content="article">
+<meta property="og:title" content="This is a 部落格 of outbreak_sen">
+<meta property="og:url" content="http://outbreak-sen.github.io/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_DINO/index.html">
+<meta property="og:site_name" content="This is a 部落格 of outbreak_sen">
+<meta property="og:description" content="基本信息    项目 内容     论文标题 Emerging Properties in Self-Supervised Vision Transformers   作者    作者单位 Meta AI   时间 2021   发表会议&#x2F;期刊    全称 Self-Distillation with No Labels    方法概览    特点 文章性质     输入 单张 RGB 图像">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://outbreak-sen.github.io/img/head.png">
+<meta property="article:published_time" content="2025-12-03T05:57:15.775Z">
+<meta property="article:modified_time" content="2025-08-29T16:14:48.000Z">
+<meta property="article:author" content="outbreak_sen">
+<meta property="article:tag" content="static scale model, deep learning, vlog, radio control model, music">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://outbreak-sen.github.io/img/head.png"><link rel="shortcut icon" href="/img/h_beautygirl.png"><link rel="canonical" href="http://outbreak-sen.github.io/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_DINO/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'This is a 部落格 of outbreak_sen',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  isShuoshuo: false
+}</script><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="This is a 部落格 of outbreak_sen" type="application/atom+xml">
+<link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head><body><div id="web_bg" style="background-image: url(/img/v_beautygirl0.jpeg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/./img/head.png" onerror="onerror=null;src='./img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">129</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">24</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">9</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw fa fa-camera-retro"></i><span> 树洞</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 作品与鉴赏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/h_beautygirl.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/h_beautygirl.png" alt="Logo"><span class="site-name">This is a 部落格 of outbreak_sen</span></a><a class="nav-page-title" href="/"><span class="site-name">This is a 部落格 of outbreak_sen</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw fa fa-camera-retro"></i><span> 树洞</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 作品与鉴赏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">无标题</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-12-03T05:57:15.775Z" title="发表于 2025-12-03 13:57:15">2025-12-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-08-29T16:14:48.000Z" title="更新于 2025-08-30 00:14:48">2025-08-30</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h2 id="基本信息">基本信息</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">项目</th>
+<th style="text-align:left">内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>论文标题</strong></td>
+<td style="text-align:left">Emerging Properties in Self-Supervised Vision Transformers</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>作者</strong></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>作者单位</strong></td>
+<td style="text-align:left"><strong>Meta AI</strong></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>时间</strong></td>
+<td style="text-align:left">2021</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>发表会议/期刊</strong></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>全称</strong></td>
+<td style="text-align:left">Self-Distillation with No Labels</td>
+</tr>
+</tbody>
+</table>
+<h2 id="方法概览">方法概览</h2>
+<table>
+<thead>
+<tr>
+<th>特点</th>
+<th>文章性质</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>输入</strong></td>
+<td>单张 RGB 图像</td>
+</tr>
+<tr>
+<td><strong>输出</strong></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>所属领域</strong></td>
+<td>分类，语义分割</td>
+</tr>
+</tbody>
+</table>
+<p>在 DINO 之前，主流的自监督方法有：</p>
+<ul>
+<li><strong>对比学习</strong>（如 MoCo、SimCLR）：需要负样本，显存消耗大</li>
+<li><strong>生成式模型</strong>（如 MAE）：重建像素，可能关注低级细节</li>
+</ul>
+<h3 id="创新点">创新点</h3>
+<ol>
+<li><strong>通过“学生-教师”自蒸馏框架，无需任何标签，让 Vision Transformer（ViT）自动学习强大的视觉表征</strong>，并且在训练过程中<strong>涌现出语义分割、定位等能力</strong>。</li>
+<li>自蒸馏框架（Student-Teacher Distillation）
+<ol>
+<li>学生网络（Student）：接收<strong>强增强</strong>图像，实时更新</li>
+<li>教师网络（Teacher）：接收<strong>弱增强</strong>图像，不计算梯度</li>
+<li>教师网络是学生的指数移动平均 （EMA）, 教师参数不是独立训练的而是学生参数的<strong>平滑版本</strong>,随训练teacher部分权重逐渐增大。- 避免模型崩溃（collapse）</li>
+<li><strong>教师输出经过中心化和锐化</strong>（Centering &amp; Sharpening）
+<ol>
+<li><strong>中心化</strong>：减去所有样本输出的平均值，防止所有输出趋同（collapse）</li>
+<li><strong>锐化</strong>（Sharpening）：对教师输出进行 <strong>温度缩放 + softmax</strong>使分布更“尖锐”</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="网络架构">网络架构</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">原始图像 </span><br><span class="line">│ </span><br><span class="line">├── 弱增强（Resize + CenterCrop） → 教师输入 </span><br><span class="line">│ </span><br><span class="line">└── 强增强（RandomResizedCrop + ColorJitter + ...）          → 学生输入  </span><br><span class="line">                                    │                         │</span><br><span class="line">                                    ↓                         ↓</span><br><span class="line">                                教师网络（ViT）             学生网络（ViT） </span><br><span class="line">                                    │                         │ </span><br><span class="line">                                    ↓（无梯度）                 ↓（计算梯度）</span><br><span class="line">                                输出：z_teacher             输出：z_student </span><br><span class="line">                                    │                          │</span><br><span class="line">                                    ↓（中心化 + 锐化）           ↓ </span><br><span class="line">                                  目标分布：                  预测分布：</span><br><span class="line">                              p = softmax((z_t - mean)/τ)   q = softmax(z_s / τ) </span><br><span class="line">                                    │                          │ </span><br><span class="line">                                    └─────────── 交叉熵损失 ─────┘ </span><br><span class="line">                                                      ↓ </span><br><span class="line">                                                      L = KL(q || p)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">DINO</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, student, teacher, embed_dim=<span class="number">256</span>, warmup_teacher_temp=<span class="number">0.04</span>,</span></span><br><span class="line"><span class="params">                 teacher_temp=<span class="number">0.04</span>, warmup_teacher_temp_epochs=<span class="number">30</span></span>):</span><br><span class="line">        <span class="built_in">super</span>().__init__()</span><br><span class="line">        <span class="variable language_">self</span>.student = student</span><br><span class="line">        <span class="variable language_">self</span>.teacher = teacher</span><br><span class="line">        <span class="variable language_">self</span>.student_head = MLP(student.embed_dim, embed_dim)</span><br><span class="line">        <span class="variable language_">self</span>.teacher_head = MLP(teacher.embed_dim, embed_dim)</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 教师温度（可变）</span></span><br><span class="line">        <span class="variable language_">self</span>.teacher_temp = teacher_temp</span><br><span class="line">        <span class="variable language_">self</span>.warmup_teacher_temp = warmup_teacher_temp</span><br><span class="line">        <span class="variable language_">self</span>.warmup_teacher_temp_epochs = warmup_teacher_temp_epochs</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 教师参数初始化为学生</span></span><br><span class="line">        <span class="keyword">for</span> param <span class="keyword">in</span> teacher.parameters():</span><br><span class="line">            param.requires_grad = <span class="literal">False</span>  <span class="comment"># 不计算梯度</span></span><br><span class="line"></span><br><span class="line"><span class="meta">    @torch.no_grad()</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">update_teacher</span>(<span class="params">self, m</span>):</span><br><span class="line">        <span class="comment"># m: 动量，如 0.996</span></span><br><span class="line">        <span class="keyword">for</span> param_q, param_k <span class="keyword">in</span> <span class="built_in">zip</span>(<span class="variable language_">self</span>.student.parameters(), <span class="variable language_">self</span>.teacher.parameters()):</span><br><span class="line">            param_k.data.mul_(m).add_((<span class="number">1</span> - m) * param_q.detach().data)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, global_view, local_view</span>):</span><br><span class="line">        <span class="comment"># global_view: 弱增强（教师输入）</span></span><br><span class="line">        <span class="comment"># local_view: 强增强（学生输入）</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 学生网络（强增强）</span></span><br><span class="line">        student_feats = <span class="variable language_">self</span>.student(local_view)</span><br><span class="line">        student_logits = <span class="variable language_">self</span>.student_head(student_feats)  <span class="comment"># (B, D)</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 教师网络（弱增强，无梯度）</span></span><br><span class="line">        <span class="keyword">with</span> torch.no_grad():</span><br><span class="line">            teacher_feats = <span class="variable language_">self</span>.teacher(global_view)</span><br><span class="line">            teacher_logits = <span class="variable language_">self</span>.teacher_head(teacher_feats)  <span class="comment"># (B, D)</span></span><br><span class="line">            </span><br><span class="line">            <span class="comment"># 中心化</span></span><br><span class="line">            teacher_logits = teacher_logits - teacher_logits.mean(dim=<span class="number">0</span>, keepdim=<span class="literal">True</span>)</span><br><span class="line">            </span><br><span class="line">            <span class="comment"># 温度缩放（可带 warmup）</span></span><br><span class="line">            curr_temp = <span class="variable language_">self</span>.get_teacher_temp(epoch)</span><br><span class="line">            teacher_probs = torch.softmax(teacher_logits / curr_temp, dim=<span class="number">1</span>)</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 损失：KL 散度</span></span><br><span class="line">        loss = -torch.<span class="built_in">sum</span>(teacher_probs * torch.log_softmax(student_logits, dim=<span class="number">1</span>), dim=<span class="number">1</span>).mean()</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> loss</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get_teacher_temp</span>(<span class="params">self, epoch</span>):</span><br><span class="line">        <span class="keyword">if</span> epoch &lt; <span class="variable language_">self</span>.warmup_teacher_temp_epochs:</span><br><span class="line">            <span class="keyword">return</span> <span class="variable language_">self</span>.warmup_teacher_temp</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="variable language_">self</span>.teacher_temp</span><br></pre></td></tr></table></figure>
+<h3 id="vit-的局限">ViT 的局限</h3>
+<table>
+<thead>
+<tr>
+<th>问题</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>❌ <strong>依赖 ViT</strong></td>
+<td>在 CNN 上效果不如 ViT</td>
+</tr>
+<tr>
+<td>❌ <strong>对增强敏感</strong></td>
+<td>强/弱增强策略需精心设计</td>
+</tr>
+<tr>
+<td>❌ <strong>训练不稳定</strong></td>
+<td>初期可能崩溃，需 warm-up 和参数调整</td>
+</tr>
+</tbody>
+</table>
+<h3 id="后续发展：">后续发展：</h3>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>改进点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>DINOv2</strong></td>
+<td>使用更大数据集（LAION），支持多任务（检测、分割）</td>
+</tr>
+<tr>
+<td><strong>iBOT</strong></td>
+<td>在 patch 级别进行自蒸馏，增强局部语义</td>
+</tr>
+<tr>
+<td><strong>MoBY</strong></td>
+<td>结合对比学习与 DINO</td>
+</tr>
+<tr>
+<td><strong>CAE</strong></td>
+<td>结合 MAE 的掩码重建与 DINO 的蒸馏</td>
+</tr>
+<tr>
+<td><strong>SAM</strong>（Segment Anything）</td>
+<td>受 DINO 启发，使用 ViT + 自监督预训练</td>
+</tr>
+</tbody>
+</table>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://outbreak-sen.github.io">outbreak_sen</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://outbreak-sen.github.io/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_DINO/">http://outbreak-sen.github.io/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_DINO/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://outbreak-sen.github.io" target="_blank">This is a 部落格 of outbreak_sen</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/./img/head.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_DreamBooth/" title=""><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2"></div></div><div class="info-2"><div class="info-item-1">DreamBooth：Fine Tuning Text-to-Image Diffusion Models for Subject-Driven Generation 微调文生图扩散模型的方法，最大的特点是Subject-Driven，针对某一个特定的主体，生成这个主体可以是一个动物或者某个物体，包括人都是可以的。有特定小狗的一些照片，一般 3-5 张就能生成模型没有见过它做的事情的图片，比如说去到了这个希腊，去游泳，这都是模型没有见到过的照片，但是模型却能生成出来。并且这些生成的图片都有很高的保真度，能够保持这个物体的主要特征。 Probdef 输入：提示词和一个给定的很小量的 reference set，比如一个狗的三张图 输出：模仿生成该 set 中所指定提示词的图片，比如狗在南极的图 背景： diffusion models这些模型实现了从给定文本提示中高质量和多样化的图像合成。但是缺少能够通过一个给定的很小量的 reference set ，去模仿生成该 set 中所指定 subject...</div></div></div></a><a class="pagination-related" href="/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_DETR/" title=""><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2"></div></div><div class="info-2"><div class="info-item-1">基本信息    项目 内容     论文标题 End-to-End Object Detection with Transformers   作者    作者单位 Facebook AI   时间 2020   发表会议/期刊 ECCV20   论文别名 DEtection TRansformer    方法概览    特点 文章性质     输入    输出    所属领域 目标检测    在 DETR 出现之前，主流目标检测器（如 Faster R-CNN、YOLO、SSD）存在以下问题：    问题 说明     Anchor 机制复杂 需预设大量 anchor boxes，超参数多，设计繁琐   NMS 后处理 非极大值抑制（NMS）不可导，无法端到端训练   多阶段设计 RPN + RoI Pooling + 分类回归，流程复杂   训练不稳定 正负样本不平衡、anchor 匹配策略复杂    创新点  首次将 Transformer 架构成功应用于目标检测任务，摒弃了传统检测器中复杂的组件如...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/./img/head.png" onerror="this.onerror=null;this.src='/./img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">outbreak_sen</div><div class="author-info-description">an interesting man</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">129</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">24</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">9</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/outbreak-sen" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://blog.csdn.net/outbreakrmb" target="_blank" title="CSDN"><i class="fa fa-book-open"></i></a><a class="social-icon" href="/1023786231" target="_blank" title="QQ"><i class="fab fa-qq"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="toc-text">基本信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E6%A6%82%E8%A7%88"><span class="toc-text">方法概览</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E6%96%B0%E7%82%B9"><span class="toc-text">创新点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84"><span class="toc-text">网络架构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#vit-%E7%9A%84%E5%B1%80%E9%99%90"><span class="toc-text">ViT 的局限</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%8E%E7%BB%AD%E5%8F%91%E5%B1%95%EF%BC%9A"><span class="toc-text">后续发展：</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/03/VSCode%20Python%20Debug%20%E6%95%99%E7%A8%8B/" title="无标题">无标题</a><time datetime="2025-12-03T05:57:28.299Z" title="发表于 2025-12-03 13:57:28">2025-12-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/03/SFM/" title="无标题">无标题</a><time datetime="2025-12-03T05:57:28.288Z" title="发表于 2025-12-03 13:57:28">2025-12-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/03/Multi%20View%20Stereo/" title="无标题">无标题</a><time datetime="2025-12-03T05:57:28.276Z" title="发表于 2025-12-03 13:57:28">2025-12-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/03/dive%20into%20deeplearning/" title="无标题">无标题</a><time datetime="2025-12-03T05:57:28.264Z" title="发表于 2025-12-03 13:57:28">2025-12-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/03/Deep%20LearningOverview/" title="无标题">无标题</a><time datetime="2025-12-03T05:57:28.253Z" title="发表于 2025-12-03 13:57:28">2025-12-03</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By outbreak_sen</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><div class="js-pjax"></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
