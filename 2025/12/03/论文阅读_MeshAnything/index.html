@@ -1,0 +1,306 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>论文阅读_MeshAnything | This is a 部落格 of outbreak_sen</title><meta name="author" content="outbreak_sen"><meta name="copyright" content="outbreak_sen"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="MeshAnything: Artist-Created Mesh Generation with Autoregressive Transformers 基本信息    项目 内容     论文标题 MeshAnything: Artist-Created Mesh Generation with Autoregressive Transformers   作者 Yiwen Chen, Ton">
+<meta property="og:type" content="article">
+<meta property="og:title" content="论文阅读_MeshAnything">
+<meta property="og:url" content="http://outbreak-sen.github.io/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_MeshAnything/index.html">
+<meta property="og:site_name" content="This is a 部落格 of outbreak_sen">
+<meta property="og:description" content="MeshAnything: Artist-Created Mesh Generation with Autoregressive Transformers 基本信息    项目 内容     论文标题 MeshAnything: Artist-Created Mesh Generation with Autoregressive Transformers   作者 Yiwen Chen, Ton">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://outbreak-sen.github.io/img/head.png">
+<meta property="article:published_time" content="2025-12-03T05:46:01.000Z">
+<meta property="article:modified_time" content="2026-03-09T15:06:13.982Z">
+<meta property="article:author" content="outbreak_sen">
+<meta property="article:tag" content="Mesh重建">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://outbreak-sen.github.io/img/head.png"><link rel="shortcut icon" href="/img/h_beautygirl.png"><link rel="canonical" href="http://outbreak-sen.github.io/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_MeshAnything/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '论文阅读_MeshAnything',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  isShuoshuo: false
+}</script><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="This is a 部落格 of outbreak_sen" type="application/atom+xml">
+<link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head><body><div id="web_bg" style="background-image: url(/img/v_beautygirl0.jpeg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/./img/head.png" onerror="onerror=null;src='./img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">185</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">66</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">14</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw fa fa-camera-retro"></i><span> 树洞</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 作品与鉴赏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/h_beautygirl.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/h_beautygirl.png" alt="Logo"><span class="site-name">This is a 部落格 of outbreak_sen</span></a><a class="nav-page-title" href="/"><span class="site-name">论文阅读_MeshAnything</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw fa fa-camera-retro"></i><span> 树洞</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 作品与鉴赏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">论文阅读_MeshAnything</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-12-03T05:46:01.000Z" title="发表于 2025-12-03 13:46:01">2025-12-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-03-09T15:06:13.982Z" title="更新于 2026-03-09 23:06:13">2026-03-09</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/">论文阅读</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><hr>
+<h1>MeshAnything: Artist-Created Mesh Generation with Autoregressive Transformers</h1>
+<h2 id="基本信息">基本信息</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">项目</th>
+<th style="text-align:left">内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>论文标题</strong></td>
+<td style="text-align:left">MeshAnything: Artist-Created Mesh Generation with Autoregressive Transformers</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>作者</strong></td>
+<td style="text-align:left">Yiwen Chen, Tong He, Di Huang, Weteai Ye, Sijin Chen, Jiaxiang Tang, Xin Chen, Zhongang Cai, Lei Yang, Gang Yu, Guosheng Lin, Chi Zhang</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>作者单位</strong></td>
+<td style="text-align:left">1. S-Lab, Nanyang Technological University; 2. Shanghai AI Lab; 3. Fudan University; 4. Peking University; 5. University of Chinese Academy of Sciences; 6. SenseTime Research; 7. Stepfun; 8. Westlake University</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>时间</strong></td>
+<td style="text-align:left">2024</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>发表会议/期刊</strong></td>
+<td style="text-align:left">arXiv preprint</td>
+</tr>
+</tbody>
+</table>
+<h2 id="方法概览">方法概览</h2>
+<table>
+<thead>
+<tr>
+<th>特点</th>
+<th>文章性质</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>输入</strong></td>
+<td>点云（从任何3D表示转换而来，如NeRF、Gaussian Splatting、体素等）</td>
+</tr>
+<tr>
+<td><strong>输出</strong></td>
+<td>艺术家创建的三角网格（Artist-Created Mesh，几何结构高效，面数少）</td>
+</tr>
+<tr>
+<td><strong>所属领域</strong></td>
+<td>3D形状条件生成、网格生成</td>
+</tr>
+</tbody>
+</table>
+<h2 id="摘要">摘要</h2>
+<p>MeshAnything 旨在解决当前自动生成的3D资产无法替代人工创建资产的一个关键原因：现有方法无法将这些3D资产转换为<strong>艺术家创建的网格</strong>（Artist-Created Meshes, AMs）。现有网格提取方法（如Marching Cubes）以重建方式生成密集网格，忽略了几何特征，导致效率低下、后处理复杂且表示质量低。MeshAnything 首次将网格提取视为一个<strong>生成问题</strong>，提出了<strong>形状条件AM生成</strong>的新范式。模型基于VQ-VAE和仅解码器Transformer构建，能够从任意3D表示生成与指定形状对齐的、面数少数百倍的AMs，显著提升了存储、渲染和模拟效率，同时达到与先前方法相当的精度。</p>
+<h2 id="引言：出发点与动机">引言：出发点与动机</h2>
+<p>近年来，3D重建、生成和扫描技术可以自动生成质量媲美手工制作的3D资产，有望替代3D产业（游戏、电影、元宇宙）中的人工建模，大幅降低时间和人力成本。然而，这一潜力并未实现，因为当前3D产业主要依赖<strong>基于网格的管线</strong>（效率高、可控性好），而自动生成3D资产的方法通常使用其他3D表示（如NeRF、Gaussian Splatting）以达到最佳效果。因此，需要将其他3D表示转换为网格。</p>
+<p>传统的网格提取方法（如Marching Cubes）以<strong>重建方式</strong>提取网格，依赖<strong>密集的面片</strong>来逼近形状，完全忽略了物体的几何特征。这导致三个主要问题：1) 转换后的网格面片数量比AMs多几个数量级，导致存储、渲染和模拟效率低下；2) 混乱低效的拓扑结构使得后处理和下游任务复杂化，增加了艺术家优化的难度；3) 无法有效表示锐利边缘和平坦表面，导致过平滑和凹凸伪影。</p>
+<p>因此，MeshAnything 的出发点在于：<strong>改变思路，将网格提取从重建问题转变为生成问题</strong>，即教会模型根据给定的3D形状，生成在形状和拓扑质量上都模仿人类艺术家的AMs。这种<strong>形状条件AM生成</strong>的新范式，从根本上避免了上述问题，使生成结果能够无缝集成到3D产业管线中。</p>
+<h2 id="创新点">创新点</h2>
+<ol>
+<li><strong>提出形状条件艺术家创建网格生成新范式</strong>：首次将网格提取视为生成问题，目标是学习条件分布 $$p(\mathcal{M}|\mathcal{S})$$，其中 $$\mathcal{M}$$ 是AM，$$\mathcal{S}$$ 是表示目标形状的条件（如点云）。这避免了同时学习复杂3D形状分布和AM拓扑分布的困难，使模型更易训练，且能与各种3D生产管线（重建、生成、扫描）结合，提升其产业应用价值。</li>
+<li><strong>设计域对齐的形状条件策略</strong>：为训练准备配对数据（AM和形状条件 $$\mathcal{S}$$ ）时，没有直接从AM表面采样高质量点云，而是先通过Marching Cubes从AM提取一个<strong>粗糙网格</strong>，再从中采样点云作为 $$\mathcal{S}$$ 。这缩小了训练（来自高质量AM）与推理（来自自动生成的不完美3D资产）之间形状条件的域差距，提升了模型泛化能力。</li>
+<li><strong>引入抗噪声解码器</strong>：观察到VQ-VAE解码器仅在编码器生成的完美token序列上训练，与Transformer可能生成的不完美token序列存在域差距。因此，在VQ-VAE训练后，<strong>将形状条件作为辅助信息注入解码器</strong>，并用添加了随机Gumbel噪声的token序列对解码器进行微调，使其对低质量token序列具有鲁棒性，从而提升最终网格生成质量。</li>
+<li><strong>基于纯Transformer的VQ-VAE编码器-解码器</strong>：与MeshGPT使用图卷积网络和ResNet不同，MeshAnything的VQ-VAE编码器和解码器均采用结构相同的Transformer，增强了模型的处理能力。</li>
+<li><strong>利用多模态大语言模型思想注入形状条件</strong>：受MLLM启发，使用预训练点云编码器将形状条件（点云）编码为特征，并投影到网格token空间，作为前缀token序列输入给仅解码器Transformer，实现有效的形状条件控制。</li>
+</ol>
+<h2 id="网络架构">网络架构</h2>
+<p>MeshAnything 的整体框架包含两个核心组件：</p>
+<ol>
+<li><strong>VQ-VAE（含抗噪声解码器）</strong>：用于学习网格的离散词汇表。它将输入的三角网格序列编码为特征，量化后通过解码器重建网格。在第二阶段，解码器被微调为抗噪声解码器，接收形状条件以提升鲁棒性。</li>
+<li><strong>形状条件自回归Transformer</strong>：一个仅解码器的Transformer模型。它将点云编码器提取的形状条件token序列与VQ-VAE编码的网格token序列拼接，以自回归方式预测下一个网格token，实现形状条件的网格生成。</li>
+</ol>
+<h2 id="特征提取">特征提取</h2>
+<ul>
+<li><strong>形状条件特征提取</strong>：使用一个<strong>预训练的点云编码器</strong>（来自Zhao et al., 2024）处理输入的点云（及其法向），输出一个固定长度的token序列（257个token），其中包含形状信息和语义信息。通过一个线性投影层将其投影到与网格token相同的潜在空间。</li>
+<li><strong>网格特征提取与重建</strong>：VQ-VAE的<strong>编码器</strong>（Transformer结构）将输入的网格面序列（每个面由三个顶点坐标表示）编码为特征向量序列，然后通过残差向量量化映射到码本中的离散token。<strong>解码器</strong>（同样是Transformer结构）根据这些token（或Transformer生成的token）预测每个顶点的坐标对数，从而重建网格。</li>
+</ul>
+<h2 id="三维模型细节">三维模型细节</h2>
+<p>MeshAnything <strong>生成几何三角网格</strong>，重点关注<strong>拓扑结构的高效性</strong>和<strong>几何特征的保真度</strong>（如锐利边缘、平坦表面）。生成的网格面数通常比传统方法（如Marching Cubes）少<strong>数百倍</strong>，更接近人工建模的简洁风格。论文中的可视化结果显示，其网格在保持形状精度的同时，具有更清晰、更合理的拓扑结构。<strong>论文未强调生成带纹理贴图的网格</strong>，输出主要是几何网格。</p>
+<h2 id="三维模型生成步骤">三维模型生成步骤</h2>
+<ol>
+<li><strong>形状条件准备</strong>：从任意3D表示（如NeRF、Gaussian、体素场）通过Marching Cubes提取粗糙网格或直接采样，得到点云（带法向）作为形状条件 $$\mathcal{S}$$。</li>
+<li><strong>形状条件编码</strong>：点云 $$\mathcal{S}$$ 通过预训练的点云编码器 $$\mathcal{P}$$ 编码为形状token序列。</li>
+<li><strong>自回归网格生成</strong>：形状token序列被输入形状条件自回归Transformer。Transformer以自回归方式生成后续的网格token序列 $$\hat{\mathcal{T}}$$。</li>
+<li><strong>网格解码</strong>：生成的网格token序列 $$\hat{\mathcal{T}}$$ 输入到<strong>抗噪声VQ-VAE解码器</strong> $$D$$ 中，解码器结合形状条件信息，重建出最终的艺术家创建网格 $$\hat{\mathcal{M}}$$。</li>
+</ol>
+<h2 id="相关工作与比较">相关工作与比较</h2>
+<ul>
+<li><strong>基于的工作/参考</strong>：
+<ul>
+<li><strong>MeshGPT</strong>：整体架构参考，使用VQ-VAE和自回归Transformer进行无条件网格生成。</li>
+<li><strong>多模态大语言模型</strong>：形状条件注入方式的灵感来源。</li>
+<li><strong>传统网格提取方法</strong>：如Marching Cubes，作为问题背景和对比基线。</li>
+</ul>
+</li>
+<li><strong>比较的基线方法</strong>：
+<ul>
+<li><strong>网格生成方法</strong>：PolyGen（无条件），MeshGPT（无条件）。为了公平，在相同数据集上重新训练。</li>
+<li><strong>网格提取方法</strong>：Marching Cubes，FlexiCubes（当前最优），Shape as Points（点云到网格）。</li>
+<li><strong>结合重新网格化</strong>：将上述网格提取结果用Blender Remesh进行拓扑简化后比较。</li>
+</ul>
+</li>
+<li><strong>评价指标</strong>：
+<ul>
+<li><strong>用户研究</strong>：人工从形状质量和拓扑质量两方面投票。</li>
+<li><strong>网格生成质量</strong>：COV（覆盖率）、MMD（最小匹配距离）、1-NNA（1-最近邻准确率）、FID（Fréchet Inception距离）、KID（核Inception距离）。</li>
+<li><strong>网格提取/形状对齐质量</strong>：CD（倒角距离）、ECD（边缘倒角距离）、NC（法向一致性）、顶点数（#V）、面数（#F）及其与真值的比率。</li>
+</ul>
+</li>
+</ul>
+<h2 id="loss-函数">Loss 函数</h2>
+<ul>
+<li><strong>VQ-VAE训练损失</strong>：使用标准的VQ-VAE损失，包括对解码器预测的顶点坐标对数的<strong>交叉熵损失</strong>，以及量化过程的<strong>承诺损失</strong>。</li>
+<li><strong>抗噪声解码器微调损失</strong>：在微调阶段，解码器使用相同的顶点坐标<strong>交叉熵损失</strong>，但输入的是添加了Gumbel噪声的token序列，并且解码器额外接收形状条件作为输入。</li>
+<li><strong>自回归Transformer训练损失</strong>：使用标准的<strong>下一个token预测的交叉熵损失</strong>。序列由形状条件token、&lt; bos &gt;  token、网格token和&lt; eos &gt; token构成。</li>
+</ul>
+<h2 id="数据集">数据集</h2>
+<ul>
+<li><strong>训练集</strong>：从 <strong>Objaverse</strong> 和 <strong>ShapeNet</strong> 中筛选出的高质量艺术家创建网格（AMs）。筛选标准包括面数少于800，并手动去除低质量网格。最终数据集包含51k（Objaverse）+ 5k（ShapeNet）= 56k个网格。随机选取90%用于训练。
+<ul>
+<li><strong>训练输入</strong>：从每个AM通过“粗糙化”流程得到的点云（带法向）作为形状条件 $$\mathcal{S}$$。</li>
+<li><strong>训练输出</strong>：对应的AM网格 $$\mathcal{M}$$，被处理为有序的面序列。</li>
+</ul>
+</li>
+<li><strong>测试集</strong>：剩余10%的数据作为评估数据集。
+<ul>
+<li><strong>测试输入</strong>：从测试集网格通过相同“粗糙化”流程得到的点云，或从其他3D生成/重建方法结果中采样的点云。</li>
+<li><strong>测试输出</strong>：MeshAnything生成的网格。评估时与原始AM（或生成目标）的网格进行比较。</li>
+</ul>
+</li>
+</ul>
+<h2 id="消融实验">消融实验</h2>
+<ol>
+<li><strong>抗噪声解码器的有效性</strong>：
+<ul>
+<li><strong>实验设置</strong>：对比使用普通VQ-VAE解码器（W/O NR）和使用抗噪声解码器（W/ NR）在面临不同噪声水平（0.0, 0.1, 0.5, 1.0）的token序列时的网格重建性能（CD, ECD, NC）。</li>
+<li><strong>结果</strong>：抗噪声解码器在所有噪声水平下都取得了更好的重建指标（表3）。在推理时（使用Transformer生成token），抗噪声解码器也带来了更好的形状对齐质量（表4）。</li>
+</ul>
+</li>
+<li><strong>形状条件策略的有效性</strong>：
+<ul>
+<li>通过比较<strong>无条件</strong>、<strong>图像条件</strong>和<strong>形状条件</strong>三种设置下Transformer训练和验证的困惑度（PPL），证明形状条件设置的学习负担最低，避免了学习复杂3D形状分布（图3）。</li>
+<li>通过用户研究对比重新训练的MeshGPT（无条件）和MeshAnything（形状条件），后者在形状和拓扑质量上获得更多投票（表1左），证明形状条件设定的优势。</li>
+</ul>
+</li>
+<li><strong>输入点云质量的鲁棒性</strong>：
+<ul>
+<li><strong>实验设置</strong>：在输入点云坐标和法向上添加不同尺度的高斯噪声（0.005, 0.02, 0.05），以及使用生成模型（Rodin）产生的点云作为输入，测试MeshAnything的生成质量。</li>
+<li><strong>结果</strong>：在低到中等噪声水平下，性能下降不显著；只有在较大噪声下才有明显下降。模型能够很好地处理来自生成模型的点云，展示了与3D生成管线集成的能力（表6）。</li>
+</ul>
+</li>
+</ol>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://outbreak-sen.github.io">outbreak_sen</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://outbreak-sen.github.io/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_MeshAnything/">http://outbreak-sen.github.io/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_MeshAnything/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://outbreak-sen.github.io" target="_blank">This is a 部落格 of outbreak_sen</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Mesh%E9%87%8D%E5%BB%BA/">Mesh重建</a></div><div class="post-share"><div class="social-share" data-image="/./img/head.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_MVSNet/" title="论文阅读_MVSNet"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">论文阅读_MVSNet</div></div><div class="info-2"><div class="info-item-1">MVSNet 基本信息    项目 内容     论文标题 MVSNet: Depth Inference for Unstructured Multi-view Stereo   作者 姚姚1罗子欣1，李世薇1，天方2，以及 Long Quan   作者单位 香港科技大学   时间 2018   发表会议/期刊     方法概览    特点 文章性质     输入 标定之后的多视角图像   输出 场景的点云图，每个视角的法线和深度图   所属领域 MVS    1. 摘要精简 本文提出一种端到端深度学习架构 MVSNet，用于从多视图图像推断深度图。流程为：先提取深度视觉图像特征，通过可微单应性扭曲在参考相机视锥上构建 3D 代价体，再用 3D  卷积正则化并回归初始深度图，结合参考图像优化得到最终结果。该架构通过基于方差的代价度量适配任意 N 视图输入，在大规模室内 DTU  数据集上，经简单后处理显著优于现有方法且速度快数倍；在复杂室外 Tanks and Temples 数据集上（2018 年 4 月 18  日前）无需微调即排名第一，展现强泛化能力。 2....</div></div></div></a><a class="pagination-related" href="/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_MeshFormer/" title="论文阅读_MeshFormer"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">论文阅读_MeshFormer</div></div><div class="info-2"><div class="info-item-1"> MeshFormer: High-Quality Mesh Generation with 3D-Guided Reconstruction Model 基本信息    项目 内容     论文标题 MeshFormer: High-Quality Mesh Generation with 3D-Guided Reconstruction Model   作者 Minghua Liu, Chong Zeng, Xinyue Wei, Ruoxi Shi, Linghao Chen, Chao Xu, Mengqi Zhang, Zhaoning Wang, Xiaoshuai Zhang, Isabella Liu, Hongzhi Wu, Hao Su   作者单位 1. UC San Diego; 2. Hillbot Inc.; 3. Zhejiang University; 4. UCLA   时间 2024   发表会议/期刊 arXiv...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_3D-C2FT/" title="论文阅读_3D-C2FT"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-12-03</div><div class="info-item-2">论文阅读_3D-C2FT</div></div><div class="info-2"><div class="info-item-1">3D-C2FT 基本信息    项目 内容     论文标题 Hunyuan3D   作者 Hunyuan3D Team (腾讯团队)   作者单位 腾讯 (Tencent)   时间 2025   发表会议/期刊     方法概览    特点 文章性质     输入 标定之后的多视角图像   输出 Mesh   所属领域 MeshMVS    3D-C2FT: Coarse-to-fine Transformer for Multi-view 3D Reconstruction 论文总结 方法名称：3D-C2FT (3D Coarse-to-fine Transformer) 作者：Leslie Ching Ow Tiong, Dick Sigmund, Andrew Beng Jin Teoh 第一单位：韩国科学技术研究院 (Korea Institute of Science and Technology) 发表年份与会议/期刊：2022年，发表于国际计算机视觉会议 (ICCV) 或其他计算机视觉顶会...</div></div></div></a><a class="pagination-related" href="/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_3D-R2N2/" title="论文阅读_3D-R2N2"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-12-03</div><div class="info-item-2">论文阅读_3D-R2N2</div></div><div class="info-2"><div class="info-item-1"> 3D-R2N2: A Unified Approach for Single and Multi-view 3D Object Reconstruction 基本信息    项目 内容     论文标题 3D-R2N2: A Unified Approach for Single and Multi-view 3D Object Reconstruction   作者 Christopher B. Choy, Danfei Xu, JunYoung Gwak, Kevin Chen, Silvio Savarese   作者单位 Stanford University   时间 2016   发表会议/期刊 ECCV (European Conference on Computer Vision)    方法概览    特点 文章性质     输入 单张或多张任意视角的RGB图像（无需校准）   输出 三维占据网格 (3D occupancy grid, 如 32imes32imes3232 	imes 32 	imes...</div></div></div></a><a class="pagination-related" href="/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_Clay/" title="论文阅读_CLAY"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-12-03</div><div class="info-item-2">论文阅读_CLAY</div></div><div class="info-2"><div class="info-item-1"> CLAY 基本信息    项目 内容     论文标题 CLAY（Controllable Large-scale Generative Model for Creating High-quality 3D Assets）   作者 LONGWEN ZHANG, ZIYU WANG, QIXUAN ZHANG 等   作者单位 上海科技大学 (ShanghaiTech University)、Deemos Technology Co., Ltd.   时间 2024   发表会议/期刊     方法概览    特点 文章性质     输入 支持多模态输入，包括文本、单张图像、草图、多视角图像、体素、点云、边界框等。   输出 是带有高保真PBR材质贴图的Mesh模型。其内部几何表示使用occupancy field，最终通过Marching Cubes算法提取为Mesh。   所属领域 三维生成 (3D Generation)    DiT:Diffuison...</div></div></div></a><a class="pagination-related" href="/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_DIB-R3D/" title="论文阅读_DIB-R++"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-12-03</div><div class="info-item-2">论文阅读_DIB-R++</div></div><div class="info-2"><div class="info-item-1"> DIB-R++ 基本信息    项目 内容     论文标题 DIB-R++: Learning to Predict Lighting and Material with a Hybrid Differentiable Renderer   作者 Wenzheng Chen, Joey Litalien, Jun Gao, Zian Wang, Clement Fuji Tsang, Sameh Khamis, Or Litany, Sanja Fidler   作者单位 NVIDIA   时间 2021   发表会议/期刊     方法概览    特点 文章性质     输入 单张RGB图像   输出 三维网格（Mesh）以及材质参数（漫反射反照率、粗糙度、镜面反照率等）和光照参数（环境光照图或球面高斯系数）   所属领域 单视图三维重建（无监督）    一、摘要精简 DIB-R++ ...</div></div></div></a><a class="pagination-related" href="/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_DMKit/" title="论文阅读_DMTET"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-12-03</div><div class="info-item-2">论文阅读_DMTET</div></div><div class="info-2"><div class="info-item-1"> DMTET 基本信息    项目 内容     论文标题 Deep Marching Tetrahedra: a Hybrid Representation for High-Resolution 3D Shape Synthesis   作者 Tianchang Shen, Jun Gao, Kangxue Yin, Ming-Yu Liu, Sanja Fidler   作者单位 NVIDIA   时间 2021   发表会议/期刊 NeurIPS 2021    方法概览    特点 文章性质     输入 多模态输入，包括粗体素（16³ 分辨率）、带噪声的点云（5000 个点，高斯噪声 σ=0.005）   输出 核心输出为高分辨率 Triangle Mesh（支持任意拓扑），无 SDF 直接输出，SDF 仅作为中间表示   所属领域 兼具3D 生成与重建（核心为从粗体素生成高分辨率形状，支持带噪声点云重建）     一、摘要精简 DMTet...</div></div></div></a><a class="pagination-related" href="/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_DeMapGS/" title="论文阅读_DeMapGS"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-12-03</div><div class="info-item-2">论文阅读_DeMapGS</div></div><div class="info-2"><div class="info-item-1">  DeMapGS 论文阅读笔记 基本信息    项目 内容     论文标题 DeMapGS (Simultaneous Mesh Deformation and Surface Attribute Mapping via Gaussian Splatting)   作者 Shuyi Zhou, Shengze Zhong, Kenshi Takayama, Takafumi Taketomi, Takeshi Oishi   作者单位 The University of Tokyo (东京大学)   时间 2023（根据引用和内容推断）   发表会议/期刊 暂未明确标注，应属预印本或待发表论文    方法概览    特点 文章性质     输入 多视角图像 以及一个初始的模板网格。   输出 一个可变形、带纹理贴图（漫反射、法线、位移贴图）的三角网格（Mesh），并能提取出相应的高斯溅射（Gaussian Splatting）表示。   所属领域 三维重建     1....</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/./img/head.png" onerror="this.onerror=null;this.src='/./img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">outbreak_sen</div><div class="author-info-description">an interesting man</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">185</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">66</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">14</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/outbreak-sen" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://blog.csdn.net/outbreakrmb" target="_blank" title="CSDN"><i class="fa fa-book-open"></i></a><a class="social-icon" href="/1023786231" target="_blank" title="QQ"><i class="fab fa-qq"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">MeshAnything: Artist-Created Mesh Generation with Autoregressive Transformers</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="toc-text">基本信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E6%A6%82%E8%A7%88"><span class="toc-text">方法概览</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%95%E8%A8%80%EF%BC%9A%E5%87%BA%E5%8F%91%E7%82%B9%E4%B8%8E%E5%8A%A8%E6%9C%BA"><span class="toc-text">引言：出发点与动机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E6%96%B0%E7%82%B9"><span class="toc-text">创新点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84"><span class="toc-text">网络架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%89%B9%E5%BE%81%E6%8F%90%E5%8F%96"><span class="toc-text">特征提取</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E7%BB%B4%E6%A8%A1%E5%9E%8B%E7%BB%86%E8%8A%82"><span class="toc-text">三维模型细节</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E7%BB%B4%E6%A8%A1%E5%9E%8B%E7%94%9F%E6%88%90%E6%AD%A5%E9%AA%A4"><span class="toc-text">三维模型生成步骤</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E5%B7%A5%E4%BD%9C%E4%B8%8E%E6%AF%94%E8%BE%83"><span class="toc-text">相关工作与比较</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#loss-%E5%87%BD%E6%95%B0"><span class="toc-text">Loss 函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="toc-text">数据集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B6%88%E8%9E%8D%E5%AE%9E%E9%AA%8C"><span class="toc-text">消融实验</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/03/09/swiftUI%E7%9A%84%E7%AC%94%E8%AE%B0/" title="swiftUI">swiftUI</a><time datetime="2026-03-09T14:01:08.361Z" title="发表于 2026-03-09 22:01:08">2026-03-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/01/17/2026-01-17-FVMVS%E7%A0%94%E5%88%B6%E8%BF%87%E7%A8%8B/" title="FVMVS研制过程">FVMVS研制过程</a><time datetime="2026-01-17T07:41:46.000Z" title="发表于 2026-01-17 15:41:46">2026-01-17</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_MoGe%202/" title="论文阅读_MoGe 2">论文阅读_MoGe 2</a><time datetime="2025-12-03T06:04:18.000Z" title="发表于 2025-12-03 14:04:18">2025-12-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_%E5%8F%98%E5%88%86%E8%87%AA%E7%BC%96%E7%A0%81%E5%99%A8VAE/" title="论文阅读_变分自编码器VAE">论文阅读_变分自编码器VAE</a><time datetime="2025-12-03T06:01:57.000Z" title="发表于 2025-12-03 14:01:57">2025-12-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/03/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0_SFM/" title="学习笔记_SFM">学习笔记_SFM</a><time datetime="2025-12-03T05:57:28.000Z" title="发表于 2025-12-03 13:57:28">2025-12-03</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2026 By outbreak_sen</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><div class="js-pjax"></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

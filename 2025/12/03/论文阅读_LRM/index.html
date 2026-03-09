@@ -1,0 +1,362 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>论文阅读_LRM | This is a 部落格 of outbreak_sen</title><meta name="author" content="outbreak_sen"><meta name="copyright" content="outbreak_sen"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="LRM: Large Reconstruction Model for Single Image to 3D 基本信息    项目 内容     论文标题 LRM: Large Reconstruction Model for Single Image to 3D   作者 Yicong Hong, Kai Zhang, Jiuxiang Gu, Sai Bi, Yang Zhou, Difan">
+<meta property="og:type" content="article">
+<meta property="og:title" content="论文阅读_LRM">
+<meta property="og:url" content="http://outbreak-sen.github.io/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_LRM/index.html">
+<meta property="og:site_name" content="This is a 部落格 of outbreak_sen">
+<meta property="og:description" content="LRM: Large Reconstruction Model for Single Image to 3D 基本信息    项目 内容     论文标题 LRM: Large Reconstruction Model for Single Image to 3D   作者 Yicong Hong, Kai Zhang, Jiuxiang Gu, Sai Bi, Yang Zhou, Difan">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://outbreak-sen.github.io/img/head.png">
+<meta property="article:published_time" content="2025-12-03T05:46:01.000Z">
+<meta property="article:modified_time" content="2026-03-09T15:05:10.686Z">
+<meta property="article:author" content="outbreak_sen">
+<meta property="article:tag" content="Mesh生成">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://outbreak-sen.github.io/img/head.png"><link rel="shortcut icon" href="/img/h_beautygirl.png"><link rel="canonical" href="http://outbreak-sen.github.io/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_LRM/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '论文阅读_LRM',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  isShuoshuo: false
+}</script><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="This is a 部落格 of outbreak_sen" type="application/atom+xml">
+<link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head><body><div id="web_bg" style="background-image: url(/img/v_beautygirl0.jpeg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/./img/head.png" onerror="onerror=null;src='./img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">185</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">66</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">14</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw fa fa-camera-retro"></i><span> 树洞</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 作品与鉴赏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/h_beautygirl.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/h_beautygirl.png" alt="Logo"><span class="site-name">This is a 部落格 of outbreak_sen</span></a><a class="nav-page-title" href="/"><span class="site-name">论文阅读_LRM</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw fa fa-camera-retro"></i><span> 树洞</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 作品与鉴赏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">论文阅读_LRM</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-12-03T05:46:01.000Z" title="发表于 2025-12-03 13:46:01">2025-12-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-03-09T15:05:10.686Z" title="更新于 2026-03-09 23:05:10">2026-03-09</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/">论文阅读</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><hr>
+<h1>LRM: Large Reconstruction Model for Single Image to 3D</h1>
+<h2 id="基本信息">基本信息</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">项目</th>
+<th style="text-align:left">内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>论文标题</strong></td>
+<td style="text-align:left">LRM: Large Reconstruction Model for Single Image to 3D</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>作者</strong></td>
+<td style="text-align:left">Yicong Hong, Kai Zhang, Jiuxiang Gu, Sai Bi, Yang Zhou, Difan Liu, Feng Liu, Kalyan Sunkavalli, Trung Bui, Hao Tan</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>第一作者单位</strong></td>
+<td style="text-align:left">Adobe Research (Yicong Hong 同时隶属 Australian National University)</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>时间</strong></td>
+<td style="text-align:left">2024 (根据引用文献推断，应为 CVPR 2024)</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>发表会议/期刊</strong></td>
+<td style="text-align:left">预计为 CVPR 2024</td>
+</tr>
+</tbody>
+</table>
+<h2 id="方法概览">方法概览</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">特点</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>输入</strong></td>
+<td style="text-align:left">单张 RGB 图像 (背景已移除)</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>输出</strong></td>
+<td style="text-align:left">3D 形状 (以 NeRF / Triplane 形式呈现，可快速提取为 Mesh)</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>核心目标</strong></td>
+<td style="text-align:left">从单张图像快速 (5秒内) 重建高质量、高泛化性的 3D 物体模型</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>所属领域</strong></td>
+<td style="text-align:left">单视图三维重建</td>
+</tr>
+</tbody>
+</table>
+<h2 id="摘要精简">摘要精简</h2>
+<p>本文提出了首个大规模重建模型 (LRM)，能够仅用5秒时间<strong>从单张输入图像预测物体的3D模型</strong>。与以往依赖小规模数据集或特定类别的方法不同，LRM采用了一个具有5亿可学习参数、高度可扩展的基于Transformer的架构，<strong>直接从图像预测神经辐射场 (NeRF)</strong>。模型在包含约100万个物体的大规模多视图数据（包括 Objaverse 的合成渲染和 MVImgNet 的真实捕捉视频）上进行端到端训练。高容量模型与大规模训练数据的结合使其具有高度的泛化能力，能够从各种真实世界图像和生成模型创建的图像中产生高质量的3D重建结果。</p>
+<h2 id="引言与出发点">引言与出发点</h2>
+<p>从单张任意物体的图像即时创建3D形状，在工业设计、动画、AR/VR等领域有广泛应用前景。然而，单视图下3D几何存在固有的模糊性。早期基于学习的方法通常依赖特定类别的数据先验，泛化能力有限。近期工作（如 Zero-1-to-3， Make-It-3D）尝试利用2D扩散模型的强大泛化能力来提供多视角监督，但它们的结果受限于预训练的2D生成模型，且常需要精细的参数调整。</p>
+<p>受自然语言处理（如GPT系列）和图像处理领域大模型成功的启发，作者认为成功关键在于：1) 使用高度可扩展的网络（如Transformer）；2) 海量数据集；3) 鼓励模型发现数据底层结构的自监督式训练目标。基于此，作者提出核心问题：<strong>给定足够的3D数据和大规模训练框架，能否学习到一个通用的3D先验，用于从单张图像重建物体？</strong> LRM便是对此问题的肯定回答。</p>
+<table>
+<thead>
+<tr>
+<th>对比方法</th>
+<th>核心问题指出</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>类别特定重建方法（如 Mesh R-CNN）</td>
+<td>1. 仅适用于特定类别，泛化性差；2. 依赖类别先验，无法处理任意物体；3. 细节重建不足</td>
+</tr>
+<tr>
+<td>扩散引导方法（如 Zero-1-to-3、One-2-3-45）</td>
+<td>1. 依赖预训练 2D 扩散模型，结果受限于扩散模型；2. 需生成多视图图像再重建，流程复杂；3. 细节模糊、一致性不足</td>
+</tr>
+<tr>
+<td>per-shape 优化方法（如 NeRF 微调）</td>
+<td>1. 每个物体需单独优化，耗时久（分钟级）；2. 泛化性差，依赖初始化和正则；3. 难以处理未见物体</td>
+</tr>
+<tr>
+<td>3D 扩散模型（如 Point-E、Shap-E）</td>
+<td>1. 3D 数据稀缺，模型容量有限；2. 表示效率低（点云 token 数量多）；3. 重建质量和细节不足</td>
+</tr>
+<tr>
+<td>GINA-3D（图像到 triplane）</td>
+<td>1. 模型规模小，训练数据量有限；2. 聚焦类别特定生成，重建泛化性差；3. 无相机特征调制</td>
+</tr>
+</tbody>
+</table>
+<h2 id="创新点">创新点</h2>
+<ol>
+<li><strong>首个大规模3D重建模型</strong>：参数量巨大（5亿），训练数据规模空前（约100万个物体），旨在学习通用的、跨类别的3D先验。</li>
+<li><strong>完全基于Transformer的端到端流水线</strong>：采用了高度可扩展的Transformer编码器-解码器架构，直接从单张图像回归出3D表示，无需逐形状优化。</li>
+<li><strong>高效且表达力强的3D表示</strong>：采用 <strong>Triplane-NeRF</strong> 作为3D表示。相比体素网格 (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><msup><mi>N</mi><mn>3</mn></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(N^3)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>) 和点云，Triplane 具有计算友好性 (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><msup><mi>N</mi><mn>2</mn></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(N^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>)；相比 Shap-E 等将NeRF权重token化的方法，Triplane 与图像输入具有更好的局部性对应关系。</li>
+<li><strong>数据驱动且训练目标简洁</strong>：不依赖任何预训练的视觉-语言对比模型或生成模型的引导，仅通过最小化新视角渲染图像与真实图像之间的差异进行训练，无需复杂的3D感知正则化。</li>
+<li><strong>3D作为新模态的跨模态映射</strong>：将3D Triplane 视为一种新的模态，通过交叉注意力 (Cross-Attention) 直接将2D图像特征映射到3D空间，让模型自行学习2D到3D的对应关系。</li>
+</ol>
+<h2 id="网络架构构成">网络架构构成</h2>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20251219133941171.png" alt="image-20251219133941171"></p>
+<p>LRM是一个完全可微分的、基于Transformer的编码器-解码器框架（如图1所示），主要由三部分组成由<strong>图像编码器、image-to-triplane 解码器、triplane-NeRF 解码器</strong>三部分组成：</p>
+<ol>
+<li><strong>图像编码器 (Image Encoder)</strong>：使用预训练的视觉Transformer (DINO ViT-B/16) 将输入图像编码为一系列图像块特征token <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><msub><mi>h</mi><mi>i</mi></msub><msubsup><mo stretchy="false">}</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></msubsup><mo>∈</mo><msup><mi mathvariant="double-struck">R</mi><msub><mi>d</mi><mi>E</mi></msub></msup></mrow><annotation encoding="application/x-tex">\{h_i\}_{i=1}^{n} \in \mathbb{R}^{d_E}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.008664em;vertical-align:-0.258664em;"></span><span class="mopen">{</span><span class="mord"><span class="mord mathdefault">h</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose"><span class="mclose">}</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-2.441336em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.258664em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.849108em;vertical-align:0em;"></span><span class="mord"><span class="mord"><span class="mord mathbb">R</span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.849108em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathdefault mtight">d</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3448em;"><span style="top:-2.3567071428571427em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathdefault mtight" style="margin-right:0.05764em;">E</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.14329285714285717em;"><span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span>。</li>
+<li><strong>图像到Triplane解码器 (Image-to-Triplane Decoder)</strong>：一个大型Transformer解码器。它以可学习的空间位置嵌入和相机特征为条件，通过交叉注意力将图像特征投影到3D空间，并通过自注意力建模Triplane token间的关系，最终输出上采样后形成Triplane特征图 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="bold">T</mi></mrow><annotation encoding="application/x-tex">\mathbf{T}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68611em;vertical-align:0em;"></span><span class="mord"><span class="mord mathbf">T</span></span></span></span></span>。
+<ul>
+<li>架构：16 层 transformer，隐藏维度 1024，含 cross-attention、self-attention、MLP 子层；</li>
+<li>输入：初始化的 triplane 位置嵌入（3×32×32×1024）、图像特征 token、相机特征嵌入；</li>
+<li>核心操作：
+<ul>
+<li>相机调制：通过ModLNc(fj)=LN(fj)⋅(1+γ)+β（γ,β由相机特征 MLP 输出）调制各子层输入；</li>
+<li>cross-attention：triplane token 关注图像特征 token，建立 2D-3D 映射；</li>
+<li>self-attention：建模 triplane 内部空间关系；</li>
+</ul>
+</li>
+<li>输出：3×32×32×1024 特征，经反卷积上采样至 3×64×64×80，得到最终 triplane。</li>
+</ul>
+</li>
+<li><strong>Triplane-NeRF渲染器</strong>：一个共享的MLP (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mi>L</mi><msup><mi>P</mi><mrow><mi>n</mi><mi>e</mi><mi>r</mi><mi>f</mi></mrow></msup></mrow><annotation encoding="application/x-tex">MLP^{nerf}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8491079999999999em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mord mathdefault">L</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8491079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight" style="margin-right:0.10764em;">f</span></span></span></span></span></span></span></span></span></span></span></span>)。<strong>对于3D空间中的任意点，通过双线性插值从Triplane的三个平面上查询其特征，拼接后输入该MLP，预测该点的颜色 (RGB) 和密度 (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>σ</mi></mrow><annotation encoding="application/x-tex">\sigma</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">σ</span></span></span></span>)，最后通过体积渲染公式合成任意视角的图像。</strong>
+<ul>
+<li>架构：10 层 MLP，隐藏维度 64，ReLU 激活；</li>
+<li>输入：3D 点在 triplane 查询的特征（3×80 维度）；</li>
+<li>输出：RGB 颜色（3 维）和体密度σ（1 维），用于体渲染。</li>
+</ul>
+</li>
+</ol>
+<p>体积渲染公式如下，其中对于射线 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="bold">r</mi></mrow><annotation encoding="application/x-tex">\mathbf{r}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.44444em;vertical-align:0em;"></span><span class="mord"><span class="mord mathbf">r</span></span></span></span></span> 上的点 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi mathvariant="bold">p</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">\mathbf{p}_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.63888em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord"><span class="mord mathbf">p</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>：</p>
+<p class='katex-block katex-error' title='ParseError: KaTeX parse error: Unexpected character: &#039;&#039; at position 42: …sum_i T_i (1 - ̲xp(-\sigma_i \d…'>\mathbf{c}(\mathbf{r}) = \sum_i T_i (1 - xp(-\sigma_i \delta_i)) \mathbf{c}_i, \quad T_i = xp(-\sum_{j=1}^{i-1} \sigma_j \delta_j)
+</p>
+<h2 id="特征提取">特征提取</h2>
+<ul>
+<li><strong>图像特征</strong>：使用自蒸馏训练的 DINO 模型作为图像编码器。DINO 能学习到图像中显著内容的结构和纹理的可解释注意力，这种详细的结构和纹理信息对3D几何和颜色重建至关重要。作者不仅使用了ViT预定义的[CLS] token，还利用了<strong>整个图像块特征序列</strong> <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><msub><mi>h</mi><mi>i</mi></msub><msubsup><mo stretchy="false">}</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></msubsup></mrow><annotation encoding="application/x-tex">\{h_i\}_{i=1}^{n}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.008664em;vertical-align:-0.258664em;"></span><span class="mopen">{</span><span class="mord"><span class="mord mathdefault">h</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose"><span class="mclose">}</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-2.441336em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.258664em;"><span></span></span></span></span></span></span></span></span></span>，以更好地保留这些信息。</li>
+<li><strong>相机特征</strong>：构造一个20维的相机特征向量 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="bold">c</mi></mrow><annotation encoding="application/x-tex">\mathbf{c}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.44444em;vertical-align:0em;"></span><span class="mord"><span class="mord mathbf">c</span></span></span></span></span>​，包含外参矩阵（经过归一化）、焦距和主点。通过一个MLP将其映射为高维相机嵌入 $	ilde{\mathbf{c}}$​，用于调制解码器。相机外参矩阵（4×4）、焦距、主点拼接为 20 维特征，经 MLP 映射为高维嵌入；嵌入特征通过 ModLN 调制 transformer 各层输入，让模型感知相机姿态，辅助 2D-3D 映射。</li>
+</ul>
+<h2 id="三维物体生成步骤">三维物体生成步骤</h2>
+<ol>
+<li>
+<p><strong>输入与编码</strong>：输入一张去除背景、中心化的RGB图像。DINO编码器提取其图像块特征序列 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><msub><mi>h</mi><mi>i</mi></msub><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\{h_i\}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord"><span class="mord mathdefault">h</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">}</span></span></span></span>。</p>
+</li>
+<li>
+<p><strong>图像编码</strong>：预处理后的图像输入 DINO ViT，输出 1025 个特征 token，保留图像细节和全局信息；</p>
+</li>
+<li>
+<p><strong>Triplane解码</strong>：图像特征 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><msub><mi>h</mi><mi>i</mi></msub><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\{h_i\}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord"><span class="mord mathdefault">h</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">}</span></span></span></span> 和相机嵌入 $	ilde{\mathbf{c}}$ 被送入图像到Triplane解码器。解码器通过交叉注意力将图像信息“绘制”到初始的、可学习的空间位置嵌入上，再通过自注意力完善Triplane内部的空间结构关系，最终输出一个低分辨率的Triplane特征。</p>
+<ul>
+<li>初始化 triplane 位置嵌入，结合相机特征嵌入输入 transformer 解码器；</li>
+<li>经 16 层 transformer 的 cross-attention（融合图像特征）和 self-attention（优化空间关系），输出 3×32×32 特征；</li>
+<li>反卷积上采样至 3×64×64×80，得到最终 triplane 表示。</li>
+</ul>
+</li>
+<li>
+<p><strong>特征上采样</strong>：通过可学习的反卷积层将解码器输出的Triplane特征上采样至目标分辨率（如 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>64</mn><mi>i</mi><mi>m</mi><mi>e</mi><mi>s</mi><mn>64</mn><mi>i</mi><mi>m</mi><mi>e</mi><mi>s</mi><mn>3</mn></mrow><annotation encoding="application/x-tex">64 	imes 64 	imes 3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord">6</span><span class="mord">4</span><span class="mord mathdefault">i</span><span class="mord mathdefault">m</span><span class="mord mathdefault">e</span><span class="mord mathdefault">s</span><span class="mord">6</span><span class="mord">4</span><span class="mord mathdefault">i</span><span class="mord mathdefault">m</span><span class="mord mathdefault">e</span><span class="mord mathdefault">s</span><span class="mord">3</span></span></span></span> 个特征向量）。</p>
+</li>
+<li>
+<p><strong>3D点查询与属性预测</strong>：对于需要渲染的3D空间点，将其投影到Triplane的三个特征平面上，通过双线性插值获取对应的特征，拼接后输入 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mi>L</mi><msup><mi>P</mi><mrow><mi>n</mi><mi>e</mi><mi>r</mi><mi>f</mi></mrow></msup></mrow><annotation encoding="application/x-tex">MLP^{nerf}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8491079999999999em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mord mathdefault">L</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8491079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight" style="margin-right:0.10764em;">f</span></span></span></span></span></span></span></span></span></span></span></span>，得到该点的颜色和密度。</p>
+<ul>
+<li>对 3D 空间 [−1,1]³ 内的点，从 triplane 查询特征并输入 MLP，预测颜色和密度；</li>
+<li>体渲染计算像素颜色：u®=∑iTi(1−exp(−σiδi))ui（Ti=exp(−∑j=1i−1σjδj)）；</li>
+</ul>
+</li>
+<li>
+<p><strong>渲染与网格提取</strong>：通过体积渲染公式，沿相机光线积分，合成任意新视角的RGB图像和深度图。在推理时，可通过在规则网格上查询密度并使用 Marching Cubes 算法，在约2秒内提取出3D网格。</p>
+<p>查询 384×384×384 分辨率的 3D 点密度，通过 Marching Cubes 算法提取 3D 网格，完成生成。</p>
+</li>
+</ol>
+<h2 id="训练与测试数据及对比结果">训练与测试数据及对比结果</h2>
+<ul>
+<li><strong>训练数据</strong>：
+<ul>
+<li><strong>合成数据</strong>：从 Objaverse 数据集中选取约73万个3D资产，对每个资产进行归一化后，随机渲染32个视角的图像（分辨率 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1024</mn><mi>i</mi><mi>m</mi><mi>e</mi><mi>s</mi><mn>1024</mn></mrow><annotation encoding="application/x-tex">1024 	imes 1024</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mord">2</span><span class="mord">4</span><span class="mord mathdefault">i</span><span class="mord mathdefault">m</span><span class="mord mathdefault">e</span><span class="mord mathdefault">s</span><span class="mord">1</span><span class="mord">0</span><span class="mord">2</span><span class="mord">4</span></span></span></span>）。</li>
+<li><strong>真实数据</strong>：从 MVImgNet 数据集中选取约22万个视频，提取帧，利用预测的物体掩码进行裁剪和居中处理。</li>
+<li>总计使用约<strong>100万个对象</strong>进行训练。</li>
+</ul>
+</li>
+<li><strong>测试数据</strong>：Objaverse 和 MVImgNet 的未见过的图像、ImageNet、Google Scanned Objects、Amazon Berkeley Objects、真实世界拍摄的照片、Adobe Firefly生成的图像。</li>
+<li><strong>对比方法与结果</strong>：与同期state-of-the-art方法进行对比（在Google Scanned Objects的100个物体上评估）：<br>
+| 模型           | FID <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>↓</mo></mrow><annotation encoding="application/x-tex">\downarrow</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mrel">↓</span></span></span></span> | CLIP相似性 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>↑</mo></mrow><annotation encoding="application/x-tex">\uparrow</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mrel">↑</span></span></span></span> | PSNR <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>↑</mo></mrow><annotation encoding="application/x-tex">\uparrow</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mrel">↑</span></span></span></span> | LPIPS <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>↓</mo></mrow><annotation encoding="application/x-tex">\downarrow</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mrel">↓</span></span></span></span> | Chamfer距离 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>↓</mo></mrow><annotation encoding="application/x-tex">\downarrow</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mrel">↓</span></span></span></span> |<br>
+| :------------- | :--------------- | :-------------------- | :-------------- | :----------------- | :----------------------- |<br>
+| Point-E        | 123.70           | 0.741                 | 15.60           | 0.308              | 0.099                    |<br>
+| Shap-E         | 97.05            | 0.805                 | 14.36           | 0.289              | 0.085                    |<br>
+| One-2-3-45     | 139.24           | 0.713                 | 12.42           | 0.448              | 0.123                    |<br>
+| <strong>LRM (Ours)</strong> | <strong>31.44</strong>        | <strong>0.902</strong>             | <strong>19.60</strong>       | <strong>0.163</strong>          | <strong>0.053</strong>                |<br>
+LRM在所有评估指标上均显著优于对比方法。视觉对比也显示LRM能产生细节更清晰、表面更一致的重建结果。</li>
+</ul>
+<h2 id="消融实验分析">消融实验分析</h2>
+<p>论文在缩小版模型上进行了广泛的消融实验，验证了各个设计选择的有效性：</p>
+<ol>
+<li><strong>合成 vs. 真实数据</strong>：同时使用合成和真实数据训练效果最好，优于仅使用任何一种，表明真实数据的多样性（光照、目标尺寸、相机位姿）对学习泛化先验至关重要。</li>
+<li><strong>训练视图数量</strong>：每个形状使用更多不同的训练视图（如16个）能带来更好的重建质量，因为模型能更好地关联同一形状不同部分的外观和几何。</li>
+<li><strong>模型超参数</strong>：
+<ul>
+<li><strong>解码器深度</strong>：增加交叉注意力层数（从6到24层）能略微提升性能，尤其是语义和感知相似性指标。</li>
+<li><strong>NeRF MLP层数</strong>：2到4层是一个“甜点”，过多的层数并无必要，表明形状信息主要由Triplane编码。</li>
+<li><strong>Triplane分辨率</strong>：通过反卷积上采样提高输出Triplane分辨率，能提升图像质量。</li>
+</ul>
+</li>
+<li><strong>相机姿态归一化</strong>：在训练时将输入图像的相机外参归一化到统一视角，<strong>极大地</strong>促进了模型收敛并提升了泛化性能。不归一化或随机化相机姿态会导致结果变差。</li>
+<li><strong>监督侧视图数量</strong>：在训练时，对每个样本使用更多的侧视图（1到4个）进行监督，能提高重建质量。</li>
+<li><strong>训练渲染分辨率</strong>：使用更高的图像分辨率（如 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>128</mn><mi>i</mi><mi>m</mi><mi>e</mi><mi>s</mi><mn>128</mn></mrow><annotation encoding="application/x-tex">128 	imes 128</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">2</span><span class="mord">8</span><span class="mord mathdefault">i</span><span class="mord mathdefault">m</span><span class="mord mathdefault">e</span><span class="mord mathdefault">s</span><span class="mord">1</span><span class="mord">2</span><span class="mord">8</span></span></span></span>）进行训练，鼓励模型学习更多高频细节，显著改善结果。</li>
+<li><strong>LPIPS损失</strong>：使用LPIPS感知损失对提升重建图像的视觉质量至关重要，移除会导致各项指标大幅下降。</li>
+</ol>
+<h2 id="其他关键技术点">其他关键技术点</h2>
+<ul>
+<li><strong>相机特征调制 (Modulation)</strong>：借鉴 DiT 的思想，通过自适应层归一化将相机信息注入解码器的每一层。调制公式如下：</li>
+</ul>
+<p class='katex-block katex-error' title='ParseError: KaTeX parse error: Unexpected character: &#039;&#039; at position 9: \gamma, ̲eta = MLP^{mod}…'>\gamma, eta = MLP^{mod}(	ilde{c})
+</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mi>o</mi><mi>d</mi><mi>L</mi><msub><mi>N</mi><mi>c</mi></msub><mo stretchy="false">(</mo><msub><mi>f</mi><mi>j</mi></msub><mo stretchy="false">)</mo><mo>=</mo><mi>L</mi><mi>N</mi><mo stretchy="false">(</mo><msub><mi>f</mi><mi>j</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">ModLN_c(f_j) = LN(f_j) </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.036108em;vertical-align:-0.286108em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mord mathdefault">o</span><span class="mord mathdefault">d</span><span class="mord mathdefault">L</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.10903em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">c</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.036108em;vertical-align:-0.286108em;"></span><span class="mord mathdefault">L</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></span></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://outbreak-sen.github.io">outbreak_sen</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://outbreak-sen.github.io/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_LRM/">http://outbreak-sen.github.io/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_LRM/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://outbreak-sen.github.io" target="_blank">This is a 部落格 of outbreak_sen</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Mesh%E7%94%9F%E6%88%90/">Mesh生成</a></div><div class="post-share"><div class="social-share" data-image="/./img/head.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_IterMVSNet/" title="论文阅读_IterMVSNet"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">论文阅读_IterMVSNet</div></div><div class="info-2"><div class="info-item-1">IterMVS 基本信息    项目 内容     论文标题 IterMVS: Iterative Probability Estimation for Efficient Multi-View Stereo   作者 Fangjinhua Wang(又是你), Silvano Galliani, Christoph Vogel, Marc Pollefeys   作者单位 ETH Zurich   时间 2021   发表会议/期刊 CVPR    方法概览    特点 文章性质     输入 标定之后的多视角图像   输出 场景的点云图，每个视角的法线和深度图   所属领域 MVS    摘要精简 本文提出 IterMVS，一种高效的高分辨率多视图立体（MVS）数据驱动方法。核心是基于 GRU  的概率估计器，其隐藏态编码像素级深度概率分布，通过多轮迭代注入多尺度匹配信息，逐步优化分布并推断深度与置信度。该方法创新结合分类与回归策略，兼顾多模态分布鲁棒性与亚像素精度。在 DTU、Tanks&amp;Temples 和 ETH3D 数据集上验证表明，IterMVS...</div></div></div></a><a class="pagination-related" href="/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_LucidDream/" title="论文阅读_LucidDreamer"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">论文阅读_LucidDreamer</div></div><div class="info-2"><div class="info-item-1"> LucidDreamer: Domain-free Generation of 3D Gaussian Splatting Scenes 基本信息    项目 内容     论文标题 LucidDreamer: Domain-free Generation of 3D Gaussian Splatting Scenes   作者 Jaeyoung Chung, Suyoung Lee, Hyeongjin Nam, Jaerin Lee, Kyoung Mu Lee   作者单位 ASRI, Department of ECE, Seoul National University, Seoul, Korea   时间 2023 (推断)   发表会议/期刊 未明确说明（可能是计算机视觉顶会，如 ICCV/CVPR）    方法概览    特点 文章性质     输入 文本、RGB图像、RGBD图像   输出 3D高斯喷洒场景（3D Gaussian Splatting Scenes）   所属领域 3D场景生成    摘要精简  LucidDreamer...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/./img/head.png" onerror="this.onerror=null;this.src='/./img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">outbreak_sen</div><div class="author-info-description">an interesting man</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">185</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">66</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">14</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/outbreak-sen" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://blog.csdn.net/outbreakrmb" target="_blank" title="CSDN"><i class="fa fa-book-open"></i></a><a class="social-icon" href="/1023786231" target="_blank" title="QQ"><i class="fab fa-qq"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">LRM: Large Reconstruction Model for Single Image to 3D</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="toc-text">基本信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E6%A6%82%E8%A7%88"><span class="toc-text">方法概览</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%91%98%E8%A6%81%E7%B2%BE%E7%AE%80"><span class="toc-text">摘要精简</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%95%E8%A8%80%E4%B8%8E%E5%87%BA%E5%8F%91%E7%82%B9"><span class="toc-text">引言与出发点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E6%96%B0%E7%82%B9"><span class="toc-text">创新点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84%E6%9E%84%E6%88%90"><span class="toc-text">网络架构构成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%89%B9%E5%BE%81%E6%8F%90%E5%8F%96"><span class="toc-text">特征提取</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E7%BB%B4%E7%89%A9%E4%BD%93%E7%94%9F%E6%88%90%E6%AD%A5%E9%AA%A4"><span class="toc-text">三维物体生成步骤</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%AD%E7%BB%83%E4%B8%8E%E6%B5%8B%E8%AF%95%E6%95%B0%E6%8D%AE%E5%8F%8A%E5%AF%B9%E6%AF%94%E7%BB%93%E6%9E%9C"><span class="toc-text">训练与测试数据及对比结果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B6%88%E8%9E%8D%E5%AE%9E%E9%AA%8C%E5%88%86%E6%9E%90"><span class="toc-text">消融实验分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E5%85%B3%E9%94%AE%E6%8A%80%E6%9C%AF%E7%82%B9"><span class="toc-text">其他关键技术点</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/03/09/swiftUI%E7%9A%84%E7%AC%94%E8%AE%B0/" title="swiftUI">swiftUI</a><time datetime="2026-03-09T14:01:08.361Z" title="发表于 2026-03-09 22:01:08">2026-03-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/01/17/2026-01-17-FVMVS%E7%A0%94%E5%88%B6%E8%BF%87%E7%A8%8B/" title="FVMVS研制过程">FVMVS研制过程</a><time datetime="2026-01-17T07:41:46.000Z" title="发表于 2026-01-17 15:41:46">2026-01-17</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_MoGe%202/" title="论文阅读_MoGe 2">论文阅读_MoGe 2</a><time datetime="2025-12-03T06:04:18.000Z" title="发表于 2025-12-03 14:04:18">2025-12-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_%E5%8F%98%E5%88%86%E8%87%AA%E7%BC%96%E7%A0%81%E5%99%A8VAE/" title="论文阅读_变分自编码器VAE">论文阅读_变分自编码器VAE</a><time datetime="2025-12-03T06:01:57.000Z" title="发表于 2025-12-03 14:01:57">2025-12-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/03/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0_SFM/" title="学习笔记_SFM">学习笔记_SFM</a><time datetime="2025-12-03T05:57:28.000Z" title="发表于 2025-12-03 13:57:28">2025-12-03</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2026 By outbreak_sen</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><div class="js-pjax"></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

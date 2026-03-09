@@ -1,0 +1,427 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>论文阅读_SyncDreamer | This is a 部落格 of outbreak_sen</title><meta name="author" content="outbreak_sen"><meta name="copyright" content="outbreak_sen"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="SyncDreamer: Generating Multiview-Consistent Images from a Single-view Image 基本信息    项目 内容     论文标题 SyncDreamer: Generating Multiview-Consistent Images from a Single-view Image   作者 Yuan Liu, Cheng L">
+<meta property="og:type" content="article">
+<meta property="og:title" content="论文阅读_SyncDreamer">
+<meta property="og:url" content="http://outbreak-sen.github.io/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_SyncDream/index.html">
+<meta property="og:site_name" content="This is a 部落格 of outbreak_sen">
+<meta property="og:description" content="SyncDreamer: Generating Multiview-Consistent Images from a Single-view Image 基本信息    项目 内容     论文标题 SyncDreamer: Generating Multiview-Consistent Images from a Single-view Image   作者 Yuan Liu, Cheng L">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://outbreak-sen.github.io/img/head.png">
+<meta property="article:published_time" content="2025-12-03T05:46:01.000Z">
+<meta property="article:modified_time" content="2026-03-09T15:08:14.566Z">
+<meta property="article:author" content="outbreak_sen">
+<meta property="article:tag" content="Mesh重建">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://outbreak-sen.github.io/img/head.png"><link rel="shortcut icon" href="/img/h_beautygirl.png"><link rel="canonical" href="http://outbreak-sen.github.io/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_SyncDream/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '论文阅读_SyncDreamer',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  isShuoshuo: false
+}</script><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="This is a 部落格 of outbreak_sen" type="application/atom+xml">
+<link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head><body><div id="web_bg" style="background-image: url(/img/v_beautygirl0.jpeg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/./img/head.png" onerror="onerror=null;src='./img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">185</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">66</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">14</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw fa fa-camera-retro"></i><span> 树洞</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 作品与鉴赏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/h_beautygirl.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/h_beautygirl.png" alt="Logo"><span class="site-name">This is a 部落格 of outbreak_sen</span></a><a class="nav-page-title" href="/"><span class="site-name">论文阅读_SyncDreamer</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw fa fa-camera-retro"></i><span> 树洞</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 作品与鉴赏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">论文阅读_SyncDreamer</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-12-03T05:46:01.000Z" title="发表于 2025-12-03 13:46:01">2025-12-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-03-09T15:08:14.566Z" title="更新于 2026-03-09 23:08:14">2026-03-09</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/">论文阅读</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><hr>
+<h1>SyncDreamer: Generating Multiview-Consistent Images from a Single-view Image</h1>
+<h2 id="基本信息">基本信息</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">项目</th>
+<th style="text-align:left">内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>论文标题</strong></td>
+<td style="text-align:left">SyncDreamer: Generating Multiview-Consistent Images from a Single-view Image</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>作者</strong></td>
+<td style="text-align:left">Yuan Liu, Cheng Lin, Zijiao Zeng, Xiaoxiao Long, Lingjie Liu, Taku Komura, Wenping Wang</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>作者单位</strong></td>
+<td style="text-align:left">The University of Hong Kong, Tencent Games, University of Pennsylvania, Texas A&amp;M University</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>时间</strong></td>
+<td style="text-align:left">2023</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>发表会议/期刊</strong></td>
+<td style="text-align:left">ICLR 2024</td>
+</tr>
+</tbody>
+</table>
+<h2 id="方法概览">方法概览</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">特点</th>
+<th style="text-align:left">文章性质</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>输入</strong></td>
+<td style="text-align:left">单视角物体图像</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>输出</strong></td>
+<td style="text-align:left">多视角一致图像（用于3D重建）</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>所属领域</strong></td>
+<td style="text-align:left">单视角三维重建、多视角合成</td>
+</tr>
+</tbody>
+</table>
+<h2 id="摘要精简">摘要精简</h2>
+<p>SyncDreamer是一种新颖的扩散模型，<strong>能够从单视角图像生成多视角一致的图像</strong>。该模型通过同步的多视角扩散过程，在一次反向过程中联合生成所有视角的图像，利用3D感知的特征注意力机制在不同视图间同步中间状态，从而在几何和颜色上保持高度一致性。核心设计是通过 3D 感知特征注意力机制，在反向扩散的每一步同步所有生成视图的中间状态，建模多视角图像的联合概率分布。模型基于预训练的  Zero123（Stable Diffusion 变体）初始化，保留强泛化能力，可处理照片、素描等多种风格输入。**生成的多视角图像无需 SDS  损失，直接通过 vanilla NeuS 即可重建高质量 3D 网格，其实就是借助了NeRF的变种。**实验表明，其在多视角一致性（PSNR/SSIM/LPIPS）和 3D  重建精度（Chamfer 距离 / Volume IoU）上显著超越 Zero123、RealFusion、Magic123  等基线，且支持生成多个合理的 3D 实例。</p>
+<h2 id="sds">SDS</h2>
+<p>SDS 的本质： <strong>用一个“已经训练好的 2D 扩散模型”，来给一个“正在优化的 3D 表示”提供梯度信号</strong>，让 3D 模型渲染出来的图像，逐渐变成扩散模型认为“符合文本语义的图像”。<strong>SDS 就是连接 2D diffusion 和 3D 表示的桥梁。</strong></p>
+<p>DreamFusion 的 SDS 有明显缺陷：每个视角独立优化，容易出现 <strong>Janus problem（多脸怪）</strong></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20251219122018265.png" alt="image-20251219122018265"></p>
+<h2 id="引言与出发点">引言与出发点</h2>
+<p>从单张图像感知3D结构是一个挑战，因为图像中可用的3D信息有限。虽然已有基于扩散模型的2D图像生成方法取得巨大成功，但直接训练泛化性强的3D扩散模型需要大量3D数据，而现有3D数据集不足以覆盖任意3D形状的复杂性。因此，近期工作尝试利用预训练的2D扩散模型进行3D任务，例如通过蒸馏（distillation）方法从文本生成3D形状，或将此流程用于单视角重建。然而，这些方法通常需要耗时的文本反转（textual inversion）和NeRF优化，且不能保证结果质量。</p>
+<p>另一种思路是直接用2D扩散模型生成多视角图像用于3D重建，但关键问题是如何在生成同一物体图像时保持多视角一致性。现有方法通过条件输入、自回归生成或神经场渲染等方式试图提升一致性，但要么局限于特定物体类别，要么无法保证任意物体的一致性。</p>
+<p>因此，本文提出SyncDreamer，旨在为任意物体的单视角重建生成多视角一致的图像。核心思想是将扩散框架扩展为对多视角图像的<strong>联合概率分布</strong>进行建模，通过同步的多视角扩散模型，在反向过程的每一步同步所有生成图像的中间状态，从而实现一致性。</p>
+<h2 id="创新点">创新点</h2>
+<ol>
+<li><strong>同步多视角扩散模型</strong>：首次提出同步多视角扩散模型，将单视角生成扩展到多视角联合生成，<strong>通过建模多视角图像的联合概率分布，在一次反向过程中同步生成所有视角的图像，确保几何和外观的一致性。</strong></li>
+<li><strong>3D感知的特征注意力机制</strong>：<strong>设计了一个新颖的3D感知特征注意力模块，通过构建空间特征体（spatial feature volume）和视图视锥体特征（view frustum feature volume），并在UNet的中间特征图上应用深度注意力（depth-wise attention），以关联不同视角间的对应特征，从而在生成过程中同步各视角状态。</strong></li>
+<li><strong>固定视点生成策略</strong>：在训练和生成时使用一组固定的目标视点（方位角均匀分布，仰角固定为30°），这简化了多视角一致性学习，并使模型更容易收敛。</li>
+<li><strong>高效的3D重建流程</strong>：生成的图像具有高度一致性，因此可以直接使用标准的NeRF或NeuS进行重建，无需复杂的损失函数或耗时的优化，简化了单视角3D重建流程。</li>
+<li><strong>强泛化能力与多样性</strong>：模型权重基于在Objaverse上微调的Zero123模型初始化，继承了其强大的泛化能力，能够处理照片、草图、卡通、油画等多种风格的输入，并能从同一输入生成多个合理的3D实例。</li>
+</ol>
+<h2 id="相关工作总结与对比">相关工作总结与对比</h2>
+<table>
+<thead>
+<tr>
+<th>对比方法</th>
+<th>核心问题指出</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Zero123（单视角扩散）</td>
+<td>1. 多视角一致性差，生成图像几何矛盾；2. 直接重建 3D 表面粗糙，需 SDS 优化；3. 无纹理渲染时一致性崩溃</td>
+</tr>
+<tr>
+<td>RealFusion（SDS 蒸馏）</td>
+<td>1. 依赖文本 inversion，耗时且细节匹配差；2. 生成图像视觉不逼真；3. 多视角一致性依赖蒸馏，稳定性低</td>
+</tr>
+<tr>
+<td>Magic123（混合先验）</td>
+<td>1. 依赖外部深度估计，深度不准时重建错误；2. 过度依赖 Zero123 输出，继承其一致性缺陷；3. 泛化性受深度模型限制</td>
+</tr>
+<tr>
+<td>Point-E/Shap-E（3D 生成）</td>
+<td>1. 重建网格不完整，细节缺失；2. 单图输入时文本嵌入匹配差，几何精度低；3. 无法生成多个合理实例</td>
+</tr>
+<tr>
+<td>One-2-3-45（SDF 回归）</td>
+<td>1. 从 Zero123 的不一致输出回归 SDF，丢失细节；2. 重建表面光滑但几何失真；3. 不支持多种风格输入</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">相关领域</th>
+<th style="text-align:left">代表性工作</th>
+<th style="text-align:left">指出问题/局限性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>3D扩散模型</strong></td>
+<td style="text-align:left">Point-E, Shap-E, 3D生成扩散模型</td>
+<td style="text-align:left">直接训练3D扩散模型需要大量3D数据，现有数据集不足，生成质量和泛化性仍远不如2D图像生成模型。</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>基于蒸馏的2D提升方法</strong></td>
+<td style="text-align:left">DreamFusion, SJC, RealFusion, Magic123</td>
+<td style="text-align:left">需要耗时的文本反转和NeRF优化；每个形状需单独优化且结果难以预测；受限于文本嵌入的表示能力。</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>基于2D扩散的多视角生成</strong></td>
+<td style="text-align:left">Zero123, SparseFusion, Viewset Diffusion, MVDream</td>
+<td style="text-align:left">Zero123逐视角生成，缺乏多视角一致性；其他方法或依赖已知几何、或采用自回归生成、或局限于特定类别；MVDream面向文本到3D，而SyncDreamer专注于单视角到多视角。</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>单视角重建传统方法</strong></td>
+<td style="text-align:left">基于回归或检索的方法，NeRF-GANs</td>
+<td style="text-align:left">泛化性差，难以处理新类别；NeRF-GANs通常针对特定类别训练，难以扩展到任意物体。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="网络架构">网络架构</h2>
+<p>SyncDreamer的核心是一个<strong>同步的多视角噪声预测器</strong>，其架构如图2所示，主要包括：</p>
+<ol>
+<li><strong>主干UNet</strong>：基于Zero123的UNet初始化，输入为噪声目标视图<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi mathvariant="bold">x</mi><mi>t</mi><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></msubsup></mrow><annotation encoding="application/x-tex">\mathbf{x}_t^{(n)}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.2905559999999998em;vertical-align:-0.24575599999999992em;"></span><span class="mord"><span class="mord"><span class="mord mathbf">x</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.0448em;"><span style="top:-2.454244em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">t</span></span></span><span style="top:-3.2197999999999998em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">(</span><span class="mord mathdefault mtight">n</span><span class="mclose mtight">)</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.24575599999999992em;"><span></span></span></span></span></span></span></span></span></span>、输入视图<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="bold">y</mi></mrow><annotation encoding="application/x-tex">\mathbf{y}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.63888em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathbf" style="margin-right:0.01597em;">y</span></span></span></span></span>和视角差<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Δ</mi><msup><mi mathvariant="bold">v</mi><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></msup></mrow><annotation encoding="application/x-tex">\Delta\mathbf{v}^{(n)}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8879999999999999em;vertical-align:0em;"></span><span class="mord">Δ</span><span class="mord"><span class="mord"><span class="mord mathbf" style="margin-right:0.01597em;">v</span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8879999999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">(</span><span class="mord mathdefault mtight">n</span><span class="mclose mtight">)</span></span></span></span></span></span></span></span></span></span></span></span>。训练时，UNet和文本注意力层被冻结以保持泛化能力。</li>
+<li><strong>3D感知特征注意力模块</strong>：
+<ul>
+<li><strong>空间特征体构建</strong>：从所有噪声目标视图<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi mathvariant="bold">x</mi><mi>t</mi><mrow><mo stretchy="false">(</mo><mn>1</mn><mo>:</mo><mi>N</mi><mo stretchy="false">)</mo></mrow></msubsup></mrow><annotation encoding="application/x-tex">\mathbf{x}_t^{(1:N)}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.2905559999999998em;vertical-align:-0.24575599999999992em;"></span><span class="mord"><span class="mord"><span class="mord mathbf">x</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.0448em;"><span style="top:-2.454244em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">t</span></span></span><span style="top:-3.2197999999999998em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">(</span><span class="mord mtight">1</span><span class="mrel mtight">:</span><span class="mord mathdefault mtight" style="margin-right:0.10903em;">N</span><span class="mclose mtight">)</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.24575599999999992em;"><span></span></span></span></span></span></span></span></span></span>通过卷积提取特征，并投影到3D空间，形成<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>V</mi><mn>3</mn></msup></mrow><annotation encoding="application/x-tex">V^3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.22222em;">V</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span></span>大小的空间特征体。</li>
+<li><strong>视图视锥体特征采样</strong>：为当前目标视图<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi mathvariant="bold">x</mi><mi>t</mi><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></msubsup></mrow><annotation encoding="application/x-tex">\mathbf{x}_t^{(n)}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.2905559999999998em;vertical-align:-0.24575599999999992em;"></span><span class="mord"><span class="mord"><span class="mord mathbf">x</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.0448em;"><span style="top:-2.454244em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">t</span></span></span><span style="top:-3.2197999999999998em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">(</span><span class="mord mathdefault mtight">n</span><span class="mclose mtight">)</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.24575599999999992em;"><span></span></span></span></span></span></span></span></span></span>构建一个像素对齐的视锥体，通过从空间特征体插值获得其特征。</li>
+<li><strong>深度注意力层</strong>：在UNet的每个中间特征图上，新增的深度注意力层沿深度维度对视锥体特征进行注意力操作，以聚合多视角信息。</li>
+</ul>
+</li>
+<li><strong>同步生成流程</strong>：对<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span></span></span></span>个目标视图，分别构建一个共享的噪声预测器，但在反向扩散的每一步，通过上述3D感知注意力机制共享所有视图的信息，从而实现同步生成。</li>
+</ol>
+<h2 id="特征提取机制">特征提取机制</h2>
+<p>特征提取的核心是<strong>3D感知的特征注意力</strong>，其步骤如下：</p>
+<ol>
+<li><strong>多视角特征提取</strong>：每个噪声目标视图通过卷积层提取2D特征图。</li>
+<li><strong>3D空间特征体构建</strong>：将所有2D特征图通过投影（利用已知相机参数）聚合到一个3D空间特征体中，捕获场景的几何结构。</li>
+<li><strong>视图视锥体采样</strong>：对于当前待去噪的视角，根据其相机参数，从3D空间特征体中采样出一个与图像像素对齐的视锥体特征体积（<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mi>i</mi><mi>m</mi><mi>e</mi><mi>s</mi><mi>W</mi><mi>i</mi><mi>m</mi><mi>e</mi><mi>s</mi><mi>D</mi><mi>i</mi><mi>m</mi><mi>e</mi><mi>s</mi><mi>C</mi></mrow><annotation encoding="application/x-tex">H 	imes W 	imes D 	imes C</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.08125em;">H</span><span class="mord mathdefault">i</span><span class="mord mathdefault">m</span><span class="mord mathdefault">e</span><span class="mord mathdefault">s</span><span class="mord mathdefault" style="margin-right:0.13889em;">W</span><span class="mord mathdefault">i</span><span class="mord mathdefault">m</span><span class="mord mathdefault">e</span><span class="mord mathdefault">s</span><span class="mord mathdefault" style="margin-right:0.02778em;">D</span><span class="mord mathdefault">i</span><span class="mord mathdefault">m</span><span class="mord mathdefault">e</span><span class="mord mathdefault">s</span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span></span></span></span>），其中<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi></mrow><annotation encoding="application/x-tex">D</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">D</span></span></span></span>是深度平面数。</li>
+<li><strong>深度注意力融合</strong>：将UNet中间层的2D特征图（<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mi>i</mi><mi>m</mi><mi>e</mi><mi>s</mi><mi>W</mi><mi>i</mi><mi>m</mi><mi>e</mi><mi>s</mi><mi>C</mi></mrow><annotation encoding="application/x-tex">H 	imes W 	imes C</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.08125em;">H</span><span class="mord mathdefault">i</span><span class="mord mathdefault">m</span><span class="mord mathdefault">e</span><span class="mord mathdefault">s</span><span class="mord mathdefault" style="margin-right:0.13889em;">W</span><span class="mord mathdefault">i</span><span class="mord mathdefault">m</span><span class="mord mathdefault">e</span><span class="mord mathdefault">s</span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span></span></span></span>）与视锥体特征体积进行深度注意力计算。具体地，将2D特征图的每个空间位置沿通道维视为查询（query），在视锥体特征体积的对应深度列（<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi><mi>i</mi><mi>m</mi><mi>e</mi><mi>s</mi><mi>C</mi></mrow><annotation encoding="application/x-tex">D 	imes C</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">D</span><span class="mord mathdefault">i</span><span class="mord mathdefault">m</span><span class="mord mathdefault">e</span><span class="mord mathdefault">s</span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span></span></span></span>）上进行注意力，从而融合多视角几何信息，增强特征的一致性。</li>
+</ol>
+<h2 id="三维物体生成流程">三维物体生成流程</h2>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20251219122037673.png" alt="image-20251219122037673"></p>
+<p>从单视角图像生成3D物体的完整流程分为两步：</p>
+<ol>
+<li>
+<p><strong>多视角一致图像生成</strong>：</p>
+<ul>
+<li>输入：单视角图像<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="bold">y</mi></mrow><annotation encoding="application/x-tex">\mathbf{y}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.63888em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathbf" style="margin-right:0.01597em;">y</span></span></span></span></span>（支持 256×256 分辨率，风格包括照片、素描、卡通等），粗略估计输入图像的仰角（或使用外部估计器）；</li>
+<li>过程：使用训练好的SyncDreamer模型，以<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="bold">y</mi></mrow><annotation encoding="application/x-tex">\mathbf{y}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.63888em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathbf" style="margin-right:0.01597em;">y</span></span></span></span></span>为条件，通过扩散模型的反向过程（如DDIM采样）同步生成<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span></span></span></span>个（默认16个）固定视点下的多视角图像<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><msubsup><mi mathvariant="bold">x</mi><mn>0</mn><mrow><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></msubsup><mo separator="true">,</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mo separator="true">,</mo><msubsup><mi mathvariant="bold">x</mi><mn>0</mn><mrow><mo stretchy="false">(</mo><mi>N</mi><mo stretchy="false">)</mo></mrow></msubsup><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\{\mathbf{x}_0^{(1)}, ..., \mathbf{x}_0^{(N)}\}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.311108em;vertical-align:-0.26630799999999993em;"></span><span class="mopen">{</span><span class="mord"><span class="mord"><span class="mord mathbf">x</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.0448em;"><span style="top:-2.433692em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span><span style="top:-3.2198em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">(</span><span class="mord mtight">1</span><span class="mclose mtight">)</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.26630799999999993em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">.</span><span class="mord">.</span><span class="mord">.</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord"><span class="mord mathbf">x</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.0448em;"><span style="top:-2.433692em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span><span style="top:-3.2198em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">(</span><span class="mord mathdefault mtight" style="margin-right:0.10903em;">N</span><span class="mclose mtight">)</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.26630799999999993em;"><span></span></span></span></span></span></span><span class="mclose">}</span></span></span></span>。这些图像在几何和外观上保持一致，计算每个目标视图与输入视图的姿态差异Δv(n)。</li>
+<li>可选：可以生成多个随机种子下的实例，选择最合理的一组用于重建。</li>
+</ul>
+</li>
+<li>
+<p><strong>初始化</strong></p>
+<ul>
+<li>为 16 个目标视图分别初始化噪声图像xT(1:16)∼N(0,I)；</li>
+<li>加载预训练 Zero123 权重，冻结 UNet 和文本注意力层，初始化 3D 感知特征注意力模块参数。</li>
+</ul>
+</li>
+<li>
+<p><strong>同步反向扩散</strong></p>
+<ul>
+<li>迭代 T 步（默认 50 步 DDIM 采样），每步执行：
+<ol>
+<li>对每个目标视图n，将xt(n)与输入图像拼接，输入 UNet 编码器；</li>
+<li>构建所有视图的空间特征体积，经 3D CNN 和视锥体插值得到当前视图的视锥体特征；</li>
+<li>深度注意力层融合视锥体特征与 UNet 中间特征，解码器预测噪声ϵθ(n)；</li>
+<li>按 DDIM 更新规则计算xt−1(n)，同步更新所有视图的图像。</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>多视角图像输出</strong></p>
+<ul>
+<li>迭代结束得到 16 个视角一致的图像，使用 CarveKit 提取前景掩码，去除背景干扰。</li>
+</ul>
+</li>
+<li>
+<p><strong>3D 重建</strong></p>
+<ul>
+<li>
+<p>将多视角图像与对应的相机参数输入 vanilla NeuS，训练 2k 步（约 10 分钟）；</p>
+</li>
+<li>
+<p>NeuS 学习神经隐式表面，通过 Marching Cubes 提取 3D 网格，输出最终 3D 模型。</p>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="数据集与实验对比">数据集与实验对比</h2>
+<p><strong>训练数据</strong>：</p>
+<ul>
+<li><strong>3D数据</strong>：Objaverse数据集（约80万个物体），渲染多视角图像进行训练。</li>
+<li><strong>输入视图</strong>：16个随机视角（与目标视图方位角相同，仰角随机）。</li>
+<li><strong>目标视图</strong>：16个固定视角（方位角均匀分布于<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mn>0</mn><mi mathvariant="normal">°</mi><mo separator="true">,</mo><mn>360</mn><mi mathvariant="normal">°</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[0°, 360°]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">0</span><span class="mord">°</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">3</span><span class="mord">6</span><span class="mord">0</span><span class="mord">°</span><span class="mclose">]</span></span></span></span>，仰角固定为30°）。</li>
+</ul>
+<p><strong>测试数据与对比</strong>：</p>
+<ul>
+<li><strong>测试集</strong>：Google Scanned Object (GSO) 数据集（30个物体）以及从互联网收集的图像。</li>
+<li><strong>对比方法</strong>：
+<ul>
+<li><strong>新视角合成</strong>：Zero123、RealFusion。</li>
+<li><strong>单视角重建</strong>：Zero123+SDS、RealFusion、Magic123、One-2-3-45、Point-E、Shap-E。</li>
+</ul>
+</li>
+<li><strong>评估指标</strong>：
+<ul>
+<li><strong>新视角合成 (NVS)</strong>：PSNR、SSIM、LPIPS，以及使用COLMAP从生成图像中重建出的点数（衡量多视角一致性）。</li>
+<li><strong>单视角重建 (SVR)</strong>：倒角距离 (Chamfer Distance)、体积IoU。</li>
+</ul>
+</li>
+<li><strong>主要结果</strong>：
+<ul>
+<li><strong>NVS</strong>：SyncDreamer在PSNR、SSIM、LPIPS上均优于Zero123和RealFusion，且COLMAP重建点数远高于Zero123（1123 vs 95），证明其生成图像的多视角一致性更好。</li>
+<li><strong>SVR</strong>：SyncDreamer在倒角距离和体积IoU上均达到最优，重建出的网格更平滑、细节更好。</li>
+</ul>
+</li>
+</ul>
+<h2 id="消融实验">消融实验</h2>
+<ol>
+<li><strong>3D感知注意力模块的作用</strong>：
+<ul>
+<li>移除该模块（相当于在固定视点上微调Zero123）后，生成图像的多视角一致性显著下降，证明了该模块对保持一致性的必要性。</li>
+</ul>
+</li>
+<li><strong>模型初始化策略</strong>：
+<ul>
+<li>比较从Stable Diffusion初始化 vs 从Zero123初始化。从Zero123初始化能更好地利用其3D先验，生成质量更高，泛化能力更强。</li>
+</ul>
+</li>
+<li><strong>UNet训练策略</strong>：
+<ul>
+<li>比较冻结UNet vs 微调UNet。冻结UNet可以防止过拟合（避免模型将物体预测为薄板），保持更好的生成质量和泛化性。</li>
+</ul>
+</li>
+<li><strong>深度注意力层的设计</strong>：
+<ul>
+<li>将深度注意力替换为直接在视锥体特征体积上应用2D卷积，会导致生成质量下降和形状失真，证明了深度注意力设计的有效性。</li>
+</ul>
+</li>
+<li><strong>生成视角数量对重建的影响</strong>：
+<ul>
+<li>使用16、8、4个生成视图进行NeuS重建。实验表明，8个视图仍能保持较好质量，但4个视图会导致重建质量显著下降。</li>
+</ul>
+</li>
+</ol>
+<h2 id="其他创新与讨论">其他创新与讨论</h2>
+<ul>
+<li><strong>支持多样化输入风格</strong>：SyncDreamer能够处理卡通、素描、水墨画、油画等多种风格的2D输入，并生成合理且一致的3D模型，展示了强大的泛化能力。</li>
+<li><strong>生成多样性</strong>：由于扩散模型的随机性，SyncDreamer可以从同一输入图像生成多个合理的3D实例，为用户提供了选择空间。</li>
+<li><strong>扩展到文本到3D</strong>：通过结合文本到图像模型（如Stable Diffusion），SyncDreamer可以实现文本到3D的生成，用户可以先生成满意的2D图像，再将其输入SyncDreamer得到3D模型，流程更灵活。</li>
+<li><strong>局限性</strong>：
+<ul>
+<li>生成的视角固定，如需其他视角需依赖重建的神经表面进行渲染，可能导致模糊。</li>
+<li>生成质量受输入图像中物体大小（透视模式）影响，对训练分布外的透视模式泛化能力有限。</li>
+<li>生成的纹理有时细节较少，因为模型倾向于生成易于保持多视角一致性的较大纹理块。</li>
+</ul>
+</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://outbreak-sen.github.io">outbreak_sen</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://outbreak-sen.github.io/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_SyncDream/">http://outbreak-sen.github.io/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_SyncDream/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://outbreak-sen.github.io" target="_blank">This is a 部落格 of outbreak_sen</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Mesh%E9%87%8D%E5%BB%BA/">Mesh重建</a></div><div class="post-share"><div class="social-share" data-image="/./img/head.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_Sparc3D/" title="论文阅读_Sparc3D"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">论文阅读_Sparc3D</div></div><div class="info-2"><div class="info-item-1"> Sparc3D: Sparse Representation and Construction for High-Resolution 3D Shapes Modeling 基本信息    项目 内容     论文标题 Sparc3D: Sparse Representation and Construction for High-Resolution 3D Shapes Modeling   作者 Zhihao Li, Yufei Wang, Heliang Zheng, Yihao Luo, Bihan Wen   第一作者单位 Nanyang Technological University, Singapore   时间 2025 (根据引用文献推断)   发表会议/期刊 技术报告 (arXiv)    方法概览    特点 描述     输入 原始、非水密的三角网格 (Triangle Mesh)   输出 水密的高分辨率网格 (Watertight Mesh) 或用于生成的稀疏潜在表示   核心目标 解决3D生成流水线中两大瓶颈：1)...</div></div></div></a><a class="pagination-related" href="/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_TransformerFusion/" title="论文阅读_TransformerFusion"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">论文阅读_TransformerFusion</div></div><div class="info-2"><div class="info-item-1">TransformerFusion 基本信息    项目 内容     论文标题 TransformerFusion：Monocular RGB Scene Reconstruction using Transformers   作者 Aljaz Bozic, Pablo Palafox, Justus Thies, Angela Dai, Matthias Niessner   作者单位 Technical University of Munich (TUM)   时间 2021   发表会议/期刊     方法概览    特点 文章性质     输入 标定之后的多视角图像   输出 Mesh   所属领域 MeshMVS      摘要精简 本文提出 TransformerFusion，一种基于 Transformer 的单目 RGB 视频 3D 场景重建方法。该方法将视频帧通过  Transformer 网络融合为体素特征网格，以隐式表示场景；核心是利用 Transformer 的注意力机制，为每个 3D ...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_3D-C2FT/" title="论文阅读_3D-C2FT"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-12-03</div><div class="info-item-2">论文阅读_3D-C2FT</div></div><div class="info-2"><div class="info-item-1">3D-C2FT 基本信息    项目 内容     论文标题 Hunyuan3D   作者 Hunyuan3D Team (腾讯团队)   作者单位 腾讯 (Tencent)   时间 2025   发表会议/期刊     方法概览    特点 文章性质     输入 标定之后的多视角图像   输出 Mesh   所属领域 MeshMVS    3D-C2FT: Coarse-to-fine Transformer for Multi-view 3D Reconstruction 论文总结 方法名称：3D-C2FT (3D Coarse-to-fine Transformer) 作者：Leslie Ching Ow Tiong, Dick Sigmund, Andrew Beng Jin Teoh 第一单位：韩国科学技术研究院 (Korea Institute of Science and Technology) 发表年份与会议/期刊：2022年，发表于国际计算机视觉会议 (ICCV) 或其他计算机视觉顶会...</div></div></div></a><a class="pagination-related" href="/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_3D-R2N2/" title="论文阅读_3D-R2N2"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-12-03</div><div class="info-item-2">论文阅读_3D-R2N2</div></div><div class="info-2"><div class="info-item-1"> 3D-R2N2: A Unified Approach for Single and Multi-view 3D Object Reconstruction 基本信息    项目 内容     论文标题 3D-R2N2: A Unified Approach for Single and Multi-view 3D Object Reconstruction   作者 Christopher B. Choy, Danfei Xu, JunYoung Gwak, Kevin Chen, Silvio Savarese   作者单位 Stanford University   时间 2016   发表会议/期刊 ECCV (European Conference on Computer Vision)    方法概览    特点 文章性质     输入 单张或多张任意视角的RGB图像（无需校准）   输出 三维占据网格 (3D occupancy grid, 如 32imes32imes3232 	imes 32 	imes...</div></div></div></a><a class="pagination-related" href="/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_Clay/" title="论文阅读_CLAY"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-12-03</div><div class="info-item-2">论文阅读_CLAY</div></div><div class="info-2"><div class="info-item-1"> CLAY 基本信息    项目 内容     论文标题 CLAY（Controllable Large-scale Generative Model for Creating High-quality 3D Assets）   作者 LONGWEN ZHANG, ZIYU WANG, QIXUAN ZHANG 等   作者单位 上海科技大学 (ShanghaiTech University)、Deemos Technology Co., Ltd.   时间 2024   发表会议/期刊     方法概览    特点 文章性质     输入 支持多模态输入，包括文本、单张图像、草图、多视角图像、体素、点云、边界框等。   输出 是带有高保真PBR材质贴图的Mesh模型。其内部几何表示使用occupancy field，最终通过Marching Cubes算法提取为Mesh。   所属领域 三维生成 (3D Generation)    DiT:Diffuison...</div></div></div></a><a class="pagination-related" href="/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_DIB-R3D/" title="论文阅读_DIB-R++"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-12-03</div><div class="info-item-2">论文阅读_DIB-R++</div></div><div class="info-2"><div class="info-item-1"> DIB-R++ 基本信息    项目 内容     论文标题 DIB-R++: Learning to Predict Lighting and Material with a Hybrid Differentiable Renderer   作者 Wenzheng Chen, Joey Litalien, Jun Gao, Zian Wang, Clement Fuji Tsang, Sameh Khamis, Or Litany, Sanja Fidler   作者单位 NVIDIA   时间 2021   发表会议/期刊     方法概览    特点 文章性质     输入 单张RGB图像   输出 三维网格（Mesh）以及材质参数（漫反射反照率、粗糙度、镜面反照率等）和光照参数（环境光照图或球面高斯系数）   所属领域 单视图三维重建（无监督）    一、摘要精简 DIB-R++ ...</div></div></div></a><a class="pagination-related" href="/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_DMKit/" title="论文阅读_DMTET"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-12-03</div><div class="info-item-2">论文阅读_DMTET</div></div><div class="info-2"><div class="info-item-1"> DMTET 基本信息    项目 内容     论文标题 Deep Marching Tetrahedra: a Hybrid Representation for High-Resolution 3D Shape Synthesis   作者 Tianchang Shen, Jun Gao, Kangxue Yin, Ming-Yu Liu, Sanja Fidler   作者单位 NVIDIA   时间 2021   发表会议/期刊 NeurIPS 2021    方法概览    特点 文章性质     输入 多模态输入，包括粗体素（16³ 分辨率）、带噪声的点云（5000 个点，高斯噪声 σ=0.005）   输出 核心输出为高分辨率 Triangle Mesh（支持任意拓扑），无 SDF 直接输出，SDF 仅作为中间表示   所属领域 兼具3D 生成与重建（核心为从粗体素生成高分辨率形状，支持带噪声点云重建）     一、摘要精简 DMTet...</div></div></div></a><a class="pagination-related" href="/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_DeMapGS/" title="论文阅读_DeMapGS"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-12-03</div><div class="info-item-2">论文阅读_DeMapGS</div></div><div class="info-2"><div class="info-item-1">  DeMapGS 论文阅读笔记 基本信息    项目 内容     论文标题 DeMapGS (Simultaneous Mesh Deformation and Surface Attribute Mapping via Gaussian Splatting)   作者 Shuyi Zhou, Shengze Zhong, Kenshi Takayama, Takafumi Taketomi, Takeshi Oishi   作者单位 The University of Tokyo (东京大学)   时间 2023（根据引用和内容推断）   发表会议/期刊 暂未明确标注，应属预印本或待发表论文    方法概览    特点 文章性质     输入 多视角图像 以及一个初始的模板网格。   输出 一个可变形、带纹理贴图（漫反射、法线、位移贴图）的三角网格（Mesh），并能提取出相应的高斯溅射（Gaussian Splatting）表示。   所属领域 三维重建     1....</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/./img/head.png" onerror="this.onerror=null;this.src='/./img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">outbreak_sen</div><div class="author-info-description">an interesting man</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">185</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">66</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">14</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/outbreak-sen" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://blog.csdn.net/outbreakrmb" target="_blank" title="CSDN"><i class="fa fa-book-open"></i></a><a class="social-icon" href="/1023786231" target="_blank" title="QQ"><i class="fab fa-qq"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">SyncDreamer: Generating Multiview-Consistent Images from a Single-view Image</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="toc-text">基本信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E6%A6%82%E8%A7%88"><span class="toc-text">方法概览</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%91%98%E8%A6%81%E7%B2%BE%E7%AE%80"><span class="toc-text">摘要精简</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sds"><span class="toc-text">SDS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%95%E8%A8%80%E4%B8%8E%E5%87%BA%E5%8F%91%E7%82%B9"><span class="toc-text">引言与出发点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E6%96%B0%E7%82%B9"><span class="toc-text">创新点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93%E4%B8%8E%E5%AF%B9%E6%AF%94"><span class="toc-text">相关工作总结与对比</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84"><span class="toc-text">网络架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%89%B9%E5%BE%81%E6%8F%90%E5%8F%96%E6%9C%BA%E5%88%B6"><span class="toc-text">特征提取机制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E7%BB%B4%E7%89%A9%E4%BD%93%E7%94%9F%E6%88%90%E6%B5%81%E7%A8%8B"><span class="toc-text">三维物体生成流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E9%9B%86%E4%B8%8E%E5%AE%9E%E9%AA%8C%E5%AF%B9%E6%AF%94"><span class="toc-text">数据集与实验对比</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B6%88%E8%9E%8D%E5%AE%9E%E9%AA%8C"><span class="toc-text">消融实验</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E5%88%9B%E6%96%B0%E4%B8%8E%E8%AE%A8%E8%AE%BA"><span class="toc-text">其他创新与讨论</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/03/09/swiftUI%E7%9A%84%E7%AC%94%E8%AE%B0/" title="swiftUI">swiftUI</a><time datetime="2026-03-09T14:01:08.361Z" title="发表于 2026-03-09 22:01:08">2026-03-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/01/17/2026-01-17-FVMVS%E7%A0%94%E5%88%B6%E8%BF%87%E7%A8%8B/" title="FVMVS研制过程">FVMVS研制过程</a><time datetime="2026-01-17T07:41:46.000Z" title="发表于 2026-01-17 15:41:46">2026-01-17</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_MoGe%202/" title="论文阅读_MoGe 2">论文阅读_MoGe 2</a><time datetime="2025-12-03T06:04:18.000Z" title="发表于 2025-12-03 14:04:18">2025-12-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_%E5%8F%98%E5%88%86%E8%87%AA%E7%BC%96%E7%A0%81%E5%99%A8VAE/" title="论文阅读_变分自编码器VAE">论文阅读_变分自编码器VAE</a><time datetime="2025-12-03T06:01:57.000Z" title="发表于 2025-12-03 14:01:57">2025-12-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/03/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0_SFM/" title="学习笔记_SFM">学习笔记_SFM</a><time datetime="2025-12-03T05:57:28.000Z" title="发表于 2025-12-03 13:57:28">2025-12-03</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2026 By outbreak_sen</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><div class="js-pjax"></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

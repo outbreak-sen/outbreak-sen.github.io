@@ -1,0 +1,385 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>论文阅读_3D-R2N2 | This is a 部落格 of outbreak_sen</title><meta name="author" content="outbreak_sen"><meta name="copyright" content="outbreak_sen"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="3D-R2N2: A Unified Approach for Single and Multi-view 3D Object Reconstruction 基本信息    项目 内容     论文标题 3D-R2N2: A Unified Approach for Single and Multi-view 3D Object Reconstruction   作者 Christopher B">
+<meta property="og:type" content="article">
+<meta property="og:title" content="论文阅读_3D-R2N2">
+<meta property="og:url" content="http://outbreak-sen.github.io/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_3D-R2N2/index.html">
+<meta property="og:site_name" content="This is a 部落格 of outbreak_sen">
+<meta property="og:description" content="3D-R2N2: A Unified Approach for Single and Multi-view 3D Object Reconstruction 基本信息    项目 内容     论文标题 3D-R2N2: A Unified Approach for Single and Multi-view 3D Object Reconstruction   作者 Christopher B">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://outbreak-sen.github.io/img/head.png">
+<meta property="article:published_time" content="2025-12-03T05:46:01.000Z">
+<meta property="article:modified_time" content="2026-03-09T15:01:15.334Z">
+<meta property="article:author" content="outbreak_sen">
+<meta property="article:tag" content="Mesh重建">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://outbreak-sen.github.io/img/head.png"><link rel="shortcut icon" href="/img/h_beautygirl.png"><link rel="canonical" href="http://outbreak-sen.github.io/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_3D-R2N2/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '论文阅读_3D-R2N2',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  isShuoshuo: false
+}</script><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="This is a 部落格 of outbreak_sen" type="application/atom+xml">
+<link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head><body><div id="web_bg" style="background-image: url(/img/v_beautygirl0.jpeg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/./img/head.png" onerror="onerror=null;src='./img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">185</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">66</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">14</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw fa fa-camera-retro"></i><span> 树洞</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 作品与鉴赏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/h_beautygirl.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/h_beautygirl.png" alt="Logo"><span class="site-name">This is a 部落格 of outbreak_sen</span></a><a class="nav-page-title" href="/"><span class="site-name">论文阅读_3D-R2N2</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw fa fa-camera-retro"></i><span> 树洞</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 作品与鉴赏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">论文阅读_3D-R2N2</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-12-03T05:46:01.000Z" title="发表于 2025-12-03 13:46:01">2025-12-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-03-09T15:01:15.334Z" title="更新于 2026-03-09 23:01:15">2026-03-09</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/">论文阅读</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><hr>
+<h1>3D-R2N2: A Unified Approach for Single and Multi-view 3D Object Reconstruction</h1>
+<h2 id="基本信息">基本信息</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">项目</th>
+<th style="text-align:left">内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>论文标题</strong></td>
+<td style="text-align:left">3D-R2N2: A Unified Approach for Single and Multi-view 3D Object Reconstruction</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>作者</strong></td>
+<td style="text-align:left">Christopher B. Choy, Danfei Xu, JunYoung Gwak, Kevin Chen, Silvio Savarese</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>作者单位</strong></td>
+<td style="text-align:left">Stanford University</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>时间</strong></td>
+<td style="text-align:left">2016</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>发表会议/期刊</strong></td>
+<td style="text-align:left">ECCV (European Conference on Computer Vision)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="方法概览">方法概览</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">特点</th>
+<th style="text-align:left">文章性质</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>输入</strong></td>
+<td style="text-align:left">单张或多张任意视角的RGB图像（无需校准）</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>输出</strong></td>
+<td style="text-align:left">三维占据网格 (3D occupancy grid, 如 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>32</mn><mi>i</mi><mi>m</mi><mi>e</mi><mi>s</mi><mn>32</mn><mi>i</mi><mi>m</mi><mi>e</mi><mi>s</mi><mn>32</mn></mrow><annotation encoding="application/x-tex">32 	imes 32 	imes 32</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord">3</span><span class="mord">2</span><span class="mord mathdefault">i</span><span class="mord mathdefault">m</span><span class="mord mathdefault">e</span><span class="mord mathdefault">s</span><span class="mord">3</span><span class="mord">2</span><span class="mord mathdefault">i</span><span class="mord mathdefault">m</span><span class="mord mathdefault">e</span><span class="mord mathdefault">s</span><span class="mord">3</span><span class="mord">2</span></span></span></span>)</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>所属领域</strong></td>
+<td style="text-align:left">单视图/多视图三维物体重建、基于学习的重建</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="1-摘要精简">1. 摘要精简</h3>
+<p>本文提出了一个名为<strong>3D Recurrent Reconstruction Neural Network (3D-R2N2)</strong> 的新型递归神经网络架构。该网络从大规模合成数据中学习从物体图像到其底层三维形状的映射。它可以接受**一个或多个任意视角的物体图像作为输入，并输出一个三维占据网格形式的重建结果。**与大多数先前工作不同，该网络在训练和测试时都不需要任何图像标注或物体类别标签。实验表明，该框架在单视图重建任务上超越了当时的最先进方法，并且能在传统SFM/SLAM方法失效（如缺乏纹理或基线过宽）的场景下成功进行三维重建。</p>
+<hr>
+<h3 id="2-研究动机与出发点">2. 研究动机与出发点</h3>
+<p>在引言部分，作者指出了当时三维物体重建主流方法的几个主要局限：</p>
+<ol>
+<li><strong>对密集视图或小基线的依赖</strong>：传统方法（如SFM/SLAM）需要物体被从密集视角观察，或者视图间基线较小，以便于跨视图特征匹配。</li>
+<li><strong>对物体外观的假设</strong>：通常假设物体表面为朗伯体（非反射）且纹理丰富。这对于无纹理、反光或大基线下的物体重建非常困难。</li>
+</ol>
+<p>为了克服这些问题，<strong>利用形状先验</strong>的方法显示出优势，因为它们减少了对精确跨视图特征匹配的依赖。本文的出发点在于：与其手动设计形状先验或将其适配到观测数据，不如<strong>利用深度卷积神经网络，直接从大量训练数据中学习从观测到物体三维形状的映射</strong>。受LSTM在序列建模和单视图三维重建CNN进展的启发，本文旨在开发一个<strong>统一的、端到端的网络</strong>，能够处理从单视图到多视图的重建，并以最小的监督（仅需边界框）进行训练。</p>
+<hr>
+<h3 id="3-创新点与相关工作对比">3. 创新点与相关工作对比</h3>
+<p><strong>创新点总结：</strong></p>
+<ol>
+<li><strong>提出3D-R2N2架构</strong>：将标准的LSTM框架扩展为<strong>3D卷积LSTM (3D-LSTM)</strong>，以结构化的方式容纳多视图图像输入。单元仅接收相邻单元的隐藏状态（3×3×3 卷积约束），具备空间局部性，可选择性更新被遮挡区域的记忆，增量融合多视角信息；移除 LSTM 的输出门，减少参数冗余，GRU 版本进一步简化计算，提升训练效率。多视角输入时，通过循环单元的门控机制（输入门 / 遗忘门）增量整合新视角信息，逐步优化重建结果，解决视角间冲突。</li>
+<li><strong>统一单视图与多视图重建</strong>：单个框架能够处理<strong>可变长度</strong>的输入图像序列（1到多张图），统一了两种任务。</li>
+<li><strong>最小化监督需求</strong>：训练和测试只需要边界框，不需要<strong>物体分割掩码、关键点、视点标签、相机标定或类别标签</strong>。</li>
+<li><strong>性能优势</strong>：在单视图重建上超越了当时SOTA方法 [32]，并在传统MVS方法易失败的场景（纹理缺失、大基线）下仍能工作。</li>
+</ol>
+<p><strong>与相关工作对比：</strong></p>
+<table>
+<thead>
+<tr>
+<th>对比方法</th>
+<th>核心问题指出</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SFM/SLAM（如 LSD-SLAM）</td>
+<td>1. 依赖特征匹配，宽基线、纹理缺失时失效；2. 需密集视角输入，无法处理单视角重建</td>
+</tr>
+<tr>
+<td>空间雕刻（Space Carving）</td>
+<td>1. 需精确物体分割和相机校准；2. 对噪声敏感，重建精度依赖视角密度</td>
+</tr>
+<tr>
+<td>基于形状先验的方法（如 3D 基元拟合）</td>
+<td>1. 需手动设计先验，泛化性差；2. 依赖强监督标注，适配场景有限</td>
+</tr>
+<tr>
+<td>Kar et al.（单视角重建 SOTA）</td>
+<td>1. 需按类别训练，无类别标签时失效；2. 依赖分割掩码和关键点标注；3. 仅支持单视角，无法利用多视角信息</td>
+</tr>
+<tr>
+<td>MVS（如 OpenMVS）</td>
+<td>1. 需足够多视角（≥20 张）和纹理；2. 少视角、低纹理时 IoU 接近 0，完全失效</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>与传统SFM/SLAM [3-8] 和 MVS方法对比</strong>：指出这些方法依赖特征匹配，在<strong>大基线、缺乏纹理或非朗伯表面</strong>的情况下会失败。而3D-R2N2基于学习到的先验，不依赖特征匹配，因此能在这些挑战性场景下工作。</li>
+<li><strong>与基于形状先验的方法 [17-28] 对比</strong>：这些方法需要将预定义的3D形状先验（如CAD模型或3D基元）匹配或适配到图像观测中。3D-R2N2则<strong>端到端地学习从图像到形状的映射</strong>，无需显式的模型拟合。</li>
+<li><strong>与早期基于学习的单视图重建方法 [31,32] 对比</strong>：
+<ul>
+<li>Kar等人 [32] 的方法需要<strong>按类别进行训练和测试</strong>，且需要真实分割掩码和关键点作为额外输入。</li>
+<li>3D-R2N2是<strong>类别无关</strong>的，且<strong>不需要分割和关键点</strong>，在同等条件下性能更优。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="4-网络架构构成">4. 网络架构构成</h3>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20251219105619696.png" alt="image-20251219105619696"></p>
+<p>3D-R2N2由三个主要组件构成，形成一个编码-循环-解码的结构：网络由<strong>编码器（2D-CNN）、循环单元（3D-LSTM/GRU）、解码器（3D-DCNN）</strong> 三部分组成：</p>
+<ol>
+<li><strong>编码器（2D-CNN）</strong>
+<ul>
+<li>两种版本：普通版（卷积层 + 池化层 + LeakyReLU + 全连接层）、残差版（每 2 个卷积层添加残差连接）；</li>
+<li>输入 127×127 RGB 图像，输出 1024 维特征向量，用于后续循环单元输入。</li>
+</ul>
+</li>
+<li><strong>循环单元（3D-LSTM/GRU）</strong>
+<ul>
+<li>3D-LSTM：按 4×4×4 网格分布单元，每个单元含输入门、遗忘门、记忆细胞和隐藏状态，通过 3×3×3 卷积接收相邻单元状态；</li>
+<li>3D-GRU：用更新门和重置门替代 LSTM 的多门结构，计算更高效，性能更优；</li>
+<li>核心功能：接收编码器特征，增量更新 3D 隐藏状态，融合多视角信息。</li>
+</ul>
+</li>
+<li><strong>解码器（3D-DCNN）</strong>
+<ul>
+<li>两种版本：普通版（5 个 3D 卷积层）、残差版（4 个残差连接 + 最终卷积层）；</li>
+<li>输入循环单元的 3D 隐藏状态，通过 3D 卷积和上采样提升分辨率，最终输出 32×32×32×2 的张量，经体素级 softmax 得到占据概率。</li>
+</ul>
+</li>
+<li><strong>损失函数</strong>
+<ul>
+<li>采用体素级交叉熵损失</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="5-特征提取方法">5. 特征提取方法</h3>
+<p><strong>图像特征提取（编码器）</strong></p>
+<ul>
+<li>普通编码器：通过 4 组卷积 - 池化操作逐步下采样，提取图像的语义和纹理特征，最后经全连接层压缩为 1024 维向量；</li>
+<li>残差编码器：在普通编码器基础上，每 2 个卷积层后添加残差连接（部分需 1×1 卷积匹配通道数），缓解深层网络梯度消失，提升特征表达能力；</li>
+<li>激活函数：所有卷积层后均接 LeakyReLU（斜率 0.1），增强非线性表达。</li>
+</ul>
+<p><strong>3D 特征融合（循环单元）</strong></p>
+<ul>
+<li>循环单元接收 1024 维图像特征，通过全连接层映射后，与相邻单元的隐藏状态（3×3×3 卷积）融合；</li>
+<li>3D-LSTM/GRU 通过门控机制选择性更新记忆细胞和隐藏状态，将 2D 图像特征转化为 3D 空间特征，实现多视角信息的增量整合。</li>
+</ul>
+<hr>
+<h3 id="6-三维生成步骤详解">6. 三维生成步骤详解</h3>
+<p>网络以<strong>序列方式</strong>逐步生成和优化三维重建结果：</p>
+<ol>
+<li><strong>输入预处理</strong>：将单张或多张输入图像调整为 127×127 分辨率，无需标注或校准；</li>
+<li><strong>初始化</strong>：对于第一帧图像 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mn>1</mn></msub></mrow><annotation encoding="application/x-tex">x_1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>，编码器提取特征 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="script">T</mi><mo stretchy="false">(</mo><msub><mi>x</mi><mn>1</mn></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mathcal{T}(x_1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathcal" style="margin-right:0.25417em;">T</span></span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span> 1024 维特征向量，并输入给3D-LSTM网格。此时，所有LSTM单元的隐藏状态被初始化或更新，形成对物体形状的<strong>初始猜测</strong>。<strong>单视角输入,特征向量输入 3D 循环单元，初始化 3D 隐藏状态（4×4×4）；</strong></li>
+<li><strong>循环更新</strong>：对于后续的每一帧图像 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mi>t</mi></msub></mrow><annotation encoding="application/x-tex">x_t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>：
+<ul>
+<li>编码器提取新特征 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="script">T</mi><mo stretchy="false">(</mo><msub><mi>x</mi><mi>t</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mathcal{T}(x_t)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathcal" style="margin-right:0.25417em;">T</span></span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>。</li>
+<li>3D-LSTM单元的<strong>输入门</strong>和<strong>遗忘门</strong>控制信息流。对于当前视图<strong>可见</strong>的物体部分，对应的LSTM单元会更新其记忆；对于<strong>被遮挡</strong>或与已有预测一致的部分，记忆状态将被保留。</li>
+<li>这种机制允许网络<strong>增量式地</strong>整合来自不同视角的（可能冲突的）信息，逐步<strong>细化</strong>其三维形状表示。</li>
+</ul>
+</li>
+<li><strong>最终解码</strong>：在处理完所有输入视图（或单视图）后，将3D-LSTM网格的最终隐藏状态 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>h</mi><mi>T</mi></msub></mrow><annotation encoding="application/x-tex">h_T</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">h</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.13889em;">T</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 输入到3D反卷积解码器。最终隐藏状态（4×4×4）经 3D-DCNN 解码器上采样，逐步提升至 32×32×32 分辨率；</li>
+<li><strong>输出生成</strong>：解码器输出一个三维网格 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="script">V</mi><mo>∈</mo><msup><mi mathvariant="double-struck">R</mi><mrow><msub><mi>N</mi><mrow><mi>v</mi><mi>o</mi><mi>x</mi></mrow></msub><mi>i</mi><mi>m</mi><mi>e</mi><mi>s</mi><msub><mi>N</mi><mrow><mi>v</mi><mi>o</mi><mi>x</mi></mrow></msub><mi>i</mi><mi>m</mi><mi>e</mi><mi>s</mi><msub><mi>N</mi><mrow><mi>v</mi><mi>o</mi><mi>x</mi></mrow></msub><mi>i</mi><mi>m</mi><mi>e</mi><mi>s</mi><mn>2</mn></mrow></msup></mrow><annotation encoding="application/x-tex">\mathcal{V} \in \mathbb{R}^{N_{vox} 	imes N_{vox} 	imes N_{vox} 	imes 2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72243em;vertical-align:-0.0391em;"></span><span class="mord"><span class="mord mathcal" style="margin-right:0.08222em;">V</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8413309999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord"><span class="mord mathbb">R</span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8413309999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.10903em;">N</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.16454285714285719em;"><span style="top:-2.357em;margin-left:-0.10903em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03588em;">v</span><span class="mord mathdefault mtight">o</span><span class="mord mathdefault mtight">x</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault mtight">m</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">s</span><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.10903em;">N</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.16454285714285719em;"><span style="top:-2.357em;margin-left:-0.10903em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03588em;">v</span><span class="mord mathdefault mtight">o</span><span class="mord mathdefault mtight">x</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault mtight">m</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">s</span><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.10903em;">N</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.16454285714285719em;"><span style="top:-2.357em;margin-left:-0.10903em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03588em;">v</span><span class="mord mathdefault mtight">o</span><span class="mord mathdefault mtight">x</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault mtight">m</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">s</span><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span>，通过逐体素的softmax函数，得到每个体素被占据的概率 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>p</mi><mrow><mo stretchy="false">(</mo><mi>i</mi><mo separator="true">,</mo><mi>j</mi><mo separator="true">,</mo><mi>k</mi><mo stretchy="false">)</mo></mrow></msub></mrow><annotation encoding="application/x-tex">p_{(i,j,k)}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7857599999999999em;vertical-align:-0.3551999999999999em;"></span><span class="mord"><span class="mord mathdefault">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.34480000000000005em;"><span style="top:-2.5198em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">(</span><span class="mord mathdefault mtight">i</span><span class="mpunct mtight">,</span><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span><span class="mpunct mtight">,</span><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span><span class="mclose mtight">)</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.3551999999999999em;"><span></span></span></span></span></span></span></span></span></span>，从而生成<strong>三维占据网格</strong>。</li>
+<li><strong>后处理</strong>：设定阈值（如 0.4），将概率高于阈值的体素标记为 “占据”，形成最终 3D 体素网格。</li>
+</ol>
+<hr>
+<h3 id="7-数据集-对比方法与结果">7. 数据集、对比方法与结果</h3>
+<p><strong>训练数据集：</strong></p>
+<ul>
+<li><strong>ShapeNet训练集</strong>：使用其子集（13个主要类别，约50,000个模型）的4/5进行训练。通过渲染CAD模型并添加PASCAL VOC背景、颜色着色和随机平移进行数据增强。</li>
+</ul>
+<p><strong>测试数据集与对比实验：</strong></p>
+<ol>
+<li>
+<p><strong>单视图重建 (PASCAL 3D+)</strong>：</p>
+<ul>
+<li><strong>对比方法</strong>：Kar等人 [32] 的方法（类别特定，需分割掩码和关键点）。</li>
+<li><strong>结果</strong>：如表2所示，3D-R2N2 (<strong>Res3D-GRU-3</strong>) 在全部10个类别上的平均IoU (0.571) <strong>显著优于</strong> Kar等人的方法 (0.318)。</li>
+</ul>
+</li>
+<li>
+<p><strong>多视图重建 (ShapeNet测试集)</strong>：</p>
+<ul>
+<li><strong>测试集</strong>：ShapeNet子集的1/5（13个类别，8725个模型）。</li>
+<li><strong>结果</strong>：如图5所示，<strong>重建质量（IoU）随着输入视图数量的增加而提升</strong>，但边际收益递减。不同类别的重建难度不同，体积大、形状变化小的类别（如柜子、汽车）表现更好。</li>
+</ul>
+</li>
+<li>
+<p><strong>真实图像重建 (Online Products数据集)</strong>：</p>
+<ul>
+<li><strong>定性评估</strong>：网络仅用合成数据训练，仍能对真实商品图像进行合理重建，并能随视图增加而改进。</li>
+</ul>
+</li>
+<li>
+<p><strong>与MVS方法的对比 (自定义CAD数据集)</strong>：</p>
+<ul>
+<li><strong>对比方法</strong>：基于PatchMatch的MVS方法 [49]。</li>
+<li><strong>变量</strong>：物体纹理强度（高/中/低）、输入视图数量（1-50）。</li>
+<li><strong>关键结果</strong>：
+<ul>
+<li>3D-R2N2<strong>仅用1个视图</strong>即可工作，而MVS在视图少于20时<strong>完全失败</strong>。</li>
+<li>3D-R2N2的性能<strong>不受纹理水平影响</strong>，而MVS在低纹理情况下即使视图很多也失败。</li>
+<li>在视图非常多（&gt;30）且纹理丰富时，MVS能重建更多细节，而3D-R2N2细节较少（受训练数据多为低纹理模型所限）。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="8-消融实验">8. 消融实验</h3>
+<p>作者通过比较<strong>5种3D-R2N2变体</strong>进行了消融实验（在ShapeNet测试集上使用5个视图）：</p>
+<ol>
+<li><strong>循环单元类型 (LSTM vs GRU)</strong>：GRU-based网络 (<strong>3D-GRU-1</strong>, <strong>3D-GRU-3</strong>) 性能优于对应的LSTM-based网络。</li>
+<li><strong>邻居连接 (核大小)</strong>：使用 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>3</mn><mi>i</mi><mi>m</mi><mi>e</mi><mi>s</mi><mn>3</mn><mi>i</mi><mi>m</mi><mi>e</mi><mi>s</mi><mn>3</mn></mrow><annotation encoding="application/x-tex">3 	imes 3 	imes 3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord">3</span><span class="mord mathdefault">i</span><span class="mord mathdefault">m</span><span class="mord mathdefault">e</span><span class="mord mathdefault">s</span><span class="mord">3</span><span class="mord mathdefault">i</span><span class="mord mathdefault">m</span><span class="mord mathdefault">e</span><span class="mord mathdefault">s</span><span class="mord">3</span></span></span></span> 卷积核、允许循环单元与邻居连接的变体 (<strong>3D-LSTM-3</strong>, <strong>3D-GRU-3</strong>)，性能优于使用 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mi>i</mi><mi>m</mi><mi>e</mi><mi>s</mi><mn>1</mn><mi>i</mi><mi>m</mi><mi>e</mi><mi>s</mi><mn>1</mn></mrow><annotation encoding="application/x-tex">1 	imes 1 	imes 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord mathdefault">i</span><span class="mord mathdefault">m</span><span class="mord mathdefault">e</span><span class="mord mathdefault">s</span><span class="mord">1</span><span class="mord mathdefault">i</span><span class="mord mathdefault">m</span><span class="mord mathdefault">e</span><span class="mord mathdefault">s</span><span class="mord">1</span></span></span></span> 核、无邻居连接的变体。这说明<strong>局部性先验和权重共享</strong>起到了正则化作用，提升了性能。</li>
+<li><strong>网络深度与残差连接</strong>：使用深度残差编码器和解码器的变体 (<strong>Res3D-GRU-3</strong>) 取得了<strong>最佳性能</strong>（Loss: 0.080, IoU: 0.634），验证了残差连接对深层网络优化的有效性。</li>
+</ol>
+<p><strong>结论</strong>：最佳配置是使用<strong>GRU循环单元</strong>、<strong><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>3</mn><mi>i</mi><mi>m</mi><mi>e</mi><mi>s</mi><mn>3</mn><mi>i</mi><mi>m</mi><mi>e</mi><mi>s</mi><mn>3</mn></mrow><annotation encoding="application/x-tex">3 	imes 3 	imes 3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord">3</span><span class="mord mathdefault">i</span><span class="mord mathdefault">m</span><span class="mord mathdefault">e</span><span class="mord mathdefault">s</span><span class="mord">3</span><span class="mord mathdefault">i</span><span class="mord mathdefault">m</span><span class="mord mathdefault">e</span><span class="mord mathdefault">s</span><span class="mord">3</span></span></span></span>卷积核</strong>的邻居连接、以及<strong>深度残差网络</strong>结构。</p>
+<hr>
+<h3 id="其他创新点">其他创新点</h3>
+<ul>
+<li><strong>灵活的序列训练</strong>：在训练时，每个mini-batch内的样本输入视图数固定，但<strong>不同mini-batch的视图数随机变化</strong>。这使得网络能同时学习单视图和多视图重建。</li>
+<li><strong>中间状态可访问</strong>：虽然训练时只在序列末端计算损失，但在测试时，可以提取每一时间步L单元的隐藏状态，从而<strong>观察重建结果的渐进优化过程</strong>，如图1(b)和图6所示。</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://outbreak-sen.github.io">outbreak_sen</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://outbreak-sen.github.io/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_3D-R2N2/">http://outbreak-sen.github.io/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_3D-R2N2/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://outbreak-sen.github.io" target="_blank">This is a 部落格 of outbreak_sen</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Mesh%E9%87%8D%E5%BB%BA/">Mesh重建</a></div><div class="post-share"><div class="social-share" data-image="/./img/head.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_3D-C2FT/" title="论文阅读_3D-C2FT"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">论文阅读_3D-C2FT</div></div><div class="info-2"><div class="info-item-1">3D-C2FT 基本信息    项目 内容     论文标题 Hunyuan3D   作者 Hunyuan3D Team (腾讯团队)   作者单位 腾讯 (Tencent)   时间 2025   发表会议/期刊     方法概览    特点 文章性质     输入 标定之后的多视角图像   输出 Mesh   所属领域 MeshMVS    3D-C2FT: Coarse-to-fine Transformer for Multi-view 3D Reconstruction 论文总结 方法名称：3D-C2FT (3D Coarse-to-fine Transformer) 作者：Leslie Ching Ow Tiong, Dick Sigmund, Andrew Beng Jin Teoh 第一单位：韩国科学技术研究院 (Korea Institute of Science and Technology) 发表年份与会议/期刊：2022年，发表于国际计算机视觉会议 (ICCV) 或其他计算机视觉顶会...</div></div></div></a><a class="pagination-related" href="/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_AA-MVSNet/" title="论文阅读_AA-MVSNet"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">论文阅读_AA-MVSNet</div></div><div class="info-2"><div class="info-item-1">AA-RMVSNet (Adaptive Aggregation Recurrent Multi-view Stereo Network) 基本信息    项目 内容     论文标题 Adaptive Aggregation Recurrent Multi-view Stereo Network   作者 Zizhuang Wei, Qingtian Zhu, Chen Min, Yisong Chen, Guoping Wang*   作者单位 Peking University（北京大学）   时间 2021   发表会议/期刊     方法概览    特点 文章性质     输入 标定之后的多视角图像   输出 场景的点云图，每个视角的法线和深度图   所属领域 MVS    摘要精简 本文提出一种基于长短期记忆（LSTM）的递归多视图立体网络 ...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_3D-C2FT/" title="论文阅读_3D-C2FT"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-12-03</div><div class="info-item-2">论文阅读_3D-C2FT</div></div><div class="info-2"><div class="info-item-1">3D-C2FT 基本信息    项目 内容     论文标题 Hunyuan3D   作者 Hunyuan3D Team (腾讯团队)   作者单位 腾讯 (Tencent)   时间 2025   发表会议/期刊     方法概览    特点 文章性质     输入 标定之后的多视角图像   输出 Mesh   所属领域 MeshMVS    3D-C2FT: Coarse-to-fine Transformer for Multi-view 3D Reconstruction 论文总结 方法名称：3D-C2FT (3D Coarse-to-fine Transformer) 作者：Leslie Ching Ow Tiong, Dick Sigmund, Andrew Beng Jin Teoh 第一单位：韩国科学技术研究院 (Korea Institute of Science and Technology) 发表年份与会议/期刊：2022年，发表于国际计算机视觉会议 (ICCV) 或其他计算机视觉顶会...</div></div></div></a><a class="pagination-related" href="/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_Clay/" title="论文阅读_CLAY"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-12-03</div><div class="info-item-2">论文阅读_CLAY</div></div><div class="info-2"><div class="info-item-1"> CLAY 基本信息    项目 内容     论文标题 CLAY（Controllable Large-scale Generative Model for Creating High-quality 3D Assets）   作者 LONGWEN ZHANG, ZIYU WANG, QIXUAN ZHANG 等   作者单位 上海科技大学 (ShanghaiTech University)、Deemos Technology Co., Ltd.   时间 2024   发表会议/期刊     方法概览    特点 文章性质     输入 支持多模态输入，包括文本、单张图像、草图、多视角图像、体素、点云、边界框等。   输出 是带有高保真PBR材质贴图的Mesh模型。其内部几何表示使用occupancy field，最终通过Marching Cubes算法提取为Mesh。   所属领域 三维生成 (3D Generation)    DiT:Diffuison...</div></div></div></a><a class="pagination-related" href="/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_DIB-R3D/" title="论文阅读_DIB-R++"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-12-03</div><div class="info-item-2">论文阅读_DIB-R++</div></div><div class="info-2"><div class="info-item-1"> DIB-R++ 基本信息    项目 内容     论文标题 DIB-R++: Learning to Predict Lighting and Material with a Hybrid Differentiable Renderer   作者 Wenzheng Chen, Joey Litalien, Jun Gao, Zian Wang, Clement Fuji Tsang, Sameh Khamis, Or Litany, Sanja Fidler   作者单位 NVIDIA   时间 2021   发表会议/期刊     方法概览    特点 文章性质     输入 单张RGB图像   输出 三维网格（Mesh）以及材质参数（漫反射反照率、粗糙度、镜面反照率等）和光照参数（环境光照图或球面高斯系数）   所属领域 单视图三维重建（无监督）    一、摘要精简 DIB-R++ ...</div></div></div></a><a class="pagination-related" href="/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_DMKit/" title="论文阅读_DMTET"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-12-03</div><div class="info-item-2">论文阅读_DMTET</div></div><div class="info-2"><div class="info-item-1"> DMTET 基本信息    项目 内容     论文标题 Deep Marching Tetrahedra: a Hybrid Representation for High-Resolution 3D Shape Synthesis   作者 Tianchang Shen, Jun Gao, Kangxue Yin, Ming-Yu Liu, Sanja Fidler   作者单位 NVIDIA   时间 2021   发表会议/期刊 NeurIPS 2021    方法概览    特点 文章性质     输入 多模态输入，包括粗体素（16³ 分辨率）、带噪声的点云（5000 个点，高斯噪声 σ=0.005）   输出 核心输出为高分辨率 Triangle Mesh（支持任意拓扑），无 SDF 直接输出，SDF 仅作为中间表示   所属领域 兼具3D 生成与重建（核心为从粗体素生成高分辨率形状，支持带噪声点云重建）     一、摘要精简 DMTet...</div></div></div></a><a class="pagination-related" href="/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_DeMapGS/" title="论文阅读_DeMapGS"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-12-03</div><div class="info-item-2">论文阅读_DeMapGS</div></div><div class="info-2"><div class="info-item-1">  DeMapGS 论文阅读笔记 基本信息    项目 内容     论文标题 DeMapGS (Simultaneous Mesh Deformation and Surface Attribute Mapping via Gaussian Splatting)   作者 Shuyi Zhou, Shengze Zhong, Kenshi Takayama, Takafumi Taketomi, Takeshi Oishi   作者单位 The University of Tokyo (东京大学)   时间 2023（根据引用和内容推断）   发表会议/期刊 暂未明确标注，应属预印本或待发表论文    方法概览    特点 文章性质     输入 多视角图像 以及一个初始的模板网格。   输出 一个可变形、带纹理贴图（漫反射、法线、位移贴图）的三角网格（Mesh），并能提取出相应的高斯溅射（Gaussian Splatting）表示。   所属领域 三维重建     1....</div></div></div></a><a class="pagination-related" href="/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_DeepMesh/" title="论文阅读_DeepMesh"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-12-03</div><div class="info-item-2">论文阅读_DeepMesh</div></div><div class="info-2"><div class="info-item-1"> DeepMesh（Auto-Regressive Artist-mesh Creation with Reinforcement Learning） 基本信息    项目 内容     论文标题 DeepMesh（Auto-Regressive Artist-mesh Creation with Reinforcement Learning）   作者 Ruowen Zhao*, Junliang Ye*, Zhengyi Wang*, Guangce Liu, Yiwen Chen, Yikai Wang, Jun Zhu†（* 共同一作，†通讯作者）   作者单位 Tsinghua University（清华大学）、ShengShu   时间 2025   发表会议/期刊     方法概览    特点 文章性质     输入 多模态输入，包括点云、图像（图像需先通过 TRELLIS 生成 3D 模型并采样点云）   输出 高质量艺术家风格 Triangle Mesh（三角形网格），支持最高 30k 面数，无贴图材质，专注几何拓扑优化   所属领域 三维生成 (3D...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/./img/head.png" onerror="this.onerror=null;this.src='/./img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">outbreak_sen</div><div class="author-info-description">an interesting man</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">185</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">66</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">14</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/outbreak-sen" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://blog.csdn.net/outbreakrmb" target="_blank" title="CSDN"><i class="fa fa-book-open"></i></a><a class="social-icon" href="/1023786231" target="_blank" title="QQ"><i class="fab fa-qq"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">3D-R2N2: A Unified Approach for Single and Multi-view 3D Object Reconstruction</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="toc-text">基本信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E6%A6%82%E8%A7%88"><span class="toc-text">方法概览</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%91%98%E8%A6%81%E7%B2%BE%E7%AE%80"><span class="toc-text">1. 摘要精简</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E7%A0%94%E7%A9%B6%E5%8A%A8%E6%9C%BA%E4%B8%8E%E5%87%BA%E5%8F%91%E7%82%B9"><span class="toc-text">2. 研究动机与出发点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%88%9B%E6%96%B0%E7%82%B9%E4%B8%8E%E7%9B%B8%E5%85%B3%E5%B7%A5%E4%BD%9C%E5%AF%B9%E6%AF%94"><span class="toc-text">3. 创新点与相关工作对比</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84%E6%9E%84%E6%88%90"><span class="toc-text">4. 网络架构构成</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E7%89%B9%E5%BE%81%E6%8F%90%E5%8F%96%E6%96%B9%E6%B3%95"><span class="toc-text">5. 特征提取方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E4%B8%89%E7%BB%B4%E7%94%9F%E6%88%90%E6%AD%A5%E9%AA%A4%E8%AF%A6%E8%A7%A3"><span class="toc-text">6. 三维生成步骤详解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-%E6%95%B0%E6%8D%AE%E9%9B%86-%E5%AF%B9%E6%AF%94%E6%96%B9%E6%B3%95%E4%B8%8E%E7%BB%93%E6%9E%9C"><span class="toc-text">7. 数据集、对比方法与结果</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-%E6%B6%88%E8%9E%8D%E5%AE%9E%E9%AA%8C"><span class="toc-text">8. 消融实验</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E5%88%9B%E6%96%B0%E7%82%B9"><span class="toc-text">其他创新点</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/03/09/swiftUI%E7%9A%84%E7%AC%94%E8%AE%B0/" title="swiftUI">swiftUI</a><time datetime="2026-03-09T14:01:08.361Z" title="发表于 2026-03-09 22:01:08">2026-03-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/01/17/2026-01-17-FVMVS%E7%A0%94%E5%88%B6%E8%BF%87%E7%A8%8B/" title="FVMVS研制过程">FVMVS研制过程</a><time datetime="2026-01-17T07:41:46.000Z" title="发表于 2026-01-17 15:41:46">2026-01-17</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_MoGe%202/" title="论文阅读_MoGe 2">论文阅读_MoGe 2</a><time datetime="2025-12-03T06:04:18.000Z" title="发表于 2025-12-03 14:04:18">2025-12-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_%E5%8F%98%E5%88%86%E8%87%AA%E7%BC%96%E7%A0%81%E5%99%A8VAE/" title="论文阅读_变分自编码器VAE">论文阅读_变分自编码器VAE</a><time datetime="2025-12-03T06:01:57.000Z" title="发表于 2025-12-03 14:01:57">2025-12-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/03/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0_SFM/" title="学习笔记_SFM">学习笔记_SFM</a><time datetime="2025-12-03T05:57:28.000Z" title="发表于 2025-12-03 13:57:28">2025-12-03</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2026 By outbreak_sen</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><div class="js-pjax"></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
