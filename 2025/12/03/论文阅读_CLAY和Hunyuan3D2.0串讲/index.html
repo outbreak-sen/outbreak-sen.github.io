@@ -1,0 +1,334 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>论文阅读_CLAY和Hunyuan3D2.0串讲 | This is a 部落格 of outbreak_sen</title><meta name="author" content="outbreak_sen"><meta name="copyright" content="outbreak_sen"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="论文阅读_CLAY和Hunyuan3D2.0串讲 论文：Hunyuan3D 2.0: Scaling Diffusion Models for High Resolution Textured 3D Assets Generation 论文：CLAY: A Controllable Large-scale Generative Model for Creating High-quality 3D">
+<meta property="og:type" content="article">
+<meta property="og:title" content="论文阅读_CLAY和Hunyuan3D2.0串讲">
+<meta property="og:url" content="http://outbreak-sen.github.io/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_CLAY%E5%92%8CHunyuan3D2.0%E4%B8%B2%E8%AE%B2/index.html">
+<meta property="og:site_name" content="This is a 部落格 of outbreak_sen">
+<meta property="og:description" content="论文阅读_CLAY和Hunyuan3D2.0串讲 论文：Hunyuan3D 2.0: Scaling Diffusion Models for High Resolution Textured 3D Assets Generation 论文：CLAY: A Controllable Large-scale Generative Model for Creating High-quality 3D">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://outbreak-sen.github.io/img/head.png">
+<meta property="article:published_time" content="2025-12-03T05:46:01.000Z">
+<meta property="article:modified_time" content="2026-03-13T07:15:53.960Z">
+<meta property="article:author" content="outbreak_sen">
+<meta property="article:tag" content="三维生成">
+<meta property="article:tag" content="Mesh">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://outbreak-sen.github.io/img/head.png"><link rel="shortcut icon" href="/img/h_beautygirl.png"><link rel="canonical" href="http://outbreak-sen.github.io/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_CLAY%E5%92%8CHunyuan3D2.0%E4%B8%B2%E8%AE%B2/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '论文阅读_CLAY和Hunyuan3D2.0串讲',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  isShuoshuo: false
+}</script><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="This is a 部落格 of outbreak_sen" type="application/atom+xml">
+<link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head><body><div id="web_bg" style="background-image: url(/img/v_beautygirl0.jpeg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/./img/head.png" onerror="onerror=null;src='./img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">189</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">66</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">14</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw fa fa-camera-retro"></i><span> 树洞</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 作品与鉴赏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/h_beautygirl.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/h_beautygirl.png" alt="Logo"><span class="site-name">This is a 部落格 of outbreak_sen</span></a><a class="nav-page-title" href="/"><span class="site-name">论文阅读_CLAY和Hunyuan3D2.0串讲</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw fa fa-camera-retro"></i><span> 树洞</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 作品与鉴赏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">论文阅读_CLAY和Hunyuan3D2.0串讲</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-12-03T05:46:01.000Z" title="发表于 2025-12-03 13:46:01">2025-12-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-03-13T07:15:53.960Z" title="更新于 2026-03-13 15:15:53">2026-03-13</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/">论文阅读</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1>论文阅读_CLAY和Hunyuan3D2.0串讲</h1>
+<p>论文：<strong>Hunyuan3D 2.0: Scaling Diffusion Models for High Resolution Textured 3D Assets Generation</strong></p>
+<p>论文：<strong>CLAY: A Controllable Large-scale Generative Model for Creating High-quality 3D Assets</strong></p>
+<p>两个的思路基本一致，现在只通过hunyuan3D 2.0进行讲解</p>
+<h1>Hunyuan3D 2.0</h1>
+<p>系统包含 两个基础模型，原因<strong>geometry 和 appearance 解耦更稳定。</strong>：</p>
+<p>1️⃣ <strong>Hunyuan3D-DiT</strong>生成 <strong>几何形状（mesh）</strong></p>
+<p>2️⃣ <strong>Hunyuan3D-Paint</strong>生成 <strong>texture map</strong></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20260313151458061.png" alt="image-20260313151458061"></p>
+<h2 id="shape生成模块hunyuan3d-dit">Shape生成模块Hunyuan3D-DiT</h2>
+<p>Shape生成包含两个部分：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ShapeVAE + Diffusion Transformer</span><br></pre></td></tr></table></figure>
+<h3 id="shapevae-核心">ShapeVAE（核心）</h3>
+<p>ShapeVAE作用：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mesh → latent tokens</span><br><span class="line">latent tokens → mesh</span><br></pre></td></tr></table></figure>
+<p>输入是：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mesh surface point cloud</span><br></pre></td></tr></table></figure>
+<p>每个点包含六个信息：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(x,y,z)+normal</span><br></pre></td></tr></table></figure>
+<hr>
+<h4 id="shapevae-encoder">ShapeVAE encoder</h4>
+<p>Encoder结构：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">point cloud</span><br><span class="line">↓</span><br><span class="line">cross attention</span><br><span class="line">↓</span><br><span class="line">self attention</span><br><span class="line">↓</span><br><span class="line">latent tokens</span><br></pre></td></tr></table></figure>
+<p>关键点：<strong>query是FPS采样得到的point queries</strong></p>
+<p>如何训练VAE encoder</p>
+<p>普通方法采用uniform sample，但是这种方法边缘信息不足：</p>
+<p>Hunyuan3D他们在uniform sample基础上加入importance sampling，专门采样edges，corner这些信息密度高的地方，所以输入point cloud：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">P = P_uniform + P_importance</span><br></pre></td></tr></table></figure>
+<p>再通过：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FPS sampling</span><br></pre></td></tr></table></figure>
+<p>得到query。</p>
+<hr>
+<h4 id="vae-latent">VAE latent</h4>
+<p>encoder输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mean μ</span><br><span class="line">variance σ</span><br></pre></td></tr></table></figure>
+<p>通过：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reparameterization trick</span><br></pre></td></tr></table></figure>
+<p>得到：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">latent tokens</span><br></pre></td></tr></table></figure>
+<hr>
+<h4 id="vae-decoder">VAE decoder</h4>
+<p>decoder任务：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">latent tokens → SDF</span><br></pre></td></tr></table></figure>
+<p>过程：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">latent tokens + 空间三维查寻点</span><br><span class="line">↓</span><br><span class="line">transformer</span><br><span class="line">↓</span><br><span class="line">grid queries</span><br><span class="line">↓</span><br><span class="line">predict SDF(x)</span><br></pre></td></tr></table></figure>
+<p><strong>所以不是直接生成的SDF！而是同时输入了三维查询点和latent，decoder直接输出每个三维查寻点的SDF值！</strong></p>
+<p><strong>另外生成完整 SDF field 是怎么得到的：完整 SDF field 是通过 多次查询得到的。</strong></p>
+<p>然后通过marching cubes生成mesh。</p>
+<hr>
+<h4 id="shapevae训练">ShapeVAE训练</h4>
+<p><strong>1 reconstruction loss</strong></p>
+<p>预测：SDF(x)的loss：而不是Mesh的Loss因为Mesh具有高拓扑性值，有面和顶点的拓扑不可微，SDF是连续函数可以通过随机采样点进行监督</p>
+<p>另外这个decoder不是一个MLP，因为如果是MLP则无法并性推理点的SDF值，只能一个一个推理，而Transformer结构的decoder可以并行推理</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MSE(pred_sdf, gt_sdf)</span><br></pre></td></tr></table></figure>
+<p>注意：SDF不是全空间计算。而是随机采样点，降低计算。</p>
+<p><strong>2 KL loss</strong></p>
+<p>保证latent空间连续，为的是让latent distribution接近 standard gaussian，这样diffusion才能在latent space生成。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">L = MSE + γ KL</span><br></pre></td></tr></table></figure>
+<h4 id="reparameterization-trick">reparameterization trick</h4>
+<p>VAE需要从分布采样，只有在z ~ N(0,1)才能进行采样获得新的数据，通过decoder(Z)，但是值接获得是：</p>
+<p>$ z\sim N(\mu, \sigma)$</p>
+<p>但直接采样<strong>无法反向传播无法训练</strong>。所以用：</p>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>z</mi><mo>=</mo><mi>μ</mi><mo>+</mo><mi>σ</mi><mo>⋅</mo><mi>ϵ</mi></mrow><annotation encoding="application/x-tex">z = \mu + \sigma \cdot \epsilon</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.04398em;">z</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.7777700000000001em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">μ</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.44445em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">σ</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">ϵ</span></span></span></span></p>
+<p>其中</p>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϵ</mi><mo>∼</mo><mi>N</mi><mo stretchy="false">(</mo><mn>0</mn><mo separator="true">,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\epsilon \sim N(0,1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">ϵ</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∼</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mopen">(</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span><span class="mclose">)</span></span></span></span></p>
+<p>代码其实就是：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mu, logvar = encoder(x)</span><br><span class="line"></span><br><span class="line">std = torch.exp(0.5 * logvar)</span><br><span class="line"></span><br><span class="line">eps = torch.randn_like(std)</span><br><span class="line"></span><br><span class="line">z = mu + eps * std</span><br></pre></td></tr></table></figure>
+<p>这样：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">gradient</span><br><span class="line">→ μ</span><br><span class="line">→ σ</span><br></pre></td></tr></table></figure>
+<p>都可以回传。</p>
+<h3 id="shape-diffusion-hunyuan3d-dit">Shape diffusion (Hunyuan3D-DiT)</h3>
+<p>输入：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">noisy shape tokens</span><br><span class="line">+</span><br><span class="line">image tokens</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">clean shape tokens</span><br></pre></td></tr></table></figure>
+<hr>
+<h4 id="条件输入">条件输入</h4>
+<p>图像特征来自：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DINOv2 Giant</span><br></pre></td></tr></table></figure>
+<p>图像在体取特征之前还做了：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">background removal</span><br><span class="line">center crop</span><br><span class="line">white background</span><br></pre></td></tr></table></figure>
+<hr>
+<h4 id="transformer结构">Transformer结构</h4>
+<p>采用：dual-stream + single-stream</p>
+<p>dual-stream结构分别处理shape tokens和image tokens</p>
+<p><strong>在dual stream阶段：分别处理但attention交互，在single stream阶段：直接concat</strong></p>
+<hr>
+<h4 id="diffusion训练">Diffusion训练</h4>
+<p>他们不用普通DDPM。而是<strong>Flow Matching</strong>，优点是：1. 训练更稳定。2. 采样更快。3. ODE求解</p>
+<p>训练：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xt = (1−t)x0 + t x1</span><br></pre></td></tr></table></figure>
+<p>预测：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">velocity u_t</span><br></pre></td></tr></table></figure>
+<p>loss：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">|| uθ(xt) − ut ||²</span><br></pre></td></tr></table></figure>
+<h2 id="纹理生成-hunyuan3d-paint">纹理生成 Hunyuan3D-Paint</h2>
+<p>输入：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mesh+image</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">texture map</span><br></pre></td></tr></table></figure>
+<p>流程：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mesh</span><br><span class="line"> ↓</span><br><span class="line">multi-view rendering</span><br><span class="line"> ↓</span><br><span class="line">multi-view diffusion</span><br><span class="line"> ↓</span><br><span class="line">texture baking</span><br></pre></td></tr></table></figure>
+<hr>
+<h4 id="纹理生成关键步骤">纹理生成关键步骤</h4>
+<p><strong>Step1 Image Delight</strong></p>
+<p>去除光照因为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">texture ≠ lighting</span><br></pre></td></tr></table></figure>
+<p>为此训练了image2image network。训练数据来自HDR lighting和white lighting</p>
+<p><strong>Step2 View Selection</strong></p>
+<p>选取：8~12 views</p>
+<p>原则上需要最大UV覆盖，使用贪心搜索实现并优先覆盖未覆盖区域。</p>
+<p><strong>Step3 Multi-view diffusion</strong></p>
+<p>生成：multi-view images，可能用的是类似Zero123、SyncDreamer这种，也可能是值接用了Mesh的几何信息</p>
+<p>输入条件：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">normal map</span><br><span class="line">position map</span><br><span class="line">camera embedding</span><br></pre></td></tr></table></figure>
+<hr>
+<h4 id="attention结构">Attention结构</h4>
+<p>三种attention：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">self attention</span><br><span class="line">reference attention</span><br><span class="line">multi-view attention</span><br></pre></td></tr></table></figure>
+<p>公式：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Z = Zsa</span><br><span class="line">  + λref * ref attention  # 保持图像一致</span><br><span class="line">  + λmv * mv attention # 保持多视角一致</span><br></pre></td></tr></table></figure>
+<hr>
+<h4 id="texture-baking">Texture baking</h4>
+<p>生成multi-view images后，需要生成UV texture，方法是需要把投影图像投影到UV空间。这个过程叫做baking</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">project images → UV space</span><br></pre></td></tr></table></figure>
+<p>问题是会出现自遮挡</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">self-occlusion</span><br></pre></td></tr></table></figure>
+<p>解决：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dense view inference</span><br></pre></td></tr></table></figure>
+<hr>
+<h4 id="texture-inpainting">Texture inpainting</h4>
+<p>UV仍可能有洞，解决方法是插值：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vertex texture</span><br><span class="line">→ interpolate</span><br></pre></td></tr></table></figure>
+<p>权重：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 / distance</span><br></pre></td></tr></table></figure>
+<h2 id="训练数据">训练数据</h2>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Objaverse</span><br><span class="line">Objaverse-XL</span><br></pre></td></tr></table></figure>
+<p>每个mesh渲染需要处理出：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">多视角图像</span><br><span class="line">normal map</span><br><span class="line">position map</span><br><span class="line">white light图像</span><br></pre></td></tr></table></figure>
+<h1>CLAY的区别</h1>
+<p>CLAY是2024年的工作，比hunyuan3D2.0晚了一年，</p>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>CLAY</th>
+<th>Hunyuan3D</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>latent diffusion</td>
+<td>DDPM</td>
+<td>Flow Matching</td>
+</tr>
+<tr>
+<td>representation</td>
+<td><strong>occupancy field</strong></td>
+<td>SDF</td>
+</tr>
+<tr>
+<td>encoder输入</td>
+<td>point cloud</td>
+<td>point <strong>+ normal</strong></td>
+</tr>
+<tr>
+<td>sampling</td>
+<td><strong>surface points</strong></td>
+<td>uniform + importance</td>
+</tr>
+<tr>
+<td>decoder输出</td>
+<td>occupancy</td>
+<td>SDF</td>
+</tr>
+<tr>
+<td>texture</td>
+<td>PBR material diffusion</td>
+<td>multi-view texture diffusion</td>
+</tr>
+</tbody>
+</table>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20260313151434949.png" alt="image-20260313151434949"></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://outbreak-sen.github.io">outbreak_sen</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://outbreak-sen.github.io/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_CLAY%E5%92%8CHunyuan3D2.0%E4%B8%B2%E8%AE%B2/">http://outbreak-sen.github.io/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_CLAY%E5%92%8CHunyuan3D2.0%E4%B8%B2%E8%AE%B2/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://outbreak-sen.github.io" target="_blank">This is a 部落格 of outbreak_sen</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E4%B8%89%E7%BB%B4%E7%94%9F%E6%88%90/">三维生成</a><a class="post-meta__tags" href="/tags/Mesh/">Mesh</a></div><div class="post-share"><div class="social-share" data-image="/./img/head.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_CIDER/" title="论文阅读_CIDER"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">论文阅读_CIDER</div></div><div class="info-2"><div class="info-item-1">CIDER（Correlation cost volume and Inverse DEpth Regression）其实是抄CwcNet这个stereo网络 基本信息    项目 内容     论文标题 CIDER（Correlation cost volume and Inverse DEpth Regression）   作者 Qingshan Xu、Wenbing Tao   作者单位 Huazhong University of Science and Technology（华中科技大学）   时间 2019   发表会议/期刊     方法概览    特点 文章性质     输入 多视角   输出 参考视角深度图   所属领域 MVS     1. 摘要精简  提出一种基于相关代价体和逆深度回归的多视图立体匹配（MVS）方法  CIDER，解决现有方法的可扩展性和精度瓶颈。该方法通过平均分组相关相似度度量构建轻量级代价体，大幅降低内存消耗和计算负担；采用级联 3D  U-Net 对代价体进行正则化，聚合更多上下文信息；将 MVS...</div></div></div></a><a class="pagination-related" href="/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_CVP-MVSNet/" title="论文阅读_CVP-MVSNet"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">论文阅读_CVP-MVSNet</div></div><div class="info-2"><div class="info-item-1">CVP-MVSNet（与CasMVSNet无区别） 基本信息    项目 内容     论文标题 Cost Volume Pyramid Based Depth Inference for Multi-View Stereo   作者 Jiayu Yang、Wei Mao、Jose M. Alvarez、Miaomiao Liu   作者单位 Australian National University（澳大利亚国立大学）   时间 2020   发表会议/期刊 CVPR    方法概览    特点 文章性质     输入 多视角   输出 参考视角深度图   所属领域 MVS     1. 摘要精简 提出一种基于成本体积金字塔（Cost Volume Pyramid）的多视图立体匹配（MVS）深度推断网络  CVP-MVSNet，以粗到精的方式构建成本体积，替代固定分辨率的单一成本体积。该方法先在图像金字塔的最粗分辨率层构建全深度范围的成本体积，再基于前一阶段的深度估计，迭代构建像素级深度残差的部分成本体积，实现深度图逐步细化。网络结构紧凑轻量化，在保证重建精度的同时，比...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_Hunyuan3D/" title="论文阅读_Hunyuan3D"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-12-03</div><div class="info-item-2">论文阅读_Hunyuan3D</div></div><div class="info-2"><div class="info-item-1">Hunyuan3D 2.0 基本信息    项目 内容     论文标题 Hunyuan3D   作者 Hunyuan3D Team (腾讯团队)   作者单位 腾讯 (Tencent)   时间 2025   发表会议/期刊     方法概览    特点 文章性质     输入 标定之后的多视角图像   输出 Mesh   所属领域 MeshMVS    摘要精简 Hunyuan3D 2.0 是一个用于生成高分辨率带纹理3D资产的大规模3D合成系统。系统包含两个基础组件：用于形状生成的大规模模型 Hunyuan3D-DiT，以及用于纹理合成的大规模模型 Hunyuan3D-Paint。形状生成模型基于可扩展的、基于流的扩散Transformer，旨在生成与给定条件图像对齐的几何形状；纹理合成模型则利用强几何和扩散先验，为生成或手工制作的网格生成高分辨率和生动的纹理贴图。此外，团队还构建了多功能、用户友好的生产平台 Hunyuan3D-Studio。实验表明，Hunyuan3D 2.0...</div></div></div></a><a class="pagination-related" href="/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_Hunyuan3D2/" title="论文阅读_Hunyuan3D2"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-12-03</div><div class="info-item-2">论文阅读_Hunyuan3D2</div></div><div class="info-2"><div class="info-item-1">Hunyuan3D 2.0: Scaling Diffusion Models for High Resolution Textured 3D Assets Generation 基本信息    项目 内容     论文标题 Hunyuan3D 2.0: Scaling Diffusion Models for High Resolution Textured 3D Assets Generation   作者 Zibo Zhao, Zeqiang Lai, Qingxiang Lin, Yunfei Zhao, Haolin Liu, Shuhui Yang, Yifei Feng, Mingxin Yang, Sheng Zhang, Xianghui Yang, Huiwen Shi, Sicong Liu, Junta Wu 等 (Hunyuan3D Team)   第一单位 Tencent (腾讯)   时间 2025 (根据参考文献及报告内容推断)   发表会议/期刊 技术报告 (Tech Report)，可能为 arXiv...</div></div></div></a><a class="pagination-related" href="/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_Hi3DGen/" title="论文阅读_Hi3DGen"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-12-03</div><div class="info-item-2">论文阅读_Hi3DGen</div></div><div class="info-2"><div class="info-item-1">Hi3DGen 基本信息    项目 内容     论文标题 High-fidelity 3D Geometry Generation from Images via Normal Bridging   作者 Chongjie Ye, Yushuang Wu, Ziteng Lu, Jiahao Chang, Xiaoyang Guo, Jiaqing Zhou, Hao Zhao, Xiaoguang Han   作者单位 The Chinese University of Hong Kong, Shenzhen（香港中文大学深圳校区）   时间 2025   发表会议/期刊     方法概览    特点 文章性质     输入 标定之后的多视角图像   输出 Mesh   所属领域 MeshMVS    1....</div></div></div></a><a class="pagination-related" href="/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_MVDream/" title="论文阅读_MVDream"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-12-03</div><div class="info-item-2">论文阅读_MVDream</div></div><div class="info-2"><div class="info-item-1">MVDream: Multi-view Diffusion for 3D Generation 基本信息    项目 内容     论文标题 MVDream: Multi-view Diffusion for 3D Generation   作者 Yichun Shi, Peng Wang, Jianglong Ye, Long Mai, Kejie Li, Xiao Yang   作者单位 ByteDance (USA), University of California, San Diego   时间 2023（推断）   发表会议/期刊 未明确说明（应为计算机视觉/图形学顶会）    方法概览    特点 文章性质     输入 自然语言文本提示（支持少样本图像输入用于个性化生成）   输出 多视角一致的 3D 模型（NeRF 参数化，可导出网格），支持任意视角渲染   所属领域 文本驱动三维物体生成（多视角扩散蒸馏，兼顾通用性与一致性）    摘要精简 MVDream 的核心任务不是直接生成可用的 3D 模型文件（例如 OBJ/GLTF/PLY 等），而是：从文本 +...</div></div></div></a><a class="pagination-related" href="/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_MeshMVS/" title="论文阅读_MeshMVS"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-12-03</div><div class="info-item-2">论文阅读_MeshMVS</div></div><div class="info-2"><div class="info-item-1">MeshMVS 基本信息    项目 内容     论文标题 MeshMVS（Multi-View Stereo Guided Mesh Reconstruction）   作者 Rakesh Shrestha, Zhiwen Fan, Qingkun Su, Zuozhuo Dai, Siyu Zhu, Ping Tan   作者单位 西蒙弗雷泽大学（Simon Fraser University）   时间 2021   发表会议/期刊     方法概览    特点 文章性质     输入 标定之后的多视角图像   输出 Mesh   所属领域 MeshMVS    一、...</div></div></div></a><a class="pagination-related" href="/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_MeshRCNN/" title="论文阅读_MeshRCNN"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-12-03</div><div class="info-item-2">论文阅读_MeshRCNN</div></div><div class="info-2"><div class="info-item-1">MeshRCNN 基本信息    项目 内容     论文标题 Mesh R-CNN   作者 Georgia Gkioxari、Jitendra Malik、Justin Johnson   作者单位 Facebook AI Research (FAIR)   时间 2020   发表会议/期刊     方法概览    特点 文章性质     输入 标定之后的多视角图像   输出 Mesh   所属领域 MeshMVS    Mesh R-CNN 论文总结 基本信息  方法名称：Mesh R-CNN 作者：Georgia Gkioxari, Jitendra Malik, Justin Johnson 第一单位：Facebook AI Research (FAIR) 发表年份：2019年（推测，文中未明确，引文最新至2019） 发表会议/期刊：应为CVPR或ICCV（文中未明确，但引用格式符合顶会风格）  摘要精简  本文提出 Mesh R-CNN 系统，将 2D 目标感知与 3D 形状预测相结合。该系统基于 Mask R-CNN 扩展，新增 mesh  预测分支，通过...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/./img/head.png" onerror="this.onerror=null;this.src='/./img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">outbreak_sen</div><div class="author-info-description">an interesting man</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">189</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">66</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">14</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/outbreak-sen" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://blog.csdn.net/outbreakrmb" target="_blank" title="CSDN"><i class="fa fa-book-open"></i></a><a class="social-icon" href="/1023786231" target="_blank" title="QQ"><i class="fab fa-qq"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">论文阅读_CLAY和Hunyuan3D2.0串讲</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">Hunyuan3D 2.0</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#shape%E7%94%9F%E6%88%90%E6%A8%A1%E5%9D%97hunyuan3d-dit"><span class="toc-text">Shape生成模块Hunyuan3D-DiT</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#shapevae-%E6%A0%B8%E5%BF%83"><span class="toc-text">ShapeVAE（核心）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#shapevae-encoder"><span class="toc-text">ShapeVAE encoder</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#vae-latent"><span class="toc-text">VAE latent</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#vae-decoder"><span class="toc-text">VAE decoder</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#shapevae%E8%AE%AD%E7%BB%83"><span class="toc-text">ShapeVAE训练</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#reparameterization-trick"><span class="toc-text">reparameterization trick</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#shape-diffusion-hunyuan3d-dit"><span class="toc-text">Shape diffusion (Hunyuan3D-DiT)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9D%A1%E4%BB%B6%E8%BE%93%E5%85%A5"><span class="toc-text">条件输入</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#transformer%E7%BB%93%E6%9E%84"><span class="toc-text">Transformer结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#diffusion%E8%AE%AD%E7%BB%83"><span class="toc-text">Diffusion训练</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%B9%E7%90%86%E7%94%9F%E6%88%90-hunyuan3d-paint"><span class="toc-text">纹理生成 Hunyuan3D-Paint</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BA%B9%E7%90%86%E7%94%9F%E6%88%90%E5%85%B3%E9%94%AE%E6%AD%A5%E9%AA%A4"><span class="toc-text">纹理生成关键步骤</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#attention%E7%BB%93%E6%9E%84"><span class="toc-text">Attention结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#texture-baking"><span class="toc-text">Texture baking</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#texture-inpainting"><span class="toc-text">Texture inpainting</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%AD%E7%BB%83%E6%95%B0%E6%8D%AE"><span class="toc-text">训练数据</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">CLAY的区别</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/03/09/swiftUI%E7%9A%84%E7%AC%94%E8%AE%B0/" title="swiftUI">swiftUI</a><time datetime="2026-03-09T14:01:08.361Z" title="发表于 2026-03-09 22:01:08">2026-03-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/01/17/2026-01-17-FVMVS%E7%A0%94%E5%88%B6%E8%BF%87%E7%A8%8B/" title="FVMVS研制过程">FVMVS研制过程</a><time datetime="2026-01-17T07:41:46.000Z" title="发表于 2026-01-17 15:41:46">2026-01-17</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_MoGe%202/" title="论文阅读_MoGe 2">论文阅读_MoGe 2</a><time datetime="2025-12-03T06:04:18.000Z" title="发表于 2025-12-03 14:04:18">2025-12-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_%E5%8F%98%E5%88%86%E8%87%AA%E7%BC%96%E7%A0%81%E5%99%A8VAE/" title="论文阅读_变分自编码器VAE">论文阅读_变分自编码器VAE</a><time datetime="2025-12-03T06:01:57.000Z" title="发表于 2025-12-03 14:01:57">2025-12-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/03/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0_SFM/" title="学习笔记_SFM">学习笔记_SFM</a><time datetime="2025-12-03T05:57:28.000Z" title="发表于 2025-12-03 13:57:28">2025-12-03</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2026 By outbreak_sen</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><div class="js-pjax"></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

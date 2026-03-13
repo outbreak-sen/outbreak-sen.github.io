@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://outbreak-sen.github.io/2025/12/03/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_CLAY%E5%92%8CHunyuan3D2.0%E4%B8%B2%E8%AE%B2/</loc>
+    
+    <lastmod>2026-03-13</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://outbreak-sen.github.io/2025/12/03/%E7%AE%97%E6%B3%95_%E5%A4%A7%E5%B0%8F%E6%A0%B9%E5%A0%86/</loc>
     
     <lastmod>2026-03-13</lastmod>
@@ -1361,15 +1370,6 @@
   </url>
   
   <url>
-    <loc>http://outbreak-sen.github.io/2025/12/03/%E5%AE%9E%E8%B7%B5%E6%97%A5%E8%AE%B0_AlphaPose%E5%BE%AE%E8%B0%83/</loc>
-    
-    <lastmod>2026-03-07</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://outbreak-sen.github.io/2025/12/03/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0_%E6%96%87%E7%94%9F%E5%9B%BE%E4%B8%B2%E8%AE%B2/</loc>
     
     <lastmod>2026-03-07</lastmod>
@@ -1380,6 +1380,15 @@
   
   <url>
     <loc>http://outbreak-sen.github.io/2025/12/03/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0_%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8%E5%87%A0%E4%B8%AA%E5%B8%B8%E8%A7%81%E7%9A%84%E6%A6%82%E5%BF%B5/</loc>
+    
+    <lastmod>2026-03-07</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://outbreak-sen.github.io/2025/12/03/%E5%AE%9E%E8%B7%B5%E6%97%A5%E8%AE%B0_AlphaPose%E5%BE%AE%E8%B0%83/</loc>
     
     <lastmod>2026-03-07</lastmod>
     
@@ -1460,7 +1469,7 @@
   </url>
   
   <url>
-    <loc>http://outbreak-sen.github.io/2025/02/26/mindNLP%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/</loc>
+    <loc>http://outbreak-sen.github.io/2025/02/09/pyQT%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/</loc>
     
     <lastmod>2026-03-07</lastmod>
     
@@ -1478,7 +1487,7 @@
   </url>
   
   <url>
-    <loc>http://outbreak-sen.github.io/2025/02/09/pyQT%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/</loc>
+    <loc>http://outbreak-sen.github.io/2025/02/26/mindNLP%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/</loc>
     
     <lastmod>2026-03-07</lastmod>
     
@@ -1595,7 +1604,7 @@
   </url>
   
   <url>
-    <loc>http://outbreak-sen.github.io/2025/02/26/MindNLP-bigbird_pegasus%E6%A8%A1%E5%9E%8B%E5%BE%AE%E8%B0%83/</loc>
+    <loc>http://outbreak-sen.github.io/2025/12/03/MVS%E6%A1%86%E6%9E%B6%E5%BC%80%E6%BA%90%E6%95%B4%E7%90%86/</loc>
     
     <lastmod>2026-03-07</lastmod>
     
@@ -1604,7 +1613,7 @@
   </url>
   
   <url>
-    <loc>http://outbreak-sen.github.io/2025/12/03/MVS%E6%A1%86%E6%9E%B6%E5%BC%80%E6%BA%90%E6%95%B4%E7%90%86/</loc>
+    <loc>http://outbreak-sen.github.io/2025/02/26/MindNLP-bigbird_pegasus%E6%A8%A1%E5%9E%8B%E5%BE%AE%E8%B0%83/</loc>
     
     <lastmod>2026-03-07</lastmod>
     
@@ -1622,7 +1631,7 @@
   </url>
   
   <url>
-    <loc>http://outbreak-sen.github.io/2025/02/11/LLVM-tablegen/</loc>
+    <loc>http://outbreak-sen.github.io/2025/02/09/HuggingFace%E7%9A%84%E4%BD%BF%E7%94%A8/</loc>
     
     <lastmod>2026-03-07</lastmod>
     
@@ -1631,7 +1640,7 @@
   </url>
   
   <url>
-    <loc>http://outbreak-sen.github.io/2025/02/09/HuggingFace%E7%9A%84%E4%BD%BF%E7%94%A8/</loc>
+    <loc>http://outbreak-sen.github.io/2025/02/11/LLVM-tablegen/</loc>
     
     <lastmod>2026-03-07</lastmod>
     
@@ -1815,14 +1824,14 @@
   </url>
   
   <url>
-    <loc>http://outbreak-sen.github.io/tags/LLVM/</loc>
+    <loc>http://outbreak-sen.github.io/tags/huggingface/</loc>
     <lastmod>2026-03-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://outbreak-sen.github.io/tags/huggingface/</loc>
+    <loc>http://outbreak-sen.github.io/tags/LLVM/</loc>
     <lastmod>2026-03-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1955,13 +1964,6 @@
   </url>
   
   <url>
-    <loc>http://outbreak-sen.github.io/tags/easymocap/</loc>
-    <lastmod>2026-03-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>http://outbreak-sen.github.io/tags/CUDA/</loc>
     <lastmod>2026-03-13</lastmod>
     <changefreq>weekly</changefreq>
@@ -1969,14 +1971,14 @@
   </url>
   
   <url>
-    <loc>http://outbreak-sen.github.io/tags/Qt/</loc>
+    <loc>http://outbreak-sen.github.io/tags/easymocap/</loc>
     <lastmod>2026-03-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://outbreak-sen.github.io/tags/WSL/</loc>
+    <loc>http://outbreak-sen.github.io/tags/Qt/</loc>
     <lastmod>2026-03-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1991,6 +1993,13 @@
   
   <url>
     <loc>http://outbreak-sen.github.io/tags/tmux/</loc>
+    <lastmod>2026-03-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://outbreak-sen.github.io/tags/WSL/</loc>
     <lastmod>2026-03-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -2025,13 +2034,6 @@
   </url>
   
   <url>
-    <loc>http://outbreak-sen.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</loc>
-    <lastmod>2026-03-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>http://outbreak-sen.github.io/tags/transformer/</loc>
     <lastmod>2026-03-13</lastmod>
     <changefreq>weekly</changefreq>
@@ -2040,6 +2042,13 @@
   
   <url>
     <loc>http://outbreak-sen.github.io/tags/%E6%9D%8E%E6%B2%90/</loc>
+    <lastmod>2026-03-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://outbreak-sen.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</loc>
     <lastmod>2026-03-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -2074,6 +2083,20 @@
   </url>
   
   <url>
+    <loc>http://outbreak-sen.github.io/tags/%E4%B8%89%E7%BB%B4%E7%94%9F%E6%88%90/</loc>
+    <lastmod>2026-03-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://outbreak-sen.github.io/tags/Mesh/</loc>
+    <lastmod>2026-03-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>http://outbreak-sen.github.io/tags/%E5%A4%9A%E6%A8%A1%E6%80%81/</loc>
     <lastmod>2026-03-13</lastmod>
     <changefreq>weekly</changefreq>
@@ -2081,14 +2104,14 @@
   </url>
   
   <url>
-    <loc>http://outbreak-sen.github.io/tags/Stereo/</loc>
+    <loc>http://outbreak-sen.github.io/tags/Diffusion/</loc>
     <lastmod>2026-03-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://outbreak-sen.github.io/tags/Diffusion/</loc>
+    <loc>http://outbreak-sen.github.io/tags/Stereo/</loc>
     <lastmod>2026-03-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -2137,21 +2160,7 @@
   </url>
   
   <url>
-    <loc>http://outbreak-sen.github.io/tags/%E4%B8%89%E7%BB%B4%E7%94%9F%E6%88%90/</loc>
-    <lastmod>2026-03-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>http://outbreak-sen.github.io/tags/mesh/</loc>
-    <lastmod>2026-03-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://outbreak-sen.github.io/tags/Mesh/</loc>
     <lastmod>2026-03-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -2207,14 +2216,14 @@
   </url>
   
   <url>
-    <loc>http://outbreak-sen.github.io/tags/VAE/</loc>
+    <loc>http://outbreak-sen.github.io/tags/%E8%A7%86%E9%A2%91%E7%90%86%E8%A7%A3/</loc>
     <lastmod>2026-03-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://outbreak-sen.github.io/tags/%E8%A7%86%E9%A2%91%E7%90%86%E8%A7%A3/</loc>
+    <loc>http://outbreak-sen.github.io/tags/VAE/</loc>
     <lastmod>2026-03-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
