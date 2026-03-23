@@ -1,0 +1,415 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>论文阅读_Concerto | This is a 部落格 of outbreak_sen</title><meta name="author" content="outbreak_sen"><meta name="copyright" content="outbreak_sen"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Concerto Concerto: Joint 2D-3D Self-Supervised Learning for Spatial Representations 基本信息    项目 内容     论文标题 Concerto: Joint 2D-3D Self-Supervised Learning for Spatial Representations   作者 Yujia Zhang,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="论文阅读_Concerto">
+<meta property="og:url" content="http://outbreak-sen.github.io/2026/03/23/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_Concerto/index.html">
+<meta property="og:site_name" content="This is a 部落格 of outbreak_sen">
+<meta property="og:description" content="Concerto Concerto: Joint 2D-3D Self-Supervised Learning for Spatial Representations 基本信息    项目 内容     论文标题 Concerto: Joint 2D-3D Self-Supervised Learning for Spatial Representations   作者 Yujia Zhang,">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://outbreak-sen.github.io/img/head.png">
+<meta property="article:published_time" content="2026-03-23T05:57:28.000Z">
+<meta property="article:modified_time" content="2026-03-23T01:32:24.607Z">
+<meta property="article:author" content="outbreak_sen">
+<meta property="article:tag" content="点云配准">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://outbreak-sen.github.io/img/head.png"><link rel="shortcut icon" href="/img/h_beautygirl.png"><link rel="canonical" href="http://outbreak-sen.github.io/2026/03/23/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_Concerto/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '论文阅读_Concerto',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  isShuoshuo: false
+}</script><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="This is a 部落格 of outbreak_sen" type="application/atom+xml">
+<link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head><body><div id="web_bg" style="background-image: url(/img/v_beautygirl0.jpeg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/./img/head.png" onerror="onerror=null;src='./img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">205</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">71</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">15</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw fa fa-camera-retro"></i><span> 树洞</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 作品与鉴赏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/h_beautygirl.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/h_beautygirl.png" alt="Logo"><span class="site-name">This is a 部落格 of outbreak_sen</span></a><a class="nav-page-title" href="/"><span class="site-name">论文阅读_Concerto</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw fa fa-camera-retro"></i><span> 树洞</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 作品与鉴赏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">论文阅读_Concerto</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-03-23T05:57:28.000Z" title="发表于 2026-03-23 13:57:28">2026-03-23</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-03-23T01:32:24.607Z" title="更新于 2026-03-23 09:32:24">2026-03-23</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%82%B9%E4%BA%91%E9%85%8D%E5%87%86/">点云配准</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1>Concerto</h1>
+<h1>Concerto: Joint 2D-3D Self-Supervised Learning for Spatial Representations</h1>
+<h2 id="基本信息">基本信息</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">项目</th>
+<th style="text-align:left">内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>论文标题</strong></td>
+<td style="text-align:left">Concerto: Joint 2D-3D Self-Supervised Learning for Spatial Representations</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>作者</strong></td>
+<td style="text-align:left">Yujia Zhang, Xiaoyang Wu, Yixing Lao, Chengyao Wang, Zhuotao Tian, Naiyan Wang, Hengshuang Zhao</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>作者单位</strong></td>
+<td style="text-align:left">1. 香港大学 2. 香港中文大学 3. 哈尔滨工业大学（深圳）</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>时间</strong></td>
+<td style="text-align:left">2025</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>发表会议/期刊</strong></td>
+<td style="text-align:left">NeurIPS 2025</td>
+</tr>
+</tbody>
+</table>
+<h2 id="方法概览">方法概览</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">特点</th>
+<th style="text-align:left">文章性质</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>输入</strong></td>
+<td style="text-align:left">点云及对应的多视角图像（可选）</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>输出</strong></td>
+<td style="text-align:left">每个点的稠密特征表示（可用于下游任务）</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>所属领域</strong></td>
+<td style="text-align:left">三维自监督学习、跨模态表示学习</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="1-摘要精简">1. 摘要精简</h2>
+<p>Concerto 是一个受人类多感官协同学习概念启发的 2D-3D 联合自监督学习框架，通过结合 3D 模态内自蒸馏与 2D→3D 跨模态联合嵌入预测，使点云 Transformer 学习到更一致、更丰富的空间特征。零样本可视化表明其学到的特征具有更好的几何与语义一致性。</p>
+<p>在线性探测中，Concerto 分别超越 SOTA 2D 和 3D 自监督模型 14.2% 和 4.8%，也超过两者特征的简单拼接。</p>
+<p>全微调在多个场景理解基准上刷新 SOTA（如 ScanNet 语义分割 mIoU 达 80.7%）。</p>
+<p>此外，还提出了面向视频提升点云的变体和一个将 Concerto 特征线性投影到 CLIP 语言空间的转换器，实现开放世界感知。</p>
+<h2 id="2-引言出发点">2. 引言出发点</h2>
+<p>人类通过多感官协同形成抽象概念（如苹果的形状、颜色、质地），且一旦形成，单模态输入即可唤起完整概念。受此启发，作者思考：能否让自监督学习模型通过 2D 图像和 3D 点云的协同学习，产生超越单模态的、更强大的空间表示？初步实验发现，将独立训练的 2D 模型（DINOv2）和 3D 模型（Sonata）的特征简单拼接，其线性探测性能优于任一单模态，表明两种模态包含互补信息。因此，作者旨在设计一个联合 2D-3D 自监督学习框架，让模型在训练中实现模态间协同，从而学习到更丰富的表示。</p>
+<h2 id="3-创新点与相关工作对比">3. 创新点与相关工作对比</h2>
+<p><strong>创新点：</strong></p>
+<ol>
+<li><strong>联合 2D-3D 自监督学习范式</strong>：首次将 3D 模态内自蒸馏与 2D→3D 跨模态联合嵌入预测结合，使点云编码器同时从自身几何结构和图像语义中学习。</li>
+<li><strong>跨模态联合嵌入预测</strong>：利用预训练的 2D 自监督模型（DINOv2）作为教师，让点云特征预测对应图像块的特征，通过余弦相似度监督，使点云表示吸收图像的语义信息。</li>
+<li><strong>多源异构数据联合预训练</strong>：汇集 40k 点云场景及对应的 300k 图像，并额外利用 50k 视频提升点云（通过 VGGT 从视频中重建），进一步扩展数据规模。</li>
+<li><strong>语言空间投影</strong>：通过线性层将 Concerto 特征投影到 CLIP 语言空间，实现零样本开放词汇感知。</li>
+</ol>
+<p><strong>与相关工作对比及指出的问题：</strong></p>
+<table>
+<thead>
+<tr>
+<th>对比方法</th>
+<th>问题</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DINOv2 (2D 自监督) [28]</td>
+<td>缺乏 3D 几何感知，无法直接用于点云任务</td>
+</tr>
+<tr>
+<td>Sonata (3D 自监督) [49]</td>
+<td>虽能学习强 3D 表示，但缺少图像中的纹理和语义信息</td>
+</tr>
+<tr>
+<td>两者特征拼接</td>
+<td>虽然性能提升，但未在训练中真正协同，不能完全挖掘跨模态潜力</td>
+</tr>
+<tr>
+<td>现有 2D-3D 结合方法（如 lifting、蒸馏）</td>
+<td>大多单向模仿图像特征，忽略真正交互；或依赖图像作为推理输入</td>
+</tr>
+<tr>
+<td>Locate3D [2]</td>
+<td>推理时仍需图像，流程复杂，Concerto 仅需点云即可推理</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4-网络架构构成">4. 网络架构构成</h2>
+<p>Concerto 的整体架构如图 3 所示，包含两个并行分支：</p>
+<ul>
+<li><strong>模态内自蒸馏分支</strong>：基于 Sonata [49] 的框架，采用学生-教师结构对点云进行自蒸馏。学生编码器（PTv3 [47]）处理局部视图和掩蔽视图，教师编码器（动量更新）处理全局视图，通过聚类分配损失（Sinkhorn-Knopp 中心化）使学生特征与教师特征对齐。</li>
+<li><strong>跨模态联合嵌入预测分支</strong>：利用一个冻结的 2D 自监督图像编码器（DINOv2 [28]）提取图像块特征。点云编码器（共享上述学生编码器）的输出（上投射到适当尺度）通过余弦相似度损失，预测对应图像块的特征。对应关系通过相机参数将 3D 点投影到 2D 图像并验证深度一致性得到。</li>
+<li><strong>跨模态预测器</strong>：以相机参数为条件，将点特征映射为图像 patch 特征预测值。</li>
+<li><strong>特征上投射模块</strong>：无参多尺度特征拼接，融合不同层级表征。</li>
+</ul>
+<p>两个分支共享点云编码器，联合训练。</p>
+<h2 id="5-数据预处理与点的无序性-稀疏性处理">5. 数据预处理与点的无序性/稀疏性处理</h2>
+<ul>
+<li><strong>数据来源</strong>：汇集 40k 点云场景（含 ScanNet [15]、ScanNet++ [52]、S3DIS [1]、ArkitScenes [7]、HM3D [33]、Structured3D [60]）及对应的 300k 图像。额外加入从 RealEstate10K [61] 视频用 VGGT [43] 提升的 50k 点云与 200k 图像。</li>
+<li><strong>预处理</strong>：
+<ul>
+<li>点云：采用 PTv3 的体素化与稀疏注意力，保留原始坐标作为输入特征。数据增强包括随机裁剪、旋转、抖动、颜色变换（同 Sonata [49]）。</li>
+</ul>
+</li>
+<li>数据增强
+<ol>
+<li>点云增强：裁剪、旋转、掩码点高斯抖动，同 Sonata。</li>
+<li>图像增强：弱光度增强（颜色抖动、高斯模糊），避免强增强破坏模态对齐。</li>
+<li>视图构建：4 局部视图 + 2 掩码视图 + 2 全局视图，每个点云搭配 4 张对应图像。</li>
+</ol>
+</li>
+</ul>
+<h2 id="6-特征提取">6. 特征提取</h2>
+<ul>
+<li><strong>点云编码器</strong>：PTv3 [47] 编码器，输出多尺度点特征。预训练时，特征在多个尺度上用于不同分支：自蒸馏损失在上投射 level 2 计算，跨模态损失在上投射 level 3 计算。</li>
+<li><strong>图像编码器</strong>：冻结的 DINOv2 [28]，输出图像块特征（patch features）。</li>
+<li><strong>特征对齐</strong>：通过相机投影和深度验证，建立 3D 点与 2D 图像块的对应关系。</li>
+</ul>
+<h2 id="7-如何找到两个点云的匹配关系">7. 如何找到两个点云的匹配关系</h2>
+<p>Concerto <strong>不涉及点云间的匹配</strong>，其目标是学习单点云内每个点的特征表示。因此该问题不适用。</p>
+<h2 id="8-如何基于两个点云的匹配关系计算点云之间的变换关系">8. 如何基于两个点云的匹配关系计算点云之间的变换关系</h2>
+<p>Concerto <strong>不计算点云间的变换</strong>。预训练任务是自监督特征学习，不涉及配准或变换估计。</p>
+<h2 id="9-完整流程：输入点云到输出特征">9. 完整流程：输入点云到输出特征</h2>
+<ol>
+<li><strong>输入</strong>：点云 $ \mathbf{S} $（可能附带对应的图像 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="bold">I</mi></mrow><annotation encoding="application/x-tex">\mathbf{I}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68611em;vertical-align:0em;"></span><span class="mord"><span class="mord mathbf">I</span></span></span></span></span>）。</li>
+<li><strong>视图生成</strong>：对点云进行增强，生成 2 个全局视图、4 个局部视图、2 个掩蔽视图（同 Sonata）。若图像存在，则保留原始图像。</li>
+<li><strong>编码</strong>：
+<ul>
+<li>点云局部/掩蔽视图 → 学生编码器（PTv3） → 多尺度特征。</li>
+<li>点云全局视图 → 教师编码器（动量更新） → 多尺度特征。</li>
+<li>图像（若存在） → 冻结的 DINOv2 图像编码器 → 图像块特征。</li>
+</ul>
+</li>
+<li><strong>特征对齐</strong>：
+<ul>
+<li>模态内：对每个视图，将学生特征与教师特征在对应点位置对齐，使用在线聚类损失（Sinkhorn-Knopp）。</li>
+<li>跨模态：将学生特征（上投射至 level 3）与通过投影匹配的图像块特征对齐，使用余弦相似度损失。</li>
+</ul>
+</li>
+<li><strong>输出</strong>：预训练完成后，点云编码器可提取任意点云的多尺度特征，用于下游任务。</li>
+</ol>
+<h2 id="10-损失函数">10. 损失函数</h2>
+<p>总损失为模态内自蒸馏损失和跨模态联合嵌入预测损失的加权和：</p>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="script">L</mi><mo>=</mo><msub><mi>λ</mi><mtext>intra</mtext></msub><msub><mi mathvariant="script">L</mi><mtext>intra</mtext></msub><mo>+</mo><msub><mi>λ</mi><mtext>cross</mtext></msub><msub><mi mathvariant="script">L</mi><mtext>cross</mtext></msub></mrow><annotation encoding="application/x-tex">\mathcal{L} = \lambda_{\text{intra}} \mathcal{L}_{\text{intra}} + \lambda_{\text{cross}} \mathcal{L}_{\text{cross}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord"><span class="mord mathcal">L</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">λ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31750199999999995em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">intra</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord"><span class="mord mathcal">L</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31750199999999995em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">intra</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">λ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">cross</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord"><span class="mord mathcal">L</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">cross</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></p>
+<ul>
+<li>
+<p><strong>模态内自蒸馏损失</strong> $ \mathcal{L}_{\text{intra}} $：采用 DINOv2 的在线聚类损失（交叉熵），将学生特征与教师经过 Sinkhorn-Knopp 中心化后的聚类分配对齐。对于每个匹配的点对 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>i</mi><mo separator="true">,</mo><mi>j</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(i,j)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault">i</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">)</span></span></span></span>，约束同一点云不同视图的特征一致性：</p>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi mathvariant="script">L</mi><mtext>intra</mtext></msub><mo>=</mo><mo>−</mo><mfrac><mn>1</mn><mi>N</mi></mfrac><msub><mo>∑</mo><mrow><mo stretchy="false">(</mo><mi>i</mi><mo separator="true">,</mo><mi>j</mi><mo stretchy="false">)</mo></mrow></msub><msub><mo>∑</mo><mi>k</mi></msub><msubsup><mi mathvariant="bold">Q</mi><mi>j</mi><mrow><mo stretchy="false">(</mo><mi>k</mi><mo stretchy="false">)</mo></mrow></msubsup><mi>log</mi><mo>⁡</mo><msubsup><mi mathvariant="bold">P</mi><mi>i</mi><mrow><mo stretchy="false">(</mo><mi>k</mi><mo stretchy="false">)</mo></mrow></msubsup></mrow><annotation encoding="application/x-tex">\mathcal{L}_{\text{intra}} = -\frac{1}{N} \sum_{(i,j)} \sum_{k} \mathbf{Q}_j^{(k)} \log \mathbf{P}_i^{(k)}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord"><span class="mord mathcal">L</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31750199999999995em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">intra</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.51951em;vertical-align:-0.47471em;"></span><span class="mord">−</span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.845108em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.10903em;">N</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.22528999999999993em;"><span style="top:-2.40029em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">(</span><span class="mord mathdefault mtight">i</span><span class="mpunct mtight">,</span><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span><span class="mclose mtight">)</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.47471em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1863979999999999em;"><span style="top:-2.40029em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.29971000000000003em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord"><span class="mord mathbf">Q</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.0448em;"><span style="top:-2.4231360000000004em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span></span></span><span style="top:-3.2198em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">(</span><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span><span class="mclose mtight">)</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.4129719999999999em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord"><span class="mord mathbf">P</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.0448em;"><span style="top:-2.4231360000000004em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span><span style="top:-3.2198em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">(</span><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span><span class="mclose mtight">)</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.27686399999999994em;"><span></span></span></span></span></span></span></span></span></span></p>
+<p>其中 $ \mathbf{P}_i $ 是学生特征经 softmax 的概率分布（温度 $ \tau_s <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>），</mtext></mrow><annotation encoding="application/x-tex">），</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord cjk_fallback">）</span><span class="mord cjk_fallback">，</span></span></span></span> \mathbf{Q}_j $ 是教师特征经 Sinkhorn-Knopp 中心化后锐化的目标分布（温度 $ \tau_t $）。同时包含 KoLeo 正则化。</p>
+</li>
+<li>
+<p><strong>跨模态联合嵌入预测损失</strong> $ \mathcal{L}<em>{\text{cross}} $：采用余弦相似度，鼓励点云特征 $ \mathbf{f}</em>{\text{3D}} $ 与对应的图像块特征 $ \mathbf{f}_{\text{2D}} $ 接近，约束点特征预测的 patch 特征与 DINOv2 提取特征一致：</p>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi mathvariant="script">L</mi><mtext>cross</mtext></msub><mo>=</mo><mn>1</mn><mo>−</mo><mfrac><mrow><msub><mi mathvariant="bold">f</mi><mtext>3D</mtext></msub><mo>⋅</mo><msub><mi mathvariant="bold">f</mi><mtext>2D</mtext></msub></mrow><mrow><mi mathvariant="normal">∥</mi><msub><mi mathvariant="bold">f</mi><mtext>3D</mtext></msub><mi mathvariant="normal">∥</mi><mi mathvariant="normal">∥</mi><msub><mi mathvariant="bold">f</mi><mtext>2D</mtext></msub><mi mathvariant="normal">∥</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">\mathcal{L}_{\text{cross}} = 1 - \frac{\mathbf{f}_{\text{3D}} \cdot \mathbf{f}_{\text{2D}}}{\|\mathbf{f}_{\text{3D}}\| \|\mathbf{f}_{\text{2D}}\|}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord"><span class="mord mathcal">L</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">cross</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.416413em;vertical-align:-0.52em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8964129999999999em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">∥</span><span class="mord mtight"><span class="mord mtight"><span class="mord mathbf mtight" style="margin-right:0.10903em;">f</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3448em;"><span style="top:-2.3567071428571427em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">3D</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.14329285714285717em;"><span></span></span></span></span></span></span><span class="mord mtight">∥</span><span class="mord mtight">∥</span><span class="mord mtight"><span class="mord mtight"><span class="mord mathbf mtight" style="margin-right:0.10903em;">f</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3448em;"><span style="top:-2.3567071428571427em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">2D</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.14329285714285717em;"><span></span></span></span></span></span></span><span class="mord mtight">∥</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.410305em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathbf mtight" style="margin-right:0.10903em;">f</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3448em;"><span style="top:-2.3567071428571427em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">3D</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.14329285714285717em;"><span></span></span></span></span></span></span><span class="mbin mtight">⋅</span><span class="mord mtight"><span class="mord mtight"><span class="mord mathbf mtight" style="margin-right:0.10903em;">f</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3448em;"><span style="top:-2.3567071428571427em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">2D</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.14329285714285717em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.52em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></p>
+<p>实验中使用权重 $ \lambda_{\text{intra}}:\lambda_{\text{cross}} = 2:2 $（即 1:1）效果最佳。</p>
+</li>
+</ul>
+<h2 id="11-测试数据集">11. 测试数据集</h2>
+<ul>
+<li><strong>ScanNet v2</strong> [15]：1,513 个室内场景，用于语义/实例分割。</li>
+<li><strong>ScanNet200</strong> [35]：200 类精细标注版本。</li>
+<li><strong>ScanNet++</strong> [52]：高保真室内数据集。</li>
+<li><strong>S3DIS</strong> [1]：6 个区域 271 个房间，语义分割。</li>
+<li><strong>ScanNet Data Efficient</strong> [19]：用于数据效率评估（限制场景数量或每场景标注点数）。</li>
+<li><strong>AEO (Aria Everyday Objects)</strong>：用于分布外泛化评估（附录）。</li>
+<li><strong>RealEstate10K</strong> [61]：视频提升点云数据，用于视频变体训练。</li>
+</ul>
+<p><strong>自建数据集</strong>：Concerto 未新造数据集，而是整合现有数据形成 40k 点云 + 300k 图像的基础预训练集，以及额外 50k 视频提升点云 + 200k 图像的扩展集。具体数据组成见表 7 和表 8。</p>
+<h2 id="12-消融实验测试的组件">12. 消融实验测试的组件</h2>
+<p>消融实验基于 ScanNet 语义分割，使用线性探测和 decoder 探测进行评估（默认设置：39M PTv3，训练于 ScanNet+Structured3D 共 23k 数据）：</p>
+<ul>
+<li><strong>联合跨模态学习</strong>：对比 Concerto 与 DINOv2、Sonata 及其特征拼接，证明联合学习超越简单拼接。</li>
+<li><strong>损失函数类型</strong>（Tab. 6a）：对比在线聚类（o.c.）与余弦相似度（c.s.）的组合，发现自蒸馏用 o.c.、跨模态用 c.s. 最佳。</li>
+<li><strong>图像使用比例</strong>（Tab. 6b）：逐步增加带图像的点云比例（0%→100%），线性探测性能提升，20% 即有效，50% 接近饱和。</li>
+<li><strong>损失权重</strong>（Tab. 6c）：尝试 cross:intra 权重比 1:2、2:2、3:2，2:2 最优。</li>
+<li><strong>图像增强</strong>（Tab. 6d）：对比无增强、弱增强（同点云增强）、强增强（DINOv2 风格），弱增强效果最佳，强增强反而下降（因图像编码器冻结）。</li>
+<li><strong>可见点数量</strong>（Tab. 6e）：比较每个图像视图对应的 3D 点数量（×1: 65536 点，×2: 131072 点），性能相近，略少点更好（迫使模型利用上下文）。</li>
+<li><strong>上投射等级</strong>（Tab. 6f）：跨模态损失使用的特征上投射等级（2/3/4），level 3 最优，接近图像与点云的最佳尺度对应。</li>
+<li><strong>数据规模</strong>（Tab. 6g）：从 23k 扩至 40k，性能显著提升。</li>
+<li><strong>模型规模</strong>（Tab. 6h）：从 39M 扩至 108M，性能进一步提升。</li>
+</ul>
+<h2 id="其他创新点">其他创新点</h2>
+<ul>
+<li><strong>视频提升点云变体</strong>：使用 VGGT [43] 从视频重建点云，扩展训练数据，使模型适应视频来源的稀疏点云，PCA 可视化显示其跨帧一致性（附录 B.1）。</li>
+<li><strong>语言空间投影（Language Probing）</strong>：训练一个线性层将 Concerto 特征投影到 CLIP 文本空间（以 LSeg [27] 图像编码器输出为目标），实现零样本开放词汇定位（图 7），在 ScanNet 上零样本达到 44.56% mIoU。</li>
+<li><strong>LoRA 微调</strong>：在数据稀缺场景下，LoRA 微调（0.3M 参数）性能优于线性探测和全微调，表明 Concerto 特征的高度可泛化性（附录 B.4）。</li>
+</ul>
+<h1>一、为什么用 PTv3 + 教师 - 学生自蒸馏？（核心 4 个原因）</h1>
+<p>这些工作（Sonata、Concerto）<strong>必须用</strong>这个结构，是由 <strong>3D 点云自监督的痛点</strong> 决定的，也是替代传统对比学习的最优解：</p>
+<ol>
+<li>
+<p>解决 3D 自监督「无标注」问题点云标注成本极高，自蒸馏完全不需要人工标签，用「模型自己生成的监督信号」训练，是纯自监督学习。</p>
+</li>
+<li>
+<p>根治 3D 几何捷径（最核心原因）3D 模型很容易偷懒，只学法向量、高度等低级几何特征；教师网络输出</p>
+<p>软监督信号，强迫学生网络放弃低级捷径，学习高级语义 / 空间特征。</p>
+</li>
+<li>
+<p>比传统对比学习更适合点云传统对比学习需要大量负样本，点云负样本构造难、计算量大；自蒸馏无负样本，轻量化、训练稳定，完美适配 PTv3 这种大模型。</p>
+</li>
+<li>
+<p>适配 PTv3 无解码器架构Sonata/Concerto 都删掉了解码器，不能用「重建点云」做监督；自蒸馏只需要对齐特征，不需要重建输入，和无解码器架构 100% 匹配。</p>
+</li>
+<li>
+<p>提升表征鲁棒性教师网络通过滑动平均 (EMA) 缓慢更新，输出的特征更稳定、泛化性更强，学生网络学习后，线性探测 / 下游任务效果暴涨。</p>
+</li>
+</ol>
+<hr>
+<h1>二、基于 PTv3 的自蒸馏 <strong>完整执行流程</strong>（一步一讲）</h1>
+<p>所有工作（Sonata、Concerto）的自蒸馏流程<strong>完全一致</strong></p>
+<h2 id="1-核心结构：两个一模一样的-ptv3-编码器">1. 核心结构：两个一模一样的 PTv3 编码器</h2>
+<ul>
+<li><strong>学生网络 Student</strong>：在线网络，<strong>正常训练、参数实时更新</strong>，负责学习特征。</li>
+<li>教师网络 Teacher：EMA 网络，不参与梯度反向传播，参数由学生网络滑动平均更新，负责生成「标准答案」。</li>
+</ul>
+<h2 id="2-数据增强：构造-不对称视图-关键设计">2. 数据增强：构造「不对称视图」（关键设计）</h2>
+<p>对<strong>同一片点云</strong>做数据增强，生成两种视图：</p>
+<ul>
+<li>
+<p><strong>教师输入：全局视图</strong>（完整、无遮挡、简单）</p>
+</li>
+<li>
+<p>学生输入：局部视图 / 掩码视图（残缺、遮挡、难度高）</p>
+<p>目的：让学生从残缺输入中，学习和教师完整输入一致的特征。</p>
+</li>
+</ul>
+<h2 id="3-前向推理：分别提取特征">3. 前向推理：分别提取特征</h2>
+<ol>
+<li>完整点云 → 教师 PTv3 → 输出<strong>稳定的全局特征</strong></li>
+<li>残缺点云 → 学生 PTv3 → 输出<strong>待优化的学生特征</strong></li>
+</ol>
+<h2 id="4-生成软目标-自蒸馏的核心">4. 生成软目标（自蒸馏的核心）</h2>
+<p>教师网络不输出硬标签，而是输出<strong>软概率分布</strong>（通过在线聚类 + Sinkhorn-Knopp 算法）：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo>=</mo><mi>s</mi><mi>o</mi><mi>f</mi><mi>t</mi><mi>m</mi><mi>a</mi><mi>x</mi><mo stretchy="false">(</mo><mi>t</mi><mi>e</mi><mi>a</mi><mi>c</mi><mi>h</mi><mi>e</mi><msub><mi>r</mi><mrow><mi>f</mi><mi>e</mi><mi>a</mi><mi>t</mi></mrow></msub><mi mathvariant="normal">/</mi><msub><mi>τ</mi><mi>t</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">t=softmax(teacher_{feat}/τ_t)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.61508em;vertical-align:0em;"></span><span class="mord mathdefault">t</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.036108em;vertical-align:-0.286108em;"></span><span class="mord mathdefault">s</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mord mathdefault">t</span><span class="mord mathdefault">m</span><span class="mord mathdefault">a</span><span class="mord mathdefault">x</span><span class="mopen">(</span><span class="mord mathdefault">t</span><span class="mord mathdefault">e</span><span class="mord mathdefault">a</span><span class="mord mathdefault">c</span><span class="mord mathdefault">h</span><span class="mord mathdefault">e</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.10764em;">f</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">a</span><span class="mord mathdefault mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mord">/</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.1132em;">τ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.1132em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></p>
+<ul>
+<li>τt：教师温度系数，控制分布锐化</li>
+<li>t：教师生成的<strong>软监督目标</strong>（标准答案）</li>
+</ul>
+<h2 id="5-学生拟合教师：计算蒸馏损失">5. 学生拟合教师：计算蒸馏损失</h2>
+<p>让学生网络的输出分布，无限逼近教师的软目标，损失函数为<strong>对称交叉熵</strong>：</p>
+<p>Ldistill=−(t⋅logs+s⋅logt).mean()</p>
+<ul>
+<li>s：学生网络输出的概率分布</li>
+<li>这个损失强迫学生：<strong>即便输入残缺，也要学到和完整点云一致的高级特征</strong></li>
+</ul>
+<h2 id="6-ema-更新教师网络-最关键的一步">6. EMA 更新教师网络（最关键的一步）</h2>
+<p>教师参数<strong>不反向传播</strong>，只用学生参数做<strong>滑动平均更新</strong>，保证教师输出永远稳定：</p>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>θ</mi><mrow><mi>t</mi><mi>e</mi><mi>a</mi><mi>c</mi><mi>h</mi><mi>e</mi><mi>r</mi></mrow></msub><mo>=</mo><mi>α</mi><mo>⋅</mo><msub><mi>θ</mi><mrow><mi>t</mi><mi>e</mi><mi>a</mi><mi>c</mi><mi>h</mi><mi>e</mi><mi>r</mi></mrow></msub><mo>+</mo><mo stretchy="false">(</mo><mn>1</mn><mtext>−</mtext><mi>α</mi><mo stretchy="false">)</mo><mo>⋅</mo><msub><mi>θ</mi><mrow><mi>s</mi><mi>t</mi><mi>u</mi><mi>d</mi><mi>e</mi><mi>n</mi><mi>t</mi></mrow></msub></mrow><annotation encoding="application/x-tex">θ_{teacher}=α⋅θ_{teacher}+(1−α)⋅θ_{student}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">t</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">a</span><span class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight">h</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.44445em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.0037em;">α</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">t</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">a</span><span class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight">h</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mord">−</span><span class="mord mathdefault" style="margin-right:0.0037em;">α</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">s</span><span class="mord mathdefault mtight">t</span><span class="mord mathdefault mtight">u</span><span class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></p>
+<ul>
+<li>α：滑动系数，通常取 0.999教师更新极慢，相当于一个「稳定的专家」，教学生稳步学习</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://outbreak-sen.github.io">outbreak_sen</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://outbreak-sen.github.io/2026/03/23/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_Concerto/">http://outbreak-sen.github.io/2026/03/23/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_Concerto/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://outbreak-sen.github.io" target="_blank">This is a 部落格 of outbreak_sen</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E7%82%B9%E4%BA%91%E9%85%8D%E5%87%86/">点云配准</a></div><div class="post-share"><div class="social-share" data-image="/./img/head.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2026/03/23/SSH%20%E5%AF%86%E9%92%A5%E8%AE%A4%E8%AF%81/" title="SSH密钥认证"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">SSH密钥认证</div></div><div class="info-2"><div class="info-item-1">SSH 密钥认证 1. 生成密钥对（在本地机器上） 1234567# 生成 RSA 密钥（默认）ssh-keygen -t rsa -b 4096 -C &quot;your_email@example.com&quot;# 或者生成 Ed25519 密钥（更安全，推荐）ssh-keygen -t ed25519 -C &quot;your_email@example.com&quot;# 一路回车，使用默认路径（~/.ssh/id_rsa）和空密码 2. 复制公钥到服务器 123456789# 方法三：直接复制粘贴# 本地执行cat ~/.ssh/id_rsa.pub# 复制输出的内容# 登录服务器，执行mkdir -p ~/.sshecho &quot;粘贴刚才的内容&quot; &gt;&gt; ~/.ssh/authorized_keyschmod 700 ~/.sshchmod 600 ~/.ssh/authorized_keys 12345# 方法一：使用 ssh-copy-id（最简单）ssh-copy-id username@server_ip#...</div></div></div></a><a class="pagination-related" href="/2026/03/23/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_FUSER/" title="论文阅读_FUSER"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">论文阅读_FUSER</div></div><div class="info-2"><div class="info-item-1">FUSER: Feed-forward Multiview Registration Transformer FUSER 没有 “参考点云” 这个概念！ 世界坐标系 = 数据集自带的真实全局坐标系（GT 里给的） 基本信息    项目 内容     论文标题 FUSER: Feed-forward Multiview Registration Transformer   作者 Haobo Jiang, Ao Shenn, Yu Liang, Jiaxiang Yang, Jianxin Xie   作者单位 Nanyang Technological University, Alibaba Group, Nankai University, Nanjing University1. 南洋理工大学 2. 阿里巴巴集团 3. 南开大学 4. 南京大学   时间 2025   发表会议/期刊 CVPR    方法概览    特点 文章性质     输入 无序、部分重叠的多视角点云集合   输出 每个点云的全局刚性变换（旋转 +...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2026/03/23/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_FUSER/" title="论文阅读_FUSER"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-23</div><div class="info-item-2">论文阅读_FUSER</div></div><div class="info-2"><div class="info-item-1">FUSER: Feed-forward Multiview Registration Transformer FUSER 没有 “参考点云” 这个概念！ 世界坐标系 = 数据集自带的真实全局坐标系（GT 里给的） 基本信息    项目 内容     论文标题 FUSER: Feed-forward Multiview Registration Transformer   作者 Haobo Jiang, Ao Shenn, Yu Liang, Jiaxiang Yang, Jianxin Xie   作者单位 Nanyang Technological University, Alibaba Group, Nankai University, Nanjing University1. 南洋理工大学 2. 阿里巴巴集团 3. 南开大学 4. 南京大学   时间 2025   发表会议/期刊 CVPR    方法概览    特点 文章性质     输入 无序、部分重叠的多视角点云集合   输出 每个点云的全局刚性变换（旋转 +...</div></div></div></a><a class="pagination-related" href="/2026/03/23/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_RectifiedPointFlow/" title="论文阅读_RectifiedPointFlow"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-23</div><div class="info-item-2">论文阅读_RectifiedPointFlow</div></div><div class="info-2"><div class="info-item-1">Rectified Point Flow: Generic Point Cloud Pose Estimation 基本信息    项目 内容     论文标题 Rectified Point Flow: Generic Point Cloud Pose Estimation   作者 Tao Sun, Liyuan Zhu, Shengyu Huang, Shuran Song, Iro Armeni   作者单位 Stanford University, NVIDIA Research   时间 2025   发表会议/期刊 NeurIPS 2025       特点 文章性质     输入 无序、无位姿、多部件点云集合（支持成对配准与多部件装配）   输出 各部件在全局坐标系下的刚性位姿 Ti∈SE(3) 与装配完成的点云   所属领域 点云配准、多部件三维装配、流匹配生成式模型    摘要精简 Rectified Point Flow...</div></div></div></a><a class="pagination-related" href="/2026/03/23/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_RegisterAnyPoint/" title="论文阅读_RAP"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-23</div><div class="info-item-2">论文阅读_RAP</div></div><div class="info-2"><div class="info-item-1">RAP: Register Any Point 基本信息    项目 内容     论文标题 Register Any Point: Generative Multi-View Point Cloud Registration   作者 Yue Pan, Tao Sun, Liyuan Zhu, Lucas Nunes, Iro Armeni, Jens Behley, Cyrill Stachniss   作者单位 波恩大学机器人中心（德国）, 斯坦福大学（美国）, 亚琛工业大学（德国）   时间 2026 (推测)   发表会议/期刊 arXiv preprint / 待发表 (推测)    方法概览    特点 文章性质     输入 多个未对齐的、无序的点云（任意数量）   输出 配准后的点云（全局一致），并恢复每个点云的刚性变换   所属领域 三维视觉、多视角点云配准、生成式模型     1. 摘要精简 RAP (Register Any...</div></div></div></a><a class="pagination-related" href="/2026/03/23/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_Sonata/" title="论文阅读_Sonata"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-23</div><div class="info-item-2">论文阅读_Sonata</div></div><div class="info-2"><div class="info-item-1">Sonata Sonata: Reliable 3D Self-Supervised Learning for Point Clouds 基本信息    项目 内容     论文标题 Sonata: Reliable 3D Self-Supervised Learning for Point Clouds   作者 Xiaoyang Wu, Daniel DeTone, Duncan Frost, Tianwei Shen, Chris Xie, Nan  Yang, Jakob Engel, Richard Newcombe, Hengshuang Zhao, Julian Straub   作者单位 1. 香港大学 2. Meta Reality Labs Research   时间 2024 (推测)   发表会议/期刊 arXiv preprint / 待发表 (推测)    方法概览    特点 文章性质     输入 场景级点云集合（室内/室外）   输出 每个点的密集特征表示（可用于下游任务）   所属领域 三维自监督学习、点云表示学习     1....</div></div></div></a><a class="pagination-related" href="/2026/03/23/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_Utonia/" title="论文阅读_Utonia"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-23</div><div class="info-item-2">论文阅读_Utonia</div></div><div class="info-2"><div class="info-item-1">Utonia Utonia: Toward One Encoder for All Point Clouds 基本信息    项目 内容     论文标题 Utonia: Toward One Encoder for All Point Clouds   作者 Yujia Zhang, Xiaoyang Wu, Yunhan Yang, Xianzhe Fan, Han Li, Yuechen Zhang, Zehao Huang, Naiyan Wang, Hengshuang Zhao   作者单位 1. 香港大学 2. 香港中文大学 3. 小米   时间 2025   发表会议/期刊 arXiv preprint / 待发表 (推测)    方法概览    特点 文章性质     输入 跨域点云（室内、室外LiDAR、遥感、物体CAD、视频提升点云）   输出 每个点的稠密特征表示（可用于下游任务）   所属领域 三维自监督学习、跨域统一表示学习     1. 摘要精简 Utonia 是首个面向全场景跨域点云的统一自监督编码器，可同时处理遥感、室外 LiDAR、室内...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/./img/head.png" onerror="this.onerror=null;this.src='/./img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">outbreak_sen</div><div class="author-info-description">an interesting man</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">205</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">71</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">15</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/outbreak-sen" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://blog.csdn.net/outbreakrmb" target="_blank" title="CSDN"><i class="fa fa-book-open"></i></a><a class="social-icon" href="/1023786231" target="_blank" title="QQ"><i class="fab fa-qq"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">Concerto</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">Concerto: Joint 2D-3D Self-Supervised Learning for Spatial Representations</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="toc-text">基本信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E6%A6%82%E8%A7%88"><span class="toc-text">方法概览</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%91%98%E8%A6%81%E7%B2%BE%E7%AE%80"><span class="toc-text">1. 摘要精简</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%BC%95%E8%A8%80%E5%87%BA%E5%8F%91%E7%82%B9"><span class="toc-text">2. 引言出发点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%88%9B%E6%96%B0%E7%82%B9%E4%B8%8E%E7%9B%B8%E5%85%B3%E5%B7%A5%E4%BD%9C%E5%AF%B9%E6%AF%94"><span class="toc-text">3. 创新点与相关工作对比</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84%E6%9E%84%E6%88%90"><span class="toc-text">4. 网络架构构成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86%E4%B8%8E%E7%82%B9%E7%9A%84%E6%97%A0%E5%BA%8F%E6%80%A7-%E7%A8%80%E7%96%8F%E6%80%A7%E5%A4%84%E7%90%86"><span class="toc-text">5. 数据预处理与点的无序性&#x2F;稀疏性处理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E7%89%B9%E5%BE%81%E6%8F%90%E5%8F%96"><span class="toc-text">6. 特征提取</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-%E5%A6%82%E4%BD%95%E6%89%BE%E5%88%B0%E4%B8%A4%E4%B8%AA%E7%82%B9%E4%BA%91%E7%9A%84%E5%8C%B9%E9%85%8D%E5%85%B3%E7%B3%BB"><span class="toc-text">7. 如何找到两个点云的匹配关系</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-%E5%A6%82%E4%BD%95%E5%9F%BA%E4%BA%8E%E4%B8%A4%E4%B8%AA%E7%82%B9%E4%BA%91%E7%9A%84%E5%8C%B9%E9%85%8D%E5%85%B3%E7%B3%BB%E8%AE%A1%E7%AE%97%E7%82%B9%E4%BA%91%E4%B9%8B%E9%97%B4%E7%9A%84%E5%8F%98%E6%8D%A2%E5%85%B3%E7%B3%BB"><span class="toc-text">8. 如何基于两个点云的匹配关系计算点云之间的变换关系</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-%E5%AE%8C%E6%95%B4%E6%B5%81%E7%A8%8B%EF%BC%9A%E8%BE%93%E5%85%A5%E7%82%B9%E4%BA%91%E5%88%B0%E8%BE%93%E5%87%BA%E7%89%B9%E5%BE%81"><span class="toc-text">9. 完整流程：输入点云到输出特征</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0"><span class="toc-text">10. 损失函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-%E6%B5%8B%E8%AF%95%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="toc-text">11. 测试数据集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#12-%E6%B6%88%E8%9E%8D%E5%AE%9E%E9%AA%8C%E6%B5%8B%E8%AF%95%E7%9A%84%E7%BB%84%E4%BB%B6"><span class="toc-text">12. 消融实验测试的组件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E5%88%9B%E6%96%B0%E7%82%B9"><span class="toc-text">其他创新点</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">一、为什么用 PTv3 + 教师 - 学生自蒸馏？（核心 4 个原因）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">二、基于 PTv3 的自蒸馏 完整执行流程（一步一讲）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%A0%B8%E5%BF%83%E7%BB%93%E6%9E%84%EF%BC%9A%E4%B8%A4%E4%B8%AA%E4%B8%80%E6%A8%A1%E4%B8%80%E6%A0%B7%E7%9A%84-ptv3-%E7%BC%96%E7%A0%81%E5%99%A8"><span class="toc-text">1. 核心结构：两个一模一样的 PTv3 编码器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA%EF%BC%9A%E6%9E%84%E9%80%A0-%E4%B8%8D%E5%AF%B9%E7%A7%B0%E8%A7%86%E5%9B%BE-%E5%85%B3%E9%94%AE%E8%AE%BE%E8%AE%A1"><span class="toc-text">2. 数据增强：构造「不对称视图」（关键设计）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%89%8D%E5%90%91%E6%8E%A8%E7%90%86%EF%BC%9A%E5%88%86%E5%88%AB%E6%8F%90%E5%8F%96%E7%89%B9%E5%BE%81"><span class="toc-text">3. 前向推理：分别提取特征</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E7%94%9F%E6%88%90%E8%BD%AF%E7%9B%AE%E6%A0%87-%E8%87%AA%E8%92%B8%E9%A6%8F%E7%9A%84%E6%A0%B8%E5%BF%83"><span class="toc-text">4. 生成软目标（自蒸馏的核心）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E5%AD%A6%E7%94%9F%E6%8B%9F%E5%90%88%E6%95%99%E5%B8%88%EF%BC%9A%E8%AE%A1%E7%AE%97%E8%92%B8%E9%A6%8F%E6%8D%9F%E5%A4%B1"><span class="toc-text">5. 学生拟合教师：计算蒸馏损失</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-ema-%E6%9B%B4%E6%96%B0%E6%95%99%E5%B8%88%E7%BD%91%E7%BB%9C-%E6%9C%80%E5%85%B3%E9%94%AE%E7%9A%84%E4%B8%80%E6%AD%A5"><span class="toc-text">6. EMA 更新教师网络（最关键的一步）</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/03/23/Hydra%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" title="Hydra 与 OmegaConf 入门教程">Hydra 与 OmegaConf 入门教程</a><time datetime="2026-03-23T05:57:28.000Z" title="发表于 2026-03-23 13:57:28">2026-03-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/03/23/SSH%20%E5%AF%86%E9%92%A5%E8%AE%A4%E8%AF%81/" title="SSH密钥认证">SSH密钥认证</a><time datetime="2026-03-23T05:57:28.000Z" title="发表于 2026-03-23 13:57:28">2026-03-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/03/23/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_Concerto/" title="论文阅读_Concerto">论文阅读_Concerto</a><time datetime="2026-03-23T05:57:28.000Z" title="发表于 2026-03-23 13:57:28">2026-03-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/03/23/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_FUSER/" title="论文阅读_FUSER">论文阅读_FUSER</a><time datetime="2026-03-23T05:57:28.000Z" title="发表于 2026-03-23 13:57:28">2026-03-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/03/23/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_MC-MVSNet/" title="论文阅读_MC-MVSNe">论文阅读_MC-MVSNe</a><time datetime="2026-03-23T05:57:28.000Z" title="发表于 2026-03-23 13:57:28">2026-03-23</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2026 By outbreak_sen</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><div class="js-pjax"></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

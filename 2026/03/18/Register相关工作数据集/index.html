@@ -1,0 +1,214 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>This is a 部落格 of outbreak_sen | This is a 部落格 of outbreak_sen</title><meta name="author" content="outbreak_sen"><meta name="copyright" content="outbreak_sen"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="title: Register相关工作数据集 date: 2026-03-23 13:57:28 tags:  点云配准 categories: 点云配准   Register相关工作数据集    工作名称 训练数据集 评估数据集 空间属性     Sonata 包含 ScanNet, ScanNet++, S3DIS, ARKitScenes, HM3D, Structured3D, ASE">
+<meta property="og:type" content="article">
+<meta property="og:title" content="This is a 部落格 of outbreak_sen">
+<meta property="og:url" content="http://outbreak-sen.github.io/2026/03/18/Register%E7%9B%B8%E5%85%B3%E5%B7%A5%E4%BD%9C%E6%95%B0%E6%8D%AE%E9%9B%86/index.html">
+<meta property="og:site_name" content="This is a 部落格 of outbreak_sen">
+<meta property="og:description" content="title: Register相关工作数据集 date: 2026-03-23 13:57:28 tags:  点云配准 categories: 点云配准   Register相关工作数据集    工作名称 训练数据集 评估数据集 空间属性     Sonata 包含 ScanNet, ScanNet++, S3DIS, ARKitScenes, HM3D, Structured3D, ASE">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://outbreak-sen.github.io/img/head.png">
+<meta property="article:published_time" content="2026-03-18T04:16:12.140Z">
+<meta property="article:modified_time" content="2026-03-23T01:31:22.291Z">
+<meta property="article:author" content="outbreak_sen">
+<meta property="article:tag" content="static scale model, deep learning, vlog, radio control model, music">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://outbreak-sen.github.io/img/head.png"><link rel="shortcut icon" href="/img/h_beautygirl.png"><link rel="canonical" href="http://outbreak-sen.github.io/2026/03/18/Register%E7%9B%B8%E5%85%B3%E5%B7%A5%E4%BD%9C%E6%95%B0%E6%8D%AE%E9%9B%86/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'This is a 部落格 of outbreak_sen',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  isShuoshuo: false
+}</script><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="This is a 部落格 of outbreak_sen" type="application/atom+xml">
+<link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head><body><div id="web_bg" style="background-image: url(/img/v_beautygirl0.jpeg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/./img/head.png" onerror="onerror=null;src='./img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">205</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">71</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">15</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw fa fa-camera-retro"></i><span> 树洞</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 作品与鉴赏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/h_beautygirl.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/h_beautygirl.png" alt="Logo"><span class="site-name">This is a 部落格 of outbreak_sen</span></a><a class="nav-page-title" href="/"><span class="site-name">This is a 部落格 of outbreak_sen</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw fa fa-camera-retro"></i><span> 树洞</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 作品与鉴赏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">无标题</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-03-18T04:16:12.140Z" title="发表于 2026-03-18 12:16:12">2026-03-18</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-03-23T01:31:22.291Z" title="更新于 2026-03-23 09:31:22">2026-03-23</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><hr>
+<p>title: Register相关工作数据集<br>
+date: 2026-03-23 13:57:28<br>
+tags:</p>
+<ul>
+<li>点云配准<br>
+categories:</li>
+<li>点云配准</li>
+</ul>
+<hr>
+<h1>Register相关工作数据集</h1>
+<table>
+<thead>
+<tr>
+<th>工作名称</th>
+<th>训练数据集</th>
+<th>评估数据集</th>
+<th>空间属性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Sonata</strong></td>
+<td>包含 ScanNet, ScanNet++, S3DIS, ARKitScenes, HM3D, Structured3D, ASE 等。</td>
+<td><strong>室内：</strong> ScanNet (V2, 200), ScanNet++, S3DIS (Area 5, 6-fold)。<strong>室外：</strong> nuScenes, Waymo, SemanticKITTI。</td>
+<td>以<strong>室内</strong>为主，后期扩展至室外室外LiDAR语义分割。</td>
+</tr>
+<tr>
+<td><strong>Concerto</strong></td>
+<td>ScanNet, ScanNet++, Structured3D, S3DIS, ARKitScenes, HM3D。并引入 RealEstate10K 的视频提升点云。</td>
+<td><strong>室内：</strong> ScanNet, ScanNet200, ScanNet++, S3DIS。<strong>视频点云：</strong> RealEstate10K。</td>
+<td>核心训练与评估均聚焦于<strong>室内</strong>场景。</td>
+</tr>
+<tr>
+<td><strong>FUSER</strong></td>
+<td>3DMatch, ScanNet, ScanNet++, ARKitScenes。</td>
+<td><strong>室内：</strong> ScanNet (RGB-D 序列), 3DMatch, ArKitScenes。</td>
+<td><strong>完全属于室内</strong>，侧重于大规模室内扫描的配准。</td>
+</tr>
+<tr>
+<td><strong>Register Any Point (RAP)</strong></td>
+<td>涵盖 17 个数据集（12 个室外，4 个室内，1 个物体）。</td>
+<td><strong>室内：</strong> 3DMatch, NSS。<strong>室外：</strong> ETH, KITTI。<strong>跨域基准：</strong> 物体、室内、室外、TLS、地图。</td>
+<td><strong>室内、室外、物体全覆盖</strong>，旨在实现跨域通用配准。</td>
+</tr>
+<tr>
+<td><strong>Utonia</strong></td>
+<td>室内 (ScanNet等), 室外 (Waymo, SemanticKITTI等), 物体 (PartNet, Cap3D等), 视频提升点云。</td>
+<td><strong>室内：</strong> ScanNet, ScanNet200, ScanNet++, S3DIS。<strong>室外：</strong> NuScenes, Waymo, SemanticKITTI。<strong>物体：</strong> PartNet, ScanObjectNN。</td>
+<td><strong>通用型工作</strong>，通过对齐粒度实现了室内、室外与物体的统一编码。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="register-any-point-如何构造室外数据集">Register Any Point 如何构造室外数据集</h2>
+<p><strong>一连串的点云文件（Scans）：</strong> 就像相册里的照片，但每一张都是车顶激光雷达在某一瞬间扫描出来的 3D 场景。<strong>每一帧的“位姿”（Poses）：</strong> 这告诉你当时车在哪里、头朝向哪。如果原数据集给的位姿不准，RAP 还会用先进的算法（比如 PIN-SLAM）自己重新算一遍，确保位置精确。<strong>去畸变后的原始几何：</strong> 因为车在开的时候扫描，点云会“变毛”，RAP 会利用时间戳把这些点“摆正”（Deskewing），还原出真实的形状。</p>
+<ol start="2">
+<li>你应该如何获得“扫描级别”（Scan-level）的数据集？</li>
+</ol>
+<p>“扫描级别”意味着每一份数据都是<strong>最原始、最薄</strong>的一帧。</p>
+<p><strong>步骤：<strong><strong>选关键帧：车停着不动时的重复帧会被删掉，只保留有代表性的帧。<strong>设置参数</strong> F=1</strong>：</strong> 在脚本里设定每一个训练点云只包含 <strong>1 帧</strong>数据。<strong>随机组队：</strong> 从这一长串关键帧里，随机抓取 <strong>2 到 16 个</strong> 扫描帧凑在一起。<strong>检查邻居：</strong> 脚本会检查这几个帧在空间上是不是靠得够近（距离小于 dmax​），且彼此之间有没有</strong>重叠**（哪怕只有 0.5% 的重叠也可以）。<strong>生成练习题：</strong> 这一组“邻近且有重叠”的单帧扫描，就成了一个“扫描级别”的训练样本。</p>
+<ol start="3">
+<li>你应该如何获得“子图级别”（Submap-level）的数据集？</li>
+</ol>
+<p><strong>步骤：<strong><strong>设置参数</strong> F&gt;1</strong>：</strong> 比如对于 KITTI，作者设定 Fmax​ 高达 <strong>600</strong>。<strong>“多帧合一”：</strong> 按照位姿信息，把连续的很多帧（例如几十帧甚至几百帧）强行<strong>堆叠</strong>在一起，合成一个巨大的、内容非常丰富的点云，这就是“子图”。<strong>随机抽样：</strong> 同样地，在整段序列中抽出 <strong>2 到 16 个</strong> 这种合成好的“子图”。<strong>筛选标准：</strong> 同样要满足空间临近和一定的重叠度。<strong>生成练习题：</strong> 这一组巨大的子图就构成了一个“子图级别”的样本。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://outbreak-sen.github.io">outbreak_sen</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://outbreak-sen.github.io/2026/03/18/Register%E7%9B%B8%E5%85%B3%E5%B7%A5%E4%BD%9C%E6%95%B0%E6%8D%AE%E9%9B%86/">http://outbreak-sen.github.io/2026/03/18/Register%E7%9B%B8%E5%85%B3%E5%B7%A5%E4%BD%9C%E6%95%B0%E6%8D%AE%E9%9B%86/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://outbreak-sen.github.io" target="_blank">This is a 部落格 of outbreak_sen</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/./img/head.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2026/03/23/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_Utonia/" title="论文阅读_Utonia"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">论文阅读_Utonia</div></div><div class="info-2"><div class="info-item-1">Utonia Utonia: Toward One Encoder for All Point Clouds 基本信息    项目 内容     论文标题 Utonia: Toward One Encoder for All Point Clouds   作者 Yujia Zhang, Xiaoyang Wu, Yunhan Yang, Xianzhe Fan, Han Li, Yuechen Zhang, Zehao Huang, Naiyan Wang, Hengshuang Zhao   作者单位 1. 香港大学 2. 香港中文大学 3. 小米   时间 2025   发表会议/期刊 arXiv preprint / 待发表 (推测)    方法概览    特点 文章性质     输入 跨域点云（室内、室外LiDAR、遥感、物体CAD、视频提升点云）   输出 每个点的稠密特征表示（可用于下游任务）   所属领域 三维自监督学习、跨域统一表示学习     1. 摘要精简 Utonia 是首个面向全场景跨域点云的统一自监督编码器，可同时处理遥感、室外 LiDAR、室内...</div></div></div></a><a class="pagination-related" href="/2026/03/09/swiftUI%E7%9A%84%E7%AC%94%E8%AE%B0/" title="swiftUI"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">swiftUI</div></div><div class="info-2"><div class="info-item-1">swiftUI OK，我们先学习官方的swiftUI教程 Creating and combining views  创建一个项目   interface中的storyboard可以使用swift或者objective-C进行编写  项目初建 File &gt; New &gt; File （文件 &gt; New &gt; File） 以再次打开模板选择器。在用户界面部分，选择“SwiftUI 视图”，然后单击下一步。将文件命名为 CircleImage.swift，然后单击 Create。  12345678910111213141516171819202122232425262728import SwiftUI// `@main` 属性标识应用程序的入口点。@mainstruct LandmarksApp: App &#123;    var body: some Scene &#123;        WindowGroup &#123;            ContentView()        &#125;    &#125;&#125;//...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/./img/head.png" onerror="this.onerror=null;this.src='/./img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">outbreak_sen</div><div class="author-info-description">an interesting man</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">205</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">71</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">15</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/outbreak-sen" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://blog.csdn.net/outbreakrmb" target="_blank" title="CSDN"><i class="fa fa-book-open"></i></a><a class="social-icon" href="/1023786231" target="_blank" title="QQ"><i class="fab fa-qq"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">Register相关工作数据集</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#register-any-point-%E5%A6%82%E4%BD%95%E6%9E%84%E9%80%A0%E5%AE%A4%E5%A4%96%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="toc-text">Register Any Point 如何构造室外数据集</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/03/23/Hydra%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" title="Hydra 与 OmegaConf 入门教程">Hydra 与 OmegaConf 入门教程</a><time datetime="2026-03-23T05:57:28.000Z" title="发表于 2026-03-23 13:57:28">2026-03-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/03/23/SSH%20%E5%AF%86%E9%92%A5%E8%AE%A4%E8%AF%81/" title="SSH密钥认证">SSH密钥认证</a><time datetime="2026-03-23T05:57:28.000Z" title="发表于 2026-03-23 13:57:28">2026-03-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/03/23/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_Concerto/" title="论文阅读_Concerto">论文阅读_Concerto</a><time datetime="2026-03-23T05:57:28.000Z" title="发表于 2026-03-23 13:57:28">2026-03-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/03/23/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_FUSER/" title="论文阅读_FUSER">论文阅读_FUSER</a><time datetime="2026-03-23T05:57:28.000Z" title="发表于 2026-03-23 13:57:28">2026-03-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/03/23/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_MC-MVSNet/" title="论文阅读_MC-MVSNe">论文阅读_MC-MVSNe</a><time datetime="2026-03-23T05:57:28.000Z" title="发表于 2026-03-23 13:57:28">2026-03-23</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2026 By outbreak_sen</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><div class="js-pjax"></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
