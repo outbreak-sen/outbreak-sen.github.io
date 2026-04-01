@@ -1,0 +1,295 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>This is a 部落格 of outbreak_sen | This is a 部落格 of outbreak_sen</title><meta name="author" content="outbreak_sen"><meta name="copyright" content="outbreak_sen"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="实践笔记_多卡大规模训练 DataParallel vs DistributedDataParallel    维度 DataParallel (DP) DistributedDataParallel (DDP)     架构 单进程多线程 多进程（每个GPU一个进程）   通信方式 主GPU收集→分发（串行） 进程间直接通信（Ring All-Reduce）   负载均衡 主GPU负载重 所有G">
+<meta property="og:type" content="article">
+<meta property="og:title" content="This is a 部落格 of outbreak_sen">
+<meta property="og:url" content="http://outbreak-sen.github.io/2026/03/31/%E5%AE%9E%E8%B7%B5%E7%AC%94%E8%AE%B0_%E5%A4%9A%E5%8D%A1%E5%A4%A7%E8%A7%84%E6%A8%A1%E8%AE%AD%E7%BB%83/index.html">
+<meta property="og:site_name" content="This is a 部落格 of outbreak_sen">
+<meta property="og:description" content="实践笔记_多卡大规模训练 DataParallel vs DistributedDataParallel    维度 DataParallel (DP) DistributedDataParallel (DDP)     架构 单进程多线程 多进程（每个GPU一个进程）   通信方式 主GPU收集→分发（串行） 进程间直接通信（Ring All-Reduce）   负载均衡 主GPU负载重 所有G">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://outbreak-sen.github.io/img/head.png">
+<meta property="article:published_time" content="2026-03-31T03:20:22.411Z">
+<meta property="article:modified_time" content="2026-03-31T03:40:46.245Z">
+<meta property="article:author" content="outbreak_sen">
+<meta property="article:tag" content="static scale model, deep learning, vlog, radio control model, music">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://outbreak-sen.github.io/img/head.png"><link rel="shortcut icon" href="/img/h_beautygirl.png"><link rel="canonical" href="http://outbreak-sen.github.io/2026/03/31/%E5%AE%9E%E8%B7%B5%E7%AC%94%E8%AE%B0_%E5%A4%9A%E5%8D%A1%E5%A4%A7%E8%A7%84%E6%A8%A1%E8%AE%AD%E7%BB%83/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'This is a 部落格 of outbreak_sen',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  isShuoshuo: false
+}</script><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="This is a 部落格 of outbreak_sen" type="application/atom+xml">
+<link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head><body><div id="web_bg" style="background-image: url(/img/v_beautygirl0.jpeg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/./img/head.png" onerror="onerror=null;src='./img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">210</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">71</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">15</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw fa fa-camera-retro"></i><span> 树洞</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 作品与鉴赏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/h_beautygirl.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/h_beautygirl.png" alt="Logo"><span class="site-name">This is a 部落格 of outbreak_sen</span></a><a class="nav-page-title" href="/"><span class="site-name">This is a 部落格 of outbreak_sen</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw fa fa-camera-retro"></i><span> 树洞</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 作品与鉴赏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">无标题</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-03-31T03:20:22.411Z" title="发表于 2026-03-31 11:20:22">2026-03-31</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-03-31T03:40:46.245Z" title="更新于 2026-03-31 11:40:46">2026-03-31</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1>实践笔记_多卡大规模训练</h1>
+<h2 id="dataparallel-vs-distributeddataparallel">DataParallel vs DistributedDataParallel</h2>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th><strong>DataParallel (DP)</strong></th>
+<th><strong>DistributedDataParallel (DDP)</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>架构</strong></td>
+<td>单进程多线程</td>
+<td>多进程（每个GPU一个进程）</td>
+</tr>
+<tr>
+<td><strong>通信方式</strong></td>
+<td>主GPU收集→分发（串行）</td>
+<td>进程间直接通信（Ring All-Reduce）</td>
+</tr>
+<tr>
+<td><strong>负载均衡</strong></td>
+<td>主GPU负载重</td>
+<td>所有GPU负载均衡</td>
+</tr>
+<tr>
+<td><strong>性能</strong></td>
+<td>慢（GIL限制、通信瓶颈）</td>
+<td>快（无GIL、高效通信）</td>
+</tr>
+<tr>
+<td><strong>适用场景</strong></td>
+<td>单机小规模实验</td>
+<td>单机多卡/多机多卡生产环境</td>
+</tr>
+<tr>
+<td><strong>代码复杂度</strong></td>
+<td>简单（一行代码）</td>
+<td>稍复杂（需多进程初始化）</td>
+</tr>
+<tr>
+<td><strong>数据加载</strong></td>
+<td>单DataLoader</td>
+<td>每GPU独立DataLoader</td>
+</tr>
+<tr>
+<td><strong>Batch Size</strong></td>
+<td>总batch size</td>
+<td>每GPU batch size</td>
+</tr>
+<tr>
+<td><strong>梯度同步</strong></td>
+<td>主GPU收集所有梯度（O(N)）</td>
+<td>Ring All-Reduce（O(log N)）</td>
+</tr>
+<tr>
+<td><strong>参数更新</strong></td>
+<td>主GPU更新后广播（串行）</td>
+<td>每个GPU独立更新（并行）</td>
+</tr>
+<tr>
+<td><strong>数据传输</strong></td>
+<td>GPU0↔GPU1, GPU0↔GPU2…</td>
+<td>环形拓扑，带宽充分利用</td>
+</tr>
+<tr>
+<td>GPU占用</td>
+<td>主GPU显存占用更大</td>
+<td>所有GPU显存占用均衡</td>
+</tr>
+<tr>
+<td>Batchsize/DataloaderBatchsize<br />（总共64batches/4GPU的时候）</td>
+<td>DataLoader(dataset, batch_size=64) <br />batch_per_gpu = total_batch</td>
+<td>DataLoader(dataset, batch_size=16)<br />batch_per_gpu = total_batch // world_size</td>
+</tr>
+<tr>
+<td>学习率设置</td>
+<td>batch_size=64, lr=0.01</td>
+<td>batch_size_per_gpu=16, 4 GPUs → total_batch=64, lr仍用0.01</td>
+</tr>
+<tr>
+<td>保存权重</td>
+<td>默认保存</td>
+<td>if rank == 0:  # 只在主进程保存     torch.save(model.module.state_dict(), “model.pth”)</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="dp">DP</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">                    [GPU 0 (主)]</span><br><span class="line">                         ↑</span><br><span class="line">[CPU DataLoader] ─→ [数据batch] ─→ [分发给GPU1-3]</span><br><span class="line">                         ↓</span><br><span class="line">                   [前向传播]</span><br><span class="line">                         ↓</span><br><span class="line">            [各GPU计算loss和梯度]</span><br><span class="line">                         ↓</span><br><span class="line">                   [梯度汇总到GPU0]</span><br><span class="line">                         ↓</span><br><span class="line">                   [参数更新]</span><br><span class="line">                         ↓</span><br><span class="line">              [广播新参数到其他GPU]</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># DP模式：单DataLoader</span></span><br><span class="line"><span class="keyword">from</span> torch.utils.data <span class="keyword">import</span> DataLoader</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一个DataLoader，为所有GPU服务</span></span><br><span class="line">dataloader = DataLoader(</span><br><span class="line">    dataset,</span><br><span class="line">    batch_size=<span class="number">64</span>,           <span class="comment"># 总batch size</span></span><br><span class="line">    shuffle=<span class="literal">True</span>,</span><br><span class="line">    num_workers=<span class="number">4</span>,</span><br><span class="line">    pin_memory=<span class="literal">True</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">model = nn.DataParallel(model)</span><br><span class="line">model.cuda()</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> batch <span class="keyword">in</span> dataloader:</span><br><span class="line">    <span class="comment"># batch直接加载到默认GPU（通常是GPU0）</span></span><br><span class="line">    batch = batch.cuda()</span><br><span class="line">    output = model(batch)  <span class="comment"># 自动分发到各GPU</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>主GPU负载重</strong>：负责收集、分发、梯度汇总</li>
+<li><strong>通信串行</strong>：GPU0需要依次与其他GPU通信</li>
+<li><strong>GIL限制</strong>：Python全局锁影响多线程效率</li>
+<li><strong>batch size限制</strong>：受限于主GPU显存</li>
+<li><strong>单一DataLoader实例</strong>：只有一个进程加载数据</li>
+<li><strong>batch_size是总大小</strong>：64个样本会平均分到4个GPU（每个16个）</li>
+<li><strong>主GPU（GPU0）负责分发</strong>：数据先加载到GPU0，再分发到其他GPU</li>
+<li><strong>数据加载瓶颈</strong>：所有GPU等待同一个DataLoader</li>
+</ul>
+<h3 id="ddp">DDP</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">进程0 (GPU0)         进程1 (GPU1)         进程2 (GPU2)         进程3 (GPU3)</span><br><span class="line">    ↓                    ↓                    ↓                    ↓</span><br><span class="line">[加载数据]           [加载数据]           [加载数据]           [加载数据]</span><br><span class="line">    ↓                    ↓                    ↓                    ↓</span><br><span class="line">[前向传播]           [前向传播]           [前向传播]           [前向传播]</span><br><span class="line">    ↓                    ↓                    ↓                    ↓</span><br><span class="line">[计算梯度]           [计算梯度]           [计算梯度]           [计算梯度]</span><br><span class="line">    ↓                    ↓                    ↓                    ↓</span><br><span class="line">    └───────────────→ [All-Reduce] ←────────────────┘</span><br><span class="line">                            ↓</span><br><span class="line">                [所有GPU获得平均梯度]</span><br><span class="line">                            ↓</span><br><span class="line">                [每个GPU独立更新参数]</span><br></pre></td></tr></table></figure>
+<p><code>DistributedSampler</code> 是 PyTorch 中专门为分布式训练设计的采样器，它的核心作用是<strong>将数据集均匀分配给多个GPU进程，并确保每个epoch的数据划分不同</strong>。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># DDP模式：每GPU独立DataLoader</span></span><br><span class="line"><span class="keyword">from</span> torch.utils.data <span class="keyword">import</span> DataLoader</span><br><span class="line"><span class="keyword">from</span> torch.utils.data.distributed <span class="keyword">import</span> DistributedSampler</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">train</span>(<span class="params">rank, world_size</span>):</span><br><span class="line">    <span class="comment"># 每个进程独立创建DataLoader</span></span><br><span class="line">    sampler = DistributedSampler(</span><br><span class="line">        dataset,</span><br><span class="line">        num_replicas=world_size,  <span class="comment"># 总GPU数</span></span><br><span class="line">        rank=rank,                <span class="comment"># 当前GPU编号</span></span><br><span class="line">        shuffle=<span class="literal">True</span></span><br><span class="line">    )</span><br><span class="line">    </span><br><span class="line">    dataloader = DataLoader(</span><br><span class="line">        dataset,</span><br><span class="line">        batch_size=<span class="number">16</span>,           <span class="comment"># 每个GPU的batch size</span></span><br><span class="line">        sampler=sampler,         <span class="comment"># 使用分布式采样器</span></span><br><span class="line">        num_workers=<span class="number">4</span>,           <span class="comment"># 每个GPU有4个worker</span></span><br><span class="line">        pin_memory=<span class="literal">True</span></span><br><span class="line">    )</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 每个GPU有自己的模型副本</span></span><br><span class="line">    model = DDP(model.cuda(rank), device_ids=[rank])</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> epoch <span class="keyword">in</span> <span class="built_in">range</span>(epochs):</span><br><span class="line">        sampler.set_epoch(epoch)  <span class="comment"># 重要：保证每个epoch shuffle不同</span></span><br><span class="line">        <span class="keyword">for</span> batch <span class="keyword">in</span> dataloader:</span><br><span class="line">            batch = batch.cuda(rank)</span><br><span class="line">            output = model(batch)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>无主GPU</strong>：所有GPU地位平等</li>
+<li><strong>并行通信</strong>：Ring All-Reduce算法，通信效率高</li>
+<li><strong>无GIL限制</strong>：每个进程独立Python解释器</li>
+<li><strong>数据并行</strong>：每个GPU独立加载数据</li>
+<li><strong>多个DataLoader实例</strong>：每个GPU进程独立加载数据</li>
+<li><strong>batch_size是每GPU大小</strong>：batch =64/4= 16</li>
+<li><strong>Worker总数是总共的worker数目</strong>：num_workers × GPU数</li>
+</ul>
+<h2 id="num-workers设置偏好">num_workers设置偏好</h2>
+<p><strong>GPU数量和num_workers没有直接的对应关系</strong>，它们是两个独立的维度。设置错误不会导致程序崩溃，但会影响训练效率。</p>
+<p>GPU数量：决定模型并行度</p>
+<p>num_workers：决定数据加载并行度，保守起步num_workers = 4</p>
+<p>两者没有对应关系</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 这些配置都是合法的</span></span><br><span class="line">num_workers = <span class="number">0</span>, GPU数 = <span class="number">4</span>  <span class="comment"># ✅ 单进程加载数据</span></span><br><span class="line">num_workers = <span class="number">4</span>, GPU数 = <span class="number">4</span>  <span class="comment"># ✅ 常见配置</span></span><br><span class="line">num_workers = <span class="number">8</span>, GPU数 = <span class="number">4</span>  <span class="comment"># ✅ 更多worker</span></span><br><span class="line">num_workers = <span class="number">2</span>, GPU数 = <span class="number">8</span>  <span class="comment"># ✅ 较少worker</span></span><br></pre></td></tr></table></figure>
+<p>CPU workers负责数据的预处理，然后打包成数据队列之后放一起再依次给GPU分组加载</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">                    [GPU 0] ← 模型副本0</span><br><span class="line">                    ↑</span><br><span class="line">[CPU Worker 0] ─→  [数据队列]</span><br><span class="line">[CPU Worker 1] ─→  [数据队列] ←─ [主进程] ─→ [GPU 1] ← 模型副本1</span><br><span class="line">[CPU Worker 2] ─→  [数据队列]              [GPU 2]</span><br><span class="line">[CPU Worker 3] ─→  [数据队列]              [GPU 3]</span><br><span class="line">    ↑                   ↑</span><br><span class="line">数据加载进程        数据分发进程</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Worker0 → batch[0:8]  ┐</span><br><span class="line">Worker1 → batch[8:16] ├→ 主进程合并 → batch(32) → GPU0(0-7)</span><br><span class="line">Worker2 → batch[16:24]│                              GPU1(8-15)</span><br><span class="line">Worker3 → batch[24:32]┘                              GPU2(16-23)</span><br><span class="line">                                                    GPU3(24-32)</span><br></pre></td></tr></table></figure>
+<h3 id="多gpu训练的num-workers设置策略">多GPU训练的num_workers设置策略</h3>
+<h4 id="策略1：dataparallel-单进程多gpu">策略1：DataParallel（单进程多GPU）</h4>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 单进程控制多个GPU</span></span><br><span class="line">model = nn.DataParallel(model, device_ids=[<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</span><br><span class="line">dataloader = DataLoader(</span><br><span class="line">    dataset,</span><br><span class="line">    batch_size=<span class="number">128</span>,  <span class="comment"># 总batch size</span></span><br><span class="line">    num_workers=<span class="number">8</span>,   <span class="comment"># 8个worker提供数据</span></span><br><span class="line">    pin_memory=<span class="literal">True</span>  <span class="comment"># 加速CPU→GPU传输</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h4 id="策略2：distributeddataparallel-多进程多gpu">策略2：DistributedDataParallel（多进程多GPU）</h4>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 每个GPU一个进程</span></span><br><span class="line"><span class="keyword">import</span> torch.distributed <span class="keyword">as</span> dist</span><br><span class="line"><span class="keyword">from</span> torch.nn.parallel <span class="keyword">import</span> DistributedDataParallel <span class="keyword">as</span> DDP</span><br><span class="line"></span><br><span class="line"><span class="comment"># 每个进程独立</span></span><br><span class="line">local_rank = <span class="built_in">int</span>(os.environ[<span class="string">&#x27;LOCAL_RANK&#x27;</span>])</span><br><span class="line">torch.cuda.set_device(local_rank)</span><br><span class="line">dist.init_process_group(<span class="string">&#x27;nccl&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 每个进程有自己的dataloader</span></span><br><span class="line">dataloader = DataLoader(</span><br><span class="line">    dataset,</span><br><span class="line">    batch_size=<span class="number">32</span>,  <span class="comment"># 每个GPU的batch size</span></span><br><span class="line">    num_workers=<span class="number">4</span>,  <span class="comment"># 每个GPU的worker数</span></span><br><span class="line">    sampler=DistributedSampler(dataset)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h4 id="自动测试使用num-worker数目">自动测试使用num_worker数目</h4>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">from</span> torch.utils.data <span class="keyword">import</span> DataLoader</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">find_optimal_workers</span>(<span class="params">dataset, batch_size, gpu_count, max_workers=<span class="number">16</span></span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;自动寻找最优num_workers&quot;&quot;&quot;</span></span><br><span class="line">    </span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;Testing num_workers for <span class="subst">&#123;gpu_count&#125;</span> GPUs...&quot;</span>)</span><br><span class="line">    best_time = <span class="built_in">float</span>(<span class="string">&#x27;inf&#x27;</span>)</span><br><span class="line">    best_workers = <span class="number">0</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> workers <span class="keyword">in</span> [<span class="number">0</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">8</span>, <span class="number">12</span>, <span class="number">16</span>]:</span><br><span class="line">        <span class="keyword">if</span> workers &gt; max_workers:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">            </span><br><span class="line">        dataloader = DataLoader(</span><br><span class="line">            dataset, </span><br><span class="line">            batch_size=batch_size * gpu_count,</span><br><span class="line">            num_workers=workers,</span><br><span class="line">            pin_memory=<span class="literal">True</span></span><br><span class="line">        )</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 测量数据加载速度（不训练）</span></span><br><span class="line">        start = time.time()</span><br><span class="line">        <span class="keyword">for</span> i, batch <span class="keyword">in</span> <span class="built_in">enumerate</span>(dataloader):</span><br><span class="line">            <span class="keyword">if</span> i &gt;= <span class="number">50</span>:  <span class="comment"># 测试50个batch</span></span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">        elapsed = time.time() - start</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 计算每秒处理batch数</span></span><br><span class="line">        throughput = <span class="number">50</span> / elapsed</span><br><span class="line">        </span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;  workers=<span class="subst">&#123;workers&#125;</span>: <span class="subst">&#123;throughput:<span class="number">.2</span>f&#125;</span> batches/sec&quot;</span>)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> throughput &gt; best_throughput:</span><br><span class="line">            best_throughput = throughput</span><br><span class="line">            best_workers = workers</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> best_workers</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用</span></span><br><span class="line">best_workers = find_optimal_workers(dataset, batch_size=<span class="number">32</span>, gpu_count=<span class="number">4</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;Recommended num_workers: <span class="subst">&#123;best_workers&#125;</span>&quot;</span>)</span><br></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://outbreak-sen.github.io">outbreak_sen</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://outbreak-sen.github.io/2026/03/31/%E5%AE%9E%E8%B7%B5%E7%AC%94%E8%AE%B0_%E5%A4%9A%E5%8D%A1%E5%A4%A7%E8%A7%84%E6%A8%A1%E8%AE%AD%E7%BB%83/">http://outbreak-sen.github.io/2026/03/31/%E5%AE%9E%E8%B7%B5%E7%AC%94%E8%AE%B0_%E5%A4%9A%E5%8D%A1%E5%A4%A7%E8%A7%84%E6%A8%A1%E8%AE%AD%E7%BB%83/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://outbreak-sen.github.io" target="_blank">This is a 部落格 of outbreak_sen</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/./img/head.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2026/03/31/%E4%B8%89%E7%BB%B4%E4%BF%A1%E6%81%AF%E4%BF%9D%E5%AD%98%E6%A0%BC%E5%BC%8F/" title=""><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2"></div></div><div class="info-2"><div class="info-item-1">三维信息保存格式    数据类型 本质 维度 典型用途     深度图 2D图像，每个像素存距离值 2D网格 单目/双目深度估计、RGB-D感知   PLY点云 3D点集合，存(x,y,z)及属性 无序3D点 3D重建、SLAM、三维检测   HDF5 容器格式，可存储任意数据 灵活 大规模数据集、多模态数据存储    实际案例对比    格式 开发者 本质 压缩 精度 典型用途     NPY NumPy 二进制数组 无 任意 Python单数组存储   NPZ NumPy ZIP压缩包 有 任意 Python多数组存储   PFM 学术界 浮点图像 无 32位浮点 深度图/视差图标准   PNG PNG Group 位图图像 无损 8-16位整型 RGB/深度图通用   PLY Stanford 3D网格/点云 可选 32位浮点 3D模型存储   HDF5 HDF Group 科学数据容器 有 任意 大规模多模态数据       格式 文件大小 保存时间 加载时间 精度损失 跨语言     NPY 8.3 MB 0.02s 0.01s 无 ❌   NPZ 4.1...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/./img/head.png" onerror="this.onerror=null;this.src='/./img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">outbreak_sen</div><div class="author-info-description">an interesting man</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">210</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">71</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">15</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/outbreak-sen" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://blog.csdn.net/outbreakrmb" target="_blank" title="CSDN"><i class="fa fa-book-open"></i></a><a class="social-icon" href="/1023786231" target="_blank" title="QQ"><i class="fab fa-qq"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">实践笔记_多卡大规模训练</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#dataparallel-vs-distributeddataparallel"><span class="toc-text">DataParallel vs DistributedDataParallel</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#dp"><span class="toc-text">DP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ddp"><span class="toc-text">DDP</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#num-workers%E8%AE%BE%E7%BD%AE%E5%81%8F%E5%A5%BD"><span class="toc-text">num_workers设置偏好</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9Agpu%E8%AE%AD%E7%BB%83%E7%9A%84num-workers%E8%AE%BE%E7%BD%AE%E7%AD%96%E7%95%A5"><span class="toc-text">多GPU训练的num_workers设置策略</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AD%96%E7%95%A51%EF%BC%9Adataparallel-%E5%8D%95%E8%BF%9B%E7%A8%8B%E5%A4%9Agpu"><span class="toc-text">策略1：DataParallel（单进程多GPU）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AD%96%E7%95%A52%EF%BC%9Adistributeddataparallel-%E5%A4%9A%E8%BF%9B%E7%A8%8B%E5%A4%9Agpu"><span class="toc-text">策略2：DistributedDataParallel（多进程多GPU）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%87%AA%E5%8A%A8%E6%B5%8B%E8%AF%95%E4%BD%BF%E7%94%A8num-worker%E6%95%B0%E7%9B%AE"><span class="toc-text">自动测试使用num_worker数目</span></a></li></ol></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/03/31/%E5%AE%9E%E8%B7%B5%E7%AC%94%E8%AE%B0_%E5%A4%9A%E5%8D%A1%E5%A4%A7%E8%A7%84%E6%A8%A1%E8%AE%AD%E7%BB%83/" title="无标题">无标题</a><time datetime="2026-03-31T03:20:22.411Z" title="发表于 2026-03-31 11:20:22">2026-03-31</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/03/31/%E4%B8%89%E7%BB%B4%E4%BF%A1%E6%81%AF%E4%BF%9D%E5%AD%98%E6%A0%BC%E5%BC%8F/" title="无标题">无标题</a><time datetime="2026-03-31T03:02:16.715Z" title="发表于 2026-03-31 11:02:16">2026-03-31</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/03/31/%E5%B7%A5%E5%85%B7%E7%AC%94%E8%AE%B0_wandb%20%E5%88%AB%E5%90%8DW&amp;B/" title="无标题">无标题</a><time datetime="2026-03-31T02:36:32.331Z" title="发表于 2026-03-31 10:36:32">2026-03-31</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/03/25/Docker%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/" title="无标题">无标题</a><time datetime="2026-03-25T14:41:46.088Z" title="发表于 2026-03-25 22:41:46">2026-03-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/03/24/wandb(Weights&amp;Biases)%E4%BB%8B%E7%BB%8D%E4%B8%8E%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" title="无标题">无标题</a><time datetime="2026-03-24T08:11:06.338Z" title="发表于 2026-03-24 16:11:06">2026-03-24</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2026 By outbreak_sen</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><div class="js-pjax"></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
